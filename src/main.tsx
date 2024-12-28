@@ -7,13 +7,13 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { RootLayout } from "./layouts/root.tsx";
+import { RootLayout } from "@/layouts/root";
 
 const HomePage = lazy(() =>
-  import("./pages/home.tsx").then((module) => ({ default: module.HomePage }))
+  import("@/pages/home").then((module) => ({ default: module.HomePage }))
 );
 const AboutPage = lazy(() =>
-  import("./pages/about.tsx").then((module) => ({ default: module.AboutPage }))
+  import("@/pages/about").then((module) => ({ default: module.AboutPage }))
 );
 
 const router = createBrowserRouter(
