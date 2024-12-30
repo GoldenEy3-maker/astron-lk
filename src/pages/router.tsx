@@ -3,7 +3,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { RootLayout } from "./layouts/root";
+import { RootErrorBoundary, RootLayout } from "./layouts/root";
 import { lazy } from "react";
 
 const HomePage = lazy(() =>
@@ -19,7 +19,7 @@ const AboutPage = lazy(() =>
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<RootLayout />}>
+    <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
     </Route>
