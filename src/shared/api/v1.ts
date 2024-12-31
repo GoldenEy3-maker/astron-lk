@@ -3,9 +3,7 @@ import { z } from "zod";
 
 const User = z
   .object({ id: z.string(), name: z.string(), email: z.string() })
-  .partial()
-  .strict()
-  .passthrough();
+  .strict();
 const News = z
   .object({
     id: z.string(),
@@ -13,9 +11,7 @@ const News = z
     description: z.string(),
     createdAt: z.string(),
   })
-  .partial()
-  .strict()
-  .passthrough();
+  .strict();
 
 export const schemas = {
   User,
@@ -26,14 +22,14 @@ const endpoints = makeApi([
   {
     method: "get",
     path: "/news",
-    alias: "getNews",
+    alias: "listNews",
     requestFormat: "json",
     response: z.array(News),
   },
   {
     method: "post",
     path: "/news",
-    alias: "postNews",
+    alias: "createPost",
     requestFormat: "json",
     parameters: [
       {
@@ -47,7 +43,7 @@ const endpoints = makeApi([
   {
     method: "get",
     path: "/users",
-    alias: "getUsers",
+    alias: "listUsers",
     requestFormat: "json",
     response: z.array(User),
   },
