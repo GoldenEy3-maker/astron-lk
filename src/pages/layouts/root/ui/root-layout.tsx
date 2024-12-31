@@ -1,18 +1,13 @@
-import { Button } from "@/shared/ui/button";
-import { Link, Outlet } from "react-router-dom";
+import { Footer } from "@/widgets/footer";
+import { Header } from "@/widgets/header";
+import { Outlet } from "react-router-dom";
 
 export function RootLayout() {
   return (
-    <div>
-      <nav>
-        <Button asChild variant="link">
-          <Link to="/">Home</Link>
-        </Button>
-        <Button asChild variant="link">
-          <Link to="/about">About</Link>
-        </Button>
-      </nav>
+    <div className="main-container max-container min-h-svh grid-rows-[auto_1fr_auto]">
+      <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }
