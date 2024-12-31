@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "dev:server": "json-server db.json",
-    "api:generate": "openapi-zod-client https://astron-lk-open-api.vercel.app/schema.json -o ./src/shared/api/v1.ts --export-schemas --export-types --strict-objects",
+    "api:generate": "openapi-zod-client https://astron-lk-open-api.vercel.app/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false --implicit-required",
     "postinstall": "pnpm api:generate"
   },
   "dependencies": {
