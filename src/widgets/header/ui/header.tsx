@@ -1,7 +1,7 @@
 import { Routes } from "@/shared/constants/routes";
 import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
-import { Actions } from "./Actions";
+import { Actions } from "./actions";
 
 export function Header() {
   return (
