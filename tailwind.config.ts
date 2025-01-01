@@ -10,7 +10,14 @@ export default {
   },
   theme: {
     screens,
-    fontSize,
+    fontSize: {
+      ...fontSize,
+      display: "3rem",
+      h1: "2.5rem",
+      h2: "2rem",
+      h3: ["1.75rem", "1.2"],
+      h4: "1.25rem",
+    },
     extend: {
       fontFamily: {
         sans: ["CeraPro", ...fontFamily.sans],
@@ -23,7 +30,10 @@ export default {
       },
       colors: {
         background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        foreground: {
+          DEFAULT: "hsl(var(--foreground))",
+          accent: "hsl(var(--foreground-accent))",
+        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -34,6 +44,7 @@ export default {
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          accent: "hsl(var(--primary-accent))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -52,7 +63,10 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        border: "hsl(var(--border))",
+        border: {
+          DEFAULT: "hsl(var(--border))",
+          accent: "hsl(var(--border-accent))",
+        },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {
