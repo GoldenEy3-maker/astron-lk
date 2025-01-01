@@ -6,7 +6,12 @@ export function Main({
   ...props
 }: React.ComponentProps<"main">) {
   return (
-    <main className={cn("col-[main]", className)} {...props}>
+    <main
+      className={cn(
+        "col-[main] grid grid-cols-subgrid auto-rows-max",
+        className
+      )}
+      {...props}>
       {children}
     </main>
   );
