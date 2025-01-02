@@ -14,7 +14,7 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { Button } from "@/shared/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { AnimatePresence, motion } from "motion/react";
 import { useLogin } from "../api/login";
@@ -23,7 +23,7 @@ import { CTABanner } from "./cta-banner";
 type LoginFormProps = {} & React.ComponentProps<"div">;
 
 export function LoginForm({ className, ...props }: LoginFormProps) {
-  const { isPending, isUserBanned, loginHandler } = useLogin();
+  const navigate = useNavigate();
 
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
@@ -31,6 +31,13 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       login: "",
       password: "",
       remember: true,
+    },
+  });
+
+  const { isPending, isUserBanned, loginHandler } = useLogin({
+    onSuccess() {
+      navigate(Routes.Home);
+      form.reset();
     },
   });
 

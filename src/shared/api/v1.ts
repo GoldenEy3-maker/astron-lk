@@ -1,21 +1,19 @@
 import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
-const User = z
+const login_Body = z
+  .object({ login: z.string(), password: z.string(), remember: z.boolean() })
+  .strict();
+const restoreUserPassword_Body = z
+  .object({ oldPassword: z.string(), newPassword: z.string() })
+  .strict();
+const Session = z
   .object({
-    id: z.string(),
+    email: z.string(),
     surname: z.string(),
     name: z.string(),
     patronymic: z.string(),
-    email: z.string(),
-    password: z.string(),
   })
-  .strict();
-const changeUserPassword_Body = z
-  .object({ oldPassword: z.string(), newPassword: z.string() })
-  .strict();
-const login_Body = z
-  .object({ login: z.string(), password: z.string(), remember: z.boolean() })
   .strict();
 const News = z
   .object({
@@ -25,15 +23,42 @@ const News = z
     createdAt: z.string(),
   })
   .strict();
+const User = z
+  .object({
+    id: z.string(),
+    surname: z.string(),
+    name: z.string(),
+    patronymic: z.string(),
+    email: z.string(),
+    password: z.string(),
+    tokenVersion: z.number().int(),
+    isBanned: z.boolean(),
+  })
+  .strict();
 
 export const schemas = {
-  User,
-  changeUserPassword_Body,
   login_Body,
+  restoreUserPassword_Body,
+  Session,
   News,
+  User,
 };
 
 const endpoints = makeApi([
+  {
+    method: "get",
+    path: "/api/getSession",
+    alias: "getSession",
+    requestFormat: "json",
+    response: Session,
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
   {
     method: "post",
     path: "/api/login",
@@ -46,11 +71,16 @@ const endpoints = makeApi([
         schema: login_Body,
       },
     ],
-    response: User,
+    response: z.object({ accessToken: z.string() }).strict(),
     errors: [
       {
         status: 400,
-        description: `Ошибка`,
+        description: `Ошибка ввода данных`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 403,
+        description: `Пользователь забанен`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
@@ -64,47 +94,28 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/api/users",
-    alias: "listUsers",
+    path: "/api/refreshToken",
+    alias: "refreshToken",
     requestFormat: "json",
-    response: z.array(User),
-  },
-  {
-    method: "get",
-    path: "/api/users/:userId",
-    alias: "getUserById",
-    requestFormat: "json",
-    parameters: [
-      {
-        name: "userId",
-        type: "Path",
-        schema: z.string(),
-      },
-    ],
-    response: User,
+    response: z.object({ accessToken: z.string() }).strict(),
     errors: [
       {
-        status: 404,
-        description: `Пользователь не найден`,
+        status: 401,
+        description: `Ошибка авторизации`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
   },
   {
     method: "post",
-    path: "/api/users/:userId/change-password",
-    alias: "changeUserPassword",
+    path: "/api/restorePassword",
+    alias: "restoreUserPassword",
     requestFormat: "json",
     parameters: [
       {
         name: "body",
         type: "Body",
-        schema: changeUserPassword_Body,
-      },
-      {
-        name: "userId",
-        type: "Path",
-        schema: z.string(),
+        schema: restoreUserPassword_Body,
       },
     ],
     response: z.object({ message: z.string() }).strict(),

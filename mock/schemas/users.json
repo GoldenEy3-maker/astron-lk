@@ -5,6 +5,8 @@
     "surname": "Королев",
     "patronymic": "Николаевич",
     "email": "danil@mail.ru",
-    "password": "123"
+    "password": "123",
+    "tokenVersion": 0,
+    "isBanned": false
   }
 ]
