@@ -13,6 +13,7 @@ const HomePage = lazy(() =>
     default: module.HomePage,
   }))
 );
+
 const LoginPage = lazy(() =>
   import("./login").then((module) => ({
     default: module.LoginPage,
