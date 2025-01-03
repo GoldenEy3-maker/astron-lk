@@ -4,7 +4,7 @@ import { create } from "zustand";
 export const authUserDto = z.object({
   email: z.string(),
   name: z.string(),
-  patronymic: z.string(),
+  patronymic: z.string().optional(),
   surname: z.string(),
 });
 
