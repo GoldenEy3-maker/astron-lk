@@ -1,8 +1,5 @@
 import { cn } from "@/shared/lib/cn";
 import { BannedBanner } from "./banned-banner";
-import { useForm } from "react-hook-form";
-import { loginFormSchema, LoginFormSchema } from "../model/sign-in-form-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -14,33 +11,15 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { Button } from "@/shared/ui/button";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { AnimatePresence, motion } from "motion/react";
-import { useSignIn } from "../api/sign-in-mutation";
+import { useSignInForm } from "../lib/use-sign-in-form";
 
 type SignInFormProps = {} & React.ComponentProps<"div">;
 
 export function SignInForm({ className, ...props }: SignInFormProps) {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: {
-      login: "",
-      password: "",
-      remember: true,
-    },
-  });
-
-  const { isPending, isUserBanned, signInHandler } = useSignIn({
-    onSuccess() {
-      form.reset();
-
-      navigate(searchParams.get("callbackUrl") ?? Routes.Home);
-    },
-  });
+  const { form, isPending, isUserBanned, signInHandler } = useSignInForm();
 
   return (
     <div className={cn(className)} {...props}>
