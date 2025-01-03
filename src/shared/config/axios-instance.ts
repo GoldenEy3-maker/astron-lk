@@ -34,13 +34,13 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url !== "/api/refresh"
+      originalRequest.url !== "/api/session/refresh"
     ) {
       if (!isRefershQueryLoading) {
         isRefershQueryLoading = true;
 
         try {
-          const { data } = await axiosInstance.get("/api/refresh");
+          const { data } = await axiosInstance.get("/api/session/refresh");
           useSession.setState({ token: data.accessToken });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);

@@ -1,7 +1,7 @@
 import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
-const login_Body = z
+const signIn_Body = z
   .object({
     login: z.string(),
     password: z.string(),
@@ -47,7 +47,7 @@ const User = z
   .strict();
 
 export const schemas = {
-  login_Body,
+  signIn_Body,
   Error,
   Session,
   restoreUserPassword_Body,
@@ -58,15 +58,50 @@ export const schemas = {
 
 const endpoints = makeApi([
   {
+    method: "get",
+    path: "/api/news",
+    alias: "getNews",
+    requestFormat: "json",
+    response: z.array(News),
+  },
+  {
+    method: "get",
+    path: "/api/session",
+    alias: "getSession",
+    requestFormat: "json",
+    response: Session,
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/session/refresh",
+    alias: "refreshToken",
+    requestFormat: "json",
+    response: z.object({ accessToken: z.string() }).strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
     method: "post",
-    path: "/api/login",
-    alias: "login",
+    path: "/api/sign-in",
+    alias: "signIn",
     requestFormat: "json",
     parameters: [
       {
         name: "body",
         type: "Body",
-        schema: login_Body,
+        schema: signIn_Body,
       },
     ],
     response: z.object({ accessToken: z.string() }).strict(),
@@ -84,43 +119,8 @@ const endpoints = makeApi([
     ],
   },
   {
-    method: "get",
-    path: "/api/news",
-    alias: "listNews",
-    requestFormat: "json",
-    response: z.array(News),
-  },
-  {
-    method: "get",
-    path: "/api/refresh",
-    alias: "refreshToken",
-    requestFormat: "json",
-    response: z.object({ accessToken: z.string() }).strict(),
-    errors: [
-      {
-        status: 401,
-        description: `Ошибка авторизации`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
-  },
-  {
-    method: "get",
-    path: "/api/session",
-    alias: "getSession",
-    requestFormat: "json",
-    response: Session,
-    errors: [
-      {
-        status: 401,
-        description: `Ошибка авторизации`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
-  },
-  {
     method: "post",
-    path: "/api/user/restore",
+    path: "/api/user/restore-password",
     alias: "restoreUserPassword",
     requestFormat: "json",
     parameters: [

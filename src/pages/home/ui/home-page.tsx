@@ -6,7 +6,7 @@ import { useDocumentTitle } from "usehooks-ts";
 export function HomePage() {
   const { data, isLoading } = useQuery({
     queryKey: ["news", "list"],
-    queryFn: ({ signal }) => apiClient.listNews({ signal }),
+    queryFn: ({ signal }) => apiClient.getNews({ signal }),
   });
   useDocumentTitle("Главная");
   return (

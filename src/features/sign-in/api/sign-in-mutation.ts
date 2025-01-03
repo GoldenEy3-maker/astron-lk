@@ -13,7 +13,7 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
   const [isUserBanned, setIsUserBanned] = useState(false);
 
   const signInMutation = useMutation({
-    mutationFn: apiClient.login,
+    mutationFn: apiClient.signIn,
     onMutate() {
       setIsUserBanned(false);
     },
@@ -28,7 +28,7 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
     },
   });
 
-  function signInHandler(data: z.infer<typeof schemas.login_Body>) {
+  function signInHandler(data: z.infer<typeof schemas.signIn_Body>) {
     signInMutation.mutate(data);
   }
 

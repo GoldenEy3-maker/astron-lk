@@ -74,7 +74,7 @@ async function authMiddleware(req, res, next) {
   next();
 }
 
-app.post("/api/login", async (req, res) => {
+app.post("/api/sign-in", async (req, res) => {
   // TODO: add remember handler
   const { login, password, remember } = req.body;
 
@@ -95,7 +95,7 @@ app.post("/api/login", async (req, res) => {
   return res.json({ accessToken });
 });
 
-app.get("/api/refresh", async (req, res) => {
+app.get("/api/session/refresh", async (req, res) => {
   const reqRefreshToken = req.cookies.refresh;
 
   if (!reqRefreshToken)
