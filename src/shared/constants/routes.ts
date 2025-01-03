@@ -2,7 +2,7 @@ import { ValueOf } from "../lib/types/utility";
 
 export const Routes = {
   Home: "/",
-  Login: "/login",
+  SignIn: "/sign-in",
   ChangePassword: "/change-password",
   Search: "/search",
   Favorites: "/favorites",

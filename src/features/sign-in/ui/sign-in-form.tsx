@@ -1,7 +1,7 @@
 import { cn } from "@/shared/lib/cn";
 import { BannedBanner } from "./banned-banner";
 import { useForm } from "react-hook-form";
-import { loginFormSchema, LoginFormSchema } from "../model/login-form-schema";
+import { loginFormSchema, LoginFormSchema } from "../model/sign-in-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -17,12 +17,11 @@ import { Button } from "@/shared/ui/button";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { AnimatePresence, motion } from "motion/react";
-import { useLogin } from "../api/login";
-import { CTABanner } from "./cta-banner";
+import { useSignIn } from "../api/sign-in-mutation";
 
-type LoginFormProps = {} & React.ComponentProps<"div">;
+type SignInFormProps = {} & React.ComponentProps<"div">;
 
-export function LoginForm({ className, ...props }: LoginFormProps) {
+export function SignInForm({ className, ...props }: SignInFormProps) {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -35,7 +34,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     },
   });
 
-  const { isPending, isUserBanned, loginHandler } = useLogin({
+  const { isPending, isUserBanned, signInHandler } = useSignIn({
     onSuccess() {
       form.reset();
 
@@ -57,7 +56,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       </AnimatePresence>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(loginHandler)}
+          onSubmit={form.handleSubmit(signInHandler)}
           className="bg-card rounded-main py-9 px-12">
           <div className="space-y-5">
             <FormField
@@ -122,7 +121,6 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           </div>
         </form>
       </Form>
-      <CTABanner className="mt-7" />
     </div>
   );
 }

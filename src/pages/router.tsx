@@ -7,6 +7,8 @@ import { RootErrorBoundary, RootLayout } from "./layouts/root";
 import { lazy } from "react";
 import { Routes } from "@/shared/constants/routes";
 import { ProtectedLayout } from "./layouts/protected";
+import { Main } from "@/shared/ui/main";
+import { sessionLoader } from "@/entities/session";
 
 const HomePage = lazy(() =>
   import("./home").then((module) => ({
@@ -14,9 +16,21 @@ const HomePage = lazy(() =>
   }))
 );
 
-const LoginPage = lazy(() =>
-  import("./login").then((module) => ({
-    default: module.LoginPage,
+const SearchPage = lazy(() =>
+  import("./search").then((module) => ({
+    default: module.SearchPage,
+  }))
+);
+
+const FavoritesPage = lazy(() =>
+  import("./favorites").then((module) => ({
+    default: module.FavoritesPage,
+  }))
+);
+
+const SignInPage = lazy(() =>
+  import("./sign-in").then((module) => ({
+    default: module.SignInPage,
   }))
 );
 
@@ -27,10 +41,21 @@ const NotFoundPage = lazy(() =>
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
-      <Route element={<ProtectedLayout />}>
+      <Route
+        element={<ProtectedLayout />}
+        loader={sessionLoader}
+        HydrateFallback={() => {
+          return (
+            <Main>
+              <h4 className="text-h4">Loading...</h4>
+            </Main>
+          );
+        }}>
         <Route index element={<HomePage />} />
+        <Route path={Routes.Search} element={<SearchPage />} />
+        <Route path={Routes.Favorites} element={<FavoritesPage />} />
       </Route>
-      <Route path={Routes.Login} element={<LoginPage />} />
+      <Route path={Routes.SignIn} element={<SignInPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )

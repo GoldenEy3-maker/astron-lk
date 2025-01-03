@@ -5,14 +5,14 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 
-type UseLogingProps = {
+type UseSignInProps = {
   onSuccess?: () => void;
 };
 
-export function useLogin({ onSuccess }: UseLogingProps = {}) {
+export function useSignIn({ onSuccess }: UseSignInProps = {}) {
   const [isUserBanned, setIsUserBanned] = useState(false);
 
-  const loginMutation = useMutation({
+  const signInMutation = useMutation({
     mutationFn: apiClient.login,
     onMutate() {
       setIsUserBanned(false);
@@ -28,9 +28,9 @@ export function useLogin({ onSuccess }: UseLogingProps = {}) {
     },
   });
 
-  function loginHandler(data: z.infer<typeof schemas.login_Body>) {
-    loginMutation.mutate(data);
+  function signInHandler(data: z.infer<typeof schemas.login_Body>) {
+    signInMutation.mutate(data);
   }
 
-  return { loginHandler, isPending: loginMutation.isPending, isUserBanned };
+  return { signInHandler, isPending: signInMutation.isPending, isUserBanned };
 }

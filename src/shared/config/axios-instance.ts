@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuth } from "../store/auth";
+import { useSession } from "../store/session";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
@@ -20,7 +20,7 @@ function addRefreshQuerySubscriber(callback: RefreshQuerySubscriber) {
 }
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = useAuth.getState().token;
+  const token = useSession.getState().token;
 
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
@@ -41,13 +41,13 @@ axiosInstance.interceptors.response.use(
 
         try {
           const { data } = await axiosInstance.get("/api/refresh");
-          useAuth.setState({ token: data.accessToken });
+          useSession.setState({ token: data.accessToken });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);
           refreshQuerySubscribers = [];
           return axiosInstance(originalRequest);
         } catch (refreshError) {
-          useAuth.setState({ token: null });
+          useSession.setState({ token: null });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers("");
           refreshQuerySubscribers = [];
