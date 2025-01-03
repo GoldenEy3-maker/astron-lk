@@ -1,1 +1,1 @@
-export { sessionLoader } from "./api/session-loader";
+export { sessionLoader, sessionQueryOptions } from "./api/session-loader";

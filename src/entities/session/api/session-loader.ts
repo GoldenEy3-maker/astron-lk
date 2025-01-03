@@ -3,7 +3,7 @@ import { queryClient } from "@/shared/config/query-client";
 import { Routes } from "@/shared/constants/routes";
 import { useSession } from "@/shared/store/session";
 import { queryOptions } from "@tanstack/react-query";
-import { redirect } from "react-router-dom";
+import { LoaderFunctionArgs, redirect } from "react-router-dom";
 
 export function sessionQueryOptions() {
   return queryOptions({
@@ -12,8 +12,9 @@ export function sessionQueryOptions() {
   });
 }
 
-export async function sessionLoader() {
+export async function sessionLoader({ request }: LoaderFunctionArgs) {
   const query = sessionQueryOptions();
+  const { pathname } = new URL(request.url);
   try {
     const session =
       queryClient.getQueryData(query.queryKey) ??
@@ -24,6 +25,6 @@ export async function sessionLoader() {
     return session;
   } catch (error) {
     console.error(error);
-    return redirect(Routes.SignIn);
+    return redirect(`${Routes.SignIn}?callbackUrl=${pathname}`);
   }
 }

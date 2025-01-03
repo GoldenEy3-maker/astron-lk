@@ -8,7 +8,6 @@ const signIn_Body = z
     remember: z.boolean().optional(),
   })
   .strict();
-const Error = z.object({ message: z.string() }).strict();
 const Session = z
   .object({
     email: z.string(),
@@ -17,6 +16,7 @@ const Session = z
     patronymic: z.string().optional(),
   })
   .strict();
+const Error = z.object({ message: z.string() }).strict();
 const restoreUserPassword_Body = z
   .object({
     email: z.string(),
@@ -48,8 +48,8 @@ const User = z
 
 export const schemas = {
   signIn_Body,
-  Error,
   Session,
+  Error,
   restoreUserPassword_Body,
   Success,
   News,
@@ -104,7 +104,7 @@ const endpoints = makeApi([
         schema: signIn_Body,
       },
     ],
-    response: z.object({ accessToken: z.string() }).strict(),
+    response: z.object({ accessToken: z.string(), user: Session }).strict(),
     errors: [
       {
         status: 400,

@@ -92,7 +92,9 @@ app.post("/api/sign-in", async (req, res) => {
 
   tokenService.sendRefreshToken(res, refreshToken);
 
-  return res.json({ accessToken });
+  const { email, name, surname, patronymic } = user;
+
+  return res.json({ accessToken, user: { email, name, surname, patronymic } });
 });
 
 app.get("/api/session/refresh", async (req, res) => {
