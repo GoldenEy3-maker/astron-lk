@@ -34,29 +34,35 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url !== "/api/refreshToken"
+      originalRequest.url !== "/api/refresh"
     ) {
       if (!isRefershQueryLoading) {
         isRefershQueryLoading = true;
 
         try {
-          const { data } = await axiosInstance.get("/api/refreshToken");
+          const { data } = await axiosInstance.get("/api/refresh");
           useAuth.setState({ token: data.accessToken });
+          isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);
+          refreshQuerySubscribers = [];
           return axiosInstance(originalRequest);
         } catch (refreshError) {
           useAuth.setState({ token: null });
-          return Promise.reject(refreshError);
-        } finally {
           isRefershQueryLoading = false;
+          callRefreshQuerySubcsribers("");
           refreshQuerySubscribers = [];
+          return Promise.reject(refreshError);
         }
       }
 
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         addRefreshQuerySubscriber((token) => {
-          originalRequest.headers.Authorization = `Bearer ${token}`;
-          resolve(axiosInstance(originalRequest));
+          if (token) {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            resolve(axiosInstance(originalRequest));
+          } else {
+            reject(error);
+          }
         });
       });
     }

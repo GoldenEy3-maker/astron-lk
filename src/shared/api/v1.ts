@@ -2,19 +2,29 @@ import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
 const login_Body = z
-  .object({ login: z.string(), password: z.string(), remember: z.boolean() })
+  .object({
+    login: z.string(),
+    password: z.string(),
+    remember: z.boolean().optional(),
+  })
   .strict();
-const restoreUserPassword_Body = z
-  .object({ oldPassword: z.string(), newPassword: z.string() })
-  .strict();
+const Error = z.object({ message: z.string() }).strict();
 const Session = z
   .object({
     email: z.string(),
     surname: z.string(),
     name: z.string(),
-    patronymic: z.string(),
+    patronymic: z.string().optional(),
   })
   .strict();
+const restoreUserPassword_Body = z
+  .object({
+    email: z.string(),
+    oldPassword: z.string(),
+    newPassword: z.string(),
+  })
+  .strict();
+const Success = z.object({ message: z.string() }).strict();
 const News = z
   .object({
     id: z.string(),
@@ -28,7 +38,7 @@ const User = z
     id: z.string(),
     surname: z.string(),
     name: z.string(),
-    patronymic: z.string(),
+    patronymic: z.string().optional(),
     email: z.string(),
     password: z.string(),
     tokenVersion: z.number().int(),
@@ -38,27 +48,15 @@ const User = z
 
 export const schemas = {
   login_Body,
-  restoreUserPassword_Body,
+  Error,
   Session,
+  restoreUserPassword_Body,
+  Success,
   News,
   User,
 };
 
 const endpoints = makeApi([
-  {
-    method: "get",
-    path: "/api/getSession",
-    alias: "getSession",
-    requestFormat: "json",
-    response: Session,
-    errors: [
-      {
-        status: 401,
-        description: `Ошибка авторизации`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
-  },
   {
     method: "post",
     path: "/api/login",
@@ -94,7 +92,7 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/api/refreshToken",
+    path: "/api/refresh",
     alias: "refreshToken",
     requestFormat: "json",
     response: z.object({ accessToken: z.string() }).strict(),
@@ -107,8 +105,22 @@ const endpoints = makeApi([
     ],
   },
   {
+    method: "get",
+    path: "/api/session",
+    alias: "getSession",
+    requestFormat: "json",
+    response: Session,
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
     method: "post",
-    path: "/api/restorePassword",
+    path: "/api/user/restore",
     alias: "restoreUserPassword",
     requestFormat: "json",
     parameters: [
