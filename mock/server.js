@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:4173"],
     credentials: true,
   })
 );
@@ -95,7 +95,7 @@ app.post("/api/login", async (req, res) => {
   return res.json({ accessToken });
 });
 
-app.get("/api/refreshToken", async (req, res) => {
+app.get("/api/refresh", async (req, res) => {
   const reqRefreshToken = req.cookies.refresh;
 
   if (!reqRefreshToken)
@@ -123,7 +123,7 @@ app.get("/api/refreshToken", async (req, res) => {
   return res.send({ accessToken });
 });
 
-app.get("/api/getSession", authMiddleware, (req, res) => {
+app.get("/api/session", authMiddleware, (req, res) => {
   const { email, name, surname, patronymic } = req.user;
   return res.json({ email, name, surname, patronymic });
 });
