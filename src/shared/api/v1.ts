@@ -25,6 +25,19 @@ const restoreUserPassword_Body = z
   })
   .strict();
 const Success = z.object({ message: z.string() }).strict();
+const Company = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    projects: z.number().int(),
+    projectsLink: z.string(),
+    projectsImplementedArea: z.number().int(),
+    cooperationYears: z.number().int(),
+    logo: z.string(),
+    certificate: z.string(),
+    userId: z.string(),
+  })
+  .strict();
 const News = z
   .object({
     id: z.string(),
@@ -52,6 +65,7 @@ export const schemas = {
   Error,
   restoreUserPassword_Body,
   Success,
+  Company,
   News,
   User,
 };
@@ -66,54 +80,14 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/api/session",
-    alias: "getSession",
+    path: "/api/user/company",
+    alias: "getUserCompany",
     requestFormat: "json",
-    response: Session,
+    response: Company,
     errors: [
       {
         status: 401,
         description: `Ошибка авторизации`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
-  },
-  {
-    method: "get",
-    path: "/api/session/refresh",
-    alias: "refreshToken",
-    requestFormat: "json",
-    response: z.object({ accessToken: z.string() }).strict(),
-    errors: [
-      {
-        status: 401,
-        description: `Ошибка авторизации`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
-  },
-  {
-    method: "post",
-    path: "/api/sign-in",
-    alias: "signIn",
-    requestFormat: "json",
-    parameters: [
-      {
-        name: "body",
-        type: "Body",
-        schema: signIn_Body,
-      },
-    ],
-    response: z.object({ accessToken: z.string(), user: Session }).strict(),
-    errors: [
-      {
-        status: 400,
-        description: `Ошибка ввода данных`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-      {
-        status: 403,
-        description: `Пользователь забанен`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
@@ -135,6 +109,60 @@ const endpoints = makeApi([
       {
         status: 400,
         description: `Ошибка`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/user/session",
+    alias: "getSession",
+    requestFormat: "json",
+    response: Session,
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/user/session/refresh",
+    alias: "refreshToken",
+    requestFormat: "json",
+    response: z.object({ accessToken: z.string() }).strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "post",
+    path: "/api/user/sign-in",
+    alias: "signIn",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: signIn_Body,
+      },
+    ],
+    response: z.object({ accessToken: z.string(), user: Session }).strict(),
+    errors: [
+      {
+        status: 400,
+        description: `Ошибка ввода данных`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 403,
+        description: `Пользователь забанен`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],

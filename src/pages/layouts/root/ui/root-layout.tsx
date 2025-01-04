@@ -1,7 +1,7 @@
 import { Toaster } from "@/shared/ui/sonner";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 export function RootLayout() {
   return (
@@ -10,6 +10,7 @@ export function RootLayout() {
       <Outlet />
       <Footer />
       <Toaster richColors />
+      <ScrollRestoration />
     </div>
   );
 }
