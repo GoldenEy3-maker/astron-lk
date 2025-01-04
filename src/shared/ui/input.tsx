@@ -38,7 +38,7 @@ const Input = forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
             )}>
             <Button
               type="button"
-              variant="icon"
+              variant="ghost"
               size="icon"
               disabled={disabled}
               className="text-border hover:text-border-accent"
