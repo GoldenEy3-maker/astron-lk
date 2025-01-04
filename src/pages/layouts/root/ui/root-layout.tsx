@@ -9,7 +9,7 @@ export function RootLayout() {
       <Header />
       <Outlet />
       <Footer />
-      <Toaster richColors position="bottom-center" />
+      <Toaster richColors />
     </div>
   );
 }

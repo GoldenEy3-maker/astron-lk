@@ -1,4 +1,4 @@
-import { SignInForm } from "@/features/sign-in";
+import { SignInForm } from "./sign-in-form";
 import { Main } from "@/shared/ui/main";
 import { CTABanner } from "./cta-banner";
 

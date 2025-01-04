@@ -26,7 +26,9 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
     onError(error) {
       if (error instanceof AxiosError) {
         if (error.status === 403) return setIsUserBanned(true);
-        toast.error(error.response?.data.message);
+        toast.error(error.response?.data.message, {
+          position: "bottom-center",
+        });
       } else {
         console.error(error);
       }

@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static("mock/schemas"));
 
 app.use(async (req, res, next) => {
-  await new Promise((res) => setTimeout(res, 1000));
+  await new Promise((res) => setTimeout(res, 400));
   next();
 });
 

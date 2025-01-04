@@ -61,7 +61,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                   <FormLabel className="flex items-center justify-between">
                     <span>Пароль</span>
                     <Button
-                      variant="ghost"
+                      variant="link"
                       asChild
                       size="hug"
                       className="font-normal">

@@ -76,6 +76,11 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        h2: "hsl(--h2)",
+        h3: {
+          DEFAULT: "hsl(var(--h3))",
+          accent: "hsl(--h3-accent)",
+        },
       },
     },
   },

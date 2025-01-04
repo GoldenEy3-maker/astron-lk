@@ -192,4 +192,22 @@ export const Icons = {
       </svg>
     );
   },
+  ExternalLink: (props: React.ComponentProps<"svg">) => {
+    return (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <path
+          d="M6.62507 3.58113L14.1031 3.89691M14.1031 3.89691L14.4189 11.3749M14.1031 3.89691L3.89691 14.1031"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  },
 };

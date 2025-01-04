@@ -28,6 +28,12 @@ const FavoritesPage = lazy(() =>
   }))
 );
 
+const ProfilePage = lazy(() =>
+  import("./profile").then((module) => ({
+    default: module.ProfilePage,
+  }))
+);
+
 const SignInPage = lazy(() =>
   import("./sign-in").then((module) => ({
     default: module.SignInPage,
@@ -54,6 +60,7 @@ export const router = createBrowserRouter(
         <Route index element={<HomePage />} />
         <Route path={Routes.Search} element={<SearchPage />} />
         <Route path={Routes.Favorites} element={<FavoritesPage />} />
+        <Route path={Routes.Profile} element={<ProfilePage />} />
       </Route>
       <Route path={Routes.SignIn} element={<SignInPage />} />
       <Route path="*" element={<NotFoundPage />} />
