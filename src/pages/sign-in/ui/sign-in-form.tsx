@@ -65,7 +65,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                       asChild
                       size="hug"
                       className="font-normal">
-                      <Link to={Routes.ChangePassword}>Забыли пароль?</Link>
+                      <Link to={Routes.RestorePassword}>Забыли пароль?</Link>
                     </Button>
                   </FormLabel>
                   <FormControl>

@@ -1,4 +1,4 @@
-import { sessionQueryOptions } from "@/entities/session";
+import { getSessionQueryOptions } from "@/entities/session";
 import { apiClient, schemas } from "@/shared/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -20,7 +20,7 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
       setIsUserBanned(false);
     },
     onSuccess(data) {
-      queryClient.setQueryData(sessionQueryOptions().queryKey, data.user);
+      queryClient.setQueryData(getSessionQueryOptions().queryKey, data.user);
       onSuccess?.();
     },
     onError(error) {

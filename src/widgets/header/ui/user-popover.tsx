@@ -1,17 +1,23 @@
 import { Routes } from "@/shared/constants/routes";
+import { useSession } from "@/shared/store/session";
 import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { Separator } from "@/shared/ui/separator";
+import { TextMorph } from "@/shared/ui/text-morph";
 import { Link } from "react-router-dom";
 
 export function UserPopover() {
+  const user = useSession((state) => state.user);
+
   return (
     <Popover>
       <PopoverTrigger className="flex items-center gap-3 !ml-0" asChild>
         <Button variant="ghost" size="sm">
           <Icons.User className="text-foreground-accent" />
-          <span className="font-normal">Личный кабинет</span>
+          <TextMorph as="span" className="font-normal">
+            {user ? `${user.surname} ${user.name}` : "Личный кабинет"}
+          </TextMorph>
         </Button>
       </PopoverTrigger>
       <PopoverContent side="bottom" align="end" className="pb-3">

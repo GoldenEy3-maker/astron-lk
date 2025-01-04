@@ -5,15 +5,15 @@ import { useSession } from "@/shared/store/session";
 import { queryOptions } from "@tanstack/react-query";
 import { LoaderFunctionArgs, redirect } from "react-router-dom";
 
-export function sessionQueryOptions() {
+export function getSessionQueryOptions() {
   return queryOptions({
     queryKey: ["session"],
     queryFn: ({ signal }) => apiClient.getSession({ signal }),
   });
 }
 
-export async function sessionLoader({ request }: LoaderFunctionArgs) {
-  const query = sessionQueryOptions();
+export async function getSessionLoader({ request }: LoaderFunctionArgs) {
+  const query = getSessionQueryOptions();
   const { pathname } = new URL(request.url);
   try {
     const session =

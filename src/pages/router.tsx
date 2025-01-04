@@ -6,9 +6,8 @@ import {
 import { RootErrorBoundary, RootLayout } from "./layouts/root";
 import { lazy } from "react";
 import { Routes } from "@/shared/constants/routes";
-import { ProtectedLayout } from "./layouts/protected";
-import { Main } from "@/shared/ui/main";
-import { sessionLoader } from "@/entities/session";
+import { getSessionLoader } from "@/entities/session";
+import { MainLayout, MainLoading } from "./layouts/main";
 
 const HomePage = lazy(() =>
   import("./home").then((module) => ({
@@ -34,6 +33,60 @@ const ProfilePage = lazy(() =>
   }))
 );
 
+const TestsPage = lazy(() =>
+  import("./tests").then((module) => ({
+    default: module.TestsPage,
+  }))
+);
+
+const LeadsPage = lazy(() =>
+  import("./leads").then((module) => ({
+    default: module.LeadsPage,
+  }))
+);
+
+const BookingPage = lazy(() =>
+  import("./booking").then((module) => ({
+    default: module.BookingPage,
+  }))
+);
+
+const SalesPage = lazy(() =>
+  import("./sales").then((module) => ({
+    default: module.SalesPage,
+  }))
+);
+
+const AcademyPage = lazy(() =>
+  import("./academy").then((module) => ({
+    default: module.AcademyPage,
+  }))
+);
+
+const DocumentsPage = lazy(() =>
+  import("./documents").then((module) => ({
+    default: module.DocumentsPage,
+  }))
+);
+
+const BulletinsPage = lazy(() =>
+  import("./bulletins").then((module) => ({
+    default: module.BulletinsPage,
+  }))
+);
+
+const NewsPage = lazy(() =>
+  import("./news").then((module) => ({
+    default: module.NewsPage,
+  }))
+);
+
+const FactoryPage = lazy(() =>
+  import("./factory").then((module) => ({
+    default: module.FactoryPage,
+  }))
+);
+
 const SignInPage = lazy(() =>
   import("./sign-in").then((module) => ({
     default: module.SignInPage,
@@ -48,19 +101,22 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
       <Route
-        element={<ProtectedLayout />}
-        loader={sessionLoader}
-        HydrateFallback={() => {
-          return (
-            <Main>
-              <h4 className="text-h4">Loading...</h4>
-            </Main>
-          );
-        }}>
+        element={<MainLayout />}
+        loader={getSessionLoader}
+        hydrateFallbackElement={<MainLoading />}>
         <Route index element={<HomePage />} />
         <Route path={Routes.Search} element={<SearchPage />} />
         <Route path={Routes.Favorites} element={<FavoritesPage />} />
         <Route path={Routes.Profile} element={<ProfilePage />} />
+        <Route path={Routes.Tests} element={<TestsPage />} />
+        <Route path={Routes.Leads} element={<LeadsPage />} />
+        <Route path={Routes.Booking} element={<BookingPage />} />
+        <Route path={Routes.Sales} element={<SalesPage />} />
+        <Route path={Routes.Academy} element={<AcademyPage />} />
+        <Route path={Routes.Documents} element={<DocumentsPage />} />
+        <Route path={Routes.Bulletins} element={<BulletinsPage />} />
+        <Route path={Routes.News} element={<NewsPage />} />
+        <Route path={Routes.Factory} element={<FactoryPage />} />
       </Route>
       <Route path={Routes.SignIn} element={<SignInPage />} />
       <Route path="*" element={<NotFoundPage />} />

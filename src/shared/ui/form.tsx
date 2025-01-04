@@ -162,7 +162,7 @@ const FormMessage = React.forwardRef<
             id={formMessageId}
             className={cn("text-destructive", className)}
             {...props}>
-            <TextMorph>{body}</TextMorph>
+            <TextMorph as="span">{body}</TextMorph>
           </p>
         </motion.div>
       ) : null}
