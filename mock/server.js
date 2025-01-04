@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser";
 import fs from "fs/promises";
 import { newsRouter } from "./routes/news.mjs";
 import { userRouter } from "./routes/user.mjs";
-import { authMiddleware } from "./middlwares.mjs";
 
 const PORT = 3000;
 
