@@ -1,5 +1,5 @@
 import { CompanyCard } from "@/entities/company";
-import { NewsSection } from "@/entities/news";
+import { CurrentNews } from "@/entities/news";
 import { useDocumentTitle } from "usehooks-ts";
 
 export function HomePage() {
@@ -7,7 +7,7 @@ export function HomePage() {
   return (
     <div className="main-space">
       <CompanyCard />
-      <NewsSection />
+      <CurrentNews />
     </div>
   );
 }

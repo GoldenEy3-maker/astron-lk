@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { NewsList } from "./news-list";
 import { Routes } from "@/shared/constants/routes";
 
-export function NewsSection() {
+export function CurrentNews() {
   return (
     <Section>
       <SectionHeader>
@@ -17,7 +17,7 @@ export function NewsSection() {
           </Link>
         </Button>
       </SectionHeader>
-      <SectionContent className="mt-12">
+      <SectionContent>
         <NewsList limit={4} />
       </SectionContent>
     </Section>
