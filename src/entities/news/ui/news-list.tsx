@@ -6,9 +6,17 @@ import { NewsCardSkeleton } from "./news-card-skeleton";
 import { Button } from "@/shared/ui/button";
 import { TextMorph } from "@/shared/ui/text-morph";
 
-type NewsListProps = { limit?: number } & React.ComponentProps<"div">;
+type NewsListProps = {
+  limit?: number;
+  loadMore?: boolean;
+} & React.ComponentProps<"div">;
 
-export function NewsList({ limit, className, ...props }: NewsListProps) {
+export function NewsList({
+  limit,
+  className,
+  loadMore,
+  ...props
+}: NewsListProps) {
   const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery(getNewsInfiniteQueryOptions({ limit }));
 
@@ -24,7 +32,7 @@ export function NewsList({ limit, className, ...props }: NewsListProps) {
         : Array(limit || 2)
             .fill(null)
             .map((_, idx) => <NewsCardSkeleton key={idx} />)}
-      {hasNextPage ? (
+      {loadMore && hasNextPage ? (
         <div className="col-span-full flex justify-center">
           <Button
             variant="outline"

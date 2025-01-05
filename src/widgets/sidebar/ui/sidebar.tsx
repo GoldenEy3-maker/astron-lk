@@ -9,7 +9,9 @@ export function Sidebar({ className, ...props }: SidebarProps) {
   const navigations = useSidebarNav();
 
   return (
-    <aside className={cn("sticky top-0 space-y-5", className)} {...props}>
+    <aside
+      className={cn("sticky top-0 max-h-screen space-y-5", className)}
+      {...props}>
       {navigations.map((navigation, index) => (
         <nav className="flex flex-col" key={index}>
           {navigation.map((link) => (

@@ -1,12 +1,29 @@
 import { forwardRef } from "react";
 import { cn } from "../lib/cn";
+import { cva, VariantProps } from "class-variance-authority";
 
-type SectionProps = {} & React.ComponentProps<"section">;
+const sectionVariants = cva("", {
+  variants: {
+    space: {
+      default: "space-y-12",
+      sm: "space-y-9",
+    },
+  },
+  defaultVariants: {
+    space: "default",
+  },
+});
+
+type SectionProps = {} & VariantProps<typeof sectionVariants> &
+  React.ComponentProps<"section">;
 
 const Section = forwardRef<HTMLSelectElement, SectionProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, space, ...props }, ref) => {
     return (
-      <section ref={ref} {...props}>
+      <section
+        ref={ref}
+        className={cn(sectionVariants({ space, className }))}
+        {...props}>
         {children}
       </section>
     );
@@ -34,9 +51,9 @@ const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
 type SectionContentProps = {} & React.ComponentProps<"div">;
 
 const SectionContent = forwardRef<HTMLDivElement, SectionContentProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <div ref={ref} {...props}>
+      <div ref={ref} className={cn("space-y-12", className)} {...props}>
         {children}
       </div>
     );

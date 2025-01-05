@@ -83,6 +83,7 @@ export default {
             DEFAULT: "hsl(var(--heading-h3))",
             accent: "hsl(var(--heading-h3-accent))",
           },
+          h4: "hsl(var(--heading-h4))",
         },
       },
     },
