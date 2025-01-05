@@ -43,7 +43,9 @@ const News = z
     id: z.string(),
     title: z.string(),
     description: z.string(),
-    createdAt: z.string(),
+    img: z.string(),
+    content: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
 const User = z
@@ -76,7 +78,24 @@ const endpoints = makeApi([
     path: "/api/news",
     alias: "getNews",
     requestFormat: "json",
-    response: z.array(News),
+    parameters: [
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(News),
+        nextPage: z.union([z.number(), z.boolean()]),
+      })
+      .strict(),
   },
   {
     method: "get",

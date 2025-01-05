@@ -1,13 +1,13 @@
 import { CompanyCard } from "@/entities/company";
+import { NewsSection } from "@/entities/news";
 import { useDocumentTitle } from "usehooks-ts";
 
 export function HomePage() {
   useDocumentTitle("Главная");
   return (
-    <div>
+    <div className="main-space">
       <CompanyCard />
-      {/* <section className="min-h-screen"></section> */}
-      {/* <section className="min-h-screen"></section> */}
+      <NewsSection />
     </div>
   );
 }

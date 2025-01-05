@@ -63,4 +63,10 @@
     width: 100%;
     margin-inline: auto;
   }
+
+  .main-space {
+    & > * + * {
+      margin-top: utils.calc-clamp(3rem, 5.75rem, 640, 1536);
+    }
+  }
 }
