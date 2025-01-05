@@ -16,9 +16,9 @@ export function BannedBanner(props: BannedBannerProps) {
           Чтобы восстановить доступ —{" "}
           <Button
             asChild
-            variant="link"
+            variant="underline"
             size="hug"
-            className="underline underline-offset-8 font-normal decoration-current">
+            className="font-normal">
             <a href="#" target="_blank">
               свяжитесь с нами
             </a>

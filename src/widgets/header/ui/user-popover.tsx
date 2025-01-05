@@ -26,9 +26,11 @@ export function UserPopover() {
         </Button>
       </PopoverTrigger>
       <PopoverContent side="bottom" align="end" className="pb-3">
-        <TextMorph as="h3" className="text-h3">
-          {!isCompanyLoading && company ? company.title : "Загрузка..."}
-        </TextMorph>
+        <div className="text-heading-h3">
+          <TextMorph as="h3" className="text-h3">
+            {!isCompanyLoading && company ? company.title : "Загрузка..."}
+          </TextMorph>
+        </div>
         {/* {!isCompanyLoading && company ? (
           <h3 className="text-h3">{company.title}</h3>
         ) : (

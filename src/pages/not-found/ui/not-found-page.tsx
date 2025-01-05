@@ -59,7 +59,7 @@ export function NotFoundPage() {
           />
         </defs>
       </svg>
-      <h3 className="text-h3 !text-foreground mt-[3.75rem]">
+      <h3 className="text-h3 text-foreground mt-[3.75rem]">
         Страница находится в&nbsp;стадии строительства
       </h3>
     </main>

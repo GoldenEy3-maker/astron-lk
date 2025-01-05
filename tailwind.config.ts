@@ -14,7 +14,7 @@ export default {
       ...fontSize,
       display: "3rem",
       h1: "2.5rem",
-      h2: "2rem",
+      h2: ["2rem", "1.3"],
       h3: ["1.75rem", "1.2"],
       h4: "1.25rem",
     },
@@ -67,6 +67,7 @@ export default {
           DEFAULT: "hsl(var(--border))",
           accent: "hsl(var(--border-accent))",
         },
+        gold: "hsl(var(--gold))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {
@@ -76,10 +77,12 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-        h2: "hsl(--h2)",
-        h3: {
-          DEFAULT: "hsl(var(--h3))",
-          accent: "hsl(--h3-accent)",
+        heading: {
+          h2: "hsl(var(--heading-h2))",
+          h3: {
+            DEFAULT: "hsl(var(--heading-h3))",
+            accent: "hsl(var(--heading-h3-accent))",
+          },
         },
       },
     },
