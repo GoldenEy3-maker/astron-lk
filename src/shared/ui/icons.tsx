@@ -1,5 +1,5 @@
 export const Icons = {
-  Logo: (props: React.ComponentProps<"svg">) => {
+  Logo: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="44"
@@ -23,7 +23,7 @@ export const Icons = {
       </svg>
     );
   },
-  Search: (props: React.ComponentProps<"svg">) => {
+  Search: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -42,7 +42,7 @@ export const Icons = {
       </svg>
     );
   },
-  Favorites: (props: React.ComponentProps<"svg">) => {
+  Favorites: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -75,7 +75,7 @@ export const Icons = {
       </svg>
     );
   },
-  User: (props: React.ComponentProps<"svg">) => {
+  User: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -93,7 +93,7 @@ export const Icons = {
       </svg>
     );
   },
-  Danger: (props: React.ComponentProps<"svg">) => {
+  Danger: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -126,7 +126,7 @@ export const Icons = {
       </svg>
     );
   },
-  Check: (props: React.ComponentProps<"svg">) => {
+  Check: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="10"
@@ -144,7 +144,7 @@ export const Icons = {
       </svg>
     );
   },
-  CheckV2: (props: React.ComponentProps<"svg">) => {
+  CheckV2: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -161,7 +161,7 @@ export const Icons = {
       </svg>
     );
   },
-  ChevronDown: (props: React.ComponentProps<"svg">) => {
+  ChevronDown: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="8"
@@ -174,7 +174,7 @@ export const Icons = {
       </svg>
     );
   },
-  Cup: (props: React.ComponentProps<"svg">) => {
+  Cup: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="25"
@@ -190,7 +190,7 @@ export const Icons = {
       </svg>
     );
   },
-  EyeSlash: (props: React.ComponentProps<"svg">) => {
+  EyeSlash: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -238,7 +238,7 @@ export const Icons = {
       </svg>
     );
   },
-  ExternalLink: (props: React.ComponentProps<"svg">) => {
+  ExternalLink: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -256,7 +256,7 @@ export const Icons = {
       </svg>
     );
   },
-  Academy: (props: React.ComponentProps<"svg">) => {
+  Academy: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -289,7 +289,7 @@ export const Icons = {
       </svg>
     );
   },
-  ArrowDown: (props: React.ComponentProps<"svg">) => {
+  ArrowDown: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="8"
@@ -307,7 +307,7 @@ export const Icons = {
       </svg>
     );
   },
-  ArrowRightLong: (props: React.ComponentProps<"svg">) => {
+  ArrowRightLong: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="28"
@@ -325,7 +325,7 @@ export const Icons = {
       </svg>
     );
   },
-  ArrowRight: (props: React.ComponentProps<"svg">) => {
+  ArrowRight: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="22"
@@ -345,7 +345,7 @@ export const Icons = {
       </svg>
     );
   },
-  ArrowUp: (props: React.ComponentProps<"svg">) => {
+  ArrowUp: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="16"
@@ -371,7 +371,7 @@ export const Icons = {
       </svg>
     );
   },
-  Bookmark: (props: React.ComponentProps<"svg">) => {
+  Bookmark: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -389,7 +389,7 @@ export const Icons = {
       </svg>
     );
   },
-  Diagram: (props: React.ComponentProps<"svg">) => {
+  Diagram: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -417,7 +417,7 @@ export const Icons = {
       </svg>
     );
   },
-  DocumentDownload: (props: React.ComponentProps<"svg">) => {
+  DocumentDownload: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -457,7 +457,7 @@ export const Icons = {
       </svg>
     );
   },
-  Document: (props: React.ComponentProps<"svg">) => {
+  Document: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -501,7 +501,7 @@ export const Icons = {
       </svg>
     );
   },
-  ExternalResource: (props: React.ComponentProps<"svg">) => {
+  ExternalResource: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -534,7 +534,7 @@ export const Icons = {
       </svg>
     );
   },
-  Factory: (props: React.ComponentProps<"svg">) => {
+  Factory: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -585,7 +585,7 @@ export const Icons = {
       </svg>
     );
   },
-  Graph: (props: React.ComponentProps<"svg">) => {
+  Graph: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -611,7 +611,7 @@ export const Icons = {
       </svg>
     );
   },
-  Home: (props: React.ComponentProps<"svg">) => {
+  Home: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -637,7 +637,7 @@ export const Icons = {
       </svg>
     );
   },
-  Notebook: (props: React.ComponentProps<"svg">) => {
+  Notebook: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -677,7 +677,7 @@ export const Icons = {
       </svg>
     );
   },
-  Notify: (props: React.ComponentProps<"svg">) => {
+  Notify: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -710,7 +710,7 @@ export const Icons = {
       </svg>
     );
   },
-  PersonalCard: (props: React.ComponentProps<"svg">) => {
+  PersonalCard: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -764,7 +764,7 @@ export const Icons = {
       </svg>
     );
   },
-  StatusUp: (props: React.ComponentProps<"svg">) => {
+  StatusUp: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -814,7 +814,7 @@ export const Icons = {
       </svg>
     );
   },
-  X: (props: React.ComponentProps<"svg">) => {
+  X: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="16"
@@ -833,7 +833,7 @@ export const Icons = {
       </svg>
     );
   },
-  Dzen: (props: React.ComponentProps<"svg">) => {
+  Dzen: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -856,7 +856,7 @@ export const Icons = {
       </svg>
     );
   },
-  Facebook: (props: React.ComponentProps<"svg">) => {
+  Facebook: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -872,7 +872,7 @@ export const Icons = {
       </svg>
     );
   },
-  Instagram: (props: React.ComponentProps<"svg">) => {
+  Instagram: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -888,7 +888,7 @@ export const Icons = {
       </svg>
     );
   },
-  Telegram: (props: React.ComponentProps<"svg">) => {
+  Telegram: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -913,7 +913,7 @@ export const Icons = {
       </svg>
     );
   },
-  Vk: (props: React.ComponentProps<"svg">) => {
+  Vk: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -936,7 +936,7 @@ export const Icons = {
       </svg>
     );
   },
-  Youtube: (props: React.ComponentProps<"svg">) => {
+  Youtube: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="18"
@@ -956,6 +956,46 @@ export const Icons = {
             <rect width="18" height="18" fill="white" />
           </clipPath>
         </defs>
+      </svg>
+    );
+  },
+  Loader: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        {...props}>
+        <g
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth={2}>
+          <path strokeDasharray={28} strokeDashoffset={28} d="M12 10l4 7h-8Z">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.4s"
+              values="28;0"></animate>
+          </path>
+          <path d="M12 10l4 7h-8Z" opacity={0}>
+            <animate
+              attributeName="d"
+              begin="0.4s"
+              dur="0.8s"
+              keyTimes="0;0.25;1"
+              repeatCount="indefinite"
+              values="M12 10l4 7h-8Z;M12 4l9.25 16h-18.5Z;M12 4l9.25 16h-18.5Z"></animate>
+            <animate
+              attributeName="opacity"
+              begin="0.4s"
+              dur="0.8s"
+              keyTimes="0;0.1;0.75;1"
+              repeatCount="indefinite"
+              values="0;1;1;0"></animate>
+          </path>
+        </g>
       </svg>
     );
   },

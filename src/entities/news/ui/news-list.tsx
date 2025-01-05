@@ -37,7 +37,8 @@ export function NewsList({
           <Button
             variant="outline"
             onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}>
+            disabled={isFetchingNextPage}
+            className="bg-transparent">
             <TextMorph as="span">
               {isFetchingNextPage ? "Загрузка..." : "Показать еще"}
             </TextMorph>

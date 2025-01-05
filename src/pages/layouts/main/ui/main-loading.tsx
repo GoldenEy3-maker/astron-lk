@@ -1,7 +1,9 @@
+import { Icons } from "@/shared/ui/icons";
+
 export function MainLoading() {
   return (
-    <div className="col-[main]">
-      <h1 className="text-h1">Loading...</h1>
+    <div className="col-[main] grid place-items-center">
+      <Icons.Loader className="text-[8rem] text-primary" />
     </div>
   );
 }
