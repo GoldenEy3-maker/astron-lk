@@ -7,9 +7,9 @@ import {
 import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 
-type BannedBannerProps = {} & React.ComponentProps<"div">;
+type UserBannedAlertProps = {} & React.ComponentProps<"div">;
 
-export function BannedBanner(props: BannedBannerProps) {
+export function UserBannedAlert(props: UserBannedAlertProps) {
   return (
     <Alert variant="destructive" {...props}>
       <AlertHeader>

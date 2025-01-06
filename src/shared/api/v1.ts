@@ -19,7 +19,7 @@ const Session = z
   .strict();
 const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
-const restoreUserPassword_Body = z
+const recoveryUserPassword_Body = z
   .object({ password: z.string(), token: z.string() })
   .strict();
 const Company = z
@@ -64,7 +64,7 @@ export const schemas = {
   Session,
   Error,
   Success,
-  restoreUserPassword_Body,
+  recoveryUserPassword_Body,
   Company,
   News,
   User,
@@ -132,19 +132,14 @@ const endpoints = makeApi([
   },
   {
     method: "post",
-    path: "/api/user/password/recovery/:token",
-    alias: "restoreUserPassword",
+    path: "/api/user/password/recovery",
+    alias: "recoveryUserPassword",
     requestFormat: "json",
     parameters: [
       {
         name: "body",
         type: "Body",
-        schema: restoreUserPassword_Body,
-      },
-      {
-        name: "token",
-        type: "Path",
-        schema: z.unknown(),
+        schema: recoveryUserPassword_Body,
       },
     ],
     response: z.object({ message: z.string() }).strict(),
@@ -154,12 +149,17 @@ const endpoints = makeApi([
         description: `Время на восстановление пароля по этой ссылке истекло`,
         schema: z.object({ message: z.string() }).strict(),
       },
+      {
+        status: 404,
+        description: `Пользователь с таким ID токена не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
     ],
   },
   {
     method: "post",
     path: "/api/user/password/send-link",
-    alias: "sendRestorePasswordLink",
+    alias: "sendRecoveryPasswordLink",
     requestFormat: "json",
     parameters: [
       {
@@ -173,6 +173,11 @@ const endpoints = makeApi([
       {
         status: 404,
         description: `Пользователь с таким email не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 500,
+        description: `Ошибка при отправке письма`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],

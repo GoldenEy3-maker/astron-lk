@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/cn";
-import { BannedBanner } from "./banned-banner";
+import { UserBannedAlert } from "./user-banned-alert";
 import {
   Form,
   FormControl,
@@ -29,7 +29,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             initial={{ opacity: 0, height: 0, marginBottom: 0 }}
             animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
             exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
-            <BannedBanner />
+            <UserBannedAlert />
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -65,11 +65,13 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                       asChild
                       size="hug"
                       className="font-normal">
-                      <Link to={Routes.RestorePassword}>Забыли пароль?</Link>
+                      <Link to={Routes.RecoveryPasswordSendLink}>
+                        Забыли пароль?
+                      </Link>
                     </Button>
                   </FormLabel>
                   <FormControl>
-                    <Input type="password" {...field} />
+                    <Input type="password" withTrailingReveal {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

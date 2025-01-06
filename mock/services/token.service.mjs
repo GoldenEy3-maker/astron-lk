@@ -2,6 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 
 const ACCESS_TOKEN_SECRET = "dawdkwalkdmwalkdm";
 const REFRESH_TOKEN_SECRET = "dwakmdlkawdmklwad";
+const RECOVERY_PASSWORD_TOKEN_SECRET = "dwadsad213213adawsd";
 
 export default new (class TokenService {
   async generateTokens(payload) {
@@ -13,10 +14,21 @@ export default new (class TokenService {
       .sign(new TextEncoder().encode(ACCESS_TOKEN_SECRET));
     const refreshToken = await new SignJWT({ id, tokenVersion, remember })
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("30d")
+      .setExpirationTime(remember ? "30d" : "1d")
       .sign(new TextEncoder().encode(REFRESH_TOKEN_SECRET));
 
     return { accessToken, refreshToken };
+  }
+
+  async generateRecoveryPasswordToken(payload) {
+    const { id } = payload;
+
+    const token = await new SignJWT({ id })
+      .setProtectedHeader({ alg: "HS256" })
+      .setExpirationTime("1h")
+      .sign(new TextEncoder().encode(RECOVERY_PASSWORD_TOKEN_SECRET));
+
+    return token;
   }
 
   async verifyAccessToken(token) {
@@ -38,6 +50,20 @@ export default new (class TokenService {
       const { payload } = await jwtVerify(
         token,
         new TextEncoder().encode(REFRESH_TOKEN_SECRET)
+      );
+
+      return payload;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async verifyRecoveryPasswordToken(token) {
+    try {
+      const { payload } = await jwtVerify(
+        token,
+        new TextEncoder().encode(RECOVERY_PASSWORD_TOKEN_SECRET)
       );
 
       return payload;

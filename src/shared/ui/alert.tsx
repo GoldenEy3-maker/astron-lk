@@ -8,6 +8,7 @@ const alertVariants = cva("rounded-main py-5 px-12 bg-card", {
     variant: {
       default: "bg-background text-foreground",
       destructive: "text-destructive",
+      success: "text-success",
     },
   },
   defaultVariants: {

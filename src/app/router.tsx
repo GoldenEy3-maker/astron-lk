@@ -100,6 +100,18 @@ const SignInPage = lazy(() =>
   }))
 );
 
+const RecoveryPasswordPage = lazy(() =>
+  import("../pages/recovery-password").then((module) => ({
+    default: module.RecoveryPasswordPage,
+  }))
+);
+
+const RecoveryPasswordSendLinkPage = lazy(() =>
+  import("../pages/recovery-password-send-link").then((module) => ({
+    default: module.RecoveryPasswordSendLinkPage,
+  }))
+);
+
 const NotFoundPage = lazy(() =>
   import("../pages/not-found").then((module) => ({
     default: module.NotFoundPage,
@@ -130,6 +142,14 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<AuthLayout />}>
         <Route path={Routes.SignIn} element={<SignInPage />} />
+        <Route
+          path={Routes.RecoveryPasswordSendLink}
+          element={<RecoveryPasswordSendLinkPage />}
+        />
+        <Route
+          path={Routes.RecoveryPassword + "/:token"}
+          element={<RecoveryPasswordPage />}
+        />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Route>

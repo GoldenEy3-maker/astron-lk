@@ -3,8 +3,8 @@ import { ValueOf } from "../lib/types/utility";
 export const Routes = {
   Home: "/",
   SignIn: "/sign-in",
-  PasswordRecoverySendLink: "/password/send-link",
-  PasswordRecovery: "/password/recovery",
+  RecoveryPasswordSendLink: "/password/send-link",
+  RecoveryPassword: "/password/recovery",
   Search: "/search",
   Favorites: "/favorites",
   Profile: "/profile",

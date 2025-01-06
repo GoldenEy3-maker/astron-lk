@@ -3,8 +3,12 @@ import { Icons } from "./icons";
 import { Button } from "./button";
 import { forwardRef, useState } from "react";
 
-const Input = forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, disabled, ...props }, ref) => {
+type InputProps = {
+  withTrailingReveal?: boolean;
+} & React.ComponentProps<"input">;
+
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, disabled, withTrailingReveal, ...props }, ref) => {
     const [isPasswordReveal, setIsPasswordReveal] = useState(false);
     const isPassword = type === "password";
 
@@ -17,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
         <input
           type={isPassword ? (isPasswordReveal ? "text" : "password") : type}
           className={cn(
-            "flex h-11 w-full rounded-xl border border-border bg-card px-5 py-[0.625rem] text-base ring-offset-background transition file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input md:text-lg",
+            "flex h-11 w-full rounded-xl border border-border aria-[invalid=true]:border-destructive aria-[invalid=true]:text-destructive aria-[invalid=true]:ring-destructive bg-card px-5 py-[0.625rem] text-base ring-offset-background transition file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input md:text-lg",
             className,
             {
               "pr-12": isPassword,
@@ -28,7 +32,7 @@ const Input = forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           ref={ref}
           {...props}
         />
-        {isPassword ? (
+        {isPassword && withTrailingReveal ? (
           <div
             className={cn(
               "absolute inset-y-px rounded-xl transition bg-card flex items-center justify-center right-1",
