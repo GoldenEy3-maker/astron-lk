@@ -1,4 +1,9 @@
-import { Alert, AlertTitle, AlertDescription } from "@/shared/ui/alert";
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertHeader,
+} from "@/shared/ui/alert";
 import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 
@@ -7,11 +12,11 @@ type BannedBannerProps = {} & React.ComponentProps<"div">;
 export function BannedBanner(props: BannedBannerProps) {
   return (
     <Alert variant="destructive" {...props}>
-      <AlertTitle className="flex items-center gap-2">
+      <AlertHeader>
         <Icons.Danger />
-        <span>Ваш аккаунт заблокирован</span>
-      </AlertTitle>
-      <AlertDescription className="text-foreground">
+        <AlertTitle>Ваш аккаунт заблокирован</AlertTitle>
+      </AlertHeader>
+      <AlertDescription>
         <p>
           Чтобы восстановить доступ —{" "}
           <Button

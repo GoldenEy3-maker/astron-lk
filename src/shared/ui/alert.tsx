@@ -28,22 +28,31 @@ const Alert = React.forwardRef<
 ));
 Alert.displayName = "Alert";
 
+const AlertHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center gap-2 mb-2", className)}
+    {...props}
+  />
+));
+
 const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h4
-    ref={ref}
-    className={cn("mb-2 text-h4 leading-none", className)}
-    {...props}
-  />
+  <h4 ref={ref} className={cn("text-h4 leading-none", className)} {...props} />
 ));
 AlertTitle.displayName = "AlertTitle";
 
 const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
->(({ ...props }, ref) => <div ref={ref} {...props} />);
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("text-foreground", className)} {...props} />
+));
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertTitle, AlertDescription };
+export { Alert, AlertTitle, AlertHeader, AlertDescription };

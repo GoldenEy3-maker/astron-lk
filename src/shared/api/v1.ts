@@ -20,11 +20,7 @@ const Session = z
 const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
 const restoreUserPassword_Body = z
-  .object({
-    email: z.string(),
-    oldPassword: z.string(),
-    newPassword: z.string(),
-  })
+  .object({ password: z.string(), token: z.string() })
   .strict();
 const Company = z
   .object({
@@ -136,7 +132,7 @@ const endpoints = makeApi([
   },
   {
     method: "post",
-    path: "/api/user/restore-password",
+    path: "/api/user/password/recovery/:token",
     alias: "restoreUserPassword",
     requestFormat: "json",
     parameters: [
@@ -145,12 +141,38 @@ const endpoints = makeApi([
         type: "Body",
         schema: restoreUserPassword_Body,
       },
+      {
+        name: "token",
+        type: "Path",
+        schema: z.unknown(),
+      },
     ],
     response: z.object({ message: z.string() }).strict(),
     errors: [
       {
-        status: 400,
-        description: `Ошибка`,
+        status: 403,
+        description: `Время на восстановление пароля по этой ссылке истекло`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "post",
+    path: "/api/user/password/send-link",
+    alias: "sendRestorePasswordLink",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: z.object({ email: z.string() }).strict(),
+      },
+    ],
+    response: z.object({ message: z.string() }).strict(),
+    errors: [
+      {
+        status: 404,
+        description: `Пользователь с таким email не найден`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],

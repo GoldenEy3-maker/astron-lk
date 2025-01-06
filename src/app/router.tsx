@@ -8,99 +8,102 @@ import { lazy } from "react";
 import { Routes } from "@/shared/constants/routes";
 import { getSessionLoader } from "@/shared/api/session-query";
 import { MainLayout, MainLoading } from "./layouts/main";
+import { AuthLayout } from "./layouts/auth/ui/auth-layout";
 
 const HomePage = lazy(() =>
-  import("./home").then((module) => ({
+  import("../pages/home").then((module) => ({
     default: module.HomePage,
   }))
 );
 
 const SearchPage = lazy(() =>
-  import("./search").then((module) => ({
+  import("../pages/search").then((module) => ({
     default: module.SearchPage,
   }))
 );
 
 const FavoritesPage = lazy(() =>
-  import("./favorites").then((module) => ({
+  import("../pages/favorites").then((module) => ({
     default: module.FavoritesPage,
   }))
 );
 
 const ProfilePage = lazy(() =>
-  import("./profile").then((module) => ({
+  import("../pages/profile").then((module) => ({
     default: module.ProfilePage,
   }))
 );
 
 const TestsPage = lazy(() =>
-  import("./tests").then((module) => ({
+  import("../pages/tests").then((module) => ({
     default: module.TestsPage,
   }))
 );
 
 const LeadsPage = lazy(() =>
-  import("./leads").then((module) => ({
+  import("../pages/leads").then((module) => ({
     default: module.LeadsPage,
   }))
 );
 
 const BookingPage = lazy(() =>
-  import("./booking").then((module) => ({
+  import("../pages/booking").then((module) => ({
     default: module.BookingPage,
   }))
 );
 
 const SalesPage = lazy(() =>
-  import("./sales").then((module) => ({
+  import("../pages/sales").then((module) => ({
     default: module.SalesPage,
   }))
 );
 
 const AcademyPage = lazy(() =>
-  import("./academy").then((module) => ({
+  import("../pages/academy").then((module) => ({
     default: module.AcademyPage,
   }))
 );
 
 const DocumentsPage = lazy(() =>
-  import("./documents").then((module) => ({
+  import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
   }))
 );
 
 const BulletinsPage = lazy(() =>
-  import("./bulletins").then((module) => ({
+  import("../pages/bulletins").then((module) => ({
     default: module.BulletinsPage,
   }))
 );
 
 const NewsPage = lazy(() =>
-  import("./news").then((module) => ({
+  import("../pages/news").then((module) => ({
     default: module.NewsPage,
   }))
 );
 
 const NewsDetailPage = lazy(() =>
-  import("./news-detail").then((module) => ({
+  import("../pages/news-detail").then((module) => ({
     default: module.NewsDetailPage,
   }))
 );
 
 const FactoryPage = lazy(() =>
-  import("./factory").then((module) => ({
+  import("../pages/factory").then((module) => ({
     default: module.FactoryPage,
   }))
 );
 
 const SignInPage = lazy(() =>
-  import("./sign-in").then((module) => ({
+  import("../pages/sign-in").then((module) => ({
     default: module.SignInPage,
   }))
 );
 
 const NotFoundPage = lazy(() =>
-  import("./not-found").then((module) => ({ default: module.NotFoundPage }))
+  import("../pages/not-found").then((module) => ({
+    default: module.NotFoundPage,
+  }))
 );
 
 export const router = createBrowserRouter(
@@ -125,7 +128,9 @@ export const router = createBrowserRouter(
         <Route path={Routes.News + "/:newsId"} element={<NewsDetailPage />} />
         <Route path={Routes.Factory} element={<FactoryPage />} />
       </Route>
-      <Route path={Routes.SignIn} element={<SignInPage />} />
+      <Route element={<AuthLayout />}>
+        <Route path={Routes.SignIn} element={<SignInPage />} />
+      </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
