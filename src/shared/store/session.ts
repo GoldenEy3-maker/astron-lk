@@ -5,6 +5,7 @@ import { schemas } from "../api";
 type SessionStoreActions = {
   setToken: (token: string) => void;
   setUser: (user: z.infer<typeof schemas.Session>) => void;
+  destroy: () => void;
 };
 
 type SessionStore = {
@@ -21,5 +22,8 @@ export const useSession = create<SessionStore>((set) => ({
   setUser(user) {
     const sessionSchemaPayload = schemas.Session.parse(user);
     set({ user: sessionSchemaPayload });
+  },
+  destroy() {
+    set({ user: null, token: null });
   },
 }));

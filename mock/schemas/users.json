@@ -6,6 +6,7 @@
     "patronymic": "Николаевич",
     "email": "danil@mail.ru",
     "password": "123",
+    "phone": "+79231665038",
     "tokenVersion": 0,
     "isBanned": false
   }

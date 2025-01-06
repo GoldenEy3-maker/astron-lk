@@ -11,14 +11,15 @@ import { Link } from "react-router-dom";
 
 export function UserPopover() {
   const user = useSession((state) => state.user);
-  const { data: company, isLoading: isCompanyLoading } = useQuery(
-    getUserCompanyQueryOptions()
-  );
+  const { data: company, isLoading: isCompanyLoading } = useQuery({
+    ...getUserCompanyQueryOptions(),
+    enabled: user !== null,
+  });
 
   return (
     <Popover>
       <PopoverTrigger className="flex items-center gap-3 !ml-0" asChild>
-        <Button variant="ghost" size="sm">
+        <Button variant="ghost" size="sm" disabled={user === null}>
           <Icons.User className="text-foreground-accent" />
           <TextMorph as="span" className="font-normal">
             {user ? `${user.surname} ${user.name}` : "Личный кабинет"}

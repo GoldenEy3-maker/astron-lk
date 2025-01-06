@@ -14,9 +14,11 @@ const Session = z
     surname: z.string(),
     name: z.string(),
     patronymic: z.string().optional(),
+    phone: z.string(),
   })
   .strict();
 const Error = z.object({ message: z.string() }).strict();
+const Success = z.object({ message: z.string() }).strict();
 const restoreUserPassword_Body = z
   .object({
     email: z.string(),
@@ -24,7 +26,6 @@ const restoreUserPassword_Body = z
     newPassword: z.string(),
   })
   .strict();
-const Success = z.object({ message: z.string() }).strict();
 const Company = z
   .object({
     id: z.string(),
@@ -55,6 +56,7 @@ const User = z
     name: z.string(),
     patronymic: z.string().optional(),
     email: z.string(),
+    phone: z.string(),
     password: z.string(),
     tokenVersion: z.number().int(),
     isBanned: z.boolean(),
@@ -65,8 +67,8 @@ export const schemas = {
   signIn_Body,
   Session,
   Error,
-  restoreUserPassword_Body,
   Success,
+  restoreUserPassword_Body,
   Company,
   News,
   User,
@@ -206,6 +208,13 @@ const endpoints = makeApi([
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
+  },
+  {
+    method: "get",
+    path: "/api/user/sign-out",
+    alias: "signOut",
+    requestFormat: "json",
+    response: z.object({ message: z.string() }).strict(),
   },
 ]);
 

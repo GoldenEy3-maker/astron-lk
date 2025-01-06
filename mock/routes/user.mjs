@@ -22,9 +22,12 @@ userRouter.post("/sign-in", async (req, res) => {
 
   tokenService.sendRefreshToken(res, refreshToken);
 
-  const { email, name, surname, patronymic } = user;
+  const { email, name, surname, patronymic, phone } = user;
 
-  return res.json({ accessToken, user: { email, name, surname, patronymic } });
+  return res.json({
+    accessToken,
+    user: { email, name, surname, patronymic, phone },
+  });
 });
 
 userRouter.get("/session/refresh", async (req, res) => {
@@ -56,8 +59,8 @@ userRouter.get("/session/refresh", async (req, res) => {
 });
 
 userRouter.get("/session", authMiddleware, (req, res) => {
-  const { email, name, surname, patronymic } = req.user;
-  return res.json({ email, name, surname, patronymic });
+  const { email, name, surname, patronymic, phone } = req.user;
+  return res.json({ email, name, surname, patronymic, phone });
 });
 
 userRouter.get("/company", authMiddleware, (req, res) => {
@@ -65,6 +68,12 @@ userRouter.get("/company", authMiddleware, (req, res) => {
   const company = req.companies.find((company) => company.userId === userId);
 
   return res.json(company);
+});
+
+userRouter.get("/sign-out", authMiddleware, (req, res) => {
+  res.clearCookie("refresh");
+
+  return res.json({ message: "Успешно" });
 });
 
 export { userRouter };

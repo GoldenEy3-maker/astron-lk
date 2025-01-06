@@ -7,7 +7,7 @@ import { LoaderFunctionArgs, redirect } from "react-router-dom";
 
 export function getSessionQueryOptions() {
   return queryOptions({
-    queryKey: ["session"],
+    queryKey: ["user", "session"],
     queryFn: ({ signal }) => apiClient.getSession({ signal }),
   });
 }
