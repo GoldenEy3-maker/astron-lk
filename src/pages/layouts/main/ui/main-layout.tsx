@@ -8,7 +8,7 @@ export function MainLayout() {
   return (
     <main className="grid col-[main] grid-cols-subgrid pt-[3.75rem] pb-[6.25rem] auto-rows-max">
       <Sidebar className="col-span-4" />
-      <div className="col-[6/main]">
+      <div className="col-[6/main] grid grid-cols-subgrid">
         <Outlet />
       </div>
     </main>

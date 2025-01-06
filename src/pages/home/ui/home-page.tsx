@@ -5,7 +5,7 @@ import { useDocumentTitle } from "usehooks-ts";
 export function HomePage() {
   useDocumentTitle("Главная");
   return (
-    <div className="main-space">
+    <div className="main-space col-span-full">
       <CompanyCard />
       <CurrentNews />
     </div>

@@ -13,7 +13,7 @@ export default {
     fontSize: {
       ...fontSize,
       display: "3rem",
-      h1: "2.5rem",
+      h1: ["2.5rem", "1.2"],
       h2: ["2rem", "1.3"],
       h3: ["1.75rem", "1.2"],
       h4: ["1.25rem", "1.2"],

@@ -8,16 +8,14 @@ export function NewsPage() {
   useBreadcrumbs([{ href: Routes.Home, label: "Главная" }], "Новости");
 
   return (
-    <div>
-      <Section>
-        <SectionHeader>
-          <h1 className="text-h1 text-heading-h2">Новости</h1>
-        </SectionHeader>
-        <SectionContent>
-          <Socials />
-        </SectionContent>
-        <NewsList loadMore limit={10} />
-      </Section>
-    </div>
+    <Section className="col-span-full">
+      <SectionHeader>
+        <h1 className="text-h1 text-heading-h2">Новости</h1>
+      </SectionHeader>
+      <SectionContent>
+        <Socials />
+      </SectionContent>
+      <NewsList loadMore limit={10} />
+    </Section>
   );
 }

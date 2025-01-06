@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { dateFormat } from "@/shared/lib/date-format";
 import { useBreadcrumbs } from "@/features/breadcrumbs";
 import { Routes } from "@/shared/constants/routes";
+import { HTMLParser } from "@/shared/ui/html-parser";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -20,11 +21,12 @@ export function NewsDetailPage() {
   if (!data || isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="col-[span_15]">
       <h1 className="text-h1 text-heading-h2">{data.title}</h1>
-      <time dateTime={data.createdAt} className="text-muted text-sm mt-3">
+      <time dateTime={data.createdAt} className="block text-muted text-sm mt-3">
         {dateFormat(new Date(data.createdAt), "dd MMMM yyyy")}
       </time>
+      <HTMLParser className="mt-8" content={data.content} />
     </div>
   );
 }

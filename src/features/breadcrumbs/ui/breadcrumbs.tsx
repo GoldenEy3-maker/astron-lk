@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { useBreadcrumbsStore } from "../lib/breadcrumbs-store";
 import { TextMorph } from "@/shared/ui/text-morph";
+import React from "react";
 
 export function Breadcrumbs() {
   const { currentPage, paths } = useBreadcrumbsStore();
@@ -19,8 +20,8 @@ export function Breadcrumbs() {
     <UiBreadcrumbs className="col-[main] mt-6">
       <BreadcrumbList>
         {paths.map((path) => (
-          <>
-            <BreadcrumbItem key={path.href}>
+          <React.Fragment key={path.href}>
+            <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link to={path.href}>
                   <TextMorph as="span">{path.label ?? "Загрузка..."}</TextMorph>
@@ -28,7 +29,7 @@ export function Breadcrumbs() {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-          </>
+          </React.Fragment>
         ))}
         <BreadcrumbItem>
           <BreadcrumbPage>
