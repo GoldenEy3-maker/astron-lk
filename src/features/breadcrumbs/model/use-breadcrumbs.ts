@@ -3,7 +3,7 @@ import {
   BreadcrumbPath,
   CurrentPage,
   useBreadcrumbsStore,
-} from "./breadcrumbs-store";
+} from "../lib/breadcrumbs-store";
 import { useShallow } from "zustand/react/shallow";
 
 export function useBreadcrumbs(
