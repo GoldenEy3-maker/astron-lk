@@ -1,5 +1,5 @@
 import { getUserCompanyQueryOptions } from "@/entities/company";
-import { useSession } from "@/shared/store/session";
+import { useSession } from "@/shared/lib/session-store";
 import { useQuery } from "@tanstack/react-query";
 import { phoneMask } from "@/shared/lib/phone-mask";
 import { Button } from "@/shared/ui/button";

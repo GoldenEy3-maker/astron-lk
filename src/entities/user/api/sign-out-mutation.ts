@@ -1,6 +1,6 @@
 import { apiClient } from "@/shared/api/client";
 import { Routes } from "@/shared/constants/routes";
-import { useSession } from "@/shared/store/session";
+import { useSession } from "@/shared/lib/session-store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 

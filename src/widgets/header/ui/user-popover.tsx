@@ -1,6 +1,6 @@
 import { getUserCompanyQueryOptions } from "@/entities/company";
 import { Routes } from "@/shared/constants/routes";
-import { useSession } from "@/shared/store/session";
+import { useSession } from "@/shared/lib/session-store";
 import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";

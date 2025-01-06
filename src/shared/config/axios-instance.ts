@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useSession } from "../store/session";
+import { useSession } from "../lib/session-store";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
