@@ -18,9 +18,12 @@ userRouter.post("/sign-in", async (req, res) => {
 
   if (user.isBanned) return res.status(403).json({ message: "Вы забанены!" });
 
-  const { accessToken, refreshToken } = await tokenService.generateTokens(user);
+  const { accessToken, refreshToken } = await tokenService.generateTokens({
+    ...user,
+    remember,
+  });
 
-  tokenService.sendRefreshToken(res, refreshToken);
+  tokenService.sendRefreshToken(res, refreshToken, remember);
 
   const { email, name, surname, patronymic, phone } = user;
 
@@ -43,17 +46,22 @@ userRouter.get("/session/refresh", async (req, res) => {
   if (!refreshTokenPayload)
     return res.status(401).json({ message: "Refresh token is invalid!" });
 
-  const user = req.users.find((user) => user.id === refreshTokenPayload.id);
+  const { id, tokenVersion, remember } = refreshTokenPayload;
+
+  const user = req.users.find((user) => user.id === id);
 
   if (!user)
     return res.status(401).json({ message: "Refresh token is invalid!" });
 
-  if (user.tokenVersion !== refreshTokenPayload.tokenVersion)
+  if (user.tokenVersion !== tokenVersion)
     return res.status(401).json({ message: "Refresh token is invalid!" });
 
-  const { accessToken, refreshToken } = await tokenService.generateTokens(user);
+  const { accessToken, refreshToken } = await tokenService.generateTokens({
+    ...user,
+    remember,
+  });
 
-  tokenService.sendRefreshToken(res, refreshToken);
+  tokenService.sendRefreshToken(res, refreshToken, remember);
 
   return res.send({ accessToken });
 });
