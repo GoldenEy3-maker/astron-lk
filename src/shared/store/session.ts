@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { create } from "zustand";
-import { schemas } from "../api";
+import { schemas } from "../api/client";
 
 type SessionStoreActions = {
   setToken: (token: string) => void;

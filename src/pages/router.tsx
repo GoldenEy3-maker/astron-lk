@@ -6,7 +6,7 @@ import {
 import { RootErrorBoundary, RootLayout } from "./layouts/root";
 import { lazy } from "react";
 import { Routes } from "@/shared/constants/routes";
-import { getSessionLoader } from "@/entities/session";
+import { getSessionLoader } from "@/shared/api/session-query";
 import { MainLayout, MainLoading } from "./layouts/main";
 
 const HomePage = lazy(() =>

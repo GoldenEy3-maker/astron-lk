@@ -1,4 +1,4 @@
-import { schemas } from "@/shared/api";
+import { schemas } from "@/shared/api/client";
 import { Routes } from "@/shared/constants/routes";
 import { dateFormat } from "@/shared/lib/date-format";
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import { getSessionQueryOptions } from "@/entities/session";
+import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { Sidebar } from "@/widgets/sidebar";
 import { useQuery } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";

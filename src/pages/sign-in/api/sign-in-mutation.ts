@@ -1,5 +1,5 @@
-import { getSessionQueryOptions } from "@/entities/session";
-import { apiClient, schemas } from "@/shared/api";
+import { getSessionQueryOptions } from "@/shared/api/session-query";
+import { apiClient, schemas } from "@/shared/api/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useState } from "react";

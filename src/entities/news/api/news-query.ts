@@ -1,4 +1,4 @@
-import { apiClient } from "@/shared/api";
+import { apiClient } from "@/shared/api/client";
 import { infiniteQueryOptions } from "@tanstack/react-query";
 
 type GetNewsQueryOptionsParams = {

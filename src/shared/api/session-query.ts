@@ -1,4 +1,4 @@
-import { apiClient } from "@/shared/api";
+import { apiClient } from "@/shared/api/client";
 import { queryClient } from "@/shared/config/query-client";
 import { Routes } from "@/shared/constants/routes";
 import { useSession } from "@/shared/store/session";
