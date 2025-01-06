@@ -81,6 +81,12 @@ const NewsPage = lazy(() =>
   }))
 );
 
+const NewsDetailPage = lazy(() =>
+  import("./news-detail").then((module) => ({
+    default: module.NewsDetailPage,
+  }))
+);
+
 const FactoryPage = lazy(() =>
   import("./factory").then((module) => ({
     default: module.FactoryPage,
@@ -116,6 +122,7 @@ export const router = createBrowserRouter(
         <Route path={Routes.Documents} element={<DocumentsPage />} />
         <Route path={Routes.Bulletins} element={<BulletinsPage />} />
         <Route path={Routes.News} element={<NewsPage />} />
+        <Route path={Routes.News + "/:newsId"} element={<NewsDetailPage />} />
         <Route path={Routes.Factory} element={<FactoryPage />} />
       </Route>
       <Route path={Routes.SignIn} element={<SignInPage />} />

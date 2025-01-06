@@ -99,6 +99,27 @@ const endpoints = makeApi([
   },
   {
     method: "get",
+    path: "/api/news/:id",
+    alias: "getNewsById",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "id",
+        type: "Path",
+        schema: z.string(),
+      },
+    ],
+    response: News,
+    errors: [
+      {
+        status: 404,
+        description: `Новость с таким ID не найдена`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
     path: "/api/user/company",
     alias: "getUserCompany",
     requestFormat: "json",

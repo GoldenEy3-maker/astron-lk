@@ -19,4 +19,14 @@ newsRouter.get("/", (req, res) => {
   });
 });
 
+newsRouter.get("/:newsId", (req, res) => {
+  const newsId = req.params.newsId;
+  const news = req.news.find((news) => news.id === newsId);
+  if (!news)
+    return res
+      .status(404)
+      .json({ message: "Новость с такими идентификатором не найдена" });
+  return res.json(news);
+});
+
 export { newsRouter };

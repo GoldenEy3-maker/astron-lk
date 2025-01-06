@@ -1,8 +1,12 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { Socials } from "./socials";
 import { NewsList } from "@/entities/news";
+import { useBreadcrumbs } from "@/features/breadcrumbs";
+import { Routes } from "@/shared/constants/routes";
 
 export function NewsPage() {
+  useBreadcrumbs([{ href: Routes.Home, label: "Главная" }], "Новости");
+
   return (
     <div>
       <Section>
