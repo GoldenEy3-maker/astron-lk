@@ -14,7 +14,7 @@ import { Button } from "@/shared/ui/button";
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { AnimatePresence, motion } from "motion/react";
-import { useSignInForm } from "../lib/use-sign-in-form";
+import { useSignInForm } from "../model/use-sign-in-form";
 
 type SignInFormProps = {} & React.ComponentProps<"div">;
 

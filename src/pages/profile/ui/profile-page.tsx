@@ -3,7 +3,7 @@ import { useSession } from "@/shared/lib/session-store";
 import { useQuery } from "@tanstack/react-query";
 import { phoneMask } from "@/shared/lib/phone-mask";
 import { Button } from "@/shared/ui/button";
-import { useSignOut } from "@/entities/user";
+import { useSignOut } from "@/features/auth";
 
 export function ProfilePage() {
   const user = useSession((state) => state.user);

@@ -1,4 +1,4 @@
-import { SignInForm } from "./sign-in-form";
+import { SignInForm } from "@/features/auth";
 import { CTABanner } from "./cta-banner";
 
 export function SignInPage() {

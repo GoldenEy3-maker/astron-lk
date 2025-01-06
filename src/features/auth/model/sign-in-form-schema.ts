@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const loginFormSchema = z.object({
+export const signInFormSchema = z.object({
   login: z
     .string()
     .min(1, "Обязательное поле")
@@ -9,4 +9,4 @@ export const loginFormSchema = z.object({
   remember: z.boolean(),
 });
 
-export type LoginFormSchema = z.infer<typeof loginFormSchema>;
+export type SignInFormSchema = z.infer<typeof signInFormSchema>;
