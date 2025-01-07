@@ -13,6 +13,8 @@ export const BASE_URL = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : `http://localhost:${port}`;
 
+export const PUBLIC_URL = process.env.VERCEL_URL ? "/public" : "/";
+
 declare global {
   namespace Express {
     interface Request {
@@ -49,7 +51,7 @@ app.use(async (req, res, next) => {
 app.use(dataLoaderMiddleware);
 
 app.get("/api/docs", async (req, res) => {
-  const data = await fetch(`${BASE_URL}/scalar-ui.html`);
+  const data = await fetch(`${BASE_URL}/${PUBLIC_URL}/scalar-ui.html`);
   const html = await data.text();
   res.send(html);
 });
