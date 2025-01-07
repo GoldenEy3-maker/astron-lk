@@ -15,5 +15,5 @@
     "sourceMap": true,
     "useUnknownInCatchVariables": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "./api/**/*"]
 }

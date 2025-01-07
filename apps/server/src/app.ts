@@ -48,10 +48,6 @@ app.use(async (req, res, next) => {
 
 app.use(dataLoaderMiddleware);
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
 app.get("/api/docs", async (req, res) => {
   const data = await fetch(`${BASE_URL}/scalar-ui.html`);
   const html = await data.text();
