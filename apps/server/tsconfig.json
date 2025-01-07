@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Современная версия JavaScript
+    "module": "CommonJS", // Использование Node.js модулей
+    "moduleResolution": "Node", // Резолюция модулей в стиле Node.js
+    "outDir": "./dist", // Папка для скомпилированных файлов
+
+    // Строгие проверки типов
+    "strict": true,
+    "noImplicitAny": true,
+
+    // Дополнительные проверки
+    // "noUnusedLocals": true, // Проверка неиспользуемых переменных
+    // "noUnusedParameters": true, // Проверка неиспользуемых параметров
+    // "noImplicitReturns": true, // Все ветки функции должны возвращать значение
+    // "noFallthroughCasesInSwitch": true, // Проверка на fallthrough в switch
+
+    // Дополнительные настройки
+    "esModuleInterop": true, // Улучшенная совместимость с модулями
+    "skipLibCheck": true, // Пропуск проверки типов в .d.ts файлах
+    "forceConsistentCasingInFileNames": true, // Проверка регистра в именах файлов
+    "removeComments": true, // Удаление комментариев при компиляции
+    "sourceMap": true, // Генерация source maps
+    "useUnknownInCatchVariables": true
+
+    // Разрешенные типы файлов
+    // "allowJs": true, // Разрешить JavaScript файлы
+    // "resolveJsonModule": true // Разрешить импорт JSON файлов
+  },
+  "include": ["src/**/*"], // Включаем все файлы из src
+  "exclude": ["node_modules", "dist"] // Исключаем node_modules и dist
+}
