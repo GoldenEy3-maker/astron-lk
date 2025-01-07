@@ -39,7 +39,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static("static"));
+app.use(express.static("public"));
 
 app.use(async (req, res, next) => {
   await new Promise((resolve) => setTimeout(resolve, 400));

@@ -2,7 +2,7 @@
   "name": "server",
   "version": "0.1.0",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon index.ts",
     "build": "tsc",
     "preview": "node dist/index.js"
   },

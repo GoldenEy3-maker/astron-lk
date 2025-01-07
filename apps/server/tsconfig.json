@@ -27,6 +27,6 @@
     // "allowJs": true, // Разрешить JavaScript файлы
     // "resolveJsonModule": true // Разрешить импорт JSON файлов
   },
-  "include": ["src/**/*"], // Включаем все файлы из src
+  "include": ["**/*"], // Включаем все файлы из src
   "exclude": ["node_modules", "dist"] // Исключаем node_modules и dist
 }
