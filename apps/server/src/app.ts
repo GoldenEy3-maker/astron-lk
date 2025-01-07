@@ -39,7 +39,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static("public"));
+app.use(express.static("static"));
 
 app.use(async (req, res, next) => {
   await new Promise((resolve) => setTimeout(resolve, 400));
@@ -47,6 +47,10 @@ app.use(async (req, res, next) => {
 });
 
 app.use(dataLoaderMiddleware);
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.get("/api/docs", async (req, res) => {
   const data = await fetch(`${BASE_URL}/scalar-ui.html`);
