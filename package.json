@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev:server": "nodemon mock/server.js",
+    "dev:server": "nodemon api",
     "api-publish:generate": "openapi-zod-client https://astron-lk-open-api.vercel.app/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false",
     "api-local:generate": "openapi-zod-client http://localhost:8080/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false",
     "postinstall": "pnpm api-publish:generate"

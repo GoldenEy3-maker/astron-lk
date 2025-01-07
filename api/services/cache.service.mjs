@@ -18,17 +18,17 @@ export default new (class CacheService {
   }
 
   async loadUsers() {
-    const data = await fs.readFile("mock/schemas/users.json");
+    const data = await fs.readFile("api/schemas/users.json");
     this.data.users = JSON.parse(data);
   }
 
   async loadNews() {
-    const data = await fs.readFile("mock/schemas/news.json");
+    const data = await fs.readFile("api/schemas/news.json");
     this.data.news = JSON.parse(data);
   }
 
   async loadCompanies() {
-    const data = await fs.readFile("mock/schemas/companies.json");
+    const data = await fs.readFile("api/schemas/companies.json");
     this.data.companies = JSON.parse(data);
   }
 

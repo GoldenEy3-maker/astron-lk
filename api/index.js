@@ -46,3 +46,5 @@ app.use("/api/news", newsRouter);
 app.listen(PORT, () => {
   console.log(`Mock server start at ${PORT} port`);
 });
+
+export default app;
