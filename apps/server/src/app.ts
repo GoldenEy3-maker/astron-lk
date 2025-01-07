@@ -4,9 +4,14 @@ import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
 import { dataLoaderMiddleware } from "./middlewares/dataLoader.middleware";
 import { userRouter } from "./routes/user.router";
-import path from "path";
 
 const app = express();
+
+export const port = process.env.PORT || 3000;
+
+export const BASE_URL = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : `http://localhost:${port}`;
 
 declare global {
   namespace Express {
@@ -23,7 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:4173"],
+    origin: process.env.CLIENT_URL
+      ? [
+          process.env.CLIENT_URL,
+          "http://localhost:5173",
+          "http://localhost:4173",
+        ]
+      : ["http://localhost:5173", "http://localhost:4173"],
     credentials: true,
   })
 );
@@ -37,8 +48,10 @@ app.use(async (req, res, next) => {
 
 app.use(dataLoaderMiddleware);
 
-app.get("/api/docs", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/scalar-ui.html"));
+app.get("/api/docs", async (req, res) => {
+  const data = await fetch(`${BASE_URL}/scalar-ui.html`);
+  const html = await data.text();
+  res.send(html);
 });
 
 app.use("/api/user", userRouter);

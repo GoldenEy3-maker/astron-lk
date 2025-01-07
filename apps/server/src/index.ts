@@ -1,12 +1,10 @@
-import app from "./app";
+import app, { BASE_URL, port } from "./app";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
-
 app.listen(port, () => {
-  console.log(`⚡️[сервер]: Сервер запущен на http://localhost:${port}`);
+  console.log(`⚡️[сервер]: Сервер запущен на ${BASE_URL}`);
 });
 
 export default app;

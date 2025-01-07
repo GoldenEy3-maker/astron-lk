@@ -1,4 +1,4 @@
-import fs from "fs/promises";
+import { BASE_URL } from "../app";
 
 type CacheData = {
   users: any[];
@@ -30,18 +30,21 @@ export default new (class CacheService {
   }
 
   async loadUsers() {
-    const data = await fs.readFile("public/users.json");
-    this.data.users = JSON.parse(String(data));
+    const data = await fetch(`${BASE_URL}/users.json`);
+    const json = await data.json();
+    this.data.users = json;
   }
 
   async loadNews() {
-    const data = await fs.readFile("public/news.json");
-    this.data.news = JSON.parse(String(data));
+    const data = await fetch(`${BASE_URL}/news.json`);
+    const json = await data.json();
+    this.data.news = json;
   }
 
   async loadCompanies() {
-    const data = await fs.readFile("public/companies.json");
-    this.data.companies = JSON.parse(String(data));
+    const data = await fetch(`${BASE_URL}/companies.json`);
+    const json = await data.json();
+    this.data.companies = json;
   }
 
   updateCache(type: keyof CacheData, newData: any[]) {
