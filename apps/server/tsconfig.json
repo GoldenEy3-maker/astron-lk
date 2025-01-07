@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext", // Современная версия JavaScript
     "module": "CommonJS", // Использование Node.js модулей
-    "moduleResolution": "Node", // Резолюция модулей в стиле Node.js
+    "moduleResolution": "node", // Резолюция модулей в стиле Node.js
     "outDir": "./dist", // Папка для скомпилированных файлов
 
     // Строгие проверки типов

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
 import { dataLoaderMiddleware } from "./middlewares/dataLoader.middleware";
 import { userRouter } from "./routes/user.router";
+import path from "path";
 
 const app = express();
 
@@ -35,6 +36,10 @@ app.use(async (req, res, next) => {
 });
 
 app.use(dataLoaderMiddleware);
+
+app.get("/api/docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/scalar-ui.html"));
+});
 
 app.use("/api/user", userRouter);
 

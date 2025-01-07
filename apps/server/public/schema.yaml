@@ -1,0 +1,435 @@
+openapi: 3.0.0
+info:
+  title: Астрон личный кабинет API
+  description: API для работы личного кабинета Астрон
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Локальный сервер
+  - url: https://astronbuildings.com
+    description: Боевой сервер
+paths:
+  /api/user/sign-in:
+    post:
+      summary: Аутентификация
+      operationId: signIn
+      tags:
+        - Пользователь
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - login
+                - password
+              properties:
+                login:
+                  type: string
+                  example: dev@mail.ru
+                password:
+                  type: string
+                  example: password
+                remember:
+                  type: boolean
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - accessToken
+                  - user
+                properties:
+                  accessToken:
+                    type: string
+                  user:
+                    $ref: "#/components/schemas/Session"
+        "400":
+          description: Ошибка ввода данных
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Пользователь забанен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/user/sign-out:
+    get:
+      summary: Разлогинить пользователя
+      operationId: signOut
+      tags:
+        - Пользователь
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+  /api/user/session:
+    get:
+      summary: Получить сессию
+      operationId: getSession
+      tags:
+        - Пользователь
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Session"
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/user/session/refresh:
+    get:
+      summary: Обновить токены
+      operationId: refreshToken
+      tags:
+        - Пользователь
+      parameters:
+        - name: refreshToken
+          in: cookie
+          description: Refresh Token с клиента
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - accessToken
+                properties:
+                  accessToken:
+                    type: string
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/user/password/send-link:
+    post:
+      summary: Отправить ссылку для восстановления пароля
+      operationId: sendRecoveryPasswordLink
+      tags:
+        - Пользователь
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+      responses:
+        "200":
+          description: Ссылка для восстановления пароля отправлена на почту
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "404":
+          description: Пользователь с таким email не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Ошибка при отправке письма
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/user/password/recovery:
+    post:
+      summary: Восстановить пароль
+      operationId: recoveryUserPassword
+      tags:
+        - Пользователь
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - password
+                - token
+              properties:
+                password:
+                  type: string
+                token:
+                  type: string
+      responses:
+        "200":
+          description: Пароль успешно изменен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "403":
+          description: Время на восстановление пароля по этой ссылке истекло
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Пользователь с таким ID токена не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/user/company:
+    get:
+      summary: Получить компанию пользователя
+      operationId: getUserCompany
+      tags:
+        - Пользователь
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/news:
+    get:
+      summary: Получить список новостей
+      operationId: getNews
+      tags:
+        - Новости
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество новостей на странице
+          schema:
+            type: integer
+            example: 10
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - nextPage
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/News"
+                  nextPage:
+                    oneOf:
+                      - type: integer
+                        example: 1
+                      - type: boolean
+                        example: false
+      security:
+        - bearerAuth: []
+  /api/news/{id}:
+    get:
+      summary: Получить новость по ID
+      operationId: getNewsById
+      tags:
+        - Новости
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID новости
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/News"
+        "404":
+          description: Новость с таким ID не найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - surname
+        - name
+        - email
+        - phone
+        - password
+        - tokenVersion
+        - isBanned
+      properties:
+        id:
+          type: string
+          example: "1"
+        surname:
+          type: string
+          example: Королев
+        name:
+          type: string
+          example: Данил
+        patronymic:
+          type: string
+          example: Николаевич
+        email:
+          type: string
+          example: dev@mail.ru
+        phone:
+          type: string
+          example: "+79231665038"
+        password:
+          type: string
+          example: 123
+        tokenVersion:
+          type: integer
+        isBanned:
+          type: boolean
+    Session:
+      type: object
+      required:
+        - email
+        - surname
+        - name
+        - phone
+      properties:
+        email:
+          type: string
+          example: dev@mail.ru
+        surname:
+          type: string
+          example: Королев
+        name:
+          type: string
+          example: Данил
+        patronymic:
+          type: string
+          example: Николаевич
+        phone:
+          type: string
+          example: "+79231665038"
+    Company:
+      type: object
+      required:
+        - id
+        - title
+        - projects
+        - projectsLink
+        - projectsImplementedArea
+        - cooperationYears
+        - logo
+        - certificate
+        - userId
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "NABUCCO Architecture & Construction"
+        projects:
+          type: integer
+          example: 23
+        projectsLink:
+          type: string
+          example: "/link/to/projects"
+        projectsImplementedArea:
+          type: integer
+          example: 6578
+        cooperationYears:
+          type: integer
+          example: 12
+        logo:
+          type: string
+          example: "/path/to/logo.svg"
+        certificate:
+          type: string
+          example: "/path/to/certificate.pdf"
+        userId:
+          type: string
+          example: "1"
+    News:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - content
+        - img
+        - createdAt
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: Ключевая ставка достигла 30%
+        description:
+          type: string
+          example: Деняк нет, но вы держитесь
+        img:
+          type: string
+          example: "/path/to/img.jpg"
+        content:
+          type: string
+          example: "<p>Деняк нет, но вы держитесь</p>"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-12-30T12:34:56Z"
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Success:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
