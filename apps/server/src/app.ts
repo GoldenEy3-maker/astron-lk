@@ -55,9 +55,26 @@ app.get("/api/test", async (req, res) => {
 });
 
 app.get("/api/docs", async (req, res) => {
-  const data = await fetch(`${BASE_URL}/${PUBLIC_URL}/scalar-ui.html`);
-  const html = await data.text();
-  res.send(html);
+  res.send(`
+    <!DOCTYPE html>
+<html>
+  <head>
+    <title>Scalar API Reference</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- Need a Custom Header? Check out this example: https://codepen.io/scalarorg/pen/VwOXqam -->
+    <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the 'data-proxy-url' attribute if you don’t need it. -->
+    <script
+      id="api-reference"
+      data-url="${BASE_URL}/${PUBLIC_URL}/schema.yaml"
+      data-proxy-url="https://proxy.scalar.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+  </body>
+</html>
+    `);
 });
 
 // app.use("/api/user", userRouter);
