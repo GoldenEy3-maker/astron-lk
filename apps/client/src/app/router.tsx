@@ -1,5 +1,5 @@
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
@@ -118,40 +118,42 @@ const NotFoundPage = lazy(() =>
   }))
 );
 
-export const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
-      <Route
-        element={<MainLayout />}
-        loader={getSessionLoader}
-        hydrateFallbackElement={<MainLoading />}>
-        <Route index element={<HomePage />} />
-        <Route path={Routes.Search} element={<SearchPage />} />
-        <Route path={Routes.Favorites} element={<FavoritesPage />} />
-        <Route path={Routes.Profile} element={<ProfilePage />} />
-        <Route path={Routes.Tests} element={<TestsPage />} />
-        <Route path={Routes.Leads} element={<LeadsPage />} />
-        <Route path={Routes.Booking} element={<BookingPage />} />
-        <Route path={Routes.Sales} element={<SalesPage />} />
-        <Route path={Routes.Academy} element={<AcademyPage />} />
-        <Route path={Routes.Documents} element={<DocumentsPage />} />
-        <Route path={Routes.Bulletins} element={<BulletinsPage />} />
-        <Route path={Routes.News} element={<NewsPage />} />
-        <Route path={Routes.News + "/:newsId"} element={<NewsDetailPage />} />
-        <Route path={Routes.Factory} element={<FactoryPage />} />
-      </Route>
-      <Route element={<AuthLayout />}>
-        <Route path={Routes.SignIn} element={<SignInPage />} />
+export function createRouter() {
+  return createHashRouter(
+    createRoutesFromElements(
+      <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
         <Route
-          path={Routes.RecoveryPasswordSendLink}
-          element={<RecoveryPasswordSendLinkPage />}
-        />
-        <Route
-          path={Routes.RecoveryPassword + "/:token"}
-          element={<RecoveryPasswordPage />}
-        />
+          element={<MainLayout />}
+          loader={getSessionLoader}
+          hydrateFallbackElement={<MainLoading />}>
+          <Route index element={<HomePage />} />
+          <Route path={Routes.Search} element={<SearchPage />} />
+          <Route path={Routes.Favorites} element={<FavoritesPage />} />
+          <Route path={Routes.Profile} element={<ProfilePage />} />
+          <Route path={Routes.Tests} element={<TestsPage />} />
+          <Route path={Routes.Leads} element={<LeadsPage />} />
+          <Route path={Routes.Booking} element={<BookingPage />} />
+          <Route path={Routes.Sales} element={<SalesPage />} />
+          <Route path={Routes.Academy} element={<AcademyPage />} />
+          <Route path={Routes.Documents} element={<DocumentsPage />} />
+          <Route path={Routes.Bulletins} element={<BulletinsPage />} />
+          <Route path={Routes.News} element={<NewsPage />} />
+          <Route path={Routes.News + "/:newsId"} element={<NewsDetailPage />} />
+          <Route path={Routes.Factory} element={<FactoryPage />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path={Routes.SignIn} element={<SignInPage />} />
+          <Route
+            path={Routes.RecoveryPasswordSendLink}
+            element={<RecoveryPasswordSendLinkPage />}
+          />
+          <Route
+            path={Routes.RecoveryPassword + "/:token"}
+            element={<RecoveryPasswordPage />}
+          />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage />} />
-    </Route>
-  )
-);
+    )
+  );
+}
