@@ -93,9 +93,9 @@ export default new (class TokenService {
 
   sendRefreshToken(res: Response, token: string, remember: boolean) {
     res.cookie("refresh", token, {
-      domain: "localhost",
+      domain: process.env.CLIENT_DOMAIN ?? "localhost",
       httpOnly: true,
-      secure: false,
+      secure: !!process.env.CLIENT_DOMAIN,
       sameSite: "lax",
       maxAge: remember ? 1000 * 60 * 60 * 24 * 30 : undefined,
     });
