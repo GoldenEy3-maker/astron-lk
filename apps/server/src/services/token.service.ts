@@ -95,8 +95,9 @@ export default new (class TokenService {
     res.cookie("refresh", token, {
       domain: process.env.CLIENT_DOMAIN ?? "localhost",
       httpOnly: true,
-      secure: !!process.env.CLIENT_DOMAIN,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "strict",
+      path: "/",
       maxAge: remember ? 1000 * 60 * 60 * 24 * 30 : undefined,
     });
   }
