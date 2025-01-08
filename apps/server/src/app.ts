@@ -48,7 +48,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
-app.use(dataLoaderMiddleware);
+// app.use(dataLoaderMiddleware);
 
 app.get("/api/docs", async (req, res) => {
   res.send(`
@@ -73,8 +73,8 @@ app.get("/api/docs", async (req, res) => {
     `);
 });
 
-app.use("/api/user", userRouter);
+// app.use("/api/user", userRouter);
 
-app.use("/api/news", newsRouter);
+// app.use("/api/news", newsRouter);
 
 export default app;
