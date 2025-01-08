@@ -10,7 +10,7 @@ const app = express();
 export const port = process.env.PORT || 3000;
 
 export const BASE_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+  ? `https://astron-lk-server.vercel.app`
   : `http://localhost:${port}`;
 
 export const PUBLIC_URL = process.env.VERCEL_URL ? "public/" : "";
@@ -48,7 +48,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// app.use(dataLoaderMiddleware);
+app.use(dataLoaderMiddleware);
 
 app.get("/api/docs", async (req, res) => {
   res.send(`
@@ -73,8 +73,8 @@ app.get("/api/docs", async (req, res) => {
     `);
 });
 
-// app.use("/api/user", userRouter);
+app.use("/api/user", userRouter);
 
-// app.use("/api/news", newsRouter);
+app.use("/api/news", newsRouter);
 
 export default app;
