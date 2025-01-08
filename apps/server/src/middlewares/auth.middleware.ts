@@ -32,7 +32,7 @@ export async function authMiddleware(
     return;
   }
 
-  req.user = user;
+  res.locals.user = user;
 
   next();
 }

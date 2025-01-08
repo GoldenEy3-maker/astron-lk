@@ -1,9 +1,9 @@
-import { components } from "../types/schema";
+import { Company, News, User } from "../types/globals";
 
 type CacheData = {
-  users: components["schemas"]["User"][];
-  news: components["schemas"]["News"][];
-  companies: components["schemas"]["Company"][];
+  users: User[];
+  news: News[];
+  companies: Company[];
 };
 
 export default new (class CacheService {
@@ -22,7 +22,8 @@ export default new (class CacheService {
           surname: "Королев",
           patronymic: "Николаевич",
           email: "danil-danil-korolev@bk.ru",
-          password: "123",
+          password:
+            "d7a55f91736202473153267def85daf2:e4dcee251f066f8d6ba88cdbbd84ff28a654b89c53b648a538de990c6f36f51a924b24a62222ca9e41a5e9f0fd1573f5893e59544a90837fc00bc039a1e6239b",
           phone: "+79231665038",
           tokenVersion: 0,
           isBanned: false,

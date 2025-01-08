@@ -1,10 +1,10 @@
-import express from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
 import { userRouter } from "./routes/user.router";
 
-const app = express();
+const app: Express = express();
 
 export const port = process.env.PORT || 3000;
 
@@ -13,14 +13,6 @@ export const BASE_URL = process.env.VERCEL_URL
   : `http://localhost:${port}`;
 
 export const PUBLIC_URL = process.env.VERCEL_URL ? "public/" : "";
-
-declare global {
-  namespace Express {
-    interface Request {
-      user: any;
-    }
-  }
-}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
