@@ -124,7 +124,11 @@ userRouter.post("/password/send-link", async (req, res) => {
     id,
   });
 
-  const recoveryLink = `http://localhost:5173/password/recovery/${recoveryToken}`;
+  const recoveryLinkURL = process.env.CLIENT_URL
+    ? `https://${process.env.CLIENT_URL}`
+    : "http://localhost:5173";
+
+  const recoveryLink = `${recoveryLinkURL}/password/recovery/${recoveryToken}`;
 
   const isSent = await mailService.sendRecoveryPasswordLink(
     email,
