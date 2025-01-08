@@ -96,7 +96,7 @@ export default new (class TokenService {
       domain: process.env.CLIENT_URL ?? "localhost",
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "none",
       path: "/",
       maxAge: remember ? 1000 * 60 * 60 * 24 * 30 : undefined,
     });

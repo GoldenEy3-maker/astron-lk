@@ -57,7 +57,7 @@ app.get("/api/docs", async (req, res) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body data-test="${process.env.CLIENT_URL}">
+  <body>
     <!-- Need a Custom Header? Check out this example: https://codepen.io/scalarorg/pen/VwOXqam -->
     <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the 'data-proxy-url' attribute if you don’t need it. -->
     <script
