@@ -13,7 +13,7 @@ export const BASE_URL = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : `http://localhost:${port}`;
 
-export const PUBLIC_URL = process.env.VERCEL_URL ? "/public" : "/";
+export const PUBLIC_URL = process.env.VERCEL_URL ? "public/" : "";
 
 declare global {
   namespace Express {
@@ -68,7 +68,7 @@ app.get("/api/docs", async (req, res) => {
     <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the 'data-proxy-url' attribute if you don’t need it. -->
     <script
       id="api-reference"
-      data-url="${BASE_URL}/${PUBLIC_URL}/schema.yaml"
+      data-url="${BASE_URL}/${PUBLIC_URL}schema.yaml"
       data-proxy-url="https://proxy.scalar.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>

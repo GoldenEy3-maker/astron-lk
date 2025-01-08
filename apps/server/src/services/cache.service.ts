@@ -30,19 +30,19 @@ export default new (class CacheService {
   }
 
   async loadUsers() {
-    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}/users.json`);
+    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}users.json`);
     const json = await data.json();
     this.data.users = json;
   }
 
   async loadNews() {
-    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}/news.json`);
+    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}news.json`);
     const json = await data.json();
     this.data.news = json;
   }
 
   async loadCompanies() {
-    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}/companies.json`);
+    const data = await fetch(`${BASE_URL}/${PUBLIC_URL}companies.json`);
     const json = await data.json();
     this.data.companies = json;
   }
