@@ -22,6 +22,8 @@ function addRefreshQuerySubscriber(callback: RefreshQuerySubscriber) {
 axiosInstance.interceptors.request.use((config) => {
   const token = useSession.getState().token;
 
+  console.log(token);
+
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
   return config;
