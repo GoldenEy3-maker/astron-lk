@@ -123,7 +123,7 @@ userRouter.post("/password/send-link", async (req, res) => {
   const recoveryToken = await tokenService.generateRecoveryPasswordToken({
     id,
   });
-  // 12312312
+
   const recoveryLinkURL = process.env.CLIENT_URL
     ? `https://${process.env.CLIENT_URL}`
     : "http://localhost:5173";
