@@ -6,7 +6,8 @@
     "dev": "nodemon src/index.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "add-build": "git add dist",
+    "api:generate": "openapi-typescript ./public/schema.yaml -o ./src/types/schema.d.ts"
   },
   "license": "ISC",
   "dependencies": {
@@ -16,6 +17,7 @@
     "express": "^4.21.2",
     "jose": "^5.9.6",
     "nodemailer": "^6.9.16",
+    "openapi-typescript": "^7.5.2",
     "pre-commit": "^1.2.2",
     "rimraf": "^6.0.1"
   },

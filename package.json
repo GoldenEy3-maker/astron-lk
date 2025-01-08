@@ -4,7 +4,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "preview": "turbo run preview"
+    "preview": "turbo run preview",
+    "api:generate": "turbo run api:generate"
   },
   "dependencies": {
     "turbo": "^2.3.3"

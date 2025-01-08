@@ -11,8 +11,8 @@ newsRouter.get("/", (req, res) => {
   const startIndex = (parseInt(page) - 1) * parseInt(limit);
   const endIndex = parseInt(page) * parseInt(limit);
 
-  const news = cacheService.getData("news").slice(startIndex, endIndex);
-  const totalNews = cacheService.getData("news").length;
+  const news = cacheService.getData().news.slice(startIndex, endIndex);
+  const totalNews = cacheService.getData().news.length;
   const totalPages = Math.ceil(totalNews / parseInt(limit));
   const currentPage = parseInt(page);
   const nextPage = currentPage + 1;
@@ -25,7 +25,7 @@ newsRouter.get("/", (req, res) => {
 
 newsRouter.get("/:newsId", (req, res) => {
   const newsId = req.params.newsId;
-  const news = cacheService.getData("news").find((news) => news.id === newsId);
+  const news = cacheService.getData().news.find((news) => news.id === newsId);
 
   if (!news) {
     res

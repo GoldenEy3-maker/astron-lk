@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "api-publish:generate": "openapi-zod-client https://astron-lk-open-api.vercel.app/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false",
-    "api-local:generate": "openapi-zod-client http://localhost:8080/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false"
+    "api:generate": "openapi-zod-client http://localhost:3000/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

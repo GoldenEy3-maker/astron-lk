@@ -1,9 +1,9 @@
-import { BASE_URL, PUBLIC_URL } from "../app";
+import { components } from "../types/schema";
 
 type CacheData = {
-  users: any[];
-  news: any[];
-  companies: any[];
+  users: components["schemas"]["User"][];
+  news: components["schemas"]["News"][];
+  companies: components["schemas"]["Company"][];
 };
 
 export default new (class CacheService {
@@ -279,11 +279,7 @@ export default new (class CacheService {
     this.data[type] = newData;
   }
 
-  getData(type: keyof CacheData) {
-    if (!this.data[type]) {
-      throw new Error(`Invalid cache type: ${type}`);
-    }
-
-    return this.data[type];
+  getData() {
+    return this.data;
   }
 })();
