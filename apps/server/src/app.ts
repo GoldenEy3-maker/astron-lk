@@ -31,11 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.CLIENT_URL
-      ? [
-          process.env.CLIENT_URL,
-          "http://localhost:5173",
-          "http://localhost:4173",
-        ]
+      ? [`https://${process.env.CLIENT_URL}`]
       : ["http://localhost:5173", "http://localhost:4173"],
     credentials: true,
   })
@@ -44,7 +40,9 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 app.use(async (req, res, next) => {
-  await new Promise((resolve) => setTimeout(resolve, 400));
+  if (!process.env.CLIENT_URL)
+    await new Promise((resolve) => setTimeout(resolve, 400));
+
   next();
 });
 
@@ -59,7 +57,7 @@ app.get("/api/docs", async (req, res) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
+  <body data-test="${process.env.CLIENT_URL}">
     <!-- Need a Custom Header? Check out this example: https://codepen.io/scalarorg/pen/VwOXqam -->
     <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the 'data-proxy-url' attribute if you don’t need it. -->
     <script
