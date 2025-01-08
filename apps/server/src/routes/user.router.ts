@@ -9,7 +9,9 @@ const userRouter = express.Router();
 userRouter.post("/sign-in", async (req, res) => {
   const { login, password, remember } = req.body;
 
-  const user = req.users.find((user) => user.email === login);
+  const user = cacheService
+    .getData("users")
+    .find((user) => user.email === login);
 
   if (!user) {
     res.status(400).json({ message: "Неверный логин или пароль!" });
@@ -60,7 +62,7 @@ userRouter.get("/session/refresh", async (req, res) => {
 
   const { id, tokenVersion, remember } = refreshTokenPayload;
 
-  const user = req.users.find((user) => user.id === id) as {
+  const user = cacheService.getData("users").find((user) => user.id === id) as {
     id: string;
     email: string;
     name: string;
@@ -97,7 +99,9 @@ userRouter.get("/session", authMiddleware, (req, res) => {
 
 userRouter.get("/company", authMiddleware, (req, res) => {
   const userId = req.user.id;
-  const company = req.companies.find((company) => company.userId === userId);
+  const company = cacheService
+    .getData("companies")
+    .find((company) => company.userId === userId);
 
   res.json(company);
 });
@@ -111,7 +115,9 @@ userRouter.get("/sign-out", authMiddleware, (req, res) => {
 userRouter.post("/password/send-link", async (req, res) => {
   const { email } = req.body;
 
-  const user = req.users.find((user) => user.email === email);
+  const user = cacheService
+    .getData("users")
+    .find((user) => user.email === email);
 
   if (!user) {
     res.status(404).json({ message: "Пользователь не найден" });
@@ -157,7 +163,7 @@ userRouter.post("/password/recovery", async (req, res) => {
 
   const { id } = tokenPayload;
 
-  const user = req.users.find((user) => user.id === id);
+  const user = cacheService.getData("users").find((user) => user.id === id);
 
   if (!user) {
     res
@@ -171,7 +177,7 @@ userRouter.post("/password/recovery", async (req, res) => {
 
   cacheService.updateCache(
     "users",
-    req.users.map((u) => (u.id === id ? user : u))
+    cacheService.getData("users").map((u) => (u.id === id ? user : u))
   );
 
   res.json({ message: "Успешно" });

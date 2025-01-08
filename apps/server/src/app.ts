@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
-import { dataLoaderMiddleware } from "./middlewares/dataLoader.middleware";
 import { userRouter } from "./routes/user.router";
 
 const app = express();
@@ -18,9 +17,6 @@ export const PUBLIC_URL = process.env.VERCEL_URL ? "public/" : "";
 declare global {
   namespace Express {
     interface Request {
-      users: any[];
-      news: any[];
-      companies: any[];
       user: any;
     }
   }
@@ -47,8 +43,6 @@ app.use(async (req, res, next) => {
 
   next();
 });
-
-app.use(dataLoaderMiddleware);
 
 app.get("/api/docs", async (req, res) => {
   res.send(`
