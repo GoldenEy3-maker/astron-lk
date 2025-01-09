@@ -50,6 +50,17 @@ export default new (class CacheService {
           tokenVersion: 0,
           isBanned: true,
         },
+        {
+          id: "4",
+          name: "Владислав",
+          surname: "Кленов",
+          patronymic: "Владиславович",
+          email: "east.crossroads@gmail.com",
+          password: passwordService.hashPassword("мечта женщин"),
+          phone: "+79131231231",
+          tokenVersion: 0,
+          isBanned: false,
+        },
       ],
       news: [
         {
@@ -275,6 +286,17 @@ export default new (class CacheService {
           logo: "/company-logo.png",
           certificate: "/",
           userId: "2",
+        },
+        {
+          id: "3",
+          title: "NABUCCO Architecture & Construction",
+          projects: 23,
+          projectsLink: "/",
+          projectsImplementedArea: 5678,
+          cooperationYears: 12,
+          logo: "/company-logo.png",
+          certificate: "/",
+          userId: "4",
         },
       ],
     };
