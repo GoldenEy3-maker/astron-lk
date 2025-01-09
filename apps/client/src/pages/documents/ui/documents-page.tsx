@@ -1,7 +1,10 @@
+import { DocumentsList } from "@/entities/document";
+
 export function DocumentsPage() {
   return (
-    <div>
-      <h1 className="text-h1">Documents Page</h1>
+    <div className="col-span-full">
+      <h1 className="text-h1 text-heading-h2">Документы</h1>
+      <DocumentsList limit={12} className="mt-3" />
     </div>
   );
 }

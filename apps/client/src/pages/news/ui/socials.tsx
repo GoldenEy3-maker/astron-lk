@@ -40,7 +40,7 @@ export function Socials() {
       <h3 className="text-h3 text-heading-h4 pl-3">
         Читайте нас&nbsp;в&nbsp;социальных сетях
       </h3>
-      <div className="flex items-center gap-3 lex-wrap mt-3">
+      <div className="flex items-center flex-wrap gap-3 lex-wrap mt-3">
         {SOCIAL_LINKS.map((link) => (
           <Button
             key={link.label}

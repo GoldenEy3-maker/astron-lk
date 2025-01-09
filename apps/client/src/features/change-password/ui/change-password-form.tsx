@@ -84,8 +84,7 @@ export function ChangePasswordForm({
           {onCancel ? (
             <Button
               type="button"
-              variant="ghost"
-              className="text-primary"
+              variant="ghost-primary"
               onClick={onCancel}
               disabled={isPending}>
               Отмена

@@ -137,7 +137,7 @@ export const Icons = {
         {...props}>
         <path
           d="M0.833496 2.90476L4.01977 6L9.16683 1"
-          stroke="white"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
         />

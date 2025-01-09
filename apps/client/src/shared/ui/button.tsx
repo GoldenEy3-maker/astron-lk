@@ -17,6 +17,7 @@ const buttonVariants = cva(
         underline:
           "text-primary hover:text-primary-accent disabled:text-muted !rounded-none relative after:absolute after:-bottom-1 after:inset-x-0 after:bg-current after:h-px after:transition",
         ghost: "text-foreground-accent hover:bg-muted/15",
+        "ghost-primary": "text-primary hover:bg-muted/15",
       },
       size: {
         default: "h-12 px-10 py-3",

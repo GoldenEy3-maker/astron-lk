@@ -295,8 +295,6 @@ paths:
                         example: 1
                       - type: boolean
                         example: false
-      security:
-        - bearerAuth: []
   /api/news/{id}:
     get:
       summary: Получить новость по ID
@@ -323,6 +321,73 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /api/documents:
+    get:
+      summary: Получить список документов
+      operationId: getDocuments
+      tags:
+        - Документы
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество документов на странице
+          schema:
+            type: integer
+            example: 10
+        - name: category
+          in: query
+          required: false
+          description: Категория документа
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - nextPage
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Document"
+                  totalPages:
+                    type: integer
+                    example: 10
+                  nextPage:
+                    oneOf:
+                      - type: integer
+                        example: 1
+                      - type: boolean
+                        example: false
+  /api/documents/categories:
+    get:
+      summary: Получить список категорий документов
+      operationId: getDocumentCategories
+      tags:
+        - Документы
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "Изменение цены"
 components:
   schemas:
     User:
@@ -391,8 +456,6 @@ components:
         - id
         - title
         - projects
-        - projectsLink
-        - projectsImplementedArea
         - cooperationYears
         - logo
         - certificate
@@ -405,14 +468,21 @@ components:
           type: string
           example: "NABUCCO Architecture & Construction"
         projects:
-          type: integer
-          example: 23
-        projectsLink:
-          type: string
-          example: "/link/to/projects"
-        projectsImplementedArea:
-          type: integer
-          example: 6578
+          type: object
+          required:
+            - count
+            - link
+            - implementedArea
+          properties:
+            count:
+              type: integer
+              example: 23
+            link:
+              type: string
+              example: "/link/to/projects"
+            implementedArea:
+              type: integer
+              example: 6578
         cooperationYears:
           type: integer
           example: 12
@@ -450,6 +520,40 @@ components:
         content:
           type: string
           example: "<p>Деняк нет, но вы держитесь</p>"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-12-30T12:34:56Z"
+    Document:
+      type: object
+      required:
+        - id
+        - title
+        - file
+        - category
+        - createdAt
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Документ"
+        file:
+          type: object
+          required:
+            - url
+            - size
+          properties:
+            url:
+              type: string
+              example: "/path/to/file.pdf"
+            size:
+              type: integer
+              example: 607232
+        category:
+          type: string
+          example: "Изменение цены"
         createdAt:
           type: string
           format: date-time

@@ -46,8 +46,8 @@ export function CompanyCard() {
                   variant="underline"
                   size="hug"
                   className="font-normal justify-start">
-                  <a className="text-h4" href={data?.projectsLink}>
-                    {getProjectsCountText(data?.projects || 0)}
+                  <a className="text-h4" href={data?.projects.link}>
+                    {getProjectsCountText(data?.projects.count || 0)}
                   </a>
                 </Button>
                 <span className="text-muted">реализовано с Astron</span>
@@ -65,7 +65,7 @@ export function CompanyCard() {
                 <h4 className="text-h4">
                   {new Intl.NumberFormat("ru-RU", {
                     minimumFractionDigits: 0,
-                  }).format(data?.projectsImplementedArea || 0)}
+                  }).format(data?.projects.implementedArea || 0)}
                   &nbsp;м²
                 </h4>
                 <span className="text-muted">реализовано проектов</span>
@@ -97,9 +97,9 @@ export function CompanyCard() {
           {!isLoading ? (
             <Button
               asChild
-              variant="ghost"
+              variant="ghost-primary"
               size="sm"
-              className="font-normal text-primary">
+              className="font-normal">
               <a href={data?.certificate} target="_blank">
                 <Icons.DocumentDownload />
                 <span>Сертификат Партнёра-Строителя</span>

@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
 import { userRouter } from "./routes/user.router";
+import { documentsRouter } from "./routes/documents.router";
 
 const app: Express = express();
 
@@ -62,5 +63,7 @@ app.get("/api/docs", async (req, res) => {
 app.use("/api/user", userRouter);
 
 app.use("/api/news", newsRouter);
+
+app.use("/api/documents", documentsRouter);
 
 export default app;

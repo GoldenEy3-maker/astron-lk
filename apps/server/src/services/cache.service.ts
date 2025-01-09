@@ -1,10 +1,11 @@
-import { Company, News, User } from "../types/globals";
+import { Company, Document, News, User } from "../types/globals";
 import passwordService from "./password.service";
 
 type CacheData = {
   users: User[];
   news: News[];
   companies: Company[];
+  documents: Document[];
 };
 
 export default new (class CacheService {
@@ -12,6 +13,7 @@ export default new (class CacheService {
     users: [],
     news: [],
     companies: [],
+    documents: [],
   };
 
   constructor() {
@@ -268,9 +270,11 @@ export default new (class CacheService {
         {
           id: "1",
           title: "NABUCCO Architecture & Construction",
-          projects: 23,
-          projectsLink: "/",
-          projectsImplementedArea: 5678,
+          projects: {
+            count: 23,
+            link: "/",
+            implementedArea: 5678,
+          },
           cooperationYears: 12,
           logo: "/company-logo.png",
           certificate: "/",
@@ -279,9 +283,11 @@ export default new (class CacheService {
         {
           id: "2",
           title: "NABUCCO Architecture & Construction",
-          projects: 23,
-          projectsLink: "/",
-          projectsImplementedArea: 5678,
+          projects: {
+            count: 23,
+            link: "/",
+            implementedArea: 5678,
+          },
           cooperationYears: 12,
           logo: "/company-logo.png",
           certificate: "/",
@@ -290,13 +296,1068 @@ export default new (class CacheService {
         {
           id: "3",
           title: "NABUCCO Architecture & Construction",
-          projects: 23,
-          projectsLink: "/",
-          projectsImplementedArea: 5678,
+          projects: {
+            count: 23,
+            link: "/",
+            implementedArea: 5678,
+          },
           cooperationYears: 12,
           logo: "/company-logo.png",
           certificate: "/",
           userId: "4",
+        },
+      ],
+      documents: [
+        {
+          id: "1",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2021-02-28T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "2",
+          title: "Брошюра о заводе Astron в Ярославле",
+          createdAt: "2021-01-15T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "3",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-12-12T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "4",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-11-10T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "5",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-11-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "6",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-10-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "7",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-09-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "8",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-08-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "9",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-07-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "10",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-06-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "11",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-05-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "12",
+          title:
+            "Типовые формулировки контрактов на продажу для резидентов и нерезидентов",
+          createdAt: "2020-04-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 607232,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "13",
+          title: "Руководство по монтажу стеновых панелей",
+          createdAt: "2020-03-15T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 425890,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "14",
+          title: "Каталог кровельных систем 2024",
+          createdAt: "2020-03-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 892456,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "15",
+          title: "Сертификаты соответствия на металлоконструкции",
+          createdAt: "2020-02-28T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 156789,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "16",
+          title: "Презентация новой серии промышленных ворот",
+          createdAt: "2020-02-15T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 723456,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "17",
+          title: "Инструкция по эксплуатации систем вентиляции",
+          createdAt: "2020-02-01T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "18",
+          title: "Прайс-лист на комплектующие 2024",
+          createdAt: "2020-01-25T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Цены",
+        },
+        {
+          id: "19",
+          title: "Гарантийные обязательства на строительные конструкции",
+          createdAt: "2020-01-20T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 178934,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "20",
+          title: "Альбом технических решений для холодных складов",
+          createdAt: "2020-01-15T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 945678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "21",
+          title: "Спецификация стальных конструкций для промышленных зданий",
+          createdAt: "2020-01-10T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "22",
+          title: "Каталог сэндвич-панелей 2024",
+          createdAt: "2020-01-05T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 678234,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "23",
+          title: "Руководство по проектированию фундаментов",
+          createdAt: "2019-12-28T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 892345,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "24",
+          title: "Сертификат пожарной безопасности",
+          createdAt: "2019-12-20T12:34:56Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "25",
+          title: "Типовой договор на проектирование",
+          createdAt: "2019-12-15T16:40:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "26",
+          title: "Презентация новой системы утепления",
+          createdAt: "2019-12-10T13:25:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "27",
+          title: "Инструкция по монтажу кровельных систем",
+          createdAt: "2019-12-05T10:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 432156,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "28",
+          title: "Брошюра о новых технологиях строительства",
+          createdAt: "2019-11-30T15:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "29",
+          title: "Типовой договор подряда на строительство",
+          createdAt: "2019-11-25T11:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "30",
+          title: "Каталог декоративных элементов фасада",
+          createdAt: "2019-11-20T09:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "31",
+          title: "Сертификаты качества на отделочные материалы",
+          createdAt: "2019-11-15T14:10:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "32",
+          title: "Новогодний подарочный каталог 2024",
+          createdAt: "2019-11-10T16:35:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "33",
+          title: "Руководство по эксплуатации систем освещения",
+          createdAt: "2019-11-05T12:25:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "34",
+          title: "Обновление цен на проектные работы",
+          createdAt: "2019-10-31T10:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "35",
+          title: "Презентация инновационных фасадных систем",
+          createdAt: "2019-10-25T15:40:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "36",
+          title: "Типовые решения для промышленных полов",
+          createdAt: "2019-10-20T11:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "37",
+          title: "Каталог вентиляционного оборудования",
+          createdAt: "2019-10-15T09:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "38",
+          title: "Сертификат соответствия ISO 9001",
+          createdAt: "2019-10-10T14:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "39",
+          title: "Буклет о системах пожарной безопасности",
+          createdAt: "2019-10-05T16:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "40",
+          title: "Технология быстровозводимых зданий",
+          createdAt: "2019-09-30T12:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "41",
+          title: "Обновленный прайс на проектные работы",
+          createdAt: "2019-09-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "42",
+          title: "Презентация энергоэффективных решений",
+          createdAt: "2019-09-20T15:35:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "43",
+          title: "Типовой договор на поставку материалов",
+          createdAt: "2019-09-15T11:25:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "44",
+          title: "Каталог систем водоотведения",
+          createdAt: "2019-09-10T09:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "45",
+          title: "Сертификаты на теплоизоляционные материалы",
+          createdAt: "2019-09-05T14:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "46",
+          title: "Руководство по монтажу светопрозрачных конструкций",
+          createdAt: "2019-09-01T10:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "47",
+          title: "Праздничный каталог решений",
+          createdAt: "2019-08-28T15:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "48",
+          title: "Новая технология сборки металлоконструкций",
+          createdAt: "2019-08-25T11:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "49",
+          title: "Изменение цен на строительные материалы",
+          createdAt: "2019-08-20T09:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "50",
+          title: "Презентация систем молниезащиты",
+          createdAt: "2019-08-15T14:40:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "51",
+          title: "Типовой договор на обслуживание",
+          createdAt: "2019-08-10T12:35:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "52",
+          title: "Каталог промышленных ворот",
+          createdAt: "2019-08-05T10:25:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "53",
+          title: "Сертификат экологической безопасности",
+          createdAt: "2019-07-31T15:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "54",
+          title: "Информационный буклет о компании",
+          createdAt: "2019-07-28T11:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "55",
+          title: "Технология зеленого строительства",
+          createdAt: "2019-07-25T09:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "56",
+          title: "Обновление цен на монтажные работы",
+          createdAt: "2019-07-20T14:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "57",
+          title: "Презентация складских комплексов",
+          createdAt: "2019-07-15T12:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "58",
+          title: "Спецификация крепежных элементов",
+          createdAt: "2019-07-10T10:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "59",
+          title: "Каталог кровельных материалов",
+          createdAt: "2019-07-05T15:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "60",
+          title: "Сертификаты на системы вентиляции",
+          createdAt: "2019-06-30T11:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "61",
+          title: "Летний подарочный каталог",
+          createdAt: "2019-06-25T09:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "62",
+          title: "Инновационные решения в остеклении",
+          createdAt: "2019-06-20T14:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "63",
+          title: "Сезонное изменение цен",
+          createdAt: "2019-06-15T12:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "64",
+          title: "Презентация офисных решений",
+          createdAt: "2019-06-10T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "65",
+          title: "Типовой договор на проектирование",
+          createdAt: "2019-06-05T15:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "66",
+          title: "Руководство по эксплуатации зданий",
+          createdAt: "2019-05-31T11:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "67",
+          title: "Каталог отделочных материалов",
+          createdAt: "2019-05-28T09:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "68",
+          title: "Сертификат на системы безопасности",
+          createdAt: "2019-05-25T14:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "69",
+          title: "Информационный буклет по энергосбережению",
+          createdAt: "2019-05-20T12:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "70",
+          title: "Технология быстрого монтажа",
+          createdAt: "2019-05-15T10:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "71",
+          title: "Обновление цен на проектные услуги",
+          createdAt: "2019-05-10T09:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "72",
+          title: "Презентация новых строительных технологий",
+          createdAt: "2019-05-05T14:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "73",
+          title: "Типовой договор на техническое обслуживание",
+          createdAt: "2019-04-30T11:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "74",
+          title: "Каталог систем кондиционирования",
+          createdAt: "2019-04-25T10:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "75",
+          title: "Сертификат качества строительных работ",
+          createdAt: "2019-04-20T15:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "76",
+          title: "Весенний подарочный каталог",
+          createdAt: "2019-04-15T12:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "77",
+          title: "Инновационные фасадные решения",
+          createdAt: "2019-04-10T09:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "78",
+          title: "Руководство по установке окон",
+          createdAt: "2019-04-05T14:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "79",
+          title: "Обновленные цены на отделочные работы",
+          createdAt: "2019-03-31T11:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "80",
+          title: "Презентация систем безопасности",
+          createdAt: "2019-03-25T10:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "81",
+          title: "Каталог строительного оборудования",
+          createdAt: "2019-03-20T15:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "82",
+          title: "Буклет по энергоэффективным решениям",
+          createdAt: "2019-03-15T12:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "83",
+          title: "Типовой договор на ремонтные работы",
+          createdAt: "2019-03-10T09:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "84",
+          title: "Сертификат соответствия экологическим нормам",
+          createdAt: "2019-03-05T14:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "85",
+          title: "Технология умного дома",
+          createdAt: "2019-02-28T11:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "86",
+          title: "Руководство по монтажу электросистем",
+          createdAt: "2019-02-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "87",
+          title: "Презентация архитектурных решений",
+          createdAt: "2019-02-20T15:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "88",
+          title: "Каталог систем отопления",
+          createdAt: "2019-02-15T12:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "89",
+          title: "Обновление цен на строительные материалы",
+          createdAt: "2019-02-10T09:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "90",
+          title: "Типовой договор на консультационные услуги",
+          createdAt: "2019-02-05T14:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "91",
+          title: "Зимний подарочный каталог",
+          createdAt: "2019-01-31T11:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Подарок",
+        },
+        {
+          id: "92",
+          title: "Сертификат безопасности материалов",
+          createdAt: "2019-01-25T10:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "93",
+          title: "Инновационные решения в освещении",
+          createdAt: "2019-01-20T15:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "94",
+          title: "Руководство по эксплуатации лифтов",
+          createdAt: "2019-01-15T12:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "95",
+          title: "Презентация промышленных объектов",
+          createdAt: "2019-01-10T09:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "96",
+          title: "Каталог изоляционных материалов",
+          createdAt: "2019-01-05T14:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "97",
+          title: "Буклет по системам безопасности",
+          createdAt: "2018-12-31T11:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 456789,
+          },
+          category: "Буклет",
+        },
+        {
+          id: "98",
+          title: "Обновление цен на услуги монтажа",
+          createdAt: "2018-12-25T10:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Изменение цены",
+        },
+        {
+          id: "99",
+          title: "Типовой договор на гарантийное обслуживание",
+          createdAt: "2018-12-20T15:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Типовой договор",
+        },
+        {
+          id: "100",
+          title: "Сертификат качества инженерных систем",
+          createdAt: "2018-12-15T12:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 234567,
+          },
+          category: "Сертификаты",
+        },
+        {
+          id: "101",
+          title: "Технология сборки модульных конструкций",
+          createdAt: "2018-12-10T09:15:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 567890,
+          },
+          category: "Новые технологии",
+        },
+        {
+          id: "102",
+          title: "Руководство по установке систем вентиляции",
+          createdAt: "2018-12-05T14:45:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 345678,
+          },
+          category: "Техническая документация",
+        },
+        {
+          id: "103",
+          title: "Презентация экологичных материалов",
+          createdAt: "2018-11-30T11:30:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 678901,
+          },
+          category: "Презентация",
+        },
+        {
+          id: "104",
+          title: "Каталог строительной техники",
+          createdAt: "2018-11-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
         },
       ],
     };

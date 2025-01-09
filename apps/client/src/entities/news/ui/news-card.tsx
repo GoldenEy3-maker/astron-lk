@@ -17,7 +17,7 @@ export function NewsCard({
 }: NewsCardProps) {
   return (
     <article
-      className="bg-card rounded-main py-5 px-7 relative flex transition gap-6 hover:bg-popover items-start"
+      className="bg-card rounded-main py-5 px-7 relative flex transition gap-4 hover:bg-popover items-start"
       {...props}>
       <Link
         to={Routes.News + "/" + id}

@@ -29,9 +29,13 @@ const Company = z
   .object({
     id: z.string(),
     title: z.string(),
-    projects: z.number().int(),
-    projectsLink: z.string(),
-    projectsImplementedArea: z.number().int(),
+    projects: z
+      .object({
+        count: z.number().int(),
+        link: z.string(),
+        implementedArea: z.number().int(),
+      })
+      .strict(),
     cooperationYears: z.number().int(),
     logo: z.string(),
     certificate: z.string(),
@@ -45,6 +49,15 @@ const News = z
     description: z.string(),
     img: z.string(),
     content: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
+  })
+  .strict();
+const Document = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
+    category: z.string(),
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
@@ -71,10 +84,48 @@ export const schemas = {
   recoveryUserPassword_Body,
   Company,
   News,
+  Document,
   User,
 };
 
 const endpoints = makeApi([
+  {
+    method: "get",
+    path: "/api/documents",
+    alias: "getDocuments",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "category",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(Document),
+        totalPages: z.number().int().optional(),
+        nextPage: z.union([z.number(), z.boolean()]),
+      })
+      .strict(),
+  },
+  {
+    method: "get",
+    path: "/api/documents/categories",
+    alias: "getDocumentCategories",
+    requestFormat: "json",
+    response: z.array(z.string()),
+  },
   {
     method: "get",
     path: "/api/news",

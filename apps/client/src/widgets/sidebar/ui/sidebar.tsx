@@ -13,7 +13,7 @@ export function Sidebar({ className, ...props }: SidebarProps) {
       className={cn("sticky top-6 max-h-fit space-y-5", className)}
       {...props}>
       {navigations.map((navigation, index) => (
-        <nav className="flex flex-col" key={index}>
+        <nav className="flex flex-col gap-1" key={index}>
           {navigation.map((link) => (
             <Button
               variant="ghost"
