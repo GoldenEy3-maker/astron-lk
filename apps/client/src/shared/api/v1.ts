@@ -19,6 +19,9 @@ const Session = z
   .strict();
 const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
+const changeUserPassword_Body = z
+  .object({ password: z.string(), newPassword: z.string() })
+  .strict();
 const recoveryUserPassword_Body = z
   .object({ password: z.string(), token: z.string() })
   .strict();
@@ -64,6 +67,7 @@ export const schemas = {
   Session,
   Error,
   Success,
+  changeUserPassword_Body,
   recoveryUserPassword_Body,
   Company,
   News,
@@ -126,6 +130,32 @@ const endpoints = makeApi([
       {
         status: 401,
         description: `Ошибка авторизации`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "post",
+    path: "/api/user/password/change",
+    alias: "changeUserPassword",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: changeUserPassword_Body,
+      },
+    ],
+    response: z.object({ message: z.string() }).strict(),
+    errors: [
+      {
+        status: 400,
+        description: `Введен неверный пароль`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],

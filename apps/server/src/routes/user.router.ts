@@ -128,6 +128,61 @@ userRouter.get(
 );
 
 userRouter.post(
+  "/password/change",
+  authMiddleware,
+  async (req: Request, res: Response<Success | Error>) => {
+    const { password, newPassword } = req.body;
+
+    const user = res.locals.user;
+
+    if (!passwordService.verifyPassword(password, user.password)) {
+      res.status(400).json({ message: "Введен неверный пароль!" });
+      return;
+    }
+
+    if (passwordService.verifyPassword(newPassword, user.password)) {
+      res.status(400).json({ message: "Новый пароль не может быть таким же!" });
+      return;
+    }
+
+    const reqRefreshToken = req.cookies.refresh;
+
+    if (!reqRefreshToken) {
+      res.status(401).json({ message: "Пользователь не авторизован!" });
+      return;
+    }
+
+    const refreshTokenPayload = await tokenService.verifyRefreshToken(
+      reqRefreshToken
+    );
+
+    if (!refreshTokenPayload) {
+      res.status(401).json({ message: "Пользователь не авторизован!" });
+      return;
+    }
+
+    user.password = newPassword;
+    user.tokenVersion++;
+
+    cacheService.updateCache(
+      "users",
+      cacheService.getData().users.map((u) => (u.id === user.id ? user : u))
+    );
+
+    const { remember } = refreshTokenPayload;
+
+    const { refreshToken } = await tokenService.generateTokens({
+      ...user,
+      remember,
+    });
+
+    tokenService.sendRefreshToken(res, refreshToken, remember);
+
+    res.json({ message: "Успешно" });
+  }
+);
+
+userRouter.post(
   "/password/send-link",
   async (req: Request, res: Response<Success | Error>) => {
     const { email } = req.body;

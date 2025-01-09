@@ -4,10 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { phoneMask } from "@/shared/lib/phone-mask";
 import { Button } from "@/shared/ui/button";
 import { useSignOut } from "@/features/auth";
+import { ChangePasswordDialog } from "@/features/change-password";
+import { TextMorph } from "@/shared/ui/text-morph";
 
 export function ProfilePage() {
   const user = useSession((state) => state.user);
-  const { data: company } = useQuery(getUserCompanyQueryOptions());
+  const { data: company, isLoading } = useQuery(getUserCompanyQueryOptions());
   const { signOutHandler, isPending } = useSignOut();
 
   return (
@@ -21,16 +23,21 @@ export function ProfilePage() {
           {user?.surname} {user?.name} {user?.patronymic}
         </dd>
         <dt className="text-muted mt-7">Партнёр-Строитель</dt>
-        <dd>{company?.title}</dd>
+        <dd>
+          <TextMorph as="span">
+            {!isLoading && company ? company.title : "Загрузка..."}
+          </TextMorph>
+        </dd>
         <dt className="text-muted mt-7">Контактный телефон</dt>
         <dd>{phoneMask(user?.phone ?? "")}</dd>
         <dt className="text-muted mt-7">E-mail</dt>
         <dd>{user?.email}</dd>
       </dl>
-      <div className="flex items-center mt-12">
+      <div className="flex items-center gap-5 mt-12">
         <Button disabled={isPending} onClick={signOutHandler}>
           Выйти из аккаунта
         </Button>
+        <ChangePasswordDialog />
       </div>
     </div>
   );
