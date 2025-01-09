@@ -1,4 +1,5 @@
 import { Company, News, User } from "../types/globals";
+import passwordService from "./password.service";
 
 type CacheData = {
   users: User[];
@@ -22,11 +23,32 @@ export default new (class CacheService {
           surname: "Королев",
           patronymic: "Николаевич",
           email: "danil-danil-korolev@bk.ru",
-          password:
-            "d7a55f91736202473153267def85daf2:e4dcee251f066f8d6ba88cdbbd84ff28a654b89c53b648a538de990c6f36f51a924b24a62222ca9e41a5e9f0fd1573f5893e59544a90837fc00bc039a1e6239b",
+          password: passwordService.hashPassword("123456"),
           phone: "+79231665038",
           tokenVersion: 0,
           isBanned: false,
+        },
+        {
+          id: "2",
+          name: "Илья",
+          surname: "Уткаев",
+          patronymic: "Васильевич",
+          email: "country@countryagency.ru",
+          password: passwordService.hashPassword("country"),
+          phone: "+79132220856",
+          tokenVersion: 0,
+          isBanned: false,
+        },
+        {
+          id: "3",
+          name: "Данил",
+          surname: "Королев",
+          patronymic: "Николаевич",
+          email: "ban@test.ru",
+          password: passwordService.hashPassword("ban"),
+          phone: "+79132220856",
+          tokenVersion: 0,
+          isBanned: true,
         },
       ],
       news: [
@@ -242,6 +264,17 @@ export default new (class CacheService {
           logo: "/company-logo.png",
           certificate: "/",
           userId: "1",
+        },
+        {
+          id: "2",
+          title: "NABUCCO Architecture & Construction",
+          projects: 23,
+          projectsLink: "/",
+          projectsImplementedArea: 5678,
+          cooperationYears: 12,
+          logo: "/company-logo.png",
+          certificate: "/",
+          userId: "2",
         },
       ],
     };
