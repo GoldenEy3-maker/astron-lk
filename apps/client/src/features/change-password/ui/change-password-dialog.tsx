@@ -46,7 +46,7 @@ export function ChangePasswordDialog() {
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="text-border hover:text-foreground">
+                className="text-border hover:text-foreground hover:bg-transparent">
                 <Icons.X />
               </Button>
             </DialogClose>

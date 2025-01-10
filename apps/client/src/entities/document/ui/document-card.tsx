@@ -10,13 +10,16 @@ import { z } from "zod";
 type DocumentCardProps = {} & z.infer<typeof schemas.Document>;
 
 export function DocumentCard({
+  id,
   title,
   file,
   category,
   createdAt,
 }: DocumentCardProps) {
   return (
-    <article className="bg-card rounded-main relative z-10 before:bg-[url(/pattern.png)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-[0.06] before:-z-10 py-5 px-7">
+    <article
+      data-id={id}
+      className="bg-card rounded-main relative z-10 before:bg-[url(/pattern.png)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-[0.06] before:-z-10 py-5 px-7">
       <div className="flex items-center justify-between gap-4">
         <span className="text-sm py-1.5 px-3 rounded-main text-primary bg-primary/10">
           {category}

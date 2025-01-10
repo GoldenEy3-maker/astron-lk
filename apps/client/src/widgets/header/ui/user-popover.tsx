@@ -26,8 +26,8 @@ export function UserPopover() {
           </TextMorph>
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="bottom" align="end" className="pb-3">
-        <div className="text-heading-h3">
+      <PopoverContent side="bottom" align="end" className="pb-3 px-0">
+        <div className="text-heading-h3 px-5">
           <TextMorph as="h3" className="text-h3">
             {!isCompanyLoading && company ? company.title : "Загрузка..."}
           </TextMorph>
@@ -42,7 +42,7 @@ export function UserPopover() {
             variant="ghost"
             asChild
             size="sm"
-            className="font-normal w-full justify-start">
+            className="font-normal w-full justify-start px-5 rounded-none">
             <a href="https://astronbuildings.com/" target="_blank">
               <span>Основной сайт</span>
               <Icons.ExternalLink className="text-border" />
@@ -53,7 +53,7 @@ export function UserPopover() {
             asChild
             variant="ghost"
             size="sm"
-            className="w-full justify-start font-normal">
+            className="w-full justify-start font-normal px-5 rounded-none">
             <Link
               to={`${Routes.Favorites}?filter=projects`}
               className="justify-between">
@@ -65,7 +65,7 @@ export function UserPopover() {
             asChild
             variant="ghost"
             size="sm"
-            className="w-full justify-start font-normal">
+            className="w-full justify-start font-normal px-5 rounded-none">
             <Link
               to={`${Routes.Favorites}?filter=docs`}
               className="justify-between">
@@ -78,7 +78,7 @@ export function UserPopover() {
             asChild
             variant="ghost"
             size="sm"
-            className="w-full justify-start font-normal">
+            className="w-full justify-start font-normal px-5 rounded-none">
             <Link to={Routes.Profile}>Мой профиль</Link>
           </Button>
         </nav>

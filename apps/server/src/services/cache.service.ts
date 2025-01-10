@@ -1359,6 +1359,46 @@ export default new (class CacheService {
           },
           category: "Каталог",
         },
+        {
+          id: "105",
+          title: "Каталог строительной техники",
+          createdAt: "2018-11-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "106",
+          title: "Каталог строительной техники",
+          createdAt: "2018-11-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "107",
+          title: "Каталог строительной техники",
+          createdAt: "2018-11-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
+        {
+          id: "108",
+          title: "Каталог строительной техники",
+          createdAt: "2018-11-25T10:20:00Z",
+          file: {
+            url: "/test.pdf",
+            size: 789012,
+          },
+          category: "Каталог",
+        },
       ],
     };
   }

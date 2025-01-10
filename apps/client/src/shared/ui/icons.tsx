@@ -174,6 +174,38 @@ export const Icons = {
       </svg>
     );
   },
+  ChevronLeft: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        width="13"
+        height="18"
+        viewBox="0 0 13 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <path
+          d="M11.5914 17.5875L1.15971 9.0443C0.914531 8.8435 0.915618 8.46818 1.16196 8.26881L11.0233 0.287706C11.4302 -0.0415805 12.0054 0.39645 11.7962 0.876232L8.49487 8.44649C8.43706 8.57906 8.43949 8.73018 8.50152 8.86083L12.3599 16.9862C12.5888 17.4683 12.0043 17.9257 11.5914 17.5875Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  },
+  ChevronRight: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        width="13"
+        height="18"
+        viewBox="0 0 13 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <path
+          d="M1.40857 17.5875L11.8403 9.0443C12.0855 8.8435 12.0844 8.46818 11.838 8.26881L1.97668 0.287706C1.56982 -0.0415805 0.994584 0.39645 1.20381 0.876232L4.50513 8.44649C4.56294 8.57906 4.56051 8.73018 4.49848 8.86083L0.640107 16.9862C0.411175 17.4683 0.995667 17.9257 1.40857 17.5875Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  },
   Cup: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg

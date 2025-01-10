@@ -26,10 +26,12 @@ const SelectTrigger = React.forwardRef<
     <Button variant={variant} size={size} asChild>
       <SelectPrimitive.Trigger
         ref={ref}
-        className={cn("[&>span]:line-clamp-1", className)}
+        className={cn("group [&>span]:line-clamp-1", className)}
         {...props}>
         {children}
-        <SelectPrimitive.Icon asChild>
+        <SelectPrimitive.Icon
+          asChild
+          className="group-data-[state=open]:rotate-180 transition-transform duration-200">
           <Icons.ChevronDown />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
@@ -45,7 +47,7 @@ const SelectScrollUpButton = React.forwardRef<
   <SelectPrimitive.ScrollUpButton
     ref={ref}
     className={cn(
-      "flex cursor-default items-center justify-center py-1",
+      "flex cursor-default items-center justify-center pb-1",
       className
     )}
     {...props}>
@@ -61,7 +63,7 @@ const SelectScrollDownButton = React.forwardRef<
   <SelectPrimitive.ScrollDownButton
     ref={ref}
     className={cn(
-      "flex cursor-default items-center justify-center py-1",
+      "flex cursor-default items-center justify-center pt-1",
       className
     )}
     {...props}>
@@ -79,7 +81,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-main border bg-card text-card-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-main py-[0.8125rem] bg-card text-card-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className
@@ -89,7 +91,6 @@ const SelectContent = React.forwardRef<
       <SelectScrollUpButton />
       <SelectPrimitive.Viewport
         className={cn(
-          "p-1",
           position === "popper" &&
             "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}>
@@ -120,16 +121,10 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default gap-2 select-none items-center rounded-md py-1.5 px-4 outline-none focus:bg-muted/15 focus:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-default gap-2 select-none items-center py-[0.4375rem] px-5 outline-none focus:bg-muted/15 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-primary",
       className
     )}
     {...props}>
-    <span className="flex h-4 w-4 items-center text-primary justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <Icons.Check />
-      </SelectPrimitive.ItemIndicator>
-    </span>
-
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ));
