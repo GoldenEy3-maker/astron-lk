@@ -38,6 +38,7 @@ app.use(async (req, res, next) => {
 });
 
 app.get("/api/docs", async (req, res) => {
+  // Render Scalar API Reference based on public/schema.yaml
   res.send(`
     <!DOCTYPE html>
 <html>

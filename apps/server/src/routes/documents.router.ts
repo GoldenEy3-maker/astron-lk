@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import cacheService from "../services/cache.service";
+import dbService from "../services/db.service";
 import { Document } from "../types/globals";
 
 const documentsRouter = express.Router();
@@ -26,15 +26,13 @@ documentsRouter.get(
     const startIndex = (parseInt(page) - 1) * parseInt(limit);
     const endIndex = parseInt(page) * parseInt(limit);
 
-    const documents = cacheService
-      .getData()
-      .documents.filter((doc) => (category ? doc.category === category : true))
+    const documents = dbService
+      .get("documents")
+      .filter((doc) => (category ? doc.category === category : true))
       .slice(startIndex, endIndex);
-    const totalDocuments = cacheService
-      .getData()
-      .documents.filter((doc) =>
-        category ? doc.category === category : true
-      ).length;
+    const totalDocuments = dbService
+      .get("documents")
+      .filter((doc) => (category ? doc.category === category : true)).length;
     const totalPages = Math.ceil(totalDocuments / parseInt(limit));
     const currentPage = parseInt(page);
     const nextPage = currentPage + 1;
@@ -49,7 +47,7 @@ documentsRouter.get(
 
 documentsRouter.get("/categories", (req: Request, res: Response) => {
   const categories = new Set(
-    cacheService.getData().documents.map((doc) => doc.category)
+    dbService.get("documents").map((doc) => doc.category)
   );
   res.json(Array.from(categories));
 });

@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import tokenService from "../services/token.service";
 import mailService from "../services/mail.service";
-import cacheService from "../services/cache.service";
+import dbService from "../services/db.service";
 import passwordService from "../services/password.service";
 import { Company, Error, Session, Success } from "../types/globals";
 
@@ -16,9 +16,7 @@ userRouter.post(
   ) => {
     const { login, password, remember } = req.body;
 
-    const user = cacheService
-      .getData()
-      .users.find((user) => user.email === login);
+    const user = dbService.get("users").find((user) => user.email === login);
 
     if (!user) {
       res.status(400).json({ message: "Неверный логин или пароль!" });
@@ -72,7 +70,7 @@ userRouter.get(
 
     const { id, tokenVersion, remember } = refreshTokenPayload;
 
-    const user = cacheService.getData().users.find((user) => user.id === id);
+    const user = dbService.get("users").find((user) => user.id === id);
 
     if (!user) {
       res.status(401).json({ message: "Refresh token is invalid!" });
@@ -109,9 +107,9 @@ userRouter.get(
   authMiddleware,
   (req: Request, res: Response<Company>) => {
     const userId = res.locals.user.id;
-    const company = cacheService
-      .getData()
-      .companies.find((company) => company.userId === userId);
+    const company = dbService
+      .get("companies")
+      .find((company) => company.userId === userId);
 
     res.json(company);
   }
@@ -164,9 +162,9 @@ userRouter.post(
     user.password = newPassword;
     user.tokenVersion++;
 
-    cacheService.updateCache(
+    dbService.update(
       "users",
-      cacheService.getData().users.map((u) => (u.id === user.id ? user : u))
+      dbService.get("users").map((u) => (u.id === user.id ? user : u))
     );
 
     const { remember } = refreshTokenPayload;
@@ -187,9 +185,7 @@ userRouter.post(
   async (req: Request, res: Response<Success | Error>) => {
     const { email } = req.body;
 
-    const user = cacheService
-      .getData()
-      .users.find((user) => user.email === email);
+    const user = dbService.get("users").find((user) => user.email === email);
 
     if (!user) {
       res.status(404).json({ message: "Пользователь не найден" });
@@ -238,7 +234,7 @@ userRouter.post(
 
     const { id } = tokenPayload;
 
-    const user = cacheService.getData().users.find((user) => user.id === id);
+    const user = dbService.get("users").find((user) => user.id === id);
 
     if (!user) {
       res
@@ -250,9 +246,9 @@ userRouter.post(
     user.password = password;
     user.tokenVersion++;
 
-    cacheService.updateCache(
+    dbService.update(
       "users",
-      cacheService.getData().users.map((u) => (u.id === id ? user : u))
+      dbService.get("users").map((u) => (u.id === id ? user : u))
     );
 
     res.json({ message: "Успешно" });

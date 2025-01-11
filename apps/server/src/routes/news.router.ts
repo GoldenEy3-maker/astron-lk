@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import cacheService from "../services/cache.service";
+import dbService from "../services/db.service";
 import { Error, News } from "../types/globals";
 
 const newsRouter = express.Router();
@@ -14,8 +14,8 @@ newsRouter.get(
     const startIndex = (parseInt(page) - 1) * parseInt(limit);
     const endIndex = parseInt(page) * parseInt(limit);
 
-    const news = cacheService.getData().news.slice(startIndex, endIndex);
-    const totalNews = cacheService.getData().news.length;
+    const news = dbService.get("news").slice(startIndex, endIndex);
+    const totalNews = dbService.get("news").length;
     const totalPages = Math.ceil(totalNews / parseInt(limit));
     const currentPage = parseInt(page);
     const nextPage = currentPage + 1;
@@ -29,7 +29,7 @@ newsRouter.get(
 
 newsRouter.get("/:newsId", (req: Request, res: Response<News | Error>) => {
   const newsId = req.params.newsId;
-  const news = cacheService.getData().news.find((news) => news.id === newsId);
+  const news = dbService.get("news").find((news) => news.id === newsId);
 
   if (!news) {
     res
