@@ -36,24 +36,19 @@ export function Pagination({
     if (totalPages <= 6)
       return Array.from({ length: totalPages }, (_, i) => i + 1);
 
-    const visiblePages = new Set<number>([
-      1,
-      2,
-      3,
-      totalPages - 2,
-      totalPages - 1,
-      totalPages,
-    ]);
+    const visiblePages = new Set<number>([1, totalPages]);
 
-    if (currentPage === 3) {
-      visiblePages.add(4);
-    }
-
-    if (currentPage === totalPages - 2) {
-      visiblePages.add(totalPages - 3);
-    }
-
-    if (currentPage > 3 && currentPage < totalPages - 2) {
+    if (currentPage <= 2 || currentPage >= totalPages - 1) {
+      [2, 3, totalPages - 2, totalPages - 1].forEach((page) =>
+        visiblePages.add(page)
+      );
+    } else if (currentPage === 3) {
+      [2, 3, 4].forEach((page) => visiblePages.add(page));
+    } else if (currentPage === totalPages - 2) {
+      [totalPages - 3, totalPages - 2, totalPages - 1].forEach((page) =>
+        visiblePages.add(page)
+      );
+    } else {
       [currentPage - 1, currentPage, currentPage + 1].forEach((page) =>
         visiblePages.add(page)
       );
