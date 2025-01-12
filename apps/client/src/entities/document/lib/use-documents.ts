@@ -8,11 +8,11 @@ import {
   resetDocumentsQueryPages,
 } from "../api/documents-query";
 
-type UseDocumentsListProps = {
+type UseDocumentsProps = {
   limit: number;
 };
 
-export function useDocumentsList({ limit }: UseDocumentsListProps) {
+export function useDocuments({ limit }: UseDocumentsProps) {
   const [category, setCategory] = useQueryState("category", parseAsString);
   const [queryPage, setQueryPage] = useQueryState(
     "page",

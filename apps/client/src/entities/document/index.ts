@@ -1,1 +1,1 @@
-export { DocumentsList } from "./ui/documents-list";
+export { Documents } from "./ui/documents";
