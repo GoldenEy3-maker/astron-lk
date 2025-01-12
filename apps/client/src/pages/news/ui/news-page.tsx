@@ -1,6 +1,6 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { Socials } from "./socials";
-import { NewsList } from "@/entities/news";
+import { News } from "@/entities/news";
 
 export function NewsPage() {
   return (
@@ -11,7 +11,7 @@ export function NewsPage() {
       <SectionContent>
         <Socials />
       </SectionContent>
-      <NewsList loadMore limit={10} />
+      <News loadMore limit={10} />
     </Section>
   );
 }

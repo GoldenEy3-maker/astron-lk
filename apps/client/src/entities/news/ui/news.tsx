@@ -6,17 +6,12 @@ import { NewsCardSkeleton } from "./news-card-skeleton";
 import { Button } from "@/shared/ui/button";
 import { TextMorph } from "@/shared/ui/text-morph";
 
-type NewsListProps = {
-  limit?: number;
+type NewsProps = {
+  limit: number;
   loadMore?: boolean;
 } & React.ComponentProps<"div">;
 
-export function NewsList({
-  limit,
-  className,
-  loadMore,
-  ...props
-}: NewsListProps) {
+export function News({ limit, className, loadMore, ...props }: NewsProps) {
   const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery(getNewsInfiniteQueryOptions({ limit }));
 

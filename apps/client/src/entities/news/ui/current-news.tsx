@@ -2,7 +2,7 @@ import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 import { Section, SectionHeader, SectionContent } from "@/shared/ui/section";
 import { Link } from "react-router-dom";
-import { NewsList } from "./news-list";
+import { News } from "./news";
 import { Routes } from "@/shared/constants/routes";
 
 export function CurrentNews() {
@@ -18,7 +18,7 @@ export function CurrentNews() {
         </Button>
       </SectionHeader>
       <SectionContent>
-        <NewsList limit={4} />
+        <News limit={4} />
       </SectionContent>
     </Section>
   );
