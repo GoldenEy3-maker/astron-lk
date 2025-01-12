@@ -3,7 +3,7 @@ import { ru } from "date-fns/locale";
 
 export function dateFormat(
   date: DateArg<Date>,
-  formatStr: string,
+  formatStr: string = "dd MMMM yyyy",
   options?: FormatOptions
 ) {
   return format(date, formatStr, {

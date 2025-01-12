@@ -17,7 +17,7 @@ export function NewsDetailPage() {
     <div className="col-[span_15]">
       <h1 className="text-h1 text-heading-h2">{data.title}</h1>
       <time dateTime={data.createdAt} className="block text-muted text-sm mt-3">
-        {dateFormat(new Date(data.createdAt), "dd MMMM yyyy")}
+        {dateFormat(new Date(data.createdAt))}
       </time>
       <HTMLParser className="mt-8" content={data.content} />
     </div>

@@ -31,7 +31,7 @@ export function DocumentCard({
       <h4 className="text-h4 mt-2">{title}</h4>
       <div className="flex text-sm mt-auto items-center justify-between gap-4 pt-5">
         <time dateTime={createdAt} className="text-muted">
-          {dateFormat(new Date(createdAt), "dd MMMM yyyy")}
+          {dateFormat(new Date(createdAt))}
         </time>
         <Link
           to={file.url}

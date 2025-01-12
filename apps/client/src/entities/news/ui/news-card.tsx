@@ -25,7 +25,7 @@ export function NewsCard({
       />
       <div className="flex-1">
         <time dateTime={createdAt} className="text-muted text-sm">
-          {dateFormat(new Date(createdAt), "dd MMMM yyyy")}
+          {dateFormat(new Date(createdAt))}
         </time>
         <h4 className="text-h4 text-primary mt-3">{title}</h4>
         <p className="text-muted mt-2 line-clamp-3">{description}</p>
