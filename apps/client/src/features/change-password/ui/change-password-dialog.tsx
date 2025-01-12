@@ -8,7 +8,6 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/shared/ui/dialog";
-import { Icons } from "@/shared/ui/icons";
 import { useState } from "react";
 import { ChangePasswordForm } from "./change-password-form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -29,27 +28,16 @@ export function ChangePasswordDialog() {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Сменить пароль</Button>
-        </DialogTrigger>
+        <DialogTrigger variant="outline">Сменить пароль</DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <VisuallyHidden>
-              <DialogTitle>Смена пароля</DialogTitle>
               <DialogDescription>
-                Измените пароль для вашего аккаунта
+                Изменить пароль вашего аккаунта
               </DialogDescription>
             </VisuallyHidden>
-            <h3 className="text-h3">Смена пароля</h3>
-            <DialogClose asChild>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="text-border hover:text-foreground hover:bg-transparent">
-                <Icons.X />
-              </Button>
-            </DialogClose>
+            <DialogTitle className="text-h3">Смена пароля</DialogTitle>
+            <DialogClose />
           </DialogHeader>
           <ChangePasswordForm
             onSuccess={() => setOpen(false)}

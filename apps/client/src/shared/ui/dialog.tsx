@@ -3,14 +3,54 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 import { cn } from "@/shared/lib/cn";
 import { ScrollArea } from "./scroll-area";
+import { Button, ButtonProps } from "./button";
+import { Icons } from "./icons";
 
 const Dialog = DialogPrimitive.Root;
 
-const DialogTrigger = DialogPrimitive.Trigger;
+const DialogTrigger = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Trigger>,
+  Omit<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>,
+    "asChild"
+  > & {
+    variant?: ButtonProps["variant"];
+    size?: ButtonProps["size"];
+  }
+>(({ className, variant = "default", size = "default", ...props }, ref) => (
+  <DialogPrimitive.Trigger
+    ref={ref}
+    className={cn(className)}
+    asChild
+    {...props}>
+    <Button variant={variant} size={size}>
+      {props.children}
+    </Button>
+  </DialogPrimitive.Trigger>
+));
 
 const DialogPortal = DialogPrimitive.Portal;
 
-const DialogClose = DialogPrimitive.Close;
+const DialogClose = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Close>,
+  Omit<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>,
+    "asChild"
+  > & {
+    variant?: ButtonProps["variant"];
+    size?: ButtonProps["size"];
+  }
+>(({ className, variant = "ghost", size = "icon", ...props }, ref) => (
+  <DialogPrimitive.Close ref={ref} className={cn(className)} asChild {...props}>
+    <Button
+      variant={variant}
+      size={size}
+      className="text-border hover:bg-transparent hover:text-foreground">
+      {props.children || <Icons.X />}
+    </Button>
+  </DialogPrimitive.Close>
+));
+DialogClose.displayName = DialogPrimitive.Close.displayName;
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
@@ -19,7 +59,8 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 grid place-items-center bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in",
+      "fixed inset-0 z-50 grid place-items-center bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
+      "data-[state=open]:animate-in !duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}
@@ -33,26 +74,20 @@ const DialogContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay>
-      <ScrollArea
-        data-dialog-content-scroll=""
-        className="z-50 max-w-[42rem] w-full rounded-main max-h-dvh flex flex-col overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}>
-        <DialogPrimitive.Content
-          ref={ref}
-          onPointerDownOutside={(e) => {
-            if (
-              (e.target as HTMLElement)?.closest("[data-dialog-content-scroll]")
-            )
-              e.preventDefault();
-          }}
-          className={cn(
-            "grid gap-8 border bg-card px-12 py-9 shadow-lg !duration-30 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-8 data-[state=open]:slide-in-from-top-8 data-[state=open]:zoom-in-95 rounded-main",
-            className
-          )}
-          {...props}>
-          {children}
-        </DialogPrimitive.Content>
-      </ScrollArea>
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(
+          "grid gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg !duration-30",
+          "data-[state=open]:animate-in !duration-300 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-bottom-12 data-[state=open]:slide-in-from-bottom-12 data-[state=open]:zoom-in-95",
+          className
+        )}
+        {...props}>
+        <ScrollArea className="flex flex-col w-full max-h-dvh">
+          <div className="w-full px-12 flex flex-col gap-8 py-9">
+            {children}
+          </div>
+        </ScrollArea>
+      </DialogPrimitive.Content>
     </DialogOverlay>
   </DialogPortal>
 ));
@@ -85,16 +120,15 @@ DialogFooter.displayName = "DialogFooter";
 
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+  Omit<React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>, "asChild">
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
-      className
-    )}
-    {...props}
-  />
+    className={cn("text-h3", className)}
+    asChild
+    {...props}>
+    <h3>{props.children}</h3>
+  </DialogPrimitive.Title>
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
