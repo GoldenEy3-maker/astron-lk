@@ -1,29 +1,30 @@
 import { create } from "zustand";
 
-export type BreadcrumbPath = {
-  href: string;
-  label: string | undefined;
-};
+export type CrumbLabel = string | undefined;
 
-export type CurrentPage = string | undefined;
-
-type BreadcrumbsStoreActions = {
-  setPaths: (paths: BreadcrumbPath[]) => void;
-  setCurrentPage: (currentPage: CurrentPage) => void;
+type ParamLabel = {
+  param: string;
+  label: CrumbLabel;
 };
 
 type BreadcrumbsStore = {
-  paths: BreadcrumbPath[];
-  currentPage: CurrentPage;
+  paramLabels: ParamLabel[];
 } & BreadcrumbsStoreActions;
 
-export const useBreadcrumbsStore = create<BreadcrumbsStore>((set) => ({
-  paths: [],
-  currentPage: undefined,
-  setPaths(paths) {
-    set({ paths });
-  },
-  setCurrentPage(currentPage) {
-    set({ currentPage });
+type BreadcrumbsStoreActions = {
+  addParamLabel: (paramLabel: ParamLabel) => void;
+};
+
+export const useBreadcrumbsStore = create<BreadcrumbsStore>((set, get) => ({
+  paramLabels: [],
+  addParamLabel(paramLabel) {
+    const paramLabels = get().paramLabels;
+    const index = paramLabels.findIndex((p) => p.param === paramLabel.param);
+    if (index !== -1) {
+      paramLabels[index] = paramLabel;
+    } else {
+      paramLabels.push(paramLabel);
+    }
+    set({ paramLabels });
   },
 }));

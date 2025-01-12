@@ -1,5 +1,5 @@
 import {
-  createHashRouter,
+  createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
@@ -9,6 +9,10 @@ import { Routes } from "@/shared/constants/routes";
 import { getSessionLoader } from "@/shared/api/session-query";
 import { MainLayout, MainLoading } from "./layouts/main";
 import { AuthLayout } from "./layouts/auth/ui/auth-layout";
+import {
+  setCrumbHandle,
+  setCrumbHandleFromParams,
+} from "@/widgets/breadcrumbs";
 
 const HomePage = lazy(() =>
   import("../pages/home").then((module) => ({
@@ -119,27 +123,80 @@ const NotFoundPage = lazy(() =>
 );
 
 export function createRouter() {
-  return createHashRouter(
+  return createBrowserRouter(
     createRoutesFromElements(
       <Route element={<RootLayout />} errorElement={<RootErrorBoundary />}>
         <Route
           element={<MainLayout />}
           loader={getSessionLoader}
-          hydrateFallbackElement={<MainLoading />}>
+          hydrateFallbackElement={<MainLoading />}
+          handle={setCrumbHandle(Routes.Home, "Главная")}>
           <Route index element={<HomePage />} />
-          <Route path={Routes.Search} element={<SearchPage />} />
-          <Route path={Routes.Favorites} element={<FavoritesPage />} />
-          <Route path={Routes.Profile} element={<ProfilePage />} />
-          <Route path={Routes.Tests} element={<TestsPage />} />
-          <Route path={Routes.Leads} element={<LeadsPage />} />
-          <Route path={Routes.Booking} element={<BookingPage />} />
-          <Route path={Routes.Sales} element={<SalesPage />} />
-          <Route path={Routes.Academy} element={<AcademyPage />} />
-          <Route path={Routes.Documents} element={<DocumentsPage />} />
-          <Route path={Routes.Bulletins} element={<BulletinsPage />} />
-          <Route path={Routes.News} element={<NewsPage />} />
-          <Route path={Routes.News + "/:newsId"} element={<NewsDetailPage />} />
-          <Route path={Routes.Factory} element={<FactoryPage />} />
+          <Route
+            path={Routes.Search}
+            element={<SearchPage />}
+            handle={setCrumbHandle(Routes.Search, "Поиск по сайту")}
+          />
+          <Route
+            path={Routes.Favorites}
+            element={<FavoritesPage />}
+            handle={setCrumbHandle(Routes.Favorites, "Избранное")}
+          />
+          <Route
+            path={Routes.Profile}
+            element={<ProfilePage />}
+            handle={setCrumbHandle(Routes.Profile, "Профиль")}
+          />
+          <Route
+            path={Routes.Tests}
+            element={<TestsPage />}
+            handle={setCrumbHandle(Routes.Tests, "Тестирование сотрудников")}
+          />
+          <Route
+            path={Routes.Leads}
+            element={<LeadsPage />}
+            handle={setCrumbHandle(Routes.Leads, "Результаты лидогенераци")}
+          />
+          <Route
+            path={Routes.Booking}
+            element={<BookingPage />}
+            handle={setCrumbHandle(Routes.Booking, "Букинг")}
+          />
+          <Route
+            path={Routes.Sales}
+            element={<SalesPage />}
+            handle={setCrumbHandle(Routes.Sales, "Продажи")}
+          />
+          <Route
+            path={Routes.Academy}
+            element={<AcademyPage />}
+            handle={setCrumbHandle(Routes.Academy, "Академия")}
+          />
+          <Route
+            path={Routes.Documents}
+            element={<DocumentsPage />}
+            handle={setCrumbHandle(Routes.Documents, "Документы")}
+          />
+          <Route
+            path={Routes.Bulletins}
+            element={<BulletinsPage />}
+            handle={setCrumbHandle(Routes.Bulletins, "Бюллетень")}
+          />
+          <Route
+            path={Routes.News}
+            handle={setCrumbHandle(Routes.News, "Новости")}>
+            <Route index element={<NewsPage />} />
+            <Route
+              path={Routes.News + "/:newsId"}
+              element={<NewsDetailPage />}
+              handle={setCrumbHandleFromParams("newsId")}
+            />
+          </Route>
+          <Route
+            path={Routes.Factory}
+            element={<FactoryPage />}
+            handle={setCrumbHandle(Routes.Factory, "Завод")}
+          />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path={Routes.SignIn} element={<SignInPage />} />

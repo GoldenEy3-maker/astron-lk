@@ -1,28 +1,15 @@
+import { CrumbLabel, useBreadcrumbsStore } from "../model/breadcrumbs-store";
 import { useEffect } from "react";
-import {
-  BreadcrumbPath,
-  CurrentPage,
-  useBreadcrumbsStore,
-} from "../model/breadcrumbs-store";
 import { useShallow } from "zustand/react/shallow";
 
-export function useBreadcrumbs(
-  paths: BreadcrumbPath[],
-  currentPage: CurrentPage
-) {
-  const { setCurrentPage, setPaths } = useBreadcrumbsStore(
+export function useBreadcrumbs(param: string, label: CrumbLabel) {
+  const { addParamLabel } = useBreadcrumbsStore(
     useShallow((state) => ({
-      setPaths: state.setPaths,
-      setCurrentPage: state.setCurrentPage,
+      addParamLabel: state.addParamLabel,
     }))
   );
 
   useEffect(() => {
-    setPaths(paths);
-    setCurrentPage(currentPage);
-    return () => {
-      setPaths([]);
-      setCurrentPage(undefined);
-    };
-  }, [paths, currentPage]);
+    addParamLabel({ param, label });
+  }, [param, label]);
 }

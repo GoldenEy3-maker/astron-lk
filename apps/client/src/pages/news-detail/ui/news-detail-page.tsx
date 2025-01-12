@@ -3,20 +3,13 @@ import { getNewsByIdQueryOptions } from "../api/news-detail-query";
 import { useParams } from "react-router-dom";
 import { dateFormat } from "@/shared/lib/date-format";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
-import { Routes } from "@/shared/constants/routes";
 import { HTMLParser } from "@/shared/ui/html-parser";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
   const { data, isLoading } = useQuery(getNewsByIdQueryOptions(params.newsId!));
 
-  useBreadcrumbs(
-    [
-      { href: Routes.Home, label: "Главная" },
-      { href: Routes.News, label: "Новости" },
-    ],
-    data?.title
-  );
+  useBreadcrumbs("newsId", data?.title);
 
   if (!data || isLoading) return <div>Loading...</div>;
 

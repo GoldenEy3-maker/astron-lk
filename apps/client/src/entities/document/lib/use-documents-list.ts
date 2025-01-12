@@ -1,7 +1,6 @@
 import { useScrollTo } from "@/shared/lib/use-scroll-to";
-import { useURLState } from "@/shared/lib/use-url-state";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { parseAsString, parseAsInteger } from "nuqs";
+import { parseAsString, parseAsInteger, useQueryState } from "nuqs";
 import { useState } from "react";
 import {
   getDocumentsInfiniteQueryOptions,
@@ -14,8 +13,8 @@ type UseDocumentsListProps = {
 };
 
 export function useDocumentsList({ limit }: UseDocumentsListProps) {
-  const [category, setCategory] = useURLState("category", parseAsString);
-  const [queryPage, setQueryPage] = useURLState(
+  const [category, setCategory] = useQueryState("category", parseAsString);
+  const [queryPage, setQueryPage] = useQueryState(
     "page",
     parseAsInteger.withDefault(1)
   );
