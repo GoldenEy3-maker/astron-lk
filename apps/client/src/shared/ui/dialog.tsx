@@ -17,17 +17,15 @@ const DialogTrigger = React.forwardRef<
     variant?: ButtonProps["variant"];
     size?: ButtonProps["size"];
   }
->(({ className, variant = "default", size = "default", ...props }, ref) => (
-  <DialogPrimitive.Trigger
-    ref={ref}
-    className={cn(className)}
-    asChild
-    {...props}>
-    <Button variant={variant} size={size}>
-      {props.children}
-    </Button>
-  </DialogPrimitive.Trigger>
-));
+>(({ variant = "default", size = "default", ...props }, ref) => {
+  return (
+    <DialogPrimitive.Trigger ref={ref} asChild {...props}>
+      <Button variant={variant} size={size}>
+        {props.children}
+      </Button>
+    </DialogPrimitive.Trigger>
+  );
+});
 
 const DialogPortal = DialogPrimitive.Portal;
 
@@ -60,7 +58,7 @@ const DialogOverlay = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed inset-0 z-50 grid place-items-center bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
-      "data-[state=open]:animate-in !duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}
@@ -77,8 +75,8 @@ const DialogContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "grid gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg !duration-30",
-          "data-[state=open]:animate-in !duration-300 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-bottom-12 data-[state=open]:slide-in-from-bottom-12 data-[state=open]:zoom-in-95",
+          "grid gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",
+          "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-bottom-12 data-[state=open]:slide-in-from-bottom-12 data-[state=open]:zoom-in-95",
           className
         )}
         {...props}>

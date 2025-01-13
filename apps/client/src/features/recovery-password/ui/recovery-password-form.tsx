@@ -1,4 +1,3 @@
-import { cn } from "@/shared/lib/cn";
 import { NotSecurePasswordAlert } from "./not-secure-password-alert";
 import {
   Form,
@@ -14,16 +13,18 @@ import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/shared/ui/button";
 import { useRecoveryPasswordForm } from "../lib/use-recovery-password-form";
 import React from "react";
-import { SuccessAlert } from "./success-alert";
+import { RecoveryPasswordSuccessAlert } from "./recovery-password-success-alert";
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
+import { SecurePasswordAlert } from "./secure-password-alert";
+import { ErrorAlert } from "./error-alert";
+import { AxiosError } from "axios";
 
 type RecoveryPasswordFormProps = {
   token: string;
 } & React.ComponentProps<"div">;
 
 export function RecoveryPasswordForm({
-  className,
   token,
   ...props
 }: RecoveryPasswordFormProps) {
@@ -33,10 +34,12 @@ export function RecoveryPasswordForm({
     recoveryPasswordHandler,
     isPending,
     isSuccess,
+    isError,
+    error,
   } = useRecoveryPasswordForm(token);
 
   return (
-    <div className={cn(className)} {...props}>
+    <div {...props}>
       <AnimatePresence initial={false} mode="popLayout">
         {isSuccess ? (
           <motion.div
@@ -51,7 +54,7 @@ export function RecoveryPasswordForm({
               damping: 18,
               mass: 0.3,
             }}>
-            <SuccessAlert />
+            <RecoveryPasswordSuccessAlert />
             <Button asChild className="mt-7">
               <Link to={Routes.SignIn}>Войти</Link>
             </Button>
@@ -68,20 +71,40 @@ export function RecoveryPasswordForm({
               mass: 0.3,
             }}>
             <AnimatePresence>
-              {isPasswordNotSecured ? (
+              {isError ? (
                 <motion.div
-                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                  initial={false}
+                  animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
+                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+                  <ErrorAlert
+                    error={
+                      error instanceof AxiosError
+                        ? error.response?.data.message
+                        : error?.message
+                    }
+                  />
+                </motion.div>
+              ) : isPasswordNotSecured ? (
+                <motion.div
+                  initial={false}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
                   <NotSecurePasswordAlert />
                 </motion.div>
-              ) : null}
+              ) : (
+                <motion.div
+                  initial={false}
+                  animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
+                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+                  <SecurePasswordAlert />
+                </motion.div>
+              )}
             </AnimatePresence>
-            <div className="bg-card px-12 py-9 rounded-main">
+            <div className="bg-card ~px-7/12 ~py-5/9 rounded-main">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(recoveryPasswordHandler)}
-                  className="space-y-6">
+                  className="~space-y-4/6">
                   <FormField
                     control={form.control}
                     name="password"
@@ -111,7 +134,7 @@ export function RecoveryPasswordForm({
                     )}
                   />
                   <div className="flex items-center gap-2 mt-4">
-                    <Icons.InfoCircle className="text-primary" />
+                    <Icons.InfoCircle className="text-primary shrink-0" />
                     <span className="text-sm">
                       Пароль должен состоять минимум из 6 символов
                     </span>

@@ -5,7 +5,7 @@ import { cva, VariantProps } from "class-variance-authority";
 const sectionVariants = cva("", {
   variants: {
     space: {
-      default: "space-y-12",
+      default: "~space-y-7/12",
       sm: "space-y-9",
     },
   },
@@ -38,7 +38,7 @@ const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
       <div
         ref={ref}
         className={cn(
-          "flex justify-between gap-6 items-end flex-wrap",
+          "flex justify-between gap-x-6 gap-y-2 items-end flex-wrap",
           className
         )}
         {...props}>

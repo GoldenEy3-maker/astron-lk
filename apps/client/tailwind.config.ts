@@ -13,10 +13,25 @@ export default {
     fontSize: {
       ...fontSize,
       display: "3rem",
-      h1: ["2.5rem", "1.2"],
-      h2: ["2rem", "1.3"],
-      h3: ["1.75rem", "1.2"],
-      h4: ["1.25rem", "1.2"],
+      // 28px at 640px and 40px at 1536px
+      h1: [
+        "clamp(1.75rem, 1.2143rem + 1.3393vw, 2.5rem)",
+        "clamp(2.1rem, 1.4571rem + 1.6071vw, 3rem)",
+      ],
+      // 24px at 640px and 32px at 1536px
+      h2: [
+        "clamp(1.5rem, 1.1429rem + 0.8929vw, 2rem)",
+        "clamp(1.8rem, 1.2286rem + 1.4286vw, 2.6rem)",
+      ],
+      h3: [
+        "clamp(1.25rem, 0.8929rem + 0.8929vw, 1.75rem)",
+        "clamp(1.5rem, 1.0714rem + 1.0714vw, 2.1rem)",
+      ],
+      // 16px at 640px and 20px at 1536px
+      h4: [
+        "clamp(1rem, 0.8214rem + 0.4464vw, 1.25rem)",
+        "clamp(1.2rem, 0.9857rem + 0.5357vw, 1.5rem)",
+      ],
     },
     extend: {
       fontFamily: {

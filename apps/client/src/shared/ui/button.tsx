@@ -17,11 +17,11 @@ const buttonVariants = cva(
           "border border-primary bg-card text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted disabled:border-border aria-disabled:text-muted aria-disabled:border-border",
         link: "text-primary hover:text-primary-accent disabled:text-muted aria-disabled:text-muted",
         underline:
-          "text-primary hover:text-primary-accent disabled:text-muted !rounded-none relative after:absolute after:-bottom-1 after:inset-x-0 after:bg-current after:h-px after:transition",
+          "text-primary hover:text-primary-accent disabled:text-muted !rounded-none relative after:absolute after:bottom-0 after:inset-x-0 after:bg-current after:h-px after:transition",
         ghost:
           "text-foreground-accent hover:bg-muted/15 aria-disabled:bg-muted/15",
         "ghost-primary":
-          "text-primary hover:bg-muted/15 aria-disabled:bg-muted/15",
+          "text-foreground-accent hover:bg-primary/10 hover:text-primary aria-disabled:bg-muted/15",
       },
       size: {
         default: "h-12 px-10 py-3",
@@ -29,7 +29,7 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         hug: "",
         icon: "h-10 w-10 rounded-full",
-        "icon-lg": "h-12 w-12 rounded-full",
+        "icon-lg": "~h-10/12 ~w-10/12 rounded-full",
       },
     },
     defaultVariants: {

@@ -3,6 +3,7 @@ import { Drawer as DrawerPrimitive } from "vaul";
 
 import { cn } from "@/shared/lib/cn";
 import { ScrollArea } from "./scroll-area";
+import { Button, ButtonProps } from "./button";
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -15,7 +16,33 @@ const Drawer = ({
 );
 Drawer.displayName = "Drawer";
 
-const DrawerTrigger = DrawerPrimitive.Trigger;
+const DrawerTrigger = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Trigger>,
+  Omit<
+    React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Trigger>,
+    "asChild"
+  > & {
+    variant?: ButtonProps["variant"];
+    size?: ButtonProps["size"];
+  }
+>(
+  (
+    { className, children, variant = "default", size = "default", ...props },
+    ref
+  ) => (
+    <DrawerPrimitive.Trigger
+      ref={ref}
+      className={cn(className)}
+      asChild
+      {...props}>
+      <Button variant={variant} size={size}>
+        {children}
+      </Button>
+    </DrawerPrimitive.Trigger>
+  )
+);
+
+DrawerTrigger.displayName = DrawerPrimitive.Trigger.displayName;
 
 const DrawerPortal = DrawerPrimitive.Portal;
 
@@ -50,7 +77,9 @@ const DrawerContent = React.forwardRef<
         )}
         {...props}>
         <ScrollArea className="overflow-y-auto flex flex-col px-5 max-h-dvh">
-          <div className="mx-auto mt-4 h-2 w-[100px] shrink-0 rounded-full bg-muted" />
+          <div className="pt-4 sticky z-10 pb-2 flex justify-center top-0 shrink-0 bg-card">
+            <span className="w-[100px] h-1.5 rounded-full bg-muted"></span>
+          </div>
           <div className="flex flex-col px-1 pb-6 gap-4">{children}</div>
         </ScrollArea>
       </DrawerPrimitive.Content>
@@ -64,7 +93,7 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("grid gap-1.5 pt-4 pb-6 text-center sm:text-left", className)}
+    className={cn("grid gap-1.5 pt-2 pb-4 text-center sm:text-left", className)}
     {...props}
   />
 );

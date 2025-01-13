@@ -86,7 +86,7 @@ export function Pagination({
               {array[index + 1] - pageNum > 1 && (
                 <DropdownMenu key={`dropdown-menu-${pageNum}`}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon-lg">
+                    <Button variant="ghost-primary" size="icon-lg">
                       <PaginationEllipsis />
                     </Button>
                   </DropdownMenuTrigger>

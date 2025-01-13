@@ -18,7 +18,7 @@ export function News({ limit, className, loadMore, ...props }: NewsProps) {
   return (
     <div
       className={cn(
-        "grid grid-cols-[repeat(auto-fill,minmax(28rem,1fr))] gap-x-12 gap-y-11",
+        "grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(28rem,1fr))] gap-x-12 ~gap-y-8/11",
         className
       )}
       {...props}>

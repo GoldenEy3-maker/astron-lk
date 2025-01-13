@@ -14,12 +14,24 @@ export function useRecoveryPasswordSendLinkForm() {
     },
   });
 
-  const { recoveryPasswordSendLinkHandler, isPending } =
-    useRecoveryPasswordSendLink({
-      onSuccess: () => {
-        form.reset();
-      },
-    });
+  const {
+    recoveryPasswordSendLinkHandler,
+    isPending,
+    isSuccess,
+    error,
+    isError,
+  } = useRecoveryPasswordSendLink({
+    onSuccess: () => {
+      form.reset();
+    },
+  });
 
-  return { form, recoveryPasswordSendLinkHandler, isPending };
+  return {
+    form,
+    recoveryPasswordSendLinkHandler,
+    isPending,
+    isSuccess,
+    error,
+    isError,
+  };
 }

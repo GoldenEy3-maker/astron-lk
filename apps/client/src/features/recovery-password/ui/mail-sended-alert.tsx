@@ -1,20 +1,20 @@
 import {
   Alert,
-  AlertDescription,
   AlertHeader,
   AlertTitle,
+  AlertDescription,
 } from "@/shared/ui/alert";
 import { Icons } from "@/shared/ui/icons";
 
-export function SuccessAlert() {
+export function MailSendedAlert() {
   return (
     <Alert variant="success">
       <AlertHeader>
-        <Icons.Lock />
-        <AlertTitle>Пароль успешно сохранен</AlertTitle>
+        <Icons.CheckCircle />
+        <AlertTitle>Письмо отправлено</AlertTitle>
       </AlertHeader>
       <AlertDescription>
-        Используйте его при следующей авторизации
+        Проверьте ваш почтовый ящик и следуйте инструкциям
       </AlertDescription>
     </Alert>
   );

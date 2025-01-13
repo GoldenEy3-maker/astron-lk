@@ -10,16 +10,20 @@ export function CompanyCard() {
   const { data, isLoading } = useQuery(getUserCompanyQueryOptions());
 
   return (
-    <article className="bg-card rounded-main items-start flex gap-14 py-9 px-14 border-b-2 border-gold">
+    <article className="bg-card rounded-main items-start flex ~gap-7/14 ~py-5/9 ~px-7/14 border-b-2 border-gold">
       {!isLoading ? (
-        <img src={data?.logo} alt={data?.title} className="w-[8rem] h-24" />
+        <img
+          src={data?.logo}
+          alt={data?.title}
+          className="~w-[5rem]/[8rem] max-sm:hidden ~h-16/24"
+        />
       ) : (
-        <Skeleton className="w-[8rem] h-24 !rounded-main" />
+        <Skeleton className="~w-[5rem]/[8rem] max-sm:hidden ~h-16/24 !rounded-main" />
       )}
       <div className="flex-1">
-        <div className="flex justify-between items-start gap-6">
+        <div className="flex justify-between items-start flex-col sm:flex-row gap-x-6 gap-y-3">
           {!isLoading ? (
-            <h2 className="text-h2 text-heading-h3 max-w-[31.25rem]">
+            <h2 className="text-h2 text-heading-h3 order-2 sm:order-1 max-w-[31.25rem]">
               {data?.title}
             </h2>
           ) : (
@@ -29,15 +33,15 @@ export function CompanyCard() {
             </div>
           )}
           {!isLoading ? (
-            <div className="flex items-center gap-3 text-gold font-medium">
-              <Icons.Cup />
-              <span>Золотой Партнёр</span>
+            <div className="flex items-center gap-3 text-gold font-medium order-1 sm:order-2">
+              <Icons.Cup className="shrink-0" />
+              <span className="~text-sm/base">Золотой Партнёр</span>
             </div>
           ) : (
             <Skeleton className="w-1/4 h-5 !rounded-full" />
           )}
         </div>
-        <div className="grid grid-cols-3 mt-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 ~mt-4/5">
           <div className="flex flex-col items-start">
             {!isLoading ? (
               <>
@@ -50,12 +54,14 @@ export function CompanyCard() {
                     {getProjectsCountText(data?.projects.count || 0)}
                   </a>
                 </Button>
-                <span className="text-muted">реализовано с Astron</span>
+                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                  реализовано с Astron
+                </span>
               </>
             ) : (
               <>
                 <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-40 mt-2 h-4 !rounded-full" />
+                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
               </>
             )}
           </div>
@@ -68,12 +74,14 @@ export function CompanyCard() {
                   }).format(data?.projects.implementedArea || 0)}
                   &nbsp;м²
                 </h4>
-                <span className="text-muted">реализовано проектов</span>
+                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                  реализовано проектов
+                </span>
               </>
             ) : (
               <>
                 <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-40 mt-2 h-4 !rounded-full" />
+                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
               </>
             )}
           </div>
@@ -83,30 +91,32 @@ export function CompanyCard() {
                 <h4 className="text-h4">
                   {getCooperationYearsText(data?.cooperationYears || 0)}
                 </h4>
-                <span className="text-muted">сотрудничества</span>
+                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                  сотрудничества
+                </span>
               </>
             ) : (
               <>
                 <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-40 mt-2 h-4 !rounded-full" />
+                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
               </>
             )}
           </div>
         </div>
-        <div className="mt-5">
+        <div className="~mt-4/5">
           {!isLoading ? (
             <Button
               asChild
-              variant="ghost-primary"
+              variant="ghost"
               size="sm"
-              className="font-normal">
+              className="font-normal ~text-sm/base text-primary">
               <a href={data?.certificate} target="_blank">
                 <Icons.DocumentDownload />
                 <span>Сертификат Партнёра-Строителя</span>
               </a>
             </Button>
           ) : (
-            <Skeleton className="w-72 h-7 !rounded-main" />
+            <Skeleton className="w-3/4 h-7 !rounded-main" />
           )}
         </div>
       </div>

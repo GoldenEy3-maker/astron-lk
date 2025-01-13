@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { createRouter } from "./router";
@@ -10,10 +11,12 @@ import "./styles/index.scss";
 const router = createRouter();
 
 createRoot(document.getElementById("root")!).render(
-  <QueryClientProvider client={queryClient}>
-    <NuqsAdapter>
-      <RouterProvider router={router} />
-    </NuqsAdapter>
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <NuqsAdapter>
+        <RouterProvider router={router} />
+      </NuqsAdapter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  </StrictMode>
 );

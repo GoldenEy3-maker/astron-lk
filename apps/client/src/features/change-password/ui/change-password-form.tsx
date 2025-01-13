@@ -72,19 +72,20 @@ export function ChangePasswordForm({
           )}
         />
         <div className="flex items-center gap-2 !mt-3">
-          <Icons.InfoCircle className="text-primary" />
+          <Icons.InfoCircle className="text-primary shrink-0" />
           <span className="text-sm">
             Пароль должен состоять минимум из 6 символов
           </span>
         </div>
-        <div className="flex items-center gap-4 !mt-8">
+        <div className="flex items-center flex-wrap gap-4 !mt-8">
           <Button type="submit" disabled={isPending}>
             Сохранить
           </Button>
           {onCancel ? (
             <Button
               type="button"
-              variant="ghost-primary"
+              variant="ghost"
+              className="text-primary"
               onClick={onCancel}
               disabled={isPending}>
               Отмена

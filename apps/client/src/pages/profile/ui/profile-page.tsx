@@ -17,24 +17,27 @@ export function ProfilePage() {
       <h1 className="text-h1 text-heading-h2">
         {user?.surname} {user?.name}
       </h1>
-      <dl className="mt-9">
+      <dl className="~mt-6/9">
         <dt className="text-muted">ФИО</dt>
         <dd>
           {user?.surname} {user?.name} {user?.patronymic}
         </dd>
-        <dt className="text-muted mt-7">Партнёр-Строитель</dt>
+        <dt className="text-muted ~mt-4/7">Партнёр-Строитель</dt>
         <dd>
           <TextMorph as="span">
             {!isLoading && company ? company.title : "Загрузка..."}
           </TextMorph>
         </dd>
-        <dt className="text-muted mt-7">Контактный телефон</dt>
+        <dt className="text-muted ~mt-4/7">Контактный телефон</dt>
         <dd>{phoneMask(user?.phone ?? "")}</dd>
-        <dt className="text-muted mt-7">E-mail</dt>
+        <dt className="text-muted ~mt-4/7">E-mail</dt>
         <dd>{user?.email}</dd>
       </dl>
-      <div className="flex items-center gap-5 mt-12">
-        <Button disabled={isPending} onClick={signOutHandler}>
+      <div className="flex items-center flex-col sm:flex-row ~gap-3/5 ~mt-8/12">
+        <Button
+          disabled={isPending}
+          className="w-full sm:w-auto"
+          onClick={signOutHandler}>
           Выйти из аккаунта
         </Button>
         <ChangePasswordDialog />

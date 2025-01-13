@@ -6,12 +6,12 @@ import {
 } from "@/shared/ui/alert";
 import { Icons } from "@/shared/ui/icons";
 
-export function NotSecurePasswordAlert() {
+export function SecurePasswordAlert() {
   return (
-    <Alert variant="destructive">
+    <Alert variant="success">
       <AlertHeader>
-        <Icons.Danger />
-        <AlertTitle>Ненадёжный пароль</AlertTitle>
+        <Icons.Lock />
+        <AlertTitle>Надежный пароль</AlertTitle>
       </AlertHeader>
       <AlertDescription>
         Безопасный пароль должен состоять минимум из 6 символов, цифр и

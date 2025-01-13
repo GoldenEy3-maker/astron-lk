@@ -2,8 +2,8 @@ import { Skeleton } from "@/shared/ui/skeleton";
 
 export function NewsCardSkeleton() {
   return (
-    <div className="bg-card rounded-main py-5 px-7 relative flex gap-4 items-start">
-      <div className="flex-1">
+    <div className="bg-card rounded-main py-5 px-7 relative flex flex-col sm:flex-row gap-4 items-start">
+      <div className="flex-1 w-full">
         <Skeleton className="w-28 h-3 !rounded-full" />
         <div className="space-y-2 mt-4">
           <Skeleton className="h-3 w-3/4 !rounded-full" />

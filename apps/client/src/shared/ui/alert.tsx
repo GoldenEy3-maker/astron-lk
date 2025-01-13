@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/shared/lib/cn";
 
-const alertVariants = cva("rounded-main py-5 px-12 bg-card", {
+const alertVariants = cva("rounded-main ~py-4/5 ~px-7/12 bg-card", {
   variants: {
     variant: {
       default: "bg-background text-foreground",
@@ -52,7 +52,11 @@ const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("text-foreground", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn("text-foreground ~text-sm/base", className)}
+    {...props}
+  />
 ));
 AlertDescription.displayName = "AlertDescription";
 

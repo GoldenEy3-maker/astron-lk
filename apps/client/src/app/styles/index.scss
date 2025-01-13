@@ -76,7 +76,7 @@
 
 @layer components {
   .html-parser {
-    @apply space-y-4 text-lg;
+    @apply space-y-4 ~text-base/lg;
 
     img {
       width: 100%;
@@ -106,7 +106,6 @@
         grid-template-columns: min-content auto;
         gap: 0.5rem;
         align-items: baseline;
-        min-height: 2rem;
         min-height: 2rem;
 
         &::before {

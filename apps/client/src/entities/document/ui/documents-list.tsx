@@ -15,7 +15,7 @@ export function DocumentsList({
   limit,
 }: DocumentsListProps) {
   return (
-    <div className="mt-8 grid grid-cols-[repeat(auto-fill,minmax(28rem,1fr))] gap-x-10 gap-y-9">
+    <div className="~mt-4/8 grid grid-cols-1 min-[80rem]:grid-cols-[repeat(auto-fill,minmax(28rem,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(22rem,1fr))] ~gap-x-7/10 ~gap-y-6/9">
       {!isLoading && documents
         ? documents?.map((item) => <DocumentCard key={item.id} {...item} />)
         : Array.from({ length: limit }).map((_, index) => (

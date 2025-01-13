@@ -1,4 +1,3 @@
-import { Button } from "@/shared/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -28,7 +27,9 @@ export function ChangePasswordDialog() {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger variant="outline">Сменить пароль</DialogTrigger>
+        <DialogTrigger variant="outline" className="bg-transparent">
+          Сменить пароль
+        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <VisuallyHidden>
@@ -50,8 +51,10 @@ export function ChangePasswordDialog() {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button variant="outline">Сменить пароль</Button>
+      <DrawerTrigger
+        variant="outline"
+        className="bg-transparent w-full sm:w-auto">
+        Сменить пароль
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>

@@ -36,8 +36,8 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(signInHandler)}
-          className="bg-card rounded-main py-9 px-12">
-          <div className="space-y-5">
+          className="bg-card rounded-main ~py-5/9 ~px-7/12">
+          <div className="~space-y-4/5">
             <FormField
               control={form.control}
               name="login"
@@ -95,7 +95,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               </FormItem>
             )}
           />
-          <div className="mt-8 flex items-center gap-4">
+          <div className="~mt-6/8 flex items-center gap-4">
             <Button disabled={isPending || isUserBanned}>
               Войти в личный кабинет
             </Button>

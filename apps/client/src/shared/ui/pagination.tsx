@@ -22,7 +22,7 @@ const PaginationContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    className={cn("flex flex-row items-center gap-3", className)}
+    className={cn("flex flex-row items-center ~gap-2/3", className)}
     {...props}
   />
 ));
@@ -45,7 +45,7 @@ const PaginationLink = ({
   className,
   isActive,
   size = "icon-lg",
-  variant = "ghost",
+  variant = "ghost-primary",
   tabIndex,
   ...props
 }: PaginationLinkProps) => (
@@ -75,9 +75,9 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Предыдущая страница"
     variant="default-reverse"
-    className={cn("mr-7", className)}
+    className={cn("~mr-3/7", className)}
     {...props}>
-    <Icons.ChevronLeft />
+    <Icons.ChevronLeft className="mr-0.5" />
     <span className="sr-only">Предыдущая страница</span>
   </PaginationLink>
 );
@@ -90,9 +90,9 @@ const PaginationNext = ({
   <PaginationLink
     variant="default-reverse"
     aria-label="Следующая страница"
-    className={cn("ml-7", className)}
+    className={cn("~ml-3/7", className)}
     {...props}>
-    <Icons.ChevronRight />
+    <Icons.ChevronRight className="ml-0.5" />
     <span className="sr-only">Следующая страница</span>
   </PaginationLink>
 );

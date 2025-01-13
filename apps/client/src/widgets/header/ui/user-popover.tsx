@@ -1,5 +1,6 @@
 import { getUserCompanyQueryOptions } from "@/entities/company";
 import { Routes } from "@/shared/constants/routes";
+import { cn } from "@/shared/lib/cn";
 import { useSession } from "@/shared/model/session-store";
 import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
@@ -7,9 +8,17 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { Separator } from "@/shared/ui/separator";
 import { TextMorph } from "@/shared/ui/text-morph";
 import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "usehooks-ts";
 
-export function UserPopover() {
+type UserPopoverProps = {} & Omit<
+  React.ComponentProps<typeof PopoverTrigger>,
+  "asChild"
+>;
+
+export function UserPopover({ className, ...props }: UserPopoverProps) {
+  const isMobileSm = useMediaQuery("(max-width: 640px)");
   const user = useSession((state) => state.user);
   const { data: company, isLoading: isCompanyLoading } = useQuery({
     ...getUserCompanyQueryOptions(),
@@ -18,10 +27,16 @@ export function UserPopover() {
 
   return (
     <Popover>
-      <PopoverTrigger className="flex items-center gap-3 !ml-0" asChild>
-        <Button variant="ghost" size="sm" disabled={user === null}>
+      <PopoverTrigger
+        className={cn("flex items-center gap-3 !ml-0", className)}
+        asChild
+        {...props}>
+        <Button
+          variant="ghost"
+          size={isMobileSm ? "icon" : "sm"}
+          disabled={user === null}>
           <Icons.User className="text-foreground-accent" />
-          <TextMorph as="span" className="font-normal">
+          <TextMorph as="span" className="font-normal sm:block hidden">
             {user ? `${user.surname} ${user.name}` : "Личный кабинет"}
           </TextMorph>
         </Button>

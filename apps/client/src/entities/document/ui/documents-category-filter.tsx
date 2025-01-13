@@ -22,7 +22,10 @@ export function DocumentsCategoryFilter({
 
   return (
     <Select value={category ?? "all"} onValueChange={onCategoryChange}>
-      <SelectTrigger variant="ghost-primary" className="font-normal" size="sm">
+      <SelectTrigger
+        variant="ghost"
+        className="font-normal text-primary"
+        size="sm">
         <SelectValue>
           <TextMorph as="span">
             {category === "all" ? "Все категории" : category ?? "Все категории"}

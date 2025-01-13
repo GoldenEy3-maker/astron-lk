@@ -17,7 +17,7 @@ export function NewsCard({
 }: NewsCardProps) {
   return (
     <article
-      className="bg-card rounded-main py-5 px-7 relative flex transition gap-4 hover:bg-popover items-start"
+      className="bg-card rounded-main ~py-4/5 ~px-6/7 relative flex flex-col sm:flex-row transition gap-4 group items-start"
       {...props}>
       <Link
         to={Routes.News + "/" + id}
@@ -27,7 +27,9 @@ export function NewsCard({
         <time dateTime={createdAt} className="text-muted text-sm">
           {dateFormat(new Date(createdAt))}
         </time>
-        <h4 className="text-h4 text-primary mt-3">{title}</h4>
+        <h4 className="text-h4 text-primary ~mt-2/3 group-hover:text-primary-accent">
+          {title}
+        </h4>
         <p className="text-muted mt-2 line-clamp-3">{description}</p>
       </div>
       <div className="relative rounded-main shrink-0 overflow-hidden w-[9.375rem] h-[7.5rem]">

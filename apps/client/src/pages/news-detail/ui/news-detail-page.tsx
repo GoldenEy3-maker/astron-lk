@@ -14,7 +14,7 @@ export function NewsDetailPage() {
   if (!data || isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="col-[span_15]">
+    <div className="md:col-[span_15] col-span-full">
       <h1 className="text-h1 text-heading-h2">{data.title}</h1>
       <time dateTime={data.createdAt} className="block text-muted text-sm mt-3">
         {dateFormat(new Date(data.createdAt))}

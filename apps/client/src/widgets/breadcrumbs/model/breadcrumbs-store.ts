@@ -9,9 +9,6 @@ type ParamLabel = {
 
 type BreadcrumbsStore = {
   paramLabels: ParamLabel[];
-} & BreadcrumbsStoreActions;
-
-type BreadcrumbsStoreActions = {
   addParamLabel: (paramLabel: ParamLabel) => void;
 };
 

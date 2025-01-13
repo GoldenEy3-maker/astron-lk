@@ -45,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               variant="ghost"
               size="icon"
               disabled={disabled}
-              className="text-border hover:text-border-accent"
+              className="text-border rounded-xl hover:text-border-accent"
               onClick={togglePasswordReveal}>
               <Icons.EyeSlash />
             </Button>
