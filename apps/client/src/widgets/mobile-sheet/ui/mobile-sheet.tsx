@@ -1,5 +1,6 @@
 import { cn } from "@/shared/lib/cn";
 import { useMobileSheetStore } from "@/shared/model/mobile-sheet-store";
+import { useSession } from "@/shared/model/session-store";
 import { Button } from "@/shared/ui/button";
 import {
   Sheet,
@@ -16,6 +17,7 @@ import { NavLink } from "react-router-dom";
 export function MobileSheet() {
   const containerSelector = "#header";
   const { isOpen, setIsOpen } = useMobileSheetStore();
+  const user = useSession((state) => state.user);
   const sidebarNav = useSidebarNav();
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
@@ -28,6 +30,7 @@ export function MobileSheet() {
       <SheetTrigger
         variant="ghost"
         size="icon"
+        disabled={!user}
         className={cn(
           "relative min-[75rem]:hidden before:absolute before:inset-x-[0.625rem] before:bg-primary before:h-0.5 before:top-[0.875rem] after:absolute after:inset-x-[0.625rem] after:bg-primary after:h-0.5 after:bottom-[0.875rem] before:transition-all before:duration-300 after:transition-all after:duration-300",
           {

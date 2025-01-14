@@ -10,7 +10,7 @@ export function RecoveryPasswordSuccessAlert() {
   return (
     <Alert variant="success">
       <AlertHeader>
-        <Icons.Lock />
+        <Icons.Lock className="shrink-0" />
         <AlertTitle>Пароль успешно сохранен</AlertTitle>
       </AlertHeader>
       <AlertDescription>

@@ -10,7 +10,7 @@ export function NotSecurePasswordAlert() {
   return (
     <Alert variant="destructive">
       <AlertHeader>
-        <Icons.Danger />
+        <Icons.Danger className="shrink-0" />
         <AlertTitle>Ненадёжный пароль</AlertTitle>
       </AlertHeader>
       <AlertDescription>

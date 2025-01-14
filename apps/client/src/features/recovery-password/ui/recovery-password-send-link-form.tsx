@@ -11,8 +11,7 @@ import { Button } from "@/shared/ui/button";
 import { useRecoveryPasswordSendLinkForm } from "../lib/use-recovery-password-send-link-form";
 import { AnimatePresence, motion } from "motion/react";
 import { MailSendedAlert } from "./mail-sended-alert";
-import { ErrorAlert } from "./error-alert";
-import { AxiosError } from "axios";
+import { ErrorAlert } from "@/shared/ui/error-alert";
 
 type RecoveryPasswordSendLinkFormProps = {} & React.ComponentProps<"div">;
 
@@ -47,13 +46,7 @@ export function RecoveryPasswordSendLinkForm(
             initial={{ height: 0, opacity: 0, marginBottom: 0 }}
             animate={{ height: "auto", opacity: 1, marginBottom: "1.5rem" }}
             exit={{ height: 0, opacity: 0, marginBottom: 0 }}>
-            <ErrorAlert
-              error={
-                error instanceof AxiosError
-                  ? error.response?.data.message
-                  : error?.message
-              }
-            />
+            <ErrorAlert error={error} />
           </motion.div>
         ) : null}
       </AnimatePresence>

@@ -10,7 +10,7 @@ export function SecurePasswordAlert() {
   return (
     <Alert variant="success">
       <AlertHeader>
-        <Icons.Lock />
+        <Icons.Lock className="shrink-0" />
         <AlertTitle>Надежный пароль</AlertTitle>
       </AlertHeader>
       <AlertDescription>

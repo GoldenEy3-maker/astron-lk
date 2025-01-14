@@ -1,10 +1,9 @@
 import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { apiClient, schemas } from "@/shared/api/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { useState } from "react";
-import { toast } from "sonner";
 import { z } from "zod";
+import { useSession } from "@/shared/model/session-store";
 
 type UseSignInProps = {
   onSuccess?: () => void;
@@ -12,6 +11,7 @@ type UseSignInProps = {
 
 export function useSignIn({ onSuccess }: UseSignInProps = {}) {
   const [isUserBanned, setIsUserBanned] = useState(false);
+  const setToken = useSession((state) => state.setToken);
   const queryClient = useQueryClient();
 
   const signInMutation = useMutation({
@@ -20,18 +20,12 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
       setIsUserBanned(false);
     },
     onSuccess(data) {
+      setToken(data.accessToken);
       queryClient.setQueryData(getSessionQueryOptions().queryKey, data.user);
       onSuccess?.();
     },
     onError(error) {
-      if (error instanceof AxiosError) {
-        if (error.status === 403) return setIsUserBanned(true);
-        toast.error(error.response?.data.message, {
-          position: "bottom-center",
-        });
-      } else {
-        console.error(error);
-      }
+      console.error(error);
     },
   });
 
@@ -39,5 +33,11 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
     signInMutation.mutate(data);
   }
 
-  return { signInHandler, isPending: signInMutation.isPending, isUserBanned };
+  return {
+    signInHandler,
+    isPending: signInMutation.isPending,
+    isUserBanned,
+    isError: signInMutation.isError,
+    error: signInMutation.error,
+  };
 }

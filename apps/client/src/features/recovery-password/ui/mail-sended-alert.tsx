@@ -10,7 +10,7 @@ export function MailSendedAlert() {
   return (
     <Alert variant="success">
       <AlertHeader>
-        <Icons.CheckCircle />
+        <Icons.CheckCircle className="shrink-0" />
         <AlertTitle>Письмо отправлено</AlertTitle>
       </AlertHeader>
       <AlertDescription>

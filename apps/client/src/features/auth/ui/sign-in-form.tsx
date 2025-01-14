@@ -15,11 +15,13 @@ import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { AnimatePresence, motion } from "motion/react";
 import { useSignInForm } from "../model/use-sign-in-form";
+import { ErrorAlert } from "@/shared/ui/error-alert";
 
 type SignInFormProps = {} & React.ComponentProps<"div">;
 
 export function SignInForm({ className, ...props }: SignInFormProps) {
-  const { form, isPending, isUserBanned, signInHandler } = useSignInForm();
+  const { form, isPending, isUserBanned, signInHandler, isError, error } =
+    useSignInForm();
 
   return (
     <div className={cn(className)} {...props}>
@@ -30,6 +32,13 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
             exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
             <UserBannedAlert />
+          </motion.div>
+        ) : isError ? (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+            animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
+            exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+            <ErrorAlert error={error} />
           </motion.div>
         ) : null}
       </AnimatePresence>

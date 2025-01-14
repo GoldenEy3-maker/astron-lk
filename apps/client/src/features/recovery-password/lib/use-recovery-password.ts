@@ -5,6 +5,9 @@ import { RecoveryPasswordFormSchema } from "../model/recovery-password-form-sche
 export function useRecoveryPassword(token: string) {
   const recoveryPasswordMutation = useMutation({
     mutationFn: apiClient.recoveryUserPassword,
+    onError: (error) => {
+      console.error(error);
+    },
   });
 
   function recoveryPasswordHandler({ password }: RecoveryPasswordFormSchema) {

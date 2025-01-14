@@ -17,8 +17,7 @@ import { RecoveryPasswordSuccessAlert } from "./recovery-password-success-alert"
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { SecurePasswordAlert } from "./secure-password-alert";
-import { ErrorAlert } from "./error-alert";
-import { AxiosError } from "axios";
+import { ErrorAlert } from "@/shared/ui/error-alert";
 
 type RecoveryPasswordFormProps = {
   token: string;
@@ -32,6 +31,7 @@ export function RecoveryPasswordForm({
     form,
     isPasswordNotSecured,
     recoveryPasswordHandler,
+    isSubmitted,
     isPending,
     isSuccess,
     isError,
@@ -73,32 +73,26 @@ export function RecoveryPasswordForm({
             <AnimatePresence>
               {isError ? (
                 <motion.div
-                  initial={false}
+                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
-                  <ErrorAlert
-                    error={
-                      error instanceof AxiosError
-                        ? error.response?.data.message
-                        : error?.message
-                    }
-                  />
+                  <ErrorAlert error={error} />
                 </motion.div>
               ) : isPasswordNotSecured ? (
                 <motion.div
-                  initial={false}
+                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
                   <NotSecurePasswordAlert />
                 </motion.div>
-              ) : (
+              ) : isSubmitted ? (
                 <motion.div
-                  initial={false}
+                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
                   <SecurePasswordAlert />
                 </motion.div>
-              )}
+              ) : null}
             </AnimatePresence>
             <div className="bg-card ~px-7/12 ~py-5/9 rounded-main">
               <Form {...form}>

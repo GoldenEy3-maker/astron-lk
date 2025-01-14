@@ -12,6 +12,9 @@ export function useRecoveryPasswordSendLink({
   const recoveryPasswordSendLinkMutation = useMutation({
     mutationFn: apiClient.sendRecoveryPasswordLink,
     onSuccess: onSuccess,
+    onError: (error) => {
+      console.error(error);
+    },
   });
 
   function recoveryPasswordSendLinkHandler(

@@ -18,12 +18,12 @@ export function useSignInForm() {
     },
   });
 
-  const { isPending, isUserBanned, signInHandler } = useSignIn({
+  const { isPending, isUserBanned, signInHandler, isError, error } = useSignIn({
     onSuccess() {
       form.reset();
       navigate(searchParams.get("callbackUrl") ?? Routes.Home);
     },
   });
 
-  return { form, isPending, isUserBanned, signInHandler };
+  return { form, isPending, isUserBanned, signInHandler, isError, error };
 }
