@@ -42,6 +42,24 @@ const Company = z
     userId: z.string(),
   })
   .strict();
+const Document = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
+    category: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
+  })
+  .strict();
+const Bulletin = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
+    category: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
+  })
+  .strict();
 const News = z
   .object({
     id: z.string(),
@@ -49,15 +67,6 @@ const News = z
     description: z.string(),
     img: z.string(),
     content: z.string(),
-    createdAt: z.string().datetime({ offset: true }),
-  })
-  .strict();
-const Document = z
-  .object({
-    id: z.string(),
-    title: z.string(),
-    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
-    category: z.string(),
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
@@ -72,6 +81,7 @@ const User = z
     password: z.string(),
     tokenVersion: z.number().int(),
     isBanned: z.boolean(),
+    favorites: z.array(z.string()).optional(),
   })
   .strict();
 
@@ -83,12 +93,65 @@ export const schemas = {
   changeUserPassword_Body,
   recoveryUserPassword_Body,
   Company,
-  News,
   Document,
+  Bulletin,
+  News,
   User,
 };
 
 const endpoints = makeApi([
+  {
+    method: "get",
+    path: "/api/bulletins",
+    alias: "getBulletins",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "category",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+      {
+        name: "sort",
+        type: "Query",
+        schema: z.enum(["latest", "oldest"]).optional().default("latest"),
+      },
+      {
+        name: "fromDate",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+      {
+        name: "toDate",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(Bulletin),
+        totalPages: z.number().int(),
+        nextPage: z.union([z.number(), z.boolean()]),
+      })
+      .strict(),
+  },
+  {
+    method: "get",
+    path: "/api/bulletins/categories",
+    alias: "getBulletinCategories",
+    requestFormat: "json",
+    response: z.array(z.string()),
+  },
   {
     method: "get",
     path: "/api/documents",
@@ -114,7 +177,7 @@ const endpoints = makeApi([
     response: z
       .object({
         data: z.array(Document),
-        totalPages: z.number().int().optional(),
+        totalPages: z.number().int(),
         nextPage: z.union([z.number(), z.boolean()]),
       })
       .strict(),
@@ -184,6 +247,32 @@ const endpoints = makeApi([
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
+  },
+  {
+    method: "get",
+    path: "/api/user/favorites",
+    alias: "getUserFavorites",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(z.union([Document, Bulletin])),
+        nextPage: z.union([z.number(), z.boolean()]),
+        totalPages: z.number().int().optional(),
+        ids: z.array(z.string()).optional(),
+      })
+      .strict(),
   },
   {
     method: "post",

@@ -7,15 +7,15 @@ import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
-type DocumentCardProps = {} & z.infer<typeof schemas.Document>;
+type BulletinCardProps = {} & z.infer<typeof schemas.Bulletin>;
 
-export function DocumentCard({
+export function BulletinCard({
   id,
   title,
   file,
   category,
   createdAt,
-}: DocumentCardProps) {
+}: BulletinCardProps) {
   return (
     <article
       data-id={id}

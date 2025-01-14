@@ -2,10 +2,36 @@ import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 
 import { cn } from "@/shared/lib/cn";
+import { Button } from "./button";
+import { ButtonProps } from "./button";
 
 const Popover = PopoverPrimitive.Root;
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
+const PopoverTrigger = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Trigger>,
+  Omit<
+    React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>,
+    "asChild"
+  > & {
+    variant?: ButtonProps["variant"];
+    size?: ButtonProps["size"];
+  }
+>(
+  (
+    { className, variant = "outline", children, size = "sm", ...props },
+    ref
+  ) => (
+    <PopoverPrimitive.Trigger
+      asChild
+      ref={ref}
+      className={cn(className)}
+      {...props}>
+      <Button variant={variant} size={size}>
+        {children}
+      </Button>
+    </PopoverPrimitive.Trigger>
+  )
+);
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,

@@ -429,7 +429,7 @@ export const Icons = {
       </svg>
     );
   },
-  Bookmark: (props: React.SVGProps<SVGSVGElement>) => {
+  Bookmark: ({ ...props }: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
         width="24"
@@ -1112,6 +1112,67 @@ export const Icons = {
         />
         <path
           d="M17 22H7C3 22 2 21 2 17V15C2 11 3 10 7 10H17C21 10 22 11 22 15V17C22 21 21 22 17 22Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  },
+  Calendar: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <path
+          d="M6 1.5V3.75"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12 1.5V3.75"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M2.625 6.8175H15.375"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15.75 6.375V12.75C15.75 15 14.625 16.5 12 16.5H6C3.375 16.5 2.25 15 2.25 12.75V6.375C2.25 4.125 3.375 2.625 6 2.625H12C14.625 2.625 15.75 4.125 15.75 6.375Z"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.99686 10.275H9.00359"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6.22049 10.275H6.22723"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6.22049 12.525H6.22723"
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"

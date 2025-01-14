@@ -3,7 +3,7 @@ import {
   generateRandomDate,
   generateRandomNumber,
 } from "../libs/utils";
-import { Company, Document, News, User } from "../types/globals";
+import { Bulletin, Company, Document, News, User } from "../types/globals";
 import passwordService from "./password.service";
 
 type DBData = {
@@ -11,6 +11,7 @@ type DBData = {
   news: News[];
   companies: Company[];
   documents: Document[];
+  bulletins: Bulletin[];
 };
 
 export default new (class DBService {
@@ -19,6 +20,7 @@ export default new (class DBService {
     news: [],
     companies: [],
     documents: [],
+    bulletins: [],
   };
 
   constructor() {
@@ -317,7 +319,48 @@ export default new (class DBService {
         },
       ],
       documents: this.generateDocuments(200),
+      bulletins: this.generateBulletins(100),
     };
+  }
+
+  private generateBulletins(count: number) {
+    const categories = [
+      "Изменение цены",
+      "Буклет",
+      "Типовой договор",
+      "Новые технологии",
+      "Подарок",
+      "Техническая документация",
+      "Каталог",
+      "Сертификаты",
+      "Презентация",
+    ];
+
+    const titles = [
+      "Типовые формулировки контрактов",
+      "Руководство по монтажу",
+      "Каталог решений",
+      "Сертификат соответствия",
+      "Презентация новых технологий",
+      "Техническая документация",
+      "Информационный буклет",
+      "Прайс-лист",
+      "Спецификация материалов",
+    ];
+
+    return Array.from({ length: count }, (_, index) => ({
+      id: generateId(),
+      title: `${titles[generateRandomNumber(0, titles.length - 1)]}`,
+      createdAt: generateRandomDate(
+        new Date(2025, 1, 1),
+        new Date(2025, 12, 31)
+      ).toISOString(),
+      file: {
+        url: "/test.pdf",
+        size: generateRandomNumber(100000, 900000),
+      },
+      category: categories[generateRandomNumber(0, categories.length - 1)],
+    }));
   }
 
   private generateDocuments(count: number) {

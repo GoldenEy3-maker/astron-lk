@@ -1,10 +1,3 @@
-import { Button } from "@/shared/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/shared/ui/dropdown-menu";
 import {
   Pagination as UIPagination,
   PaginationContent,
@@ -12,7 +5,6 @@ import {
   PaginationLink,
   PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
 } from "@/shared/ui/pagination";
 import { Fragment } from "react/jsx-runtime";
 
@@ -32,29 +24,43 @@ export function Pagination({
   onNextPage,
   ...props
 }: PaginationProps) {
+  // function getVisiblePages(currentPage: number, totalPages: number) {
+  //   if (totalPages <= 6)
+  //     return Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  //   const visiblePages = new Set<number>([1, totalPages]);
+
+  //   if (currentPage <= 2 || currentPage >= totalPages - 1) {
+  //     [2, 3, totalPages - 2, totalPages - 1].forEach((page) =>
+  //       visiblePages.add(page)
+  //     );
+  //   } else if (currentPage === 3) {
+  //     [2, 3, 4].forEach((page) => visiblePages.add(page));
+  //   } else if (currentPage === totalPages - 2) {
+  //     [totalPages - 3, totalPages - 2, totalPages - 1].forEach((page) =>
+  //       visiblePages.add(page)
+  //     );
+  //   } else {
+  //     [currentPage - 1, currentPage, currentPage + 1].forEach((page) =>
+  //       visiblePages.add(page)
+  //     );
+  //   }
+
+  //   return Array.from(visiblePages).sort((a, b) => a - b);
+  // }
   function getVisiblePages(currentPage: number, totalPages: number) {
-    if (totalPages <= 6)
+    if (totalPages <= 5) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
-
-    const visiblePages = new Set<number>([1, totalPages]);
-
-    if (currentPage <= 2 || currentPage >= totalPages - 1) {
-      [2, 3, totalPages - 2, totalPages - 1].forEach((page) =>
-        visiblePages.add(page)
-      );
-    } else if (currentPage === 3) {
-      [2, 3, 4].forEach((page) => visiblePages.add(page));
-    } else if (currentPage === totalPages - 2) {
-      [totalPages - 3, totalPages - 2, totalPages - 1].forEach((page) =>
-        visiblePages.add(page)
-      );
-    } else {
-      [currentPage - 1, currentPage, currentPage + 1].forEach((page) =>
-        visiblePages.add(page)
-      );
     }
 
-    return Array.from(visiblePages).sort((a, b) => a - b);
+    let start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, start + 4);
+
+    if (end === totalPages) {
+      start = Math.max(1, end - 4);
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }
 
   return (
@@ -70,20 +76,19 @@ export function Pagination({
             }}
           />
         </PaginationItem>
-        {getVisiblePages(currentPage, totalPages).map(
-          (pageNum, index, array) => (
-            <Fragment key={pageNum}>
-              <PaginationItem key={pageNum}>
-                <PaginationLink
-                  isActive={currentPage === pageNum}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onPageChange(pageNum);
-                  }}>
-                  {pageNum}
-                </PaginationLink>
-              </PaginationItem>
-              {array[index + 1] - pageNum > 1 && (
+        {getVisiblePages(currentPage, totalPages).map((pageNum) => (
+          <Fragment key={pageNum}>
+            <PaginationItem key={pageNum}>
+              <PaginationLink
+                isActive={currentPage === pageNum}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onPageChange(pageNum);
+                }}>
+                {pageNum}
+              </PaginationLink>
+            </PaginationItem>
+            {/* {array[index + 1] - pageNum > 1 && (
                 <DropdownMenu key={`dropdown-menu-${pageNum}`}>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost-primary" size="icon-lg">
@@ -104,10 +109,9 @@ export function Pagination({
                     )}
                   </DropdownMenuContent>
                 </DropdownMenu>
-              )}
-            </Fragment>
-          )
-        )}
+              )} */}
+          </Fragment>
+        ))}
         <PaginationItem>
           <PaginationNext
             className="shadow-[0_0_0.75rem_0] shadow-black/[0.03]"

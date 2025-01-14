@@ -6,19 +6,19 @@ import {
   SelectItem,
 } from "@/shared/ui/select";
 import { useQuery } from "@tanstack/react-query";
-import { getDocumentsCategoriesQueryOptions } from "../api/documents-query";
+import { getBulletinsCategoriesQueryOptions } from "../api/bulletins-query";
 import { TextMorph } from "@/shared/ui/text-morph";
 
-type DocumentsCategoryFilterProps = {
+type BulletinsCategoryFilterProps = {
   category?: string;
   onCategoryChange?: (category: string) => void;
 };
 
-export function DocumentsCategoryFilter({
+export function BulletinsCategoryFilter({
   category,
   onCategoryChange,
-}: DocumentsCategoryFilterProps) {
-  const { data } = useQuery(getDocumentsCategoriesQueryOptions());
+}: BulletinsCategoryFilterProps) {
+  const { data } = useQuery(getBulletinsCategoriesQueryOptions());
 
   return (
     <Select value={category ?? "all"} onValueChange={onCategoryChange}>

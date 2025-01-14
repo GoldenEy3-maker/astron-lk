@@ -14,7 +14,9 @@ const buttonVariants = cva(
         "default-reverse":
           "bg-card text-primary hover:bg-primary hover:text-primary-foreground disabled:text-border aria-disabled:text-border",
         outline:
-          "border border-primary bg-card text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted disabled:border-border aria-disabled:text-muted aria-disabled:border-border",
+          "border border-border text-foreground hover:border-border-accent disabled:text-muted disabled:border-border aria-disabled:text-muted aria-disabled:border-border",
+        "outline-primary":
+          "border border-primary text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted disabled:border-border aria-disabled:text-muted aria-disabled:border-border",
         link: "text-primary hover:text-primary-accent disabled:text-muted aria-disabled:text-muted",
         underline:
           "text-primary hover:text-primary-accent disabled:text-muted !rounded-none relative after:absolute after:bottom-0 after:inset-x-0 after:bg-current after:h-px after:transition",

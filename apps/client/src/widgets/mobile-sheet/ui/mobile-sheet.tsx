@@ -45,8 +45,8 @@ export function MobileSheet() {
       <SheetContent
         side="top"
         container={container}
-        className="h-full pt-20 shadow-none group z-40"
-        wrapperClassName="max-container main-container opacity-0 p-0 py-8 transition-all duration-100 group-data-[state=open]:opacity-100"
+        className="h-full pt-20 shadow-none group/content z-40"
+        wrapperClassName="max-container main-container opacity-0 p-0 py-8 transition-all duration-100 group-data-[state=open]/content:opacity-100"
         overlayClassName="z-40"
         onPointerDownOutside={(e) => {
           if ((e.target as HTMLElement).closest(containerSelector))
@@ -65,20 +65,26 @@ export function MobileSheet() {
                   key={link.url}
                   size="sm"
                   asChild
-                  className="justify-start text-muted gap-[0.625rem]">
+                  className="justify-start text-muted gap-[0.625rem] group/button">
                   <NavLink to={link.url} onClick={() => setIsOpen(false)}>
                     {({ isActive }) => (
                       <>
                         <span
-                          className={cn("transition-colors", {
-                            "text-primary": isActive,
-                          })}>
+                          className={cn(
+                            "transition group-hover/button:text-border-accent",
+                            {
+                              "!text-primary": isActive,
+                            }
+                          )}>
                           {link.icon}
                         </span>
                         <span
-                          className={cn("transition-colors", {
-                            "text-foreground": isActive,
-                          })}>
+                          className={cn(
+                            "transition group-hover/button:text-foreground",
+                            {
+                              "!text-foreground": isActive,
+                            }
+                          )}>
                           {link.label}
                         </span>
                         {link.notifications ? (

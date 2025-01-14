@@ -29,17 +29,14 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
     <Popover>
       <PopoverTrigger
         className={cn("flex items-center gap-3 !ml-0", className)}
-        asChild
+        variant="ghost"
+        size={isMobileSm ? "icon" : "sm"}
+        disabled={user === null}
         {...props}>
-        <Button
-          variant="ghost"
-          size={isMobileSm ? "icon" : "sm"}
-          disabled={user === null}>
-          <Icons.User className="text-foreground-accent" />
-          <TextMorph as="span" className="font-normal sm:block hidden">
-            {user ? `${user.surname} ${user.name}` : "Личный кабинет"}
-          </TextMorph>
-        </Button>
+        <Icons.User className="text-foreground-accent" />
+        <TextMorph as="span" className="font-normal sm:block hidden">
+          {user ? `${user.surname} ${user.name}` : "Личный кабинет"}
+        </TextMorph>
       </PopoverTrigger>
       <PopoverContent side="bottom" align="end" className="pb-3 px-0">
         <div className="text-heading-h3 px-5">

@@ -72,6 +72,12 @@
       margin-top: utils.calc-clamp(3rem, 5.75rem, 640, 1536);
     }
   }
+
+  .date-picker-cell {
+    &:has(.rdp-day_range_start) {
+      @apply rounded-l-xl;
+    }
+  }
 }
 
 @layer components {

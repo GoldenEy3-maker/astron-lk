@@ -30,10 +30,9 @@ export function News({ limit, className, loadMore, ...props }: NewsProps) {
       {loadMore && hasNextPage ? (
         <div className="col-span-full flex justify-center">
           <Button
-            variant="outline"
+            variant="outline-primary"
             onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-            className="bg-transparent">
+            disabled={isFetchingNextPage}>
             <TextMorph as="span">
               {isFetchingNextPage ? "Загрузка..." : "Показать еще"}
             </TextMorph>

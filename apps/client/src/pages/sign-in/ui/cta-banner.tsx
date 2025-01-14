@@ -15,7 +15,7 @@ export function CTABanner({ className, ...props }: CTABannerProps) {
         другим полезностям
       </p>
       <div className="flex items-center mt-6">
-        <Button asChild variant="outline" className="~px-4/10">
+        <Button asChild variant="outline-primary" className="~px-4/10">
           <a href="#" target="_blank">
             Стать Партнёром-Строителем
           </a>

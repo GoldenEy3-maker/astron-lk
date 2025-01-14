@@ -1,15 +1,18 @@
 import { Button } from "@/shared/ui/button";
 import { TextMorph } from "@/shared/ui/text-morph";
-import { DocumentsCategoryFilter } from "./documents-category-filter";
 import { Pagination } from "@/widgets/pagination";
-import { useDocuments } from "../lib/use-documents";
-import { DocumentsList } from "./documents-list";
+import { useBulletins } from "../lib/use-bulletins";
+import { BulletinsList } from "./bulletins-list";
+import { BulletinsCategoryFilter } from "./bulletins-category-filter";
+import { BulletinsSort } from "./bulletins-sort";
+import { BulletinsSortKeys } from "../model/bulletins-sort-keys";
+import { BulletinsDatePicker } from "./bulletins-date-picker";
 
-type DocumentsProps = {
+type BulletinsProps = {
   limit: number;
 } & React.ComponentProps<"div">;
 
-export function Documents({ limit, ...props }: DocumentsProps) {
+export function Bulletins({ limit, ...props }: BulletinsProps) {
   const {
     data,
     isLoading,
@@ -19,25 +22,43 @@ export function Documents({ limit, ...props }: DocumentsProps) {
     handlePageChange,
     category,
     onCategoryChange,
+    sort,
+    onSortChange,
+
+    fromDateFilter,
+    toDateFilter,
+    onDateChange,
     onLoadMore,
     onPagitaionChangeScrollToRef,
     onPreviousPage,
     onNextPage,
-  } = useDocuments({ limit });
+  } = useBulletins({ limit });
 
   return (
     <div {...props}>
       <div
-        className="flex items-end justify-end"
+        className="flex items-center ~gap-x-4/8 flex-wrap sm:flex-nowrap gap-y-2"
         ref={onPagitaionChangeScrollToRef}>
-        <DocumentsCategoryFilter
+        <BulletinsDatePicker
+          defaultFromDate={new Date(fromDateFilter)}
+          defaultToDate={new Date(toDateFilter)}
+          onPickerClose={onDateChange}
+        />
+        <div className="flex-1">
+          <BulletinsSort
+            sort={sort ?? undefined}
+            onSortChange={onSortChange}
+            options={Object.values(BulletinsSortKeys)}
+          />
+        </div>
+        <BulletinsCategoryFilter
           category={category ?? undefined}
           onCategoryChange={onCategoryChange}
         />
       </div>
-      <DocumentsList
+      <BulletinsList
         isLoading={isLoading}
-        documents={data?.documents}
+        bulletins={data?.bulletins}
         limit={limit}
       />
       <div className="flex flex-col items-center mt-8">

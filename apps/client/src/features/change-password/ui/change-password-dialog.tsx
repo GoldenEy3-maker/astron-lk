@@ -27,9 +27,7 @@ export function ChangePasswordDialog() {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger variant="outline" className="bg-transparent">
-          Сменить пароль
-        </DialogTrigger>
+        <DialogTrigger variant="outline-primary">Сменить пароль</DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <VisuallyHidden>

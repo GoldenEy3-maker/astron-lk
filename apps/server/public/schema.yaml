@@ -253,6 +253,59 @@ paths:
                 $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
+  /api/user/favorites:
+    get:
+      summary: Получить список избранных документов/бюллетеней
+      operationId: getUserFavorites
+      tags:
+        - Пользователь
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество документов на странице
+          schema:
+            type: integer
+            example: 10
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - nextPage
+                properties:
+                  data:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: "#/components/schemas/Document"
+                        - $ref: "#/components/schemas/Bulletin"
+                  nextPage:
+                    oneOf:
+                      - type: integer
+                        example: 1
+                      - type: boolean
+                        example: false
+                  totalPages:
+                    type: integer
+                    example: 10
+                  ids:
+                    type: array
+                    items:
+                      type: string
+      security:
+        - bearerAuth: []
   /api/news:
     get:
       summary: Получить список новостей
@@ -357,6 +410,7 @@ paths:
                 type: object
                 required:
                   - data
+                  - totalPages
                   - nextPage
                 properties:
                   data:
@@ -378,6 +432,98 @@ paths:
       operationId: getDocumentCategories
       tags:
         - Документы
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "Изменение цены"
+  /api/bulletins:
+    get:
+      summary: Получить список бюллетеней
+      operationId: getBulletins
+      tags:
+        - Бюллетени
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество бюллетеней на странице
+          schema:
+            type: integer
+            example: 10
+        - name: category
+          in: query
+          required: false
+          description: Категория бюллетеня
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: false
+          description: Сортировка бюллетеней
+          schema:
+            type: string
+            enum:
+              - latest
+              - oldest
+            default: latest
+        - name: fromDate
+          in: query
+          required: false
+          description: Дата начала периода
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          required: false
+          description: Дата конца периода
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - totalPages
+                  - nextPage
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Bulletin"
+                  totalPages:
+                    type: integer
+                    example: 10
+                  nextPage:
+                    oneOf:
+                      - type: integer
+                        example: 1
+                      - type: boolean
+                        example: false
+  /api/bulletins/categories:
+    get:
+      summary: Получить список категорий бюллетеней
+      operationId: getBulletinCategories
+      tags:
+        - Бюллетени
       responses:
         "200":
           description: Успешный ответ
@@ -427,6 +573,10 @@ components:
           type: integer
         isBanned:
           type: boolean
+        favorites:
+          type: array
+          items:
+            type: string
     Session:
       type: object
       required:
@@ -525,6 +675,40 @@ components:
           format: date-time
           example: "2024-12-30T12:34:56Z"
     Document:
+      type: object
+      required:
+        - id
+        - title
+        - file
+        - category
+        - createdAt
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Документ"
+        file:
+          type: object
+          required:
+            - url
+            - size
+          properties:
+            url:
+              type: string
+              example: "/path/to/file.pdf"
+            size:
+              type: integer
+              example: 607232
+        category:
+          type: string
+          example: "Изменение цены"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-12-30T12:34:56Z"
+    Bulletin:
       type: object
       required:
         - id

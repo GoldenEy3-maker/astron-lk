@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { newsRouter } from "./routes/news.router";
 import { userRouter } from "./routes/user.router";
 import { documentsRouter } from "./routes/documents.router";
+import { bulletinsRouter } from "./routes/bulletins.router";
 
 const app: Express = express();
 
@@ -66,5 +67,7 @@ app.use("/api/user", userRouter);
 app.use("/api/news", newsRouter);
 
 app.use("/api/documents", documentsRouter);
+
+app.use("/api/bulletins", bulletinsRouter);
 
 export default app;

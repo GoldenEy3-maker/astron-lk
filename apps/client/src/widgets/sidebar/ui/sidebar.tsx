@@ -20,21 +20,24 @@ export function Sidebar({ className, ...props }: SidebarProps) {
               key={link.url}
               size="sm"
               asChild
-              className="justify-start text-muted gap-[0.625rem]">
+              className="justify-start text-muted gap-[0.625rem] group">
               <NavLink
                 to={link.url}
                 target={link.isExternal ? "_blank" : undefined}>
                 {({ isActive }) => (
                   <>
                     <span
-                      className={cn("transition-colors", {
-                        "text-primary": isActive,
-                      })}>
+                      className={cn(
+                        "transition group-hover:text-border-accent",
+                        {
+                          "!text-primary": isActive,
+                        }
+                      )}>
                       {link.icon}
                     </span>
                     <span
-                      className={cn("transition-colors", {
-                        "text-foreground": isActive,
+                      className={cn("transition group-hover:text-foreground", {
+                        "!text-foreground": isActive,
                       })}>
                       {link.label}
                     </span>
