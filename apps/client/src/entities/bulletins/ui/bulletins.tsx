@@ -7,12 +7,14 @@ import { BulletinsCategoryFilter } from "./bulletins-category-filter";
 import { BulletinsSort } from "./bulletins-sort";
 import { BulletinsSortKeys } from "../model/bulletins-sort-keys";
 import { BulletinsDatePicker } from "./bulletins-date-picker";
+import { getUTCDateFromDate } from "@/shared/lib/get-utc-date";
 
 type BulletinsProps = {
   limit: number;
+  scrollToRef?: React.RefObject<HTMLDivElement>;
 } & React.ComponentProps<"div">;
 
-export function Bulletins({ limit, ...props }: BulletinsProps) {
+export function Bulletins({ limit, scrollToRef, ...props }: BulletinsProps) {
   const {
     data,
     isLoading,
@@ -24,7 +26,6 @@ export function Bulletins({ limit, ...props }: BulletinsProps) {
     onCategoryChange,
     sort,
     onSortChange,
-
     fromDateFilter,
     toDateFilter,
     onDateChange,
@@ -32,7 +33,7 @@ export function Bulletins({ limit, ...props }: BulletinsProps) {
     onPagitaionChangeScrollToRef,
     onPreviousPage,
     onNextPage,
-  } = useBulletins({ limit });
+  } = useBulletins({ limit, scrollToRef });
 
   return (
     <div {...props}>
@@ -40,9 +41,20 @@ export function Bulletins({ limit, ...props }: BulletinsProps) {
         className="flex items-center ~gap-x-4/8 flex-wrap sm:flex-nowrap gap-y-2"
         ref={onPagitaionChangeScrollToRef}>
         <BulletinsDatePicker
-          defaultFromDate={new Date(fromDateFilter)}
-          defaultToDate={new Date(toDateFilter)}
-          onPickerClose={onDateChange}
+          date={{
+            from: fromDateFilter
+              ? getUTCDateFromDate(fromDateFilter)
+              : undefined,
+            to: toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined,
+          }}
+          // defaultFromDate={
+          //   fromDateFilter ? getUTCDateFromDate(fromDateFilter) : undefined
+          // }
+          // defaultToDate={
+          //   toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined
+          // }
+          // onPickerClose={onDateChange}
+          onDateChange={onDateChange}
         />
         <div className="flex-1">
           <BulletinsSort

@@ -35,50 +35,35 @@ bulletinsRouter.get(
     const bulletins = dbService
       .get("bulletins")
       .sort((a, b) => {
-        if (sort === "oldest") {
+        if (sort === "oldest")
           return (
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
-        }
 
         return (
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         );
       })
       .filter((bulletin) => (category ? bulletin.category === category : true))
-      // .filter((bulletin) => {
-      //   if (fromDate && toDate)
-      //     return (
-      //       new Date(bulletin.createdAt) >= new Date(fromDate) &&
-      //       new Date(bulletin.createdAt) <= new Date(toDate)
-      //     );
+      .filter((bulletin) => {
+        if (fromDate && toDate)
+          return (
+            new Date(bulletin.createdAt) >= new Date(fromDate) &&
+            new Date(bulletin.createdAt) <= new Date(toDate)
+          );
 
-      //   if (fromDate) return new Date(bulletin.createdAt) >= new Date(fromDate);
+        if (fromDate) return new Date(bulletin.createdAt) >= new Date(fromDate);
 
-      //   return true;
-      // })
-      .slice(startIndex, endIndex);
-    const totalBulletins =
-      // .filter((bulletin) => {
-      //   if (fromDate && toDate)
-      //     return (
-      //       new Date(bulletin.createdAt) >= new Date(fromDate) &&
-      //       new Date(bulletin.createdAt) <= new Date(toDate)
-      //     );
-
-      //   return true;
-      // })
-      dbService
-        .get("documents")
-        .filter((bulletin) =>
-          category ? bulletin.category === category : true
-        ).length;
+        return true;
+      });
+    const sliced = bulletins.slice(startIndex, endIndex);
+    const totalBulletins = bulletins.length;
     const totalPages = Math.ceil(totalBulletins / parseInt(limit));
     const currentPage = parseInt(page);
     const nextPage = currentPage + 1;
 
     res.json({
-      data: bulletins,
+      data: sliced,
       nextPage: nextPage <= totalPages ? nextPage : false,
       totalPages,
     });

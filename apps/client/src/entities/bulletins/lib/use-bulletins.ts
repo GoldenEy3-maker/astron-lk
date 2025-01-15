@@ -9,24 +9,21 @@ import {
 } from "../api/bulletins-query";
 
 import { useBulletinsToolbar } from "./use-bulletins-toolbar";
+import { isoStringWithoutTime } from "@/shared/lib/iso-string-without-time";
 
 type UseBulletinsProps = {
   limit: number;
+  scrollToRef?: React.RefObject<HTMLDivElement>;
 };
 
-export function useBulletins({ limit }: UseBulletinsProps) {
+export function useBulletins({ limit, scrollToRef }: UseBulletinsProps) {
   const [queryPage, setQueryPage] = useQueryState(
     "page",
     parseAsInteger.withDefault(1)
   );
   const [displayedPage, setDisplayedPage] = useState(queryPage ?? 1);
 
-  const { ref, scrollTo } = useScrollTo();
-
-  function resetPagination() {
-    setQueryPage(1);
-    setDisplayedPage(1);
-  }
+  const { ref, scrollTo } = useScrollTo({ ref: scrollToRef });
 
   const {
     category,
@@ -40,7 +37,23 @@ export function useBulletins({ limit }: UseBulletinsProps) {
     onCategoryChange,
   } = useBulletinsToolbar({
     onCategoryUpdate: resetPagination,
+    onDateUpdate: resetPagination,
   });
+
+  function resetPagination() {
+    setQueryPage(1);
+    setDisplayedPage(1);
+    resetBulletinsQueryPages({
+      page: 1,
+      category: category ?? undefined,
+      limit: limit ?? undefined,
+      sort: sort ?? "latest",
+      fromDate: fromDateFilter
+        ? isoStringWithoutTime(fromDateFilter)
+        : undefined,
+      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
+    });
+  }
 
   const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery(
@@ -49,8 +62,10 @@ export function useBulletins({ limit }: UseBulletinsProps) {
         category: category ?? undefined,
         page: queryPage ?? undefined,
         sort: sort ?? "latest",
-        fromDate: fromDateFilter,
-        toDate: toDateFilter,
+        fromDate: fromDateFilter
+          ? isoStringWithoutTime(fromDateFilter)
+          : undefined,
+        toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
       })
     );
 
@@ -63,8 +78,10 @@ export function useBulletins({ limit }: UseBulletinsProps) {
       category: category ?? undefined,
       limit: limit ?? undefined,
       sort: sort ?? "latest",
-      fromDate: fromDateFilter,
-      toDate: toDateFilter,
+      fromDate: fromDateFilter
+        ? isoStringWithoutTime(fromDateFilter)
+        : undefined,
+      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
     });
   }
 
@@ -76,8 +93,10 @@ export function useBulletins({ limit }: UseBulletinsProps) {
       category: category ?? undefined,
       page: displayedPage + 1,
       sort: sort ?? "latest",
-      fromDate: fromDateFilter,
-      toDate: toDateFilter,
+      fromDate: fromDateFilter
+        ? isoStringWithoutTime(fromDateFilter)
+        : undefined,
+      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
     });
   }
 

@@ -1,30 +1,42 @@
-import { addMonths } from "date-fns";
-import { useQueryState, parseAsStringEnum, parseAsString } from "nuqs";
+import {
+  useQueryState,
+  parseAsStringEnum,
+  parseAsString,
+  parseAsIsoDate,
+} from "nuqs";
 import { DateRange } from "react-day-picker";
 import { BulletinsSortKeys } from "../model/bulletins-sort-keys";
-import { isoStringWithoutTime } from "@/shared/lib/iso-string-without-time";
+import { getUTCDate } from "@/shared/lib/get-utc-date";
 
 type UseBulletinsToolbarProps = {
   onCategoryUpdate?: () => void;
+  onDateUpdate?: () => void;
 };
 
 export function useBulletinsToolbar(params?: UseBulletinsToolbarProps) {
-  const defaultFromDateFilter = new Date(new Date().setDate(1));
-  const defaultToDateFilter = new Date(
-    addMonths(new Date().setDate(1), 1).setDate(0)
+  const defaultFromDateFilter = getUTCDate(
+    new Date().getUTCFullYear(),
+    new Date().getUTCMonth(),
+    1
+  );
+
+  const defaultToDateFilter = getUTCDate(
+    new Date().getUTCFullYear(),
+    new Date().getUTCMonth() + 1,
+    0
   );
 
   const [sort, setSort] = useQueryState(
     "sort",
-    parseAsStringEnum(Object.values(BulletinsSortKeys))
+    parseAsStringEnum(Object.values(BulletinsSortKeys)).withDefault("latest")
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
-    parseAsString.withDefault(isoStringWithoutTime(defaultFromDateFilter))
+    parseAsIsoDate
   );
   const [toDateFilter, setToDateFilter] = useQueryState(
     "toDate",
-    parseAsString.withDefault(isoStringWithoutTime(defaultToDateFilter))
+    parseAsIsoDate
   );
   const [category, setCategory] = useQueryState("category", parseAsString);
 
@@ -38,11 +50,18 @@ export function useBulletinsToolbar(params?: UseBulletinsToolbarProps) {
   }
 
   function onDateChange(newDate: DateRange | undefined) {
-    setFromDateFilter(
-      newDate?.from ? isoStringWithoutTime(newDate.from) : null
-    );
-    setToDateFilter(newDate?.to ? isoStringWithoutTime(newDate.to) : null);
+    setFromDateFilter(newDate?.from ? newDate.from : null);
+    setToDateFilter(newDate?.to ? newDate.to : null);
+    params?.onDateUpdate?.();
   }
+
+  // useEffect(() => {
+  //   if (!fromDateFilter && !toDateFilter) {
+  //     setFromDateFilter(defaultFromDateFilter);
+  //     setToDateFilter(defaultToDateFilter);
+  //     params?.onDateUpdate?.();
+  //   }
+  // }, []);
 
   return {
     category,

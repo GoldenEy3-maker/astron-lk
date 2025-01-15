@@ -319,7 +319,7 @@ export default new (class DBService {
         },
       ],
       documents: this.generateDocuments(200),
-      bulletins: this.generateBulletins(100),
+      bulletins: this.generateBulletins(50),
     };
   }
 
@@ -353,7 +353,7 @@ export default new (class DBService {
       title: `${titles[generateRandomNumber(0, titles.length - 1)]}`,
       createdAt: generateRandomDate(
         new Date(2025, 1, 1),
-        new Date(2025, 12, 31)
+        new Date(2025, 11, 31)
       ).toISOString(),
       file: {
         url: "/test.pdf",

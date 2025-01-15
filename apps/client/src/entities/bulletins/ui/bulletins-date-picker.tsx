@@ -3,30 +3,34 @@ import { Calendar } from "@/shared/ui/calendar";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverTrigger } from "@/shared/ui/popover";
 import { PopoverContent } from "@radix-ui/react-popover";
-import { useState } from "react";
 import { DateRange } from "react-day-picker";
 
 type BulletinsDatePickerProps = {
-  onPickerClose?: (date: DateRange | undefined) => void;
-  defaultFromDate?: Date;
-  defaultToDate?: Date;
+  date?: DateRange;
+  onDateChange?: (date: DateRange | undefined) => void;
 };
 
 export function BulletinsDatePicker({
-  onPickerClose,
-  defaultFromDate,
-  defaultToDate,
+  date,
+  onDateChange,
 }: BulletinsDatePickerProps) {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: defaultFromDate,
-    to: defaultToDate,
-  });
+  // const [date, setDate] = useState<DateRange | undefined>(undefined);
+
+  // useEffect(() => {
+  //   if (!date?.from && !date?.to) {
+  //     setDate({
+  //       from: defaultFromDate,
+  //       to: defaultToDate,
+  //     });
+  //   }
+  // }, [defaultFromDate, defaultToDate]);
 
   return (
     <Popover
-      onOpenChange={(open) => {
-        if (!open) onPickerClose?.(date);
-      }}>
+    // onOpenChange={(open) => {
+    //   if (!open) onPickerClose?.(date);
+    // }}
+    >
       <PopoverTrigger
         variant="outline"
         className="font-normal bg-card text-muted basis-80 text-sm justify-between">
@@ -49,7 +53,7 @@ export function BulletinsDatePicker({
           initialFocus
           mode="range"
           selected={date}
-          onSelect={setDate}
+          onSelect={onDateChange}
           defaultMonth={date?.from}
           numberOfMonths={2}
         />
