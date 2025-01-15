@@ -23,7 +23,7 @@ export function useBulletins({ limit, scrollToRef }: UseBulletinsProps) {
   );
   const [displayedPage, setDisplayedPage] = useState(queryPage ?? 1);
 
-  const { ref, scrollTo } = useScrollTo({ ref: scrollToRef });
+  const { scrollTo } = useScrollTo({ ref: scrollToRef });
 
   const {
     category,
@@ -125,7 +125,6 @@ export function useBulletins({ limit, scrollToRef }: UseBulletinsProps) {
     toDateFilter,
     onDateChange,
     onLoadMore,
-    onPagitaionChangeScrollToRef: ref,
     onPreviousPage,
     onNextPage,
   };

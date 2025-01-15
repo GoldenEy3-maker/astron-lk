@@ -28,17 +28,14 @@ documentsRouter.get(
 
     const documents = dbService
       .get("documents")
-      .filter((doc) => (category ? doc.category === category : true))
-      .slice(startIndex, endIndex);
-    const totalDocuments = dbService
-      .get("documents")
-      .filter((doc) => (category ? doc.category === category : true)).length;
-    const totalPages = Math.ceil(totalDocuments / parseInt(limit));
+      .filter((doc) => (category ? doc.category === category : true));
+
+    const totalPages = Math.ceil(documents.length / parseInt(limit));
     const currentPage = parseInt(page);
     const nextPage = currentPage + 1;
 
     res.json({
-      data: documents,
+      data: documents.slice(startIndex, endIndex),
       nextPage: nextPage <= totalPages ? nextPage : false,
       totalPages,
     });

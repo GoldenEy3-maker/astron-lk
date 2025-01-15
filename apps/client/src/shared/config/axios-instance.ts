@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useSession } from "../model/session-store";
+import { useSessionStore } from "../model/session-store";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? "http://localhost:3000",
@@ -20,7 +20,7 @@ function addRefreshQuerySubscriber(callback: RefreshQuerySubscriber) {
 }
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = useSession.getState().token;
+  const token = useSessionStore.getState().token;
 
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
@@ -41,13 +41,13 @@ axiosInstance.interceptors.response.use(
 
         try {
           const { data } = await axiosInstance.get("/api/user/session/refresh");
-          useSession.setState({ token: data.accessToken });
+          useSessionStore.setState({ token: data.accessToken });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);
           refreshQuerySubscribers = [];
           return axiosInstance(originalRequest);
         } catch (refreshError) {
-          useSession.setState({ token: null });
+          useSessionStore.setState({ token: null });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers("");
           refreshQuerySubscribers = [];

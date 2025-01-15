@@ -8,3 +8,4 @@ export type Error = components["schemas"]["Error"];
 export type Success = components["schemas"]["Success"];
 export type Document = components["schemas"]["Document"];
 export type Bulletin = components["schemas"]["Bulletin"];
+export type Favorite = components["schemas"]["Favorite"];

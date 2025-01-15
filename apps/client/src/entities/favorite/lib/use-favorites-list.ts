@@ -1,20 +1,22 @@
 import { useScrollTo } from "@/shared/lib/use-scroll-to";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { parseAsString, parseAsInteger, useQueryState } from "nuqs";
+import { parseAsInteger, useQueryState } from "nuqs";
 import { useState } from "react";
 import {
-  getDocumentsInfiniteQueryOptions,
-  prefetchDocumentsPage,
-  resetDocumentsQueryPages,
-} from "../api/documents-query";
+  getFavoritesInfiniteQueryOptions,
+  prefetchFavoritesPage,
+  resetFavoritesQueryPages,
+} from "../api/favorites-query";
 
-type UseDocumentsProps = {
+type UseFavoritesListProps = {
   limit: number;
   scrollToRef?: React.RefObject<HTMLDivElement>;
 };
 
-export function useDocuments({ limit, scrollToRef }: UseDocumentsProps) {
-  const [category, setCategory] = useQueryState("category", parseAsString);
+export function useFavoritesList({
+  limit,
+  scrollToRef,
+}: UseFavoritesListProps) {
   const [queryPage, setQueryPage] = useQueryState(
     "page",
     parseAsInteger.withDefault(1)
@@ -27,9 +29,8 @@ export function useDocuments({ limit, scrollToRef }: UseDocumentsProps) {
 
   const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery(
-      getDocumentsInfiniteQueryOptions({
+      getFavoritesInfiniteQueryOptions({
         limit,
-        category: category ?? undefined,
         page: queryPage ?? undefined,
       })
     );
@@ -38,25 +39,17 @@ export function useDocuments({ limit, scrollToRef }: UseDocumentsProps) {
     setQueryPage(newPage);
     scrollTo();
     setDisplayedPage(newPage);
-    resetDocumentsQueryPages({
+    resetFavoritesQueryPages({
       page: newPage,
-      category: category ?? undefined,
       limit: limit ?? undefined,
     });
-  }
-
-  function onCategoryChange(newCategory: string) {
-    setCategory(newCategory === "all" ? null : newCategory);
-    setQueryPage(1);
-    setDisplayedPage(1);
   }
 
   function onLoadMore() {
     fetchNextPage();
     setDisplayedPage((prev) => prev + 1);
-    prefetchDocumentsPage({
+    prefetchFavoritesPage({
       limit: limit ?? undefined,
-      category: category ?? undefined,
       page: displayedPage + 1,
     });
   }
@@ -76,8 +69,6 @@ export function useDocuments({ limit, scrollToRef }: UseDocumentsProps) {
     isFetchingNextPage,
     hasNextPage,
     handlePageChange,
-    category,
-    onCategoryChange,
     onLoadMore,
     onPreviousPage,
     onNextPage,

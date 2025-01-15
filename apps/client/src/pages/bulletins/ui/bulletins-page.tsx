@@ -1,4 +1,4 @@
-import { Bulletins } from "@/entities/bulletins";
+import { Bulletins } from "@/entities/bulletin";
 import { useRef } from "react";
 
 export function BulletinsPage() {

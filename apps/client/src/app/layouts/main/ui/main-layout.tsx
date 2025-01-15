@@ -1,10 +1,7 @@
-import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { Sidebar } from "@/widgets/sidebar";
-import { useQuery } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";
 
 export function MainLayout() {
-  useQuery(getSessionQueryOptions());
   return (
     <main className="grid col-[main] grid-cols-subgrid ~pt-10/[3.75rem] ~pb-16/[6.25rem] auto-rows-max">
       <Sidebar className="m-xl:col-span-4 m-xl:block hidden" />

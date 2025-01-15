@@ -14,7 +14,7 @@ paths:
       summary: Аутентификация
       operationId: signIn
       tags:
-        - Пользователь
+        - Пользователи
       requestBody:
         content:
           application/json:
@@ -64,7 +64,7 @@ paths:
       summary: Разлогинить пользователя
       operationId: signOut
       tags:
-        - Пользователь
+        - Пользователи
       responses:
         "200":
           description: Успешный ответ
@@ -77,7 +77,7 @@ paths:
       summary: Получить сессию
       operationId: getSession
       tags:
-        - Пользователь
+        - Пользователи
       responses:
         "200":
           description: Успешный ответ
@@ -96,7 +96,7 @@ paths:
       summary: Обновить токены
       operationId: refreshToken
       tags:
-        - Пользователь
+        - Пользователи
       parameters:
         - name: refreshToken
           in: cookie
@@ -124,7 +124,7 @@ paths:
       summary: Изменить пароль
       operationId: changeUserPassword
       tags:
-        - Пользователь
+        - Пользователи
       requestBody:
         content:
           application/json:
@@ -164,7 +164,7 @@ paths:
       summary: Отправить ссылку для восстановления пароля
       operationId: sendRecoveryPasswordLink
       tags:
-        - Пользователь
+        - Пользователи
       requestBody:
         content:
           application/json:
@@ -199,7 +199,7 @@ paths:
       summary: Восстановить пароль
       operationId: recoveryUserPassword
       tags:
-        - Пользователь
+        - Пользователи
       requestBody:
         content:
           application/json:
@@ -237,7 +237,7 @@ paths:
       summary: Получить компанию пользователя
       operationId: getUserCompany
       tags:
-        - Пользователь
+        - Пользователи
       responses:
         "200":
           description: Успешный ответ
@@ -246,7 +246,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Company"
         "401":
-          description: Ошибка авторизации
+          description: Пользователь не авторизован
           content:
             application/json:
               schema:
@@ -258,7 +258,7 @@ paths:
       summary: Получить список избранных документов/бюллетеней
       operationId: getUserFavorites
       tags:
-        - Пользователь
+        - Избранное
       parameters:
         - name: page
           in: query
@@ -288,9 +288,7 @@ paths:
                   data:
                     type: array
                     items:
-                      oneOf:
-                        - $ref: "#/components/schemas/Document"
-                        - $ref: "#/components/schemas/Bulletin"
+                      $ref: "#/components/schemas/Favorite"
                   nextPage:
                     oneOf:
                       - type: integer
@@ -300,10 +298,86 @@ paths:
                   totalPages:
                     type: integer
                     example: 10
-                  ids:
-                    type: array
-                    items:
-                      type: string
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/user/favorites/add:
+    post:
+      summary: Добавить документ/бюллетень в избранное
+      operationId: addFavorite
+      tags:
+        - Избранное
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Документ/бюллетень успешно добавлен в избранное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Документ/бюллетень с таким ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/user/favorites/remove:
+    delete:
+      summary: Удалить документ/бюллетень из избранного
+      operationId: removeFavorite
+      tags:
+        - Избранное
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Документ/бюллетень успешно удален из избранного
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Документ/бюллетень с таким ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
   /api/news:
@@ -545,6 +619,7 @@ components:
         - email
         - phone
         - password
+        - favorites
         - tokenVersion
         - isBanned
       properties:
@@ -584,6 +659,7 @@ components:
         - surname
         - name
         - phone
+        - favorites
       properties:
         email:
           type: string
@@ -600,6 +676,10 @@ components:
         phone:
           type: string
           example: "+79231665038"
+        favorites:
+          type: array
+          items:
+            type: string
     Company:
       type: object
       required:
@@ -742,6 +822,10 @@ components:
           type: string
           format: date-time
           example: "2024-12-30T12:34:56Z"
+    Favorite:
+      oneOf:
+        - $ref: "#/components/schemas/Document"
+        - $ref: "#/components/schemas/Bulletin"
     Error:
       type: object
       required:

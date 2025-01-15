@@ -1,41 +1,32 @@
+import { DocumentsList } from "@/entities/document";
+import { useFavoritesList } from "../lib/use-favorites-list";
 import { Button } from "@/shared/ui/button";
 import { TextMorph } from "@/shared/ui/text-morph";
-import { DocumentsCategoryFilter } from "./documents-category-filter";
 import { Pagination } from "@/widgets/pagination";
-import { useDocuments } from "../lib/use-documents";
-import { DocumentsList } from "./documents-list";
 
-type DocumentsProps = {
+type FavoritesProps = {
   limit: number;
   scrollToRef?: React.RefObject<HTMLDivElement>;
 } & React.ComponentProps<"div">;
 
-export function Documents({ limit, scrollToRef, ...props }: DocumentsProps) {
+export function Favorites({ limit, scrollToRef, ...props }: FavoritesProps) {
   const {
     data,
-    isLoading,
     displayedPage,
+    isLoading,
     isFetchingNextPage,
     hasNextPage,
     handlePageChange,
-    category,
-    onCategoryChange,
     onLoadMore,
     onPreviousPage,
     onNextPage,
-  } = useDocuments({ limit, scrollToRef });
+  } = useFavoritesList({ limit: 12, scrollToRef });
 
   return (
     <div {...props}>
-      <div className="flex items-end justify-end">
-        <DocumentsCategoryFilter
-          category={category ?? undefined}
-          onCategoryChange={onCategoryChange}
-        />
-      </div>
       <DocumentsList
         isLoading={isLoading}
-        documents={data?.documents}
+        documents={data?.favorites}
         limit={limit}
       />
       <div className="flex flex-col items-center mt-8">

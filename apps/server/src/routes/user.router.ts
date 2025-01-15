@@ -4,7 +4,7 @@ import tokenService from "../services/token.service";
 import mailService from "../services/mail.service";
 import dbService from "../services/db.service";
 import passwordService from "../services/password.service";
-import { Company, Error, Session, Success } from "../types/globals";
+import { Company, Error, Favorite, Session, Success } from "../types/globals";
 
 const userRouter = express.Router();
 
@@ -40,11 +40,11 @@ userRouter.post(
 
     tokenService.sendRefreshToken(res, refreshToken, remember);
 
-    const { email, name, surname, patronymic, phone } = user;
+    const { email, name, surname, patronymic, phone, favorites } = user;
 
     res.json({
       accessToken,
-      user: { email, name, surname, patronymic, phone },
+      user: { email, name, surname, patronymic, phone, favorites },
     });
   }
 );
@@ -97,8 +97,9 @@ userRouter.get(
   "/session",
   authMiddleware,
   (req: Request, res: Response<Session>) => {
-    const { email, name, surname, patronymic, phone } = res.locals.user;
-    res.json({ email, name, surname, patronymic, phone });
+    const { email, name, surname, patronymic, phone, favorites } =
+      res.locals.user;
+    res.json({ email, name, surname, patronymic, phone, favorites });
   }
 );
 
@@ -254,5 +255,100 @@ userRouter.post(
     res.json({ message: "Успешно" });
   }
 );
+
+userRouter.get(
+  "/favorites",
+  authMiddleware,
+  (
+    req: Request,
+    res: Response<{
+      data: Favorite[];
+      nextPage: number | false;
+      totalPages: number;
+    }>
+  ) => {
+    const { page = "1", limit = "10" } = req.query as {
+      page?: string;
+      limit?: string;
+    };
+    const startIndex = (parseInt(page) - 1) * parseInt(limit);
+    const endIndex = parseInt(page) * parseInt(limit);
+
+    const userId = res.locals.user.id;
+    const user = dbService.get("users").find((user) => user.id === userId);
+
+    const favorites = user.favorites.map((id) => {
+      const document = dbService
+        .get("documents")
+        .find((document) => document.id === id);
+      const bulletin = dbService
+        .get("bulletins")
+        .find((bulletin) => bulletin.id === id);
+      return document || bulletin;
+    });
+
+    const totalPages = Math.ceil(favorites.length / parseInt(limit));
+    const currentPage = parseInt(page);
+    const nextPage = currentPage + 1;
+
+    res.json({
+      data: favorites.slice(startIndex, endIndex),
+      nextPage: nextPage <= totalPages ? nextPage : false,
+      totalPages,
+    });
+  }
+);
+
+userRouter.post("/favorites/add", authMiddleware, (req, res) => {
+  const { id } = req.body;
+
+  const document = dbService
+    .get("documents")
+    .find((document) => document.id === id);
+  const bulletin = dbService
+    .get("bulletins")
+    .find((bulletin) => bulletin.id === id);
+
+  if (!document && !bulletin) {
+    res.status(404).json({ message: "Документ не найден" });
+    return;
+  }
+
+  const userId = res.locals.user.id;
+  const user = dbService.get("users").find((user) => user.id === userId);
+
+  user.favorites = [id, ...user.favorites];
+
+  dbService.update(
+    "users",
+    dbService.get("users").map((u) => (u.id === userId ? user : u))
+  );
+  res.json({ message: "Успешно" });
+});
+
+userRouter.delete("/favorites/remove", authMiddleware, (req, res) => {
+  const { id } = req.body;
+
+  const document = dbService
+    .get("documents")
+    .find((document) => document.id === id);
+  const bulletin = dbService
+    .get("bulletins")
+    .find((bulletin) => bulletin.id === id);
+
+  if (!document && !bulletin) {
+    res.status(404).json({ message: "Документ не найден" });
+    return;
+  }
+
+  const userId = res.locals.user.id;
+  const user = dbService.get("users").find((user) => user.id === userId);
+  user.favorites = user.favorites.filter((favorite) => favorite !== id);
+  dbService.update(
+    "users",
+    dbService.get("users").map((u) => (u.id === userId ? user : u))
+  );
+  res.json({ message: "Успешно" });
+});
 
 export { userRouter };

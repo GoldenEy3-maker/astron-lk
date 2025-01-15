@@ -3,7 +3,7 @@ import { apiClient, schemas } from "@/shared/api/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
-import { useSession } from "@/shared/model/session-store";
+import { useSessionStore } from "@/shared/model/session-store";
 
 type UseSignInProps = {
   onSuccess?: () => void;
@@ -11,7 +11,7 @@ type UseSignInProps = {
 
 export function useSignIn({ onSuccess }: UseSignInProps = {}) {
   const [isUserBanned, setIsUserBanned] = useState(false);
-  const setToken = useSession((state) => state.setToken);
+  const setToken = useSessionStore((state) => state.setToken);
   const queryClient = useQueryClient();
 
   const signInMutation = useMutation({

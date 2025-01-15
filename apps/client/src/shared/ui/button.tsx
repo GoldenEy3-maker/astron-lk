@@ -20,8 +20,7 @@ const buttonVariants = cva(
         link: "text-primary hover:text-primary-accent disabled:text-muted aria-disabled:text-muted",
         underline:
           "text-primary hover:text-primary-accent disabled:text-muted !rounded-none relative after:absolute after:bottom-0 after:inset-x-0 after:bg-current after:h-px after:transition",
-        ghost:
-          "text-foreground-accent hover:bg-muted/15 aria-disabled:bg-muted/15",
+        ghost: "text-foreground-accent hover:bg-muted/15",
         "ghost-primary":
           "text-foreground-accent hover:bg-primary/10 hover:text-primary aria-disabled:bg-muted/15",
       },

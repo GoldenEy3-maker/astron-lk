@@ -2,7 +2,7 @@ import { Button } from "@/shared/ui/button";
 import { TextMorph } from "@/shared/ui/text-morph";
 import { Pagination } from "@/widgets/pagination";
 import { useBulletins } from "../lib/use-bulletins";
-import { BulletinsList } from "./bulletins-list";
+import { DocumentsList } from "@/entities/document";
 import { BulletinsCategoryFilter } from "./bulletins-category-filter";
 import { BulletinsSort } from "./bulletins-sort";
 import { BulletinsSortKeys } from "../model/bulletins-sort-keys";
@@ -40,7 +40,6 @@ export function Bulletins({
     toDateFilter,
     onDateChange,
     onLoadMore,
-    onPagitaionChangeScrollToRef,
     onPreviousPage,
     onNextPage,
   } = useBulletins({ limit, scrollToRef });
@@ -48,9 +47,7 @@ export function Bulletins({
   return (
     <div {...props}>
       {toolBar ? (
-        <div
-          className="flex items-center ~gap-x-4/8 ~mb-4/8 flex-wrap sm:flex-nowrap gap-y-2"
-          ref={onPagitaionChangeScrollToRef}>
+        <div className="flex items-center ~gap-x-4/8 ~mb-4/8 flex-wrap sm:flex-nowrap gap-y-2">
           <BulletinsDatePicker
             date={{
               from: fromDateFilter
@@ -80,9 +77,9 @@ export function Bulletins({
           />
         </div>
       ) : null}
-      <BulletinsList
+      <DocumentsList
         isLoading={isLoading}
-        bulletins={data?.bulletins}
+        documents={data?.bulletins}
         limit={limit}
       />
       {loadMore && hasNextPage ? (

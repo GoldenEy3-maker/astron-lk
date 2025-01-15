@@ -1,21 +1,18 @@
+import { FavoriteButton } from "@/entities/favorite";
 import { schemas } from "@/shared/api/client";
 import { dateFormat } from "@/shared/lib/date-format";
 import { formatBytes } from "@/shared/lib/format-bytes";
 import { getFileUrlExt } from "@/shared/lib/get-file-url-ext";
-import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
-type DocumentCardProps = {} & z.infer<typeof schemas.Document>;
+type DocumentCardProps = {
+  limit?: number;
+} & z.infer<typeof schemas.Document>;
 
-export function DocumentCard({
-  id,
-  title,
-  file,
-  category,
-  createdAt,
-}: DocumentCardProps) {
+export function DocumentCard(document: DocumentCardProps) {
+  const { id, title, file, category, createdAt, limit } = document;
   return (
     <article
       data-id={id}
@@ -29,12 +26,7 @@ export function DocumentCard({
         <span className="text-sm py-1.5 px-3 rounded-main text-primary bg-primary/10">
           {category}
         </span>
-        <Button
-          variant="ghost-primary"
-          size="icon"
-          className="relative z-10 group/favorite">
-          <Icons.Bookmark className="group-hover/favorite:text-primary group-hover/favorite:fill-primary/10" />
-        </Button>
+        <FavoriteButton {...document} limit={limit} />
       </div>
       <h4 className="text-h4 mt-2 group-hover/item:text-primary transition-colors">
         {title}

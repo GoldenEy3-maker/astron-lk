@@ -40,6 +40,7 @@ export default new (class DBService {
           phone: "+79231665038",
           tokenVersion: 0,
           isBanned: false,
+          favorites: [],
         },
         {
           id: "2",
@@ -51,6 +52,7 @@ export default new (class DBService {
           phone: "+79132220856",
           tokenVersion: 0,
           isBanned: false,
+          favorites: [],
         },
         {
           id: "3",
@@ -62,6 +64,7 @@ export default new (class DBService {
           phone: "+79132220856",
           tokenVersion: 0,
           isBanned: true,
+          favorites: [],
         },
         {
           id: "4",
@@ -73,6 +76,7 @@ export default new (class DBService {
           phone: "+79131231231",
           tokenVersion: 0,
           isBanned: false,
+          favorites: [],
         },
       ],
       news: [

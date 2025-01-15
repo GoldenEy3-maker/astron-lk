@@ -6,8 +6,12 @@ import { UserPopover } from "./user-popover";
 import { MobileSheet } from "@/widgets/mobile-sheet";
 import { useMobileSheetStore } from "@/shared/model/mobile-sheet-store";
 import { cn } from "@/shared/lib/cn";
+import { FavoritesAction } from "./favorites-action";
+import { useQuery } from "@tanstack/react-query";
+import { getSessionQueryOptions } from "@/shared/api/session-query";
 
 export function Actions() {
+  const { data: session } = useQuery(getSessionQueryOptions());
   const isMobileSheetOpen = useMobileSheetStore((state) => state.isOpen);
 
   return (
@@ -16,24 +20,16 @@ export function Actions() {
         asChild
         variant="ghost"
         size="icon"
-        className={cn("", {
+        aria-disabled={!session}
+        className={cn({
           hidden: isMobileSheetOpen,
         })}>
         <Link to={Routes.Search}>
           <Icons.Search />
+          <span className="sr-only">Поиск</span>
         </Link>
       </Button>
-      <Button
-        asChild
-        variant="ghost"
-        size="icon"
-        className={cn("", {
-          hidden: isMobileSheetOpen,
-        })}>
-        <Link to={Routes.Favorites}>
-          <Icons.Favorites />
-        </Link>
-      </Button>
+      <FavoritesAction className={cn({ hidden: isMobileSheetOpen })} />
       {!isMobileSheetOpen ? <UserPopover /> : null}
       <MobileSheet />
     </div>

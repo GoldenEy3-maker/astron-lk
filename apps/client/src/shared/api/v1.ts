@@ -1,6 +1,28 @@
 import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
+type Favorite = Document | Bulletin;
+type Document = {
+  id: string;
+  title: string;
+  file: {
+    url: string;
+    size: number;
+  };
+  category: string;
+  createdAt: string;
+};
+type Bulletin = {
+  id: string;
+  title: string;
+  file: {
+    url: string;
+    size: number;
+  };
+  category: string;
+  createdAt: string;
+};
+
 const signIn_Body = z
   .object({
     login: z.string(),
@@ -15,6 +37,7 @@ const Session = z
     name: z.string(),
     patronymic: z.string().optional(),
     phone: z.string(),
+    favorites: z.array(z.string()),
   })
   .strict();
 const Error = z.object({ message: z.string() }).strict();
@@ -42,7 +65,7 @@ const Company = z
     userId: z.string(),
   })
   .strict();
-const Document = z
+const Document: z.ZodType<Document> = z
   .object({
     id: z.string(),
     title: z.string(),
@@ -51,7 +74,7 @@ const Document = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
-const Bulletin = z
+const Bulletin: z.ZodType<Bulletin> = z
   .object({
     id: z.string(),
     title: z.string(),
@@ -60,6 +83,7 @@ const Bulletin = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
+const Favorite: z.ZodType<Favorite> = z.union([Document, Bulletin]);
 const News = z
   .object({
     id: z.string(),
@@ -81,7 +105,7 @@ const User = z
     password: z.string(),
     tokenVersion: z.number().int(),
     isBanned: z.boolean(),
-    favorites: z.array(z.string()).optional(),
+    favorites: z.array(z.string()),
   })
   .strict();
 
@@ -95,6 +119,7 @@ export const schemas = {
   Company,
   Document,
   Bulletin,
+  Favorite,
   News,
   User,
 };
@@ -243,7 +268,7 @@ const endpoints = makeApi([
     errors: [
       {
         status: 401,
-        description: `Ошибка авторизации`,
+        description: `Пользователь не авторизован`,
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
@@ -267,12 +292,70 @@ const endpoints = makeApi([
     ],
     response: z
       .object({
-        data: z.array(z.union([Document, Bulletin])),
+        data: z.array(Favorite),
         nextPage: z.union([z.number(), z.boolean()]),
         totalPages: z.number().int().optional(),
-        ids: z.array(z.string()).optional(),
       })
       .strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "post",
+    path: "/api/user/favorites/add",
+    alias: "addFavorite",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: z.object({ id: z.string() }).strict(),
+      },
+    ],
+    response: z.object({ message: z.string() }).strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 404,
+        description: `Документ/бюллетень с таким ID не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "delete",
+    path: "/api/user/favorites/remove",
+    alias: "removeFavorite",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: z.object({ id: z.string() }).strict(),
+      },
+    ],
+    response: z.object({ message: z.string() }).strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 404,
+        description: `Документ/бюллетень с таким ID не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "post",

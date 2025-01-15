@@ -157,6 +157,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/user/favorites/add": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Добавить документ/бюллетень в избранное */
+        post: operations["addFavorite"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/user/favorites/remove": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Удалить документ/бюллетень из избранного */
+        delete: operations["removeFavorite"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/news": {
         parameters: {
             query?: never;
@@ -280,7 +314,7 @@ export interface components {
             password: string;
             tokenVersion: number;
             isBanned: boolean;
-            favorites?: string[];
+            favorites: string[];
         };
         Session: {
             /** @example dev@mail.ru */
@@ -293,6 +327,7 @@ export interface components {
             patronymic?: string;
             /** @example +79231665038 */
             phone: string;
+            favorites: string[];
         };
         Company: {
             /** @example 1 */
@@ -371,6 +406,7 @@ export interface components {
              */
             createdAt: string;
         };
+        Favorite: components["schemas"]["Document"] | components["schemas"]["Bulletin"];
         Error: {
             message: string;
         };
@@ -672,7 +708,7 @@ export interface operations {
                     "application/json": components["schemas"]["Company"];
                 };
             };
-            /** @description Ошибка авторизации */
+            /** @description Пользователь не авторизован */
             401: {
                 headers: {
                     [name: string]: unknown;
@@ -704,12 +740,108 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: (components["schemas"]["Document"] | components["schemas"]["Bulletin"])[];
+                        data: components["schemas"]["Favorite"][];
                         nextPage: number | boolean;
                         /** @example 10 */
                         totalPages?: number;
-                        ids?: string[];
                     };
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    addFavorite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Документ/бюллетень успешно добавлен в избранное */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Документ/бюллетень с таким ID не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    removeFavorite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Документ/бюллетень успешно удален из избранного */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Документ/бюллетень с таким ID не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
