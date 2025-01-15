@@ -17,7 +17,7 @@ const sectionVariants = cva("", {
 type SectionProps = {} & VariantProps<typeof sectionVariants> &
   React.ComponentProps<"section">;
 
-const Section = forwardRef<HTMLSelectElement, SectionProps>(
+const Section = forwardRef<HTMLElement, SectionProps>(
   ({ children, className, space, ...props }, ref) => {
     return (
       <section

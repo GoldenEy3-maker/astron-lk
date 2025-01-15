@@ -9,7 +9,14 @@ export function BulletinsPage() {
       <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>
         Бюллетени
       </h1>
-      <Bulletins limit={12} className="~mt-5/8" scrollToRef={scrollToRef} />
+      <Bulletins
+        limit={12}
+        loadMore
+        pagination
+        toolBar
+        className="~mt-5/8"
+        scrollToRef={scrollToRef}
+      />
     </div>
   );
 }

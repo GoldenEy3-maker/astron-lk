@@ -2,6 +2,7 @@ export function NotFoundPage() {
   return (
     <main className="col-[main] py-[3.75rem] flex flex-col items-center justify-center">
       <svg
+        className="max-w-full ~h-[9rem]/[16rem]"
         width="654"
         height="255"
         viewBox="0 0 654 255"
@@ -59,7 +60,7 @@ export function NotFoundPage() {
           />
         </defs>
       </svg>
-      <h3 className="text-h3 text-foreground mt-[3.75rem]">
+      <h3 className="text-h3 text-foreground text-center ~mt-7/[3.75rem]">
         Страница находится в&nbsp;стадии строительства
       </h3>
     </main>

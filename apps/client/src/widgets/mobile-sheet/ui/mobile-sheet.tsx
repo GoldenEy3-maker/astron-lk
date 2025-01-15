@@ -32,7 +32,7 @@ export function MobileSheet() {
         size="icon"
         disabled={!user}
         className={cn(
-          "relative min-[75rem]:hidden before:absolute before:inset-x-[0.625rem] before:bg-primary before:h-0.5 before:top-[0.875rem] after:absolute after:inset-x-[0.625rem] after:bg-primary after:h-0.5 after:bottom-[0.875rem] before:transition-all before:duration-300 after:transition-all after:duration-300",
+          "relative m-xl:hidden before:absolute before:inset-x-[0.625rem] before:bg-primary before:h-0.5 before:top-[0.875rem] after:absolute after:inset-x-[0.625rem] after:bg-primary after:h-0.5 after:bottom-[0.875rem] before:transition-all before:duration-300 after:transition-all after:duration-300",
           {
             "before:top-5 after:bottom-5 before:opacity-0 after:opacity-0":
               isOpen,

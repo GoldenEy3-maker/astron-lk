@@ -12,9 +12,19 @@ import { getUTCDateFromDate } from "@/shared/lib/get-utc-date";
 type BulletinsProps = {
   limit: number;
   scrollToRef?: React.RefObject<HTMLDivElement>;
+  pagination?: boolean;
+  loadMore?: boolean;
+  toolBar?: boolean;
 } & React.ComponentProps<"div">;
 
-export function Bulletins({ limit, scrollToRef, ...props }: BulletinsProps) {
+export function Bulletins({
+  limit,
+  scrollToRef,
+  pagination,
+  loadMore,
+  toolBar,
+  ...props
+}: BulletinsProps) {
   const {
     data,
     isLoading,
@@ -37,44 +47,46 @@ export function Bulletins({ limit, scrollToRef, ...props }: BulletinsProps) {
 
   return (
     <div {...props}>
-      <div
-        className="flex items-center ~gap-x-4/8 flex-wrap sm:flex-nowrap gap-y-2"
-        ref={onPagitaionChangeScrollToRef}>
-        <BulletinsDatePicker
-          date={{
-            from: fromDateFilter
-              ? getUTCDateFromDate(fromDateFilter)
-              : undefined,
-            to: toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined,
-          }}
-          // defaultFromDate={
-          //   fromDateFilter ? getUTCDateFromDate(fromDateFilter) : undefined
-          // }
-          // defaultToDate={
-          //   toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined
-          // }
-          // onPickerClose={onDateChange}
-          onDateChange={onDateChange}
-        />
-        <div className="flex-1">
-          <BulletinsSort
-            sort={sort ?? undefined}
-            onSortChange={onSortChange}
-            options={Object.values(BulletinsSortKeys)}
+      {toolBar ? (
+        <div
+          className="flex items-center ~gap-x-4/8 ~mb-4/8 flex-wrap sm:flex-nowrap gap-y-2"
+          ref={onPagitaionChangeScrollToRef}>
+          <BulletinsDatePicker
+            date={{
+              from: fromDateFilter
+                ? getUTCDateFromDate(fromDateFilter)
+                : undefined,
+              to: toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined,
+            }}
+            // defaultFromDate={
+            //   fromDateFilter ? getUTCDateFromDate(fromDateFilter) : undefined
+            // }
+            // defaultToDate={
+            //   toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined
+            // }
+            // onPickerClose={onDateChange}
+            onDateChange={onDateChange}
+          />
+          <div className="flex-1">
+            <BulletinsSort
+              sort={sort ?? undefined}
+              onSortChange={onSortChange}
+              options={Object.values(BulletinsSortKeys)}
+            />
+          </div>
+          <BulletinsCategoryFilter
+            category={category ?? undefined}
+            onCategoryChange={onCategoryChange}
           />
         </div>
-        <BulletinsCategoryFilter
-          category={category ?? undefined}
-          onCategoryChange={onCategoryChange}
-        />
-      </div>
+      ) : null}
       <BulletinsList
         isLoading={isLoading}
         bulletins={data?.bulletins}
         limit={limit}
       />
-      <div className="flex flex-col items-center mt-8">
-        {hasNextPage ? (
+      {loadMore && hasNextPage ? (
+        <div className="flex justify-center mt-8">
           <Button
             variant="outline-primary"
             disabled={isFetchingNextPage}
@@ -83,18 +95,19 @@ export function Bulletins({ limit, scrollToRef, ...props }: BulletinsProps) {
               {isFetchingNextPage ? "Загружаем..." : "Показать еще"}
             </TextMorph>
           </Button>
-        ) : null}
-        {data?.totalPages && data.totalPages > 1 ? (
+        </div>
+      ) : null}
+      {pagination && data?.totalPages && data.totalPages > 1 ? (
+        <div className="flex mt-6 justify-center">
           <Pagination
-            className="mt-6"
             currentPage={displayedPage}
             totalPages={data.totalPages}
             onPageChange={handlePageChange}
             onPreviousPage={onPreviousPage}
             onNextPage={onNextPage}
           />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 }

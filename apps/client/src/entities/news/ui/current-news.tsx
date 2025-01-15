@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { News } from "./news";
 import { Routes } from "@/shared/constants/routes";
 
-export function CurrentNews() {
+type CurrentNewsProps = {} & Omit<React.ComponentProps<"section">, "children">;
+
+export function CurrentNews(props: CurrentNewsProps) {
   return (
-    <Section>
+    <Section {...props}>
       <SectionHeader>
         <h1 className="text-h1 text-heading-h2">Актуальные новости</h1>
         <Button asChild variant="link" size="hug">

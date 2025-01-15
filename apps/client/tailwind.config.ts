@@ -9,7 +9,11 @@ export default {
     extract,
   },
   theme: {
-    screens,
+    screens: {
+      ...screens,
+      "m-md": "62rem",
+      "m-xl": "75rem",
+    },
     fontSize: {
       ...fontSize,
       display: "3rem",

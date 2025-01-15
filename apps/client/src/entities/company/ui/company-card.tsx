@@ -5,12 +5,20 @@ import { Button } from "@/shared/ui/button";
 import { getProjectsCountText } from "../lib/get-projects-count-text";
 import { getCooperationYearsText } from "../lib/get-cooperation-years-text";
 import { Skeleton } from "@/shared/ui/skeleton";
+import { cn } from "@/shared/lib/cn";
 
-export function CompanyCard() {
+type CompanyCardProps = {} & React.ComponentProps<"article">;
+
+export function CompanyCard({ className, ...props }: CompanyCardProps) {
   const { data, isLoading } = useQuery(getUserCompanyQueryOptions());
 
   return (
-    <article className="bg-card rounded-main items-start flex ~gap-7/14 ~py-5/9 ~px-7/14 border-b-2 border-gold">
+    <article
+      className={cn(
+        "bg-card rounded-main items-start flex ~gap-7/14 ~py-5/9 ~px-7/14 border-b-2 border-gold",
+        className
+      )}
+      {...props}>
       {!isLoading ? (
         <img
           src={data?.logo}
