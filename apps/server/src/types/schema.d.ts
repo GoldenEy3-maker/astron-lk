@@ -293,6 +293,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Поиск документов/бюллетеней/новостей */
+        get: operations["search"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -412,6 +429,18 @@ export interface components {
         };
         Success: {
             message: string;
+        };
+        SearchResult: {
+            /** @example 1 */
+            id: string;
+            /** @example Ключевая ставка достигла 30% */
+            title: string;
+            /** @enum {string} */
+            type: "news" | "document" | "bulletin";
+            /** @example Деняк нет, но вы держитесь */
+            description?: string;
+            /** @example /path/to/file.pdf */
+            fileUrl?: string;
         };
     };
     responses: never;
@@ -1012,6 +1041,40 @@ export interface operations {
                 };
                 content: {
                     "application/json": string[];
+                };
+            };
+        };
+    };
+    search: {
+        parameters: {
+            query: {
+                /** @description Запрос для поиска */
+                query: string;
+                /** @description Номер страницы */
+                page?: number;
+                /** @description Количество результатов на странице */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SearchResult"][];
+                        /** @example 10 */
+                        totalPages: number;
+                        /** @example 300 */
+                        totalResults: number;
+                        nextPage: number | boolean;
+                    };
                 };
             };
         };

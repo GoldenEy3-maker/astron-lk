@@ -5,6 +5,7 @@ import { newsRouter } from "./routes/news.router";
 import { userRouter } from "./routes/user.router";
 import { documentsRouter } from "./routes/documents.router";
 import { bulletinsRouter } from "./routes/bulletins.router";
+import { searchRouter } from "./routes/search.router";
 
 const app: Express = express();
 
@@ -69,5 +70,7 @@ app.use("/api/news", newsRouter);
 app.use("/api/documents", documentsRouter);
 
 app.use("/api/bulletins", bulletinsRouter);
+
+app.use("/api/search", searchRouter);
 
 export default app;

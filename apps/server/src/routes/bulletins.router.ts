@@ -70,7 +70,7 @@ bulletinsRouter.get(
   }
 );
 
-bulletinsRouter.get("/categories", (req: Request, res: Response) => {
+bulletinsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
   const categories = new Set(
     dbService.get("bulletins").map((bulletin) => bulletin.category)
   );

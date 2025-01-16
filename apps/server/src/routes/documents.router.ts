@@ -42,7 +42,7 @@ documentsRouter.get(
   }
 );
 
-documentsRouter.get("/categories", (req: Request, res: Response) => {
+documentsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
   const categories = new Set(
     dbService.get("documents").map((doc) => doc.category)
   );

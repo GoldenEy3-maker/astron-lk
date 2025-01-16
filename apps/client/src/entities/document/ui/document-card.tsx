@@ -2,7 +2,6 @@ import { dateFormat } from "@/shared/lib/date-format";
 import { formatBytes } from "@/shared/lib/format-bytes";
 import { getFileUrlExt } from "@/shared/lib/get-file-url-ext";
 import { Icons } from "@/shared/ui/icons";
-import { Link } from "react-router-dom";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/button";
 import { DocumentsQueryFnData } from "../api/documents-query";
@@ -19,9 +18,9 @@ export function DocumentCard(document: DocumentCardProps) {
     <article
       data-id={id}
       className="bg-card rounded-main relative z-10 group/item before:bg-[url(/pattern.png)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-10 before:-z-10 ~py-3/5 ~px-4/7">
-      <Link
-        to={file.url}
-        target="_blank"
+      <a
+        href={file.url}
+        download
         className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
       />
       <div className="flex items-center justify-between gap-4">

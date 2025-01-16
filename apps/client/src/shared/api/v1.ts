@@ -94,6 +94,15 @@ const News = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
+const SearchResult = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    type: z.enum(["news", "document", "bulletin"]),
+    description: z.string().optional(),
+    fileUrl: z.string().optional(),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -121,6 +130,7 @@ export const schemas = {
   Bulletin,
   Favorite,
   News,
+  SearchResult,
   User,
 };
 
@@ -258,6 +268,37 @@ const endpoints = makeApi([
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
+  },
+  {
+    method: "get",
+    path: "/api/search",
+    alias: "search",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "query",
+        type: "Query",
+        schema: z.string(),
+      },
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(SearchResult),
+        totalPages: z.number().int(),
+        totalResults: z.number().int(),
+        nextPage: z.union([z.number(), z.boolean()]),
+      })
+      .strict(),
   },
   {
     method: "get",

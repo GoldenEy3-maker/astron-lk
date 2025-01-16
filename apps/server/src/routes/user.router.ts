@@ -299,56 +299,64 @@ userRouter.get(
   }
 );
 
-userRouter.post("/favorites/add", authMiddleware, (req, res) => {
-  const { id } = req.body;
+userRouter.post(
+  "/favorites/add",
+  authMiddleware,
+  (req: Request, res: Response<Success | Error>) => {
+    const { id } = req.body;
 
-  const document = dbService
-    .get("documents")
-    .find((document) => document.id === id);
-  const bulletin = dbService
-    .get("bulletins")
-    .find((bulletin) => bulletin.id === id);
+    const document = dbService
+      .get("documents")
+      .find((document) => document.id === id);
+    const bulletin = dbService
+      .get("bulletins")
+      .find((bulletin) => bulletin.id === id);
 
-  if (!document && !bulletin) {
-    res.status(404).json({ message: "Документ не найден" });
-    return;
+    if (!document && !bulletin) {
+      res.status(404).json({ message: "Документ не найден" });
+      return;
+    }
+
+    const userId = res.locals.user.id;
+    const user = dbService.get("users").find((user) => user.id === userId);
+
+    user.favorites = [id, ...user.favorites];
+
+    dbService.update(
+      "users",
+      dbService.get("users").map((u) => (u.id === userId ? user : u))
+    );
+    res.json({ message: "Успешно" });
   }
+);
 
-  const userId = res.locals.user.id;
-  const user = dbService.get("users").find((user) => user.id === userId);
+userRouter.delete(
+  "/favorites/remove",
+  authMiddleware,
+  (req: Request, res: Response<Success | Error>) => {
+    const { id } = req.body;
 
-  user.favorites = [id, ...user.favorites];
+    const document = dbService
+      .get("documents")
+      .find((document) => document.id === id);
+    const bulletin = dbService
+      .get("bulletins")
+      .find((bulletin) => bulletin.id === id);
 
-  dbService.update(
-    "users",
-    dbService.get("users").map((u) => (u.id === userId ? user : u))
-  );
-  res.json({ message: "Успешно" });
-});
+    if (!document && !bulletin) {
+      res.status(404).json({ message: "Документ не найден" });
+      return;
+    }
 
-userRouter.delete("/favorites/remove", authMiddleware, (req, res) => {
-  const { id } = req.body;
-
-  const document = dbService
-    .get("documents")
-    .find((document) => document.id === id);
-  const bulletin = dbService
-    .get("bulletins")
-    .find((bulletin) => bulletin.id === id);
-
-  if (!document && !bulletin) {
-    res.status(404).json({ message: "Документ не найден" });
-    return;
+    const userId = res.locals.user.id;
+    const user = dbService.get("users").find((user) => user.id === userId);
+    user.favorites = user.favorites.filter((favorite) => favorite !== id);
+    dbService.update(
+      "users",
+      dbService.get("users").map((u) => (u.id === userId ? user : u))
+    );
+    res.json({ message: "Успешно" });
   }
-
-  const userId = res.locals.user.id;
-  const user = dbService.get("users").find((user) => user.id === userId);
-  user.favorites = user.favorites.filter((favorite) => favorite !== id);
-  dbService.update(
-    "users",
-    dbService.get("users").map((u) => (u.id === userId ? user : u))
-  );
-  res.json({ message: "Успешно" });
-});
+);
 
 export { userRouter };

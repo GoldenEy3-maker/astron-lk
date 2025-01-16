@@ -20,7 +20,7 @@ export function Header() {
         )}>
         <header
           className={cn(
-            "bg-card justify-between gap-4 transition-all col-[main] duration-300 rounded-main ~py-2/[0.875rem] ~px-3/6 flex items-center shadow-[0_0_0.75rem_0] shadow-black/5",
+            "bg-card justify-between gap-4 transition-all col-[main] duration-300 rounded-main ~py-2/3.5 ~px-3/6 flex items-center shadow-[0_0_0.75rem_0] shadow-black/5",
             {
               "shadow-none rounded-none !pointer-events-auto":
                 isMobileSheetOpen,

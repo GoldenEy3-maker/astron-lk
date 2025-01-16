@@ -26,7 +26,7 @@ export function useDocuments({
     "page",
     parseAsInteger.withDefault(1)
   );
-  const [displayedPage, setDisplayedPage] = useState(queryPage ?? 1);
+  const [displayedPage, setDisplayedPage] = useState(queryPage);
 
   const { scrollTo } = useScrollTo({
     ref: scrollToRef,

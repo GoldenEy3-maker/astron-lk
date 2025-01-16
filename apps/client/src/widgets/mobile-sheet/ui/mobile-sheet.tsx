@@ -33,14 +33,13 @@ export function MobileSheet() {
         size="icon"
         disabled={!session}
         className={cn(
-          "relative m-xl:hidden before:absolute before:inset-x-[0.625rem] before:bg-primary before:h-0.5 before:top-[0.875rem] after:absolute after:inset-x-[0.625rem] after:bg-primary after:h-0.5 after:bottom-[0.875rem] before:transition-all before:duration-300 after:transition-all after:duration-300",
+          "relative m-xl:hidden before:absolute before:inset-x-2.5 before:bg-primary before:h-0.5 before:top-3.5 after:absolute after:inset-x-2.5 after:bg-primary after:h-0.5 after:bottom-3.5 before:transition-all before:duration-300 after:transition-all after:duration-300",
           {
             "before:top-5 after:bottom-5 before:opacity-0 after:opacity-0":
               isOpen,
           }
         )}>
-        <span
-          className={cn("absolute inset-x-[0.625rem] bg-primary h-0.5")}></span>
+        <span className={cn("absolute inset-x-2.5 bg-primary h-0.5")}></span>
         <span className="sr-only">Открыть/закрыть меню</span>
       </SheetTrigger>
       <SheetContent
@@ -66,7 +65,7 @@ export function MobileSheet() {
                   key={link.url}
                   size="sm"
                   asChild
-                  className="justify-start text-muted gap-[0.625rem] group/button">
+                  className="justify-start text-muted gap-2.5 group/button">
                   <NavLink to={link.url} onClick={() => setIsOpen(false)}>
                     {({ isActive }) => (
                       <>

@@ -609,6 +609,62 @@ paths:
                 items:
                   type: string
                   example: "Изменение цены"
+  /api/search:
+    get:
+      summary: Поиск документов/бюллетеней/новостей
+      operationId: search
+      tags:
+        - Поиск
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Запрос для поиска
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество результатов на странице
+          schema:
+            type: integer
+            example: 10
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - totalPages
+                  - totalResults
+                  - nextPage
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/SearchResult"
+                  totalPages:
+                    type: integer
+                    example: 10
+                  totalResults:
+                    type: integer
+                    example: 300
+                  nextPage:
+                    oneOf:
+                      - type: integer
+                        example: 1
+                      - type: boolean
+                        example: false
 components:
   schemas:
     User:
@@ -841,6 +897,31 @@ components:
       properties:
         message:
           type: string
+    SearchResult:
+      type: object
+      required:
+        - id
+        - title
+        - type
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Ключевая ставка достигла 30%"
+        type:
+          type: string
+          enum:
+            - news
+            - document
+            - bulletin
+        description:
+          type: string
+          example: "Деняк нет, но вы держитесь"
+        fileUrl:
+          type: string
+          example: "/path/to/file.pdf"
   securitySchemes:
     bearerAuth:
       type: http

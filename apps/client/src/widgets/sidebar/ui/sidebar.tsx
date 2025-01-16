@@ -20,7 +20,7 @@ export function Sidebar({ className, ...props }: SidebarProps) {
               key={link.url}
               size="sm"
               asChild
-              className="justify-start text-muted gap-[0.625rem] group">
+              className="justify-start text-muted gap-2.5 group">
               <NavLink
                 to={link.url}
                 target={link.isExternal ? "_blank" : undefined}>
