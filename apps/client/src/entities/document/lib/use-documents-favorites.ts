@@ -2,14 +2,13 @@ import { apiClient, schemas } from "@/shared/api/client";
 import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { queryClient } from "@/shared/config/query-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getFavoritesInfiniteQueryOptions } from "../api/favorites-query";
 import { z } from "zod";
+import { getDocumentsInfiniteQueryOptions } from "../api/documents-query";
+import { DocumentsLimits } from "../constants/documents-limits";
 
-type UseFavoritesProps = {
-  limit?: number;
-};
+export function useDocumentsFavorites() {
+  const queryKey = "favorites";
 
-export function useFavorites(params?: UseFavoritesProps) {
   const { data: user } = useQuery(getSessionQueryOptions());
 
   function isFavorite(id: string) {
@@ -23,8 +22,10 @@ export function useFavorites(params?: UseFavoritesProps) {
       await Promise.all([
         queryClient.cancelQueries(getSessionQueryOptions()),
         queryClient.cancelQueries(
-          getFavoritesInfiniteQueryOptions({
-            limit: params?.limit,
+          getDocumentsInfiniteQueryOptions({
+            // ...params,
+            limit: DocumentsLimits[queryKey],
+            queryKey,
             page: 1,
           })
         ),
@@ -34,8 +35,10 @@ export function useFavorites(params?: UseFavoritesProps) {
         getSessionQueryOptions().queryKey
       );
       const previousFavorites = queryClient.getQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey
       );
@@ -49,8 +52,10 @@ export function useFavorites(params?: UseFavoritesProps) {
       });
 
       queryClient.setQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey,
         (oldData) => {
@@ -79,8 +84,10 @@ export function useFavorites(params?: UseFavoritesProps) {
         context?.previousSession
       );
       queryClient.setQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey,
         context?.previousFavorites
@@ -90,8 +97,10 @@ export function useFavorites(params?: UseFavoritesProps) {
       // Инвалидируем оба запроса
       queryClient.invalidateQueries(getSessionQueryOptions());
       queryClient.invalidateQueries(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         })
       );
@@ -105,8 +114,10 @@ export function useFavorites(params?: UseFavoritesProps) {
       await Promise.all([
         queryClient.cancelQueries(getSessionQueryOptions()),
         queryClient.cancelQueries(
-          getFavoritesInfiniteQueryOptions({
-            limit: params?.limit,
+          getDocumentsInfiniteQueryOptions({
+            // ...params,
+            limit: DocumentsLimits[queryKey],
+            queryKey,
             page: 1,
           })
         ),
@@ -116,8 +127,10 @@ export function useFavorites(params?: UseFavoritesProps) {
         getSessionQueryOptions().queryKey
       );
       const previousFavorites = queryClient.getQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey
       );
@@ -131,8 +144,10 @@ export function useFavorites(params?: UseFavoritesProps) {
       });
 
       queryClient.setQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey,
         (oldData) => {
@@ -157,8 +172,10 @@ export function useFavorites(params?: UseFavoritesProps) {
         context?.previousSession
       );
       queryClient.setQueryData(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         }).queryKey,
         context?.previousFavorites
@@ -167,8 +184,10 @@ export function useFavorites(params?: UseFavoritesProps) {
     onSettled: () => {
       queryClient.invalidateQueries(getSessionQueryOptions());
       queryClient.invalidateQueries(
-        getFavoritesInfiniteQueryOptions({
-          limit: params?.limit,
+        getDocumentsInfiniteQueryOptions({
+          // ...params,
+          limit: DocumentsLimits[queryKey],
+          queryKey,
           page: 1,
         })
       );

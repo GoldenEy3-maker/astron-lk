@@ -1,4 +1,4 @@
-import { CurrentBulletins } from "@/entities/bulletin";
+import { CurrentBulletins } from "@/entities/document";
 import { CompanyCard } from "@/entities/company";
 import { CurrentNews } from "@/entities/news";
 import { useDocumentTitle } from "usehooks-ts";

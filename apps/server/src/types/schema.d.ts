@@ -743,7 +743,7 @@ export interface operations {
                         data: components["schemas"]["Favorite"][];
                         nextPage: number | boolean;
                         /** @example 10 */
-                        totalPages?: number;
+                        totalPages: number;
                     };
                 };
             };

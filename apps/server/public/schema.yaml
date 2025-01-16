@@ -284,6 +284,7 @@ paths:
                 required:
                   - data
                   - nextPage
+                  - totalPages
                 properties:
                   data:
                     type: array

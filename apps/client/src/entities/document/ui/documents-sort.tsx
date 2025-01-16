@@ -6,22 +6,23 @@ import {
   SelectItem,
 } from "@/shared/ui/select";
 import { TextMorph } from "@/shared/ui/text-morph";
-import {
-  BulletinsSortKeys,
-  TranslateBulletinsSortKeys,
-} from "../model/bulletins-sort-keys";
 
-type BulletinsSortProps = {
-  sort?: BulletinsSortKeys;
-  onSortChange?: (sort: BulletinsSortKeys) => void;
-  options: BulletinsSortKeys[];
+import {
+  DocumentsSortKeys,
+  TranslateDocumentsSortKeys,
+} from "../model/documents-sort-keys";
+
+type DocumentsSortProps = {
+  sort?: DocumentsSortKeys;
+  onSortChange?: (sort: DocumentsSortKeys) => void;
+  options: DocumentsSortKeys[];
 };
 
-export function BulletinsSort({
+export function DocumentsSort({
   sort,
   onSortChange,
   options,
-}: BulletinsSortProps) {
+}: DocumentsSortProps) {
   return (
     <Select value={sort ?? "latest"} onValueChange={onSortChange}>
       <SelectTrigger
@@ -30,14 +31,14 @@ export function BulletinsSort({
         size="sm">
         <SelectValue>
           <TextMorph as="span">
-            {TranslateBulletinsSortKeys[sort ?? "latest"]}
+            {TranslateDocumentsSortKeys[sort ?? "latest"]}
           </TextMorph>
         </SelectValue>
       </SelectTrigger>
       <SelectContent align="end">
         {options.map((option) => (
           <SelectItem key={option} value={option}>
-            {TranslateBulletinsSortKeys[option]}
+            {TranslateDocumentsSortKeys[option]}
           </SelectItem>
         ))}
       </SelectContent>

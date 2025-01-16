@@ -294,7 +294,7 @@ const endpoints = makeApi([
       .object({
         data: z.array(Favorite),
         nextPage: z.union([z.number(), z.boolean()]),
-        totalPages: z.number().int().optional(),
+        totalPages: z.number().int(),
       })
       .strict(),
     errors: [

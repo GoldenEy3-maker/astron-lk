@@ -5,15 +5,15 @@ import { Popover, PopoverTrigger } from "@/shared/ui/popover";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { DateRange } from "react-day-picker";
 
-type BulletinsDatePickerProps = {
+type DocumentsDatePickerProps = {
   date?: DateRange;
   onDateChange?: (date: DateRange | undefined) => void;
 };
 
-export function BulletinsDatePicker({
+export function DocumentsDatePicker({
   date,
   onDateChange,
-}: BulletinsDatePickerProps) {
+}: DocumentsDatePickerProps) {
   // const [date, setDate] = useState<DateRange | undefined>(undefined);
 
   // useEffect(() => {

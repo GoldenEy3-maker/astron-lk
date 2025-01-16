@@ -1,4 +1,4 @@
-import { Bulletins } from "@/entities/bulletin";
+import { Documents } from "@/entities/document";
 import { useRef } from "react";
 
 export function BulletinsPage() {
@@ -9,11 +9,13 @@ export function BulletinsPage() {
       <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>
         Бюллетени
       </h1>
-      <Bulletins
-        limit={12}
+      <Documents
+        queryKey="bulletins"
         loadMore
         pagination
-        toolBar
+        sorting
+        datePicker
+        categoryFilter
         className="~mt-5/8"
         scrollToRef={scrollToRef}
       />

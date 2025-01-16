@@ -1,13 +1,13 @@
 import { ValueOf } from "@/shared/lib/types/utility";
 
-export const BulletinsSortKeys = {
+export const DocumentsSortKeys = {
   Latest: "latest",
   Oldest: "oldest",
 } as const;
 
-export const TranslateBulletinsSortKeys: Record<BulletinsSortKeys, string> = {
+export type DocumentsSortKeys = ValueOf<typeof DocumentsSortKeys>;
+
+export const TranslateDocumentsSortKeys: Record<DocumentsSortKeys, string> = {
   latest: "Сначала новые",
   oldest: "Сначала старые",
 } as const;
-
-export type BulletinsSortKeys = ValueOf<typeof BulletinsSortKeys>;

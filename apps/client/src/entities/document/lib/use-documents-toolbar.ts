@@ -5,15 +5,15 @@ import {
   parseAsIsoDate,
 } from "nuqs";
 import { DateRange } from "react-day-picker";
-import { BulletinsSortKeys } from "../model/bulletins-sort-keys";
 import { getUTCDate } from "@/shared/lib/get-utc-date";
+import { DocumentsSortKeys } from "../model/documents-sort-keys";
 
-type UseBulletinsToolbarProps = {
+type UseDocumentsToolbarProps = {
   onCategoryUpdate?: () => void;
   onDateUpdate?: () => void;
 };
 
-export function useBulletinsToolbar(params?: UseBulletinsToolbarProps) {
+export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
   const defaultFromDateFilter = getUTCDate(
     new Date().getUTCFullYear(),
     new Date().getUTCMonth(),
@@ -28,7 +28,7 @@ export function useBulletinsToolbar(params?: UseBulletinsToolbarProps) {
 
   const [sort, setSort] = useQueryState(
     "sort",
-    parseAsStringEnum(Object.values(BulletinsSortKeys)).withDefault("latest")
+    parseAsStringEnum(Object.values(DocumentsSortKeys))
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
@@ -45,8 +45,8 @@ export function useBulletinsToolbar(params?: UseBulletinsToolbarProps) {
     params?.onCategoryUpdate?.();
   }
 
-  function onSortChange(newSort: BulletinsSortKeys) {
-    setSort(newSort);
+  function onSortChange(newSort: DocumentsSortKeys) {
+    setSort(newSort === "latest" ? null : newSort);
   }
 
   function onDateChange(newDate: DateRange | undefined) {

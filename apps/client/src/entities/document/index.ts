@@ -1,4 +1,3 @@
 export { Documents } from "./ui/documents";
+export { CurrentBulletins } from "./ui/current-bulletins";
 export { DocumentsList } from "./ui/documents-list";
-export { DocumentCard } from "./ui/document-card";
-export { DocumentCardSkeleton } from "./ui/document-card-skeleton";

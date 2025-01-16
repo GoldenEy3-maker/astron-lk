@@ -3,8 +3,8 @@ import { Button } from "@/shared/ui/button";
 import { Icons } from "@/shared/ui/icons";
 import { Routes } from "@/shared/constants/routes";
 import { Link } from "react-router-dom";
-import { Bulletins } from "./bulletins";
 import { cn } from "@/shared/lib/cn";
+import { Documents } from "./documents";
 
 type CurrentBulletinsProps = {} & React.ComponentProps<"section">;
 
@@ -33,7 +33,8 @@ export function CurrentBulletins({
             на&nbsp;проверенных данных.
           </p>
         </div>
-        <Bulletins
+        <Documents
+          queryKey="bulletins"
           className="m-xl:col-[11/span_9] m-md:col-[15/span_10] md:col-[13/span_12] col-span-full"
           limit={3}
         />

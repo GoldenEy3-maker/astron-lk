@@ -8,7 +8,13 @@ export function DocumentsPage() {
       <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>
         Документы
       </h1>
-      <Documents limit={12} scrollToRef={scrollToRef} className="~mt-1/3" />
+      <Documents
+        scrollToRef={scrollToRef}
+        categoryFilter
+        loadMore
+        pagination
+        className="~mt-1/3"
+      />
     </div>
   );
 }

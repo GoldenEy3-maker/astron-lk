@@ -1,4 +1,4 @@
-import { Favorites } from "@/entities/favorite";
+import { Documents } from "@/entities/document";
 import { useRef } from "react";
 
 export function FavoritesPage() {
@@ -9,7 +9,11 @@ export function FavoritesPage() {
       <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>
         Избранное
       </h1>
-      <Favorites limit={12} scrollToRef={scrollToRef} className="~mt-1/3" />
+      <Documents
+        queryKey="favorites"
+        scrollToRef={scrollToRef}
+        className="~mt-1/3"
+      />
     </div>
   );
 }
