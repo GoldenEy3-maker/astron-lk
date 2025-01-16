@@ -10,8 +10,8 @@ export function NewsPage() {
       </SectionHeader>
       <SectionContent>
         <Socials />
+        <News loadMore limit={10} />
       </SectionContent>
-      <News loadMore limit={10} />
     </Section>
   );
 }

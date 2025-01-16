@@ -6,7 +6,8 @@ const sectionVariants = cva("", {
   variants: {
     space: {
       default: "~space-y-7/12",
-      sm: "space-y-9",
+      lg: "~space-y-6/9",
+      md: "~space-y-4/7",
     },
   },
   defaultVariants: {
