@@ -16,8 +16,7 @@ export function getNewsInfiniteQueryOptions(
         signal,
       }),
     initialPageParam: 1,
-    getNextPageParam: (result) =>
-      typeof result.nextPage !== "boolean" ? result.nextPage : null,
+    getNextPageParam: (result) => result.nextPage || undefined,
     select: (result) => result.pages.flatMap((page) => page.data),
   });
 }

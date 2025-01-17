@@ -10,7 +10,7 @@ bulletinsRouter.get(
     req: Request,
     res: Response<{
       data: Bulletin[];
-      nextPage: number | false;
+      nextPage: number;
       totalPages: number;
     }>
   ) => {
@@ -64,7 +64,7 @@ bulletinsRouter.get(
 
     res.json({
       data: sliced,
-      nextPage: nextPage <= totalPages ? nextPage : false,
+      nextPage: nextPage <= totalPages ? nextPage : 0,
       totalPages,
     });
   }
@@ -75,6 +75,10 @@ bulletinsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
     dbService.get("bulletins").map((bulletin) => bulletin.category)
   );
   res.json(Array.from(categories));
+});
+
+bulletinsRouter.get("/all", (req: Request, res: Response<Bulletin[]>) => {
+  res.json(dbService.get("bulletins"));
 });
 
 export { bulletinsRouter };

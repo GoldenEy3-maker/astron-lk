@@ -176,7 +176,7 @@ const endpoints = makeApi([
       .object({
         data: z.array(Bulletin),
         totalPages: z.number().int(),
-        nextPage: z.union([z.number(), z.boolean()]),
+        nextPage: z.number().int(),
       })
       .strict(),
   },
@@ -213,7 +213,7 @@ const endpoints = makeApi([
       .object({
         data: z.array(Document),
         totalPages: z.number().int(),
-        nextPage: z.union([z.number(), z.boolean()]),
+        nextPage: z.number().int(),
       })
       .strict(),
   },
@@ -242,10 +242,7 @@ const endpoints = makeApi([
       },
     ],
     response: z
-      .object({
-        data: z.array(News),
-        nextPage: z.union([z.number(), z.boolean()]),
-      })
+      .object({ data: z.array(News), nextPage: z.number().int() })
       .strict(),
   },
   {
@@ -296,7 +293,7 @@ const endpoints = makeApi([
         data: z.array(SearchResult),
         totalPages: z.number().int(),
         totalResults: z.number().int(),
-        nextPage: z.union([z.number(), z.boolean()]),
+        nextPage: z.number().int(),
       })
       .strict(),
   },
@@ -334,7 +331,7 @@ const endpoints = makeApi([
     response: z
       .object({
         data: z.array(Favorite),
-        nextPage: z.union([z.number(), z.boolean()]),
+        nextPage: z.number().int(),
         totalPages: z.number().int(),
       })
       .strict(),

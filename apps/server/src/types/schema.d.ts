@@ -770,7 +770,8 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["Favorite"][];
-                        nextPage: number | boolean;
+                        /** @example 1 */
+                        nextPage: number;
                         /** @example 10 */
                         totalPages: number;
                     };
@@ -897,7 +898,8 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["News"][];
-                        nextPage: number | boolean;
+                        /** @example 1 */
+                        nextPage: number;
                     };
                 };
             };
@@ -961,7 +963,8 @@ export interface operations {
                         data: components["schemas"]["Document"][];
                         /** @example 10 */
                         totalPages: number;
-                        nextPage: number | boolean;
+                        /** @example 1 */
+                        nextPage: number;
                     };
                 };
             };
@@ -1019,7 +1022,8 @@ export interface operations {
                         data: components["schemas"]["Bulletin"][];
                         /** @example 10 */
                         totalPages: number;
-                        nextPage: number | boolean;
+                        /** @example 1 */
+                        nextPage: number;
                     };
                 };
             };
@@ -1073,7 +1077,8 @@ export interface operations {
                         totalPages: number;
                         /** @example 300 */
                         totalResults: number;
-                        nextPage: number | boolean;
+                        /** @example 1 */
+                        nextPage: number;
                     };
                 };
             };

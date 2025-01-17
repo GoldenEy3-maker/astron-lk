@@ -10,7 +10,7 @@ documentsRouter.get(
     req: Request,
     res: Response<{
       data: Document[];
-      nextPage: number | false;
+      nextPage: number;
       totalPages: number;
     }>
   ) => {
@@ -36,7 +36,7 @@ documentsRouter.get(
 
     res.json({
       data: documents.slice(startIndex, endIndex),
-      nextPage: nextPage <= totalPages ? nextPage : false,
+      nextPage: nextPage <= totalPages ? nextPage : 0,
       totalPages,
     });
   }
@@ -47,6 +47,10 @@ documentsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
     dbService.get("documents").map((doc) => doc.category)
   );
   res.json(Array.from(categories));
+});
+
+documentsRouter.get("/all", (req: Request, res: Response<Document[]>) => {
+  res.json(dbService.get("documents"));
 });
 
 export { documentsRouter };

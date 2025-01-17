@@ -263,7 +263,7 @@ userRouter.get(
     req: Request,
     res: Response<{
       data: Favorite[];
-      nextPage: number | false;
+      nextPage: number;
       totalPages: number;
     }>
   ) => {
@@ -293,7 +293,7 @@ userRouter.get(
 
     res.json({
       data: favorites.slice(startIndex, endIndex),
-      nextPage: nextPage <= totalPages ? nextPage : false,
+      nextPage: nextPage <= totalPages ? nextPage : 0,
       totalPages,
     });
   }

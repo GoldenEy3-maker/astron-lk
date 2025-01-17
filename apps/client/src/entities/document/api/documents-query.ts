@@ -27,7 +27,7 @@ const DocumentsQueryFn: Record<
     pageParam: number;
   }) => Promise<{
     data: DocumentsQueryFnData[];
-    nextPage: number | boolean;
+    nextPage: number;
     totalPages: number;
   }>
 > = {
@@ -100,8 +100,7 @@ export function getDocumentsInfiniteQueryOptions(
     ],
     queryFn: DocumentsQueryFn[queryKey](params),
     initialPageParam: params?.page ?? 1,
-    getNextPageParam: (result) =>
-      typeof result.nextPage !== "boolean" ? result.nextPage : null,
+    getNextPageParam: (result) => result.nextPage || undefined,
     select: (result) => ({
       documents: result.pages.flatMap((page) => page.data),
       totalPages: result.pages[0].totalPages,

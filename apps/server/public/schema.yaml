@@ -291,11 +291,8 @@ paths:
                     items:
                       $ref: "#/components/schemas/Favorite"
                   nextPage:
-                    oneOf:
-                      - type: integer
-                        example: 1
-                      - type: boolean
-                        example: false
+                    type: integer
+                    example: 1
                   totalPages:
                     type: integer
                     example: 10
@@ -418,11 +415,8 @@ paths:
                     items:
                       $ref: "#/components/schemas/News"
                   nextPage:
-                    oneOf:
-                      - type: integer
-                        example: 1
-                      - type: boolean
-                        example: false
+                    type: integer
+                    example: 1
   /api/news/{id}:
     get:
       summary: Получить новость по ID
@@ -496,11 +490,8 @@ paths:
                     type: integer
                     example: 10
                   nextPage:
-                    oneOf:
-                      - type: integer
-                        example: 1
-                      - type: boolean
-                        example: false
+                    type: integer
+                    example: 1
   /api/documents/categories:
     get:
       summary: Получить список категорий документов
@@ -588,11 +579,8 @@ paths:
                     type: integer
                     example: 10
                   nextPage:
-                    oneOf:
-                      - type: integer
-                        example: 1
-                      - type: boolean
-                        example: false
+                    type: integer
+                    example: 1
   /api/bulletins/categories:
     get:
       summary: Получить список категорий бюллетеней
@@ -660,11 +648,8 @@ paths:
                     type: integer
                     example: 300
                   nextPage:
-                    oneOf:
-                      - type: integer
-                        example: 1
-                      - type: boolean
-                        example: false
+                    type: integer
+                    example: 1
 components:
   schemas:
     User:

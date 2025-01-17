@@ -14,7 +14,7 @@ searchRouter.get(
     req: Request,
     res: Response<{
       data: SearchResult[];
-      nextPage: number | false;
+      nextPage: number;
       totalPages: number;
       totalResults: number;
     }>
@@ -32,7 +32,7 @@ searchRouter.get(
     if (!query) {
       res.json({
         data: [],
-        nextPage: false,
+        nextPage: 0,
         totalPages: 0,
         totalResults: 0,
       });
@@ -104,7 +104,6 @@ searchRouter.get(
           title: res.title,
           fileUrl: (res as Document | Bulletin).file.url,
           type: res.type as "news" | "bulletin" | "document",
-          description: undefined,
         };
       }
     );
@@ -116,7 +115,7 @@ searchRouter.get(
 
     res.json({
       data: result.slice(startIndex, endIndex),
-      nextPage: nextPage <= totalPages ? nextPage : false,
+      nextPage: nextPage <= totalPages ? nextPage : 0,
       totalPages,
       totalResults,
     });

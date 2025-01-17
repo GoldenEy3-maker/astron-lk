@@ -1,8 +1,8 @@
-import { apiClient } from "@/shared/api/client";
 import { useScrollTo } from "@/shared/lib/use-scroll-to";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useQueryState, parseAsString, parseAsInteger } from "nuqs";
 import { useState } from "react";
+import { getSearchInfiniteQueryOptions } from "../api/search-query";
 
 type UseSearchProps = {
   limit: number;
@@ -20,16 +20,7 @@ export function useSearch({ limit, scrollToRef }: UseSearchProps) {
   const { scrollTo } = useScrollTo({ ref: scrollToRef });
 
   const { data, isLoading } = useInfiniteQuery({
-    queryKey: ["search", "query", query, page, limit],
-    queryFn: () => apiClient.search({ queries: { query, page, limit } }),
-    getNextPageParam: (lastPage) =>
-      typeof lastPage.nextPage === "boolean" ? undefined : lastPage.nextPage,
-    initialPageParam: page,
-    select: (data) => ({
-      result: data.pages.flatMap((page) => page.data),
-      totalPages: data.pages[0].totalPages,
-      totalResults: data.pages[0].totalResults,
-    }),
+    ...getSearchInfiniteQueryOptions({ query, page, limit }),
     enabled: !!query,
   });
 
