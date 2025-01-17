@@ -650,6 +650,41 @@ paths:
                   nextPage:
                     type: integer
                     example: 1
+  /api/employee-testing:
+    get:
+      summary: Получить данные тестирования сотрудников
+      operationId: getEmployeeTesting
+      tags:
+        - KPI
+      parameters:
+        - name: period
+          in: query
+          required: true
+          description: Период
+          schema:
+            type: string
+            enum:
+              - all
+              - today
+              - month
+              - quarter
+              - year
+              - prev-year
+              - prev-prev-year
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/EmployeeTesting"
 components:
   schemas:
     User:
@@ -907,6 +942,26 @@ components:
         fileUrl:
           type: string
           example: "/path/to/file.pdf"
+    EmployeeTesting:
+      type: object
+      required:
+        - id
+        - test
+        - name
+        - result
+      properties:
+        id:
+          type: string
+          example: "1"
+        test:
+          type: string
+          example: "Специалист по монтажу"
+        name:
+          type: string
+          example: "Иванов-Петров Кладиславослав"
+        result:
+          type: integer
+          example: 81
   securitySchemes:
     bearerAuth:
       type: http

@@ -103,6 +103,14 @@ const SearchResult = z
     fileUrl: z.string().optional(),
   })
   .strict();
+const EmployeeTesting = z
+  .object({
+    id: z.string(),
+    test: z.string(),
+    name: z.string(),
+    result: z.number().int(),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -131,6 +139,7 @@ export const schemas = {
   Favorite,
   News,
   SearchResult,
+  EmployeeTesting,
   User,
 };
 
@@ -223,6 +232,28 @@ const endpoints = makeApi([
     alias: "getDocumentCategories",
     requestFormat: "json",
     response: z.array(z.string()),
+  },
+  {
+    method: "get",
+    path: "/api/employee-testing",
+    alias: "getEmployeeTesting",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "period",
+        type: "Query",
+        schema: z.enum([
+          "all",
+          "today",
+          "month",
+          "quarter",
+          "year",
+          "prev-year",
+          "prev-prev-year",
+        ]),
+      },
+    ],
+    response: z.object({ data: z.array(EmployeeTesting) }).strict(),
   },
   {
     method: "get",

@@ -310,6 +310,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/employee-testing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные тестирования сотрудников */
+        get: operations["getEmployeeTesting"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -441,6 +458,16 @@ export interface components {
             description?: string;
             /** @example /path/to/file.pdf */
             fileUrl?: string;
+        };
+        EmployeeTesting: {
+            /** @example 1 */
+            id: string;
+            /** @example Специалист по монтажу */
+            test: string;
+            /** @example Иванов-Петров Кладиславослав */
+            name: string;
+            /** @example 81 */
+            result: number;
         };
     };
     responses: never;
@@ -1079,6 +1106,31 @@ export interface operations {
                         totalResults: number;
                         /** @example 1 */
                         nextPage: number;
+                    };
+                };
+            };
+        };
+    };
+    getEmployeeTesting: {
+        parameters: {
+            query: {
+                /** @description Период */
+                period: "all" | "today" | "month" | "quarter" | "year" | "prev-year" | "prev-prev-year";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EmployeeTesting"][];
                     };
                 };
             };
