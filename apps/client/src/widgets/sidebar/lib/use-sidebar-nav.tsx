@@ -20,7 +20,7 @@ export function useSidebarNav() {
           label: "Главная",
         },
         {
-          url: Routes.Tests,
+          url: Routes.EmployeeTesting,
           icon: <Icons.PersonalCard />,
           label: "Тестирование",
         },

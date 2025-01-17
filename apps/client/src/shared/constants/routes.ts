@@ -8,7 +8,7 @@ export const Routes = {
   Search: "/search",
   Favorites: "/favorites",
   Profile: "/profile",
-  Tests: "/tests",
+  EmployeeTesting: "/employee-testing",
   Leads: "/leads",
   Sales: "/sales",
   Booking: "/booking",

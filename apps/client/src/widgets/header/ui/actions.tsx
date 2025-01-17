@@ -15,7 +15,7 @@ export function Actions() {
   const isMobileSheetOpen = useMobileSheetStore((state) => state.isOpen);
 
   return (
-    <div className="flex items-center space-x-1 ~gap-2/4">
+    <div className="flex items-center space-x-2 ~gap-2/3">
       <Button
         asChild
         variant="ghost"

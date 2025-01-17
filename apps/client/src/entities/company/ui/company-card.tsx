@@ -115,9 +115,9 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
           {!isLoading ? (
             <Button
               asChild
-              variant="ghost"
+              variant="link"
               size="sm"
-              className="font-normal ~text-sm/base text-primary">
+              className="font-normal ~text-sm/base p-0">
               <a href={data?.certificate} target="_blank">
                 <Icons.DocumentDownload />
                 <span>Сертификат Партнёра-Строителя</span>

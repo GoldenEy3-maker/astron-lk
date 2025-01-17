@@ -90,6 +90,9 @@ export default {
           DEFAULT: "hsl(var(--border))",
           accent: "hsl(var(--border-accent))",
         },
+        stroke: {
+          DEFAULT: "hsl(var(--stroke))",
+        },
         gold: "hsl(var(--gold))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

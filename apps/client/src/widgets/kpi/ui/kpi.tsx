@@ -1,4 +1,4 @@
-import { EmployTestingCard } from "@/features/employ-testing";
+import { EmployeeTestingCard } from "@/features/employee-testing";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 
 type KpiProps = {} & React.ComponentProps<typeof Section>;
@@ -11,7 +11,7 @@ export function Kpi(props: KpiProps) {
         <span className="text-muted">Результаты выгрузки от 01.12.2024</span>
       </SectionHeader>
       <SectionContent>
-        <EmployTestingCard />
+        <EmployeeTestingCard />
       </SectionContent>
     </Section>
   );

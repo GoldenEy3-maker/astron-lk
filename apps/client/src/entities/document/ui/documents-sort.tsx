@@ -25,10 +25,7 @@ export function DocumentsSort({
 }: DocumentsSortProps) {
   return (
     <Select value={sort ?? "latest"} onValueChange={onSortChange}>
-      <SelectTrigger
-        variant="outline"
-        className="font-normal bg-transparent"
-        size="sm">
+      <SelectTrigger variant="outline" className="font-normal" size="sm">
         <SelectValue>
           <TextMorph as="span">
             {TranslateDocumentsSortKeys[sort ?? "latest"]}

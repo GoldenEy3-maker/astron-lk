@@ -1,8 +1,7 @@
 import { dateFormat } from "@/shared/lib/date-format";
 import { Calendar } from "@/shared/ui/calendar";
 import { Icons } from "@/shared/ui/icons";
-import { Popover, PopoverTrigger } from "@/shared/ui/popover";
-import { PopoverContent } from "@radix-ui/react-popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { DateRange } from "react-day-picker";
 
 type DocumentsDatePickerProps = {
@@ -48,7 +47,7 @@ export function DocumentsDatePicker({
         )}
         <Icons.Calendar />
       </PopoverTrigger>
-      <PopoverContent className="z-20" align="start" sideOffset={4}>
+      <PopoverContent className="!w-auto p-0 z-20" align="start" sideOffset={4}>
         <Calendar
           initialFocus
           mode="range"

@@ -38,9 +38,9 @@ const ProfilePage = lazy(() =>
   }))
 );
 
-const TestsPage = lazy(() =>
-  import("../pages/tests").then((module) => ({
-    default: module.TestsPage,
+const EmployeeTestingPage = lazy(() =>
+  import("../pages/employee-testing").then((module) => ({
+    default: module.EmployeeTestingPage,
   }))
 );
 
@@ -148,9 +148,12 @@ export function createRouter() {
             handle={setCrumbHandle(Routes.Profile, "Профиль")}
           />
           <Route
-            path={Routes.Tests}
-            element={<TestsPage />}
-            handle={setCrumbHandle(Routes.Tests, "Тестирование сотрудников")}
+            path={Routes.EmployeeTesting}
+            element={<EmployeeTestingPage />}
+            handle={setCrumbHandle(
+              Routes.EmployeeTesting,
+              "Тестирование сотрудников"
+            )}
           />
           <Route
             path={Routes.Leads}
