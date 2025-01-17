@@ -24,9 +24,9 @@ export function RootErrorBoundary() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2 items-center justify-center h-screen">
       <h1>Что-то пошло не так! 😩</h1>
-      <pre>{renderError()}</pre>
+      <pre>Ошибка: {renderError()}</pre>
       <Button onClick={() => window.location.reload()}>
         Перезагрузить приложение
       </Button>
