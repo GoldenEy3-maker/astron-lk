@@ -6,7 +6,7 @@ import {
 } from "nuqs";
 import { DateRange } from "react-day-picker";
 import { getUTCDate } from "@/shared/lib/get-utc-date";
-import { DocumentsSortKeys } from "../model/documents-sort-keys";
+import { DocumentsSortKeyMap } from "../constants/documents-sort-maps";
 
 type UseDocumentsToolbarProps = {
   onCategoryUpdate?: () => void;
@@ -28,7 +28,7 @@ export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
 
   const [sort, setSort] = useQueryState(
     "sort",
-    parseAsStringEnum(Object.values(DocumentsSortKeys))
+    parseAsStringEnum(Object.values(DocumentsSortKeyMap))
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
@@ -45,13 +45,13 @@ export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
     params?.onCategoryUpdate?.();
   }
 
-  function onSortChange(newSort: DocumentsSortKeys) {
+  function onSortChange(newSort: DocumentsSortKeyMap) {
     setSort(newSort === "latest" ? null : newSort);
   }
 
   function onDateChange(newDate: DateRange | undefined) {
-    setFromDateFilter(newDate?.from ? newDate.from : null);
-    setToDateFilter(newDate?.to ? newDate.to : null);
+    setFromDateFilter(newDate?.from ?? null);
+    setToDateFilter(newDate?.to ?? null);
     params?.onDateUpdate?.();
   }
 

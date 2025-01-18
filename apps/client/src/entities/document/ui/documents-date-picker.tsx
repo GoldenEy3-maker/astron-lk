@@ -53,7 +53,6 @@ export function DocumentsDatePicker({
           mode="range"
           selected={date}
           onSelect={onDateChange}
-          defaultMonth={date?.from}
           numberOfMonths={2}
         />
       </PopoverContent>

@@ -1,14 +1,12 @@
 import { Button } from "@/shared/ui/button";
-import { TextMorph } from "@/shared/ui/text-morph";
 import { DocumentsCategoryFilter } from "./documents-category-filter";
 import { Pagination } from "@/widgets/pagination";
 import { useDocuments } from "../lib/use-documents";
 import { DocumentsList } from "./documents-list";
 import { GetDocumentsQueryKeys } from "../api/documents-query";
 import { DocumentsDatePicker } from "./documents-date-picker";
-import { getUTCDateFromDate } from "@/shared/lib/get-utc-date";
 import { DocumentsSort } from "./documents-sort";
-import { DocumentsSortKeys } from "../model/documents-sort-keys";
+import { DocumentsSortKeyMap } from "../constants/documents-sort-maps";
 import { DocumentsLimits } from "../constants/documents-limits";
 
 type DocumentsProps = {
@@ -63,10 +61,8 @@ export function Documents({
           {datePicker ? (
             <DocumentsDatePicker
               date={{
-                from: fromDateFilter
-                  ? getUTCDateFromDate(fromDateFilter)
-                  : undefined,
-                to: toDateFilter ? getUTCDateFromDate(toDateFilter) : undefined,
+                from: fromDateFilter ?? undefined,
+                to: toDateFilter ?? undefined,
               }}
               // defaultFromDate={
               //   fromDateFilter ? getUTCDateFromDate(fromDateFilter) : undefined
@@ -82,7 +78,7 @@ export function Documents({
             <DocumentsSort
               sort={sort ?? undefined}
               onSortChange={onSortChange}
-              options={Object.values(DocumentsSortKeys)}
+              options={Object.values(DocumentsSortKeyMap)}
             />
           ) : null}
           {categoryFilter ? (
@@ -107,9 +103,7 @@ export function Documents({
             variant="outline-primary"
             disabled={isFetchingNextPage}
             onClick={onLoadMore}>
-            <TextMorph as="span">
-              {isFetchingNextPage ? "Загружаем..." : "Показать еще"}
-            </TextMorph>
+            {isFetchingNextPage ? "Загружаем..." : "Показать еще"}
           </Button>
         </div>
       ) : null}

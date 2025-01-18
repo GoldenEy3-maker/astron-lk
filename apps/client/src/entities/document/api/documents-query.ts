@@ -2,7 +2,7 @@ import { apiClient, schemas } from "@/shared/api/client";
 import { queryClient } from "@/shared/config/query-client";
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { z } from "zod";
-import { DocumentsSortKeys } from "../model/documents-sort-keys";
+import { DocumentsSortKeyMap } from "../constants/documents-sort-maps";
 
 export type GetDocumentsQueryKeys = "documents" | "bulletins" | "favorites";
 export type DocumentsQueryFnData =
@@ -15,7 +15,7 @@ export type GetDocumentsQueryOptionsParams = {
   limit?: number;
   category?: string;
   page?: number;
-  sort?: DocumentsSortKeys;
+  sort?: DocumentsSortKeyMap;
   fromDate?: string;
   toDate?: string;
 };
@@ -131,7 +131,7 @@ type ResetDocumentsQueryPagesParams = {
   page: number;
   category?: string;
   limit?: number;
-  sort?: DocumentsSortKeys;
+  sort?: DocumentsSortKeyMap;
   fromDate?: string;
   toDate?: string;
 };

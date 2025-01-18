@@ -5,17 +5,15 @@ import {
   SelectContent,
   SelectItem,
 } from "@/shared/ui/select";
-import { TextMorph } from "@/shared/ui/text-morph";
-
 import {
-  DocumentsSortKeys,
-  TranslateDocumentsSortKeys,
-} from "../model/documents-sort-keys";
+  DocumentsSortKeyMap,
+  DocumentsSortKeyToValueMap,
+} from "../constants/documents-sort-maps";
 
 type DocumentsSortProps = {
-  sort?: DocumentsSortKeys;
-  onSortChange?: (sort: DocumentsSortKeys) => void;
-  options: DocumentsSortKeys[];
+  sort?: DocumentsSortKeyMap;
+  onSortChange?: (sort: DocumentsSortKeyMap) => void;
+  options: DocumentsSortKeyMap[];
 };
 
 export function DocumentsSort({
@@ -26,16 +24,12 @@ export function DocumentsSort({
   return (
     <Select value={sort ?? "latest"} onValueChange={onSortChange}>
       <SelectTrigger variant="outline" className="font-normal" size="sm">
-        <SelectValue>
-          <TextMorph as="span">
-            {TranslateDocumentsSortKeys[sort ?? "latest"]}
-          </TextMorph>
-        </SelectValue>
+        <SelectValue />
       </SelectTrigger>
       <SelectContent align="end">
         {options.map((option) => (
           <SelectItem key={option} value={option}>
-            {TranslateDocumentsSortKeys[option]}
+            {DocumentsSortKeyToValueMap[option]}
           </SelectItem>
         ))}
       </SelectContent>
