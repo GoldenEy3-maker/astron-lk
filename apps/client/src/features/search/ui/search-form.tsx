@@ -33,7 +33,7 @@ export function SearchForm({
           placeholder="Поиск"
           wrapperClassName="w-full"
           className="w-full h-12 pr-28"
-          trailingIconClassName="right-[4.6rem]"
+          trailingIconClassName="right-[5.4rem]"
           onClear={() => onChange("")}
         />
         <div className="absolute right-0 inset-y-0">
@@ -42,7 +42,7 @@ export function SearchForm({
             size="sm"
             type="submit"
             disabled={isLoading}
-            className="relative h-full before:absolute before:inset-x-0 before:inset-y-3 before:border-l before:border-border/40 rounded-l-none">
+            className="relative pr-6 pl-3 h-full before:absolute before:inset-x-0 before:inset-y-3 before:border-l before:border-border/40 rounded-l-none">
             Найти
           </Button>
         </div>

@@ -20,7 +20,7 @@ function Calendar({
       locale={ru}
       className={cn("p-3 bg-card rounded-main shadow-md", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
+        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-6 sm:space-y-0",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
         caption_label: "text-sm capitalize font-medium",
