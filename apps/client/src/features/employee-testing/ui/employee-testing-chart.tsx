@@ -17,7 +17,7 @@ export function EmployeeTestingChart<T>({
   isDestructive,
 }: EmployTestingChartProps<T>) {
   return (
-    <PieChart width={400} height={215} className="!~h-[9.375rem]/[13.4375rem]">
+    <PieChart width={450} height={215} className="!~h-[9.375rem]/[13.4375rem]">
       <Pie
         data={data}
         dataKey={dataKey}
@@ -25,7 +25,7 @@ export function EmployeeTestingChart<T>({
         cx="50%"
         cy="40%"
         innerRadius={65}
-        outerRadius={77}
+        outerRadius={78}
         strokeLinecap="round"
         strokeLinejoin="round"
         paddingAngle={10}
@@ -50,7 +50,7 @@ export function EmployeeTestingChart<T>({
           if (currentLine.length > 0) lines.push(currentLine);
 
           const RADIAN = Math.PI / 180;
-          let radius = params.outerRadius + 80;
+          let radius = params.outerRadius + 85;
 
           if (params.midAngle > 180 && params.midAngle < 360)
             radius = params.outerRadius;
@@ -70,7 +70,7 @@ export function EmployeeTestingChart<T>({
               fill="currentColor"
               textAnchor="middle"
               dominantBaseline="middle"
-              className="animate-in fade-in duration-300">
+              className="animate-in fade-in select-none duration-300">
               {lines
                 .filter((line) => line !== "")
                 .map((line, index) => (

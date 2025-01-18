@@ -2,7 +2,7 @@ import { capitalize } from "@/shared/lib/capitalize";
 import { ValueOf } from "@/shared/lib/types/utility";
 import { getQuarter } from "date-fns";
 
-export const EmployeeTestingPeriodKeys = {
+export const DataPeriodSelectKeyMap = {
   all: "all",
   today: "today",
   month: "month",
@@ -12,12 +12,10 @@ export const EmployeeTestingPeriodKeys = {
   prevPrevYear: "prev-prev-year",
 } as const;
 
-export type EmployeeTestingPeriodKeys = ValueOf<
-  typeof EmployeeTestingPeriodKeys
->;
+export type DataPeriodSelectKeyMap = ValueOf<typeof DataPeriodSelectKeyMap>;
 
-export const TranslateEmployeeTestingPeriodValues: Record<
-  EmployeeTestingPeriodKeys,
+export const DataPeriodSelectKeyToValueMap: Record<
+  DataPeriodSelectKeyMap,
   string
 > = {
   all: "За все время",
