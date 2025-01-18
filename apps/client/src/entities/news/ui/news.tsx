@@ -4,7 +4,6 @@ import { NewsCard } from "./news-card";
 import { cn } from "@/shared/lib/cn";
 import { NewsCardSkeleton } from "./news-card-skeleton";
 import { Button } from "@/shared/ui/button";
-import { TextMorph } from "@/shared/ui/text-morph";
 
 type NewsProps = {
   limit: number;
@@ -33,9 +32,7 @@ export function News({ limit, className, loadMore, ...props }: NewsProps) {
             variant="outline-primary"
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}>
-            <TextMorph as="span">
-              {isFetchingNextPage ? "Загрузка..." : "Показать еще"}
-            </TextMorph>
+            {isFetchingNextPage ? "Загрузка..." : "Показать еще"}
           </Button>
         </div>
       ) : null}

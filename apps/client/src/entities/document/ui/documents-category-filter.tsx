@@ -10,7 +10,6 @@ import {
   getDocumentsCategoriesQueryOptions,
   GetDocumentsQueryKeys,
 } from "../api/documents-query";
-import { TextMorph } from "@/shared/ui/text-morph";
 
 type DocumentsCategoryFilterProps = {
   queryKey: GetDocumentsQueryKeys;
@@ -28,11 +27,7 @@ export function DocumentsCategoryFilter({
   return (
     <Select value={category ?? "all"} onValueChange={onCategoryChange}>
       <SelectTrigger variant="link" className="font-normal" size="sm">
-        <SelectValue>
-          <TextMorph as="span">
-            {category === "all" ? "Все категории" : category ?? "Все категории"}
-          </TextMorph>
-        </SelectValue>
+        <SelectValue />
       </SelectTrigger>
       <SelectContent align="end">
         <SelectItem value="all">Все категории</SelectItem>

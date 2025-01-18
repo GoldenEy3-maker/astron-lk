@@ -9,8 +9,6 @@ import {
 import { Link, useMatches } from "react-router-dom";
 import { Fragment } from "react";
 import { CrumbLabel, useBreadcrumbsStore } from "../model/breadcrumbs-store";
-import { AnimatePresence, motion } from "motion/react";
-import { cn } from "@/shared/lib/cn";
 
 export type CrumbHandle =
   | {
@@ -57,37 +55,27 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
         : crumb;
     });
 
+  if (crumbs.length === 1) return null;
+
   return (
-    <AnimatePresence>
-      {crumbs.length > 1 ? (
-        <motion.div
-          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-          animate={{ opacity: 1, height: "auto", marginTop: "1.5rem" }}
-          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-          className={cn(className)}>
-          <UiBreadcrumbs>
-            <BreadcrumbList>
-              {crumbs.slice(0, -1).map((crumb) => (
-                <Fragment key={crumb.href}>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link to={crumb.href}>
-                        {crumb.label ?? "Загрузка..."}
-                      </Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                </Fragment>
-              ))}
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {crumbs[crumbs.length - 1].label ?? "Загрузка..."}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </UiBreadcrumbs>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+    <UiBreadcrumbs className={className}>
+      <BreadcrumbList>
+        {crumbs.slice(0, -1).map((crumb) => (
+          <Fragment key={crumb.href}>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to={crumb.href}>{crumb.label ?? "Загрузка..."}</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </Fragment>
+        ))}
+        <BreadcrumbItem>
+          <BreadcrumbPage>
+            {crumbs[crumbs.length - 1].label ?? "Загрузка..."}
+          </BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </UiBreadcrumbs>
   );
 }
