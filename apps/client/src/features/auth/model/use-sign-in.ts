@@ -3,7 +3,7 @@ import { apiClient, schemas } from "@/shared/api/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
-import { useSessionStore } from "@/shared/model/session-store";
+import { useSessionStore } from "@/shared/store/session-store";
 
 type UseSignInProps = {
   onSuccess?: () => void;

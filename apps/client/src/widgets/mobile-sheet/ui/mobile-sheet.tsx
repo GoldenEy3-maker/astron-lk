@@ -1,6 +1,6 @@
 import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { cn } from "@/shared/lib/cn";
-import { useMobileSheetStore } from "@/shared/model/mobile-sheet-store";
+import { useMobileSheetStore } from "@/shared/store/mobile-sheet-store";
 import { Button } from "@/shared/ui/button";
 import {
   Sheet,

@@ -4,7 +4,7 @@ import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { UserPopover } from "./user-popover";
 import { MobileSheet } from "@/widgets/mobile-sheet";
-import { useMobileSheetStore } from "@/shared/model/mobile-sheet-store";
+import { useMobileSheetStore } from "@/shared/store/mobile-sheet-store";
 import { cn } from "@/shared/lib/cn";
 import { FavoritesAction } from "./favorites-action";
 import { useQuery } from "@tanstack/react-query";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useSessionStore } from "../model/session-store";
+import { useSessionStore } from "../store/session-store";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? "http://localhost:3000",

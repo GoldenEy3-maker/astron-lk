@@ -3,7 +3,7 @@ import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { Actions } from "./actions";
 import { Breadcrumbs } from "@/widgets/breadcrumbs";
-import { useMobileSheetStore } from "@/shared/model/mobile-sheet-store";
+import { useMobileSheetStore } from "@/shared/store/mobile-sheet-store";
 import { cn } from "@/shared/lib/cn";
 
 export function Header() {
@@ -35,7 +35,7 @@ export function Header() {
           <Actions />
         </header>
       </div>
-      <Breadcrumbs className="col-[main]" />
+      <Breadcrumbs className="col-[main] mt-6" />
     </div>
   );
 }
