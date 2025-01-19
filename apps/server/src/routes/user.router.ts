@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import tokenService from "../services/token.service";
 import mailService from "../services/mail.service";
@@ -6,7 +6,7 @@ import dbService from "../services/db.service";
 import passwordService from "../services/password.service";
 import { Company, Error, Favorite, Session, Success } from "../types/globals";
 
-const userRouter = express.Router();
+const userRouter = Router();
 
 userRouter.post(
   "/sign-in",

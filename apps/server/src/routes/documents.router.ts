@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
 import { Document } from "../types/globals";
 
-const documentsRouter = express.Router();
+const documentsRouter = Router();
 
 documentsRouter.get(
   "/",

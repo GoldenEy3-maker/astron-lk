@@ -1,5 +1,6 @@
 import { schemas } from "@/shared/api/client";
 import { cn } from "@/shared/lib/cn";
+import { Skeleton } from "@/shared/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -11,10 +12,14 @@ import {
 import { z } from "zod";
 
 type EmployeeTestingTableProps = {
-  data: z.infer<typeof schemas.EmployeeTesting>[];
+  data?: z.infer<typeof schemas.EmployeeTesting>[];
+  isLoading?: boolean;
 };
 
-export function EmployeeTestingTable({ data }: EmployeeTestingTableProps) {
+export function EmployeeTestingTable({
+  data,
+  isLoading,
+}: EmployeeTestingTableProps) {
   return (
     <Table>
       <TableHeader>
@@ -27,24 +32,43 @@ export function EmployeeTestingTable({ data }: EmployeeTestingTableProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((item) => (
-          <TableRow key={item.id}>
-            <TableCell>{item.test}</TableCell>
-            <TableCell>{item.name}</TableCell>
-            <TableCell
-              className={cn("text-success", {
-                "text-destructive": item.result < 80,
-              })}>
-              {item.result}%
-            </TableCell>
-            <TableCell
-              className={cn("text-success whitespace-nowrap", {
-                "text-destructive": item.result < 80,
-              })}>
-              {item.result >= 80 ? "Пройден" : "Не пройден"}
-            </TableCell>
-          </TableRow>
-        ))}
+        {!isLoading && data
+          ? data.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>{item.test}</TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell
+                  className={cn("text-success", {
+                    "text-destructive": item.result < 80,
+                  })}>
+                  {item.result}%
+                </TableCell>
+                <TableCell
+                  className={cn("text-success whitespace-nowrap", {
+                    "text-destructive": item.result < 80,
+                  })}>
+                  {item.result >= 80 ? "Пройден" : "Не заcчитан"}
+                </TableCell>
+              </TableRow>
+            ))
+          : Array(3)
+              .fill(null)
+              .map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Skeleton className="h-4 ~w-24/60" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 ~w-24/60" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 ~w-14/20" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 ~w-16/20" />
+                  </TableCell>
+                </TableRow>
+              ))}
       </TableBody>
     </Table>
   );

@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
 import { Error, News } from "../types/globals";
 
-const newsRouter = express.Router();
+const newsRouter = Router();
 
 newsRouter.get(
   "/",

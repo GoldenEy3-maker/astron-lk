@@ -310,7 +310,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/employee-testing": {
+    "/api/kpi/employee-testing": {
         parameters: {
             query?: never;
             header?: never;
@@ -1129,9 +1129,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        data: components["schemas"]["EmployeeTesting"][];
-                    };
+                    "application/json": components["schemas"]["EmployeeTesting"][];
                 };
             };
         };

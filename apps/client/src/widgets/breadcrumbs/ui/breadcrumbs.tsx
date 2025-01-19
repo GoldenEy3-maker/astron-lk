@@ -55,7 +55,7 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
         : crumb;
     });
 
-  if (crumbs.length === 1) return null;
+  if (crumbs.length === 0 || crumbs.length === 1) return null;
 
   return (
     <UiBreadcrumbs className={className}>
@@ -72,7 +72,7 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
         ))}
         <BreadcrumbItem>
           <BreadcrumbPage>
-            {crumbs[crumbs.length - 1].label ?? "Загрузка..."}
+            {crumbs[crumbs.length - 1]?.label ?? "Загрузка..."}
           </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>

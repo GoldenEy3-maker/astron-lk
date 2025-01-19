@@ -6,6 +6,7 @@ import { userRouter } from "./routes/user.router";
 import { documentsRouter } from "./routes/documents.router";
 import { bulletinsRouter } from "./routes/bulletins.router";
 import { searchRouter } from "./routes/search.router";
+import { kpiRouter } from "./routes/kpi.router";
 
 const app: Express = express();
 
@@ -72,5 +73,7 @@ app.use("/api/documents", documentsRouter);
 app.use("/api/bulletins", bulletinsRouter);
 
 app.use("/api/search", searchRouter);
+
+app.use("/api/kpi", kpiRouter);
 
 export default app;

@@ -6,12 +6,33 @@ import {
 import { Bulletin, Company, Document, News, User } from "../types/globals";
 import passwordService from "./password.service";
 
+type Employee = {
+  id: string;
+  name: string;
+};
+
+type Test = {
+  id: string;
+  name: string;
+};
+
+type EmployeeTest = {
+  id: string;
+  employeeId: string;
+  testId: string;
+  result: number;
+  createdAt: string;
+};
+
 type DBData = {
   users: User[];
   news: News[];
   companies: Company[];
   documents: Document[];
   bulletins: Bulletin[];
+  employees: Employee[];
+  tests: Test[];
+  employeeTests: EmployeeTest[];
 };
 
 export default new (class DBService {
@@ -21,6 +42,9 @@ export default new (class DBService {
     companies: [],
     documents: [],
     bulletins: [],
+    employees: [],
+    tests: [],
+    employeeTests: [],
   };
 
   constructor() {
@@ -2074,6 +2098,154 @@ export default new (class DBService {
           createdAt: "2025-11-13T19:23:02.241Z",
           file: { url: "/test.pdf", size: 264259 },
           category: "Новые технологии",
+        },
+      ],
+      employees: [
+        {
+          id: "1",
+          name: "Иванов-Петров Кладиславослав",
+        },
+        {
+          id: "2",
+          name: "Овощов-Ягодкин Помидорослав",
+        },
+        {
+          id: "3",
+          name: "Бахчёв-Ягодов Арбузослав",
+        },
+        {
+          id: "4",
+          name: "Травин Бананослав",
+        },
+        {
+          id: "5",
+          name: "Продаванов Менеджерослав",
+        },
+        {
+          id: "6",
+          name: "Инженеров Расчётослав",
+        },
+        {
+          id: "7",
+          name: "Партнёров Астронослав",
+        },
+        {
+          id: "8",
+          name: "Расчётов Инженерослав",
+        },
+      ],
+      tests: [
+        {
+          id: "1",
+          name: "Специалист по монтажу",
+        },
+        {
+          id: "2",
+          name: "Специалист по продажам",
+        },
+        {
+          id: "3",
+          name: "Инженер-расчетчик",
+        },
+      ],
+      employeeTests: [
+        {
+          id: "1",
+          employeeId: "1",
+          testId: "1",
+          result: 81,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "2",
+          employeeId: "2",
+          testId: "2",
+          result: 90,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "3",
+          employeeId: "3",
+          testId: "3",
+          result: 79,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "4",
+          employeeId: "4",
+          testId: "3",
+          result: 54,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "5",
+          employeeId: "5",
+          testId: "2",
+          result: 80,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "6",
+          employeeId: "6",
+          testId: "1",
+          result: 95,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "7",
+          employeeId: "7",
+          testId: "2",
+          result: 82,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "8",
+          employeeId: "8",
+          testId: "1",
+          result: 68,
+          createdAt: "2025-01-01T00:00:00.000Z",
+        },
+        {
+          id: "9",
+          employeeId: "1",
+          testId: "1",
+          result: 95,
+          createdAt: "2024-01-01T00:00:00.000Z",
+        },
+        {
+          id: "10",
+          employeeId: "2",
+          testId: "2",
+          result: 82,
+          createdAt: "2024-01-01T00:00:00.000Z",
+        },
+        {
+          id: "11",
+          employeeId: "8",
+          testId: "3",
+          result: 70,
+          createdAt: "2024-01-01T00:00:00.000Z",
+        },
+        {
+          id: "12",
+          employeeId: "1",
+          testId: "1",
+          result: 12,
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: "13",
+          employeeId: "2",
+          testId: "2",
+          result: 90,
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: "14",
+          employeeId: "8",
+          testId: "3",
+          result: 85,
+          createdAt: new Date().toISOString(),
         },
       ],
     };

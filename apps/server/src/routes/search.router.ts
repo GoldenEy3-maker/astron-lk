@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
 import { Bulletin, Document, News, SearchResult } from "../types/globals";
 
-const searchRouter = express.Router();
+const searchRouter = Router();
 
 function prepareSearchString(str: string) {
   return str.toLowerCase().trim();

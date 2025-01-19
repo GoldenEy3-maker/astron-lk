@@ -11,9 +11,13 @@ import {
 } from "./select";
 
 type DataPeriodSelectProps = {
-  value: DataPeriodSelectKeyMap;
-  onValueChange: (value: DataPeriodSelectKeyMap) => void;
-} & Omit<React.ComponentProps<typeof Select>, "value" | "onValueChange">;
+  value?: DataPeriodSelectKeyMap;
+  onValueChange?: (value: DataPeriodSelectKeyMap) => void;
+  defaultValue?: DataPeriodSelectKeyMap;
+} & Omit<
+  React.ComponentProps<typeof Select>,
+  "value" | "onValueChange" | "defaultValue"
+>;
 
 export function DataPeriodSelect({
   value,

@@ -650,7 +650,7 @@ paths:
                   nextPage:
                     type: integer
                     example: 1
-  /api/employee-testing:
+  /api/kpi/employee-testing:
     get:
       summary: Получить данные тестирования сотрудников
       operationId: getEmployeeTesting
@@ -677,14 +677,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/EmployeeTesting"
+                type: array
+                items:
+                  $ref: "#/components/schemas/EmployeeTesting"
 components:
   schemas:
     User:

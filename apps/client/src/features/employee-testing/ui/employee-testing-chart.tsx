@@ -1,96 +1,121 @@
 import { cn } from "@/shared/lib/cn";
-import { Cell, Pie } from "recharts";
-
+import { useId } from "react";
+import { Cell, Pie, PieLabelRenderProps, PieProps } from "recharts";
 import { PieChart } from "recharts";
 
-type EmployTestingChartProps<T> = {
-  data: T[];
-  dataKey: string;
-  nameKey: string;
-  isDestructive: (entry: T) => boolean;
+type EmployTestingChartProps<T extends Record<string, unknown>> = {
+  data?: T[];
+  isLoading?: boolean;
+  labelKey: keyof T;
+  isCompletedKey?: keyof T;
 };
 
-export function EmployeeTestingChart<T>({
+export function EmployeeTestingChart<T extends Record<string, unknown>>({
+  labelKey,
+  isCompletedKey,
+  isLoading,
   data,
-  dataKey,
-  nameKey,
-  isDestructive,
 }: EmployTestingChartProps<T>) {
+  const key = useId();
+
+  const pieProps: React.PropsWithoutRef<Omit<PieProps, "dataKey">> = {
+    cx: "50%",
+    cy: "40%",
+    innerRadius: 65,
+    outerRadius: 78,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    paddingAngle: 10,
+    cornerRadius: 10,
+    startAngle: -25,
+    labelLine: false,
+  };
+
+  const pieLabel = (params: PieLabelRenderProps & T) => {
+    const words = (params[labelKey] as string).split(" ");
+    const lines = [];
+    let currentLine = "";
+
+    words.forEach((word: string) => {
+      if (currentLine.length + word.length > 10) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine += (currentLine.length === 0 ? "" : " ") + word;
+      }
+    });
+
+    if (currentLine.length > 0) lines.push(currentLine);
+
+    const RADIAN = Math.PI / 180;
+    let radius = Number(params.outerRadius) + 85;
+
+    if (params.midAngle > 180 && params.midAngle < 360)
+      radius = Number(params.outerRadius);
+
+    const x = Number(params.cx) + radius * Math.cos(-params.midAngle * RADIAN);
+    const y = Number(params.cy) + radius * Math.sin(-params.midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="currentColor"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        className="animate-in fade-in select-none duration-300">
+        {lines
+          .filter((line) => line !== "")
+          .map((line, index) => (
+            <tspan x={x} dy={20} key={index}>
+              {line}
+            </tspan>
+          ))}
+      </text>
+    );
+  };
+
   return (
-    <PieChart width={450} height={215} className="!~h-[9.375rem]/[13.4375rem]">
-      <Pie
-        data={data}
-        dataKey={dataKey}
-        nameKey={nameKey}
-        cx="50%"
-        cy="40%"
-        innerRadius={65}
-        outerRadius={78}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        paddingAngle={10}
-        cornerRadius={10}
-        startAngle={-25}
-        // endAngle={444}
-        labelLine={false}
-        label={(params) => {
-          const words = params[nameKey].split(" ");
-          const lines = [];
-          let currentLine = "";
-
-          words.forEach((word: string) => {
-            if (currentLine.length + word.length > 10) {
-              lines.push(currentLine);
-              currentLine = word;
-            } else {
-              currentLine += (currentLine.length === 0 ? "" : " ") + word;
-            }
-          });
-
-          if (currentLine.length > 0) lines.push(currentLine);
-
-          const RADIAN = Math.PI / 180;
-          let radius = params.outerRadius + 85;
-
-          if (params.midAngle > 180 && params.midAngle < 360)
-            radius = params.outerRadius;
-
-          const x = params.cx + radius * Math.cos(-params.midAngle * RADIAN);
-          // const y =
-          //   cy +
-          //   radius * Math.sin(-midAngle * RADIAN) +
-          //   (midAngle > 180 ? 0 : 0);
-
-          const y = params.cy + radius * Math.sin(-params.midAngle * RADIAN);
-
-          return (
-            <text
-              x={x}
-              y={y}
-              fill="currentColor"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="animate-in fade-in select-none duration-300">
-              {lines
-                .filter((line) => line !== "")
-                .map((line, index) => (
-                  <tspan x={x} dy={20} key={index}>
-                    {line}
-                  </tspan>
-                ))}
-            </text>
-          );
-        }}
-        className="fill-foreground">
-        {data.map((entry, index) => (
-          <Cell
-            key={`cell-${index}`}
-            className={cn("fill-success", {
-              "fill-destructive": isDestructive(entry),
-            })}
-          />
-        ))}
-      </Pie>
+    <PieChart
+      key={!isLoading && data ? key : `${key}-loading`}
+      width={450}
+      height={215}
+      className="!~h-[9.375rem]/[13.4375rem]">
+      {!isLoading && data ? (
+        <Pie
+          data={data.map((item) => ({
+            ...item,
+            value: 1,
+          }))}
+          dataKey="value"
+          label={pieLabel}
+          animationDuration={600}
+          {...pieProps}>
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              className={cn("fill-success", {
+                "fill-destructive": isCompletedKey && !entry[isCompletedKey],
+              })}
+            />
+          ))}
+        </Pie>
+      ) : (
+        <Pie
+          data={Array(3).fill({ value: 1 })}
+          dataKey="value"
+          animationDuration={0}
+          {...pieProps}>
+          {Array(3)
+            .fill({ value: 1 })
+            .map((_, index) => (
+              <Cell
+                key={`cell-${index}`}
+                className="fill-muted/30 animate-pulse"
+              />
+            ))}
+        </Pie>
+      )}
     </PieChart>
   );
 }

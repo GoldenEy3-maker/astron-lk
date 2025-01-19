@@ -235,7 +235,7 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/api/employee-testing",
+    path: "/api/kpi/employee-testing",
     alias: "getEmployeeTesting",
     requestFormat: "json",
     parameters: [
@@ -253,7 +253,7 @@ const endpoints = makeApi([
         ]),
       },
     ],
-    response: z.object({ data: z.array(EmployeeTesting) }).strict(),
+    response: z.array(EmployeeTesting),
   },
   {
     method: "get",
