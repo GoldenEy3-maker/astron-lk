@@ -1,4 +1,4 @@
-import { dateFormat } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/date-format";
 import { Calendar } from "@/shared/ui/calendar";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
@@ -36,11 +36,11 @@ export function DocumentsDatePicker({
         {date?.from ? (
           date.to ? (
             <>
-              {dateFormat(date.from, "dd.MM.yyyy")} -{" "}
-              {dateFormat(date.to, "dd.MM.yyyy")}
+              {formatDate(date.from, "dd.MM.yyyy")} -{" "}
+              {formatDate(date.to, "dd.MM.yyyy")}
             </>
           ) : (
-            dateFormat(date.from, "dd.MM.yyyy")
+            formatDate(date.from, "dd.MM.yyyy")
           )
         ) : (
           <span>Выберите дату</span>

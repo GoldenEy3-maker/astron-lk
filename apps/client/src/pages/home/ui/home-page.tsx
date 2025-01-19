@@ -3,6 +3,7 @@ import { CompanyCard } from "@/entities/company";
 import { CurrentNews } from "@/entities/news";
 import { useDocumentTitle } from "usehooks-ts";
 import { Kpi } from "@/widgets/kpi";
+import { FeedbackCard } from "@/features/feedback";
 
 export function HomePage() {
   useDocumentTitle("Главная");
@@ -12,6 +13,7 @@ export function HomePage() {
       <Kpi className="col-span-full" />
       <CurrentNews className="col-span-full" />
       <CurrentBulletins className="col-span-full" />
+      <FeedbackCard className="col-span-full" />
     </div>
   );
 }

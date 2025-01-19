@@ -1,6 +1,6 @@
 import { schemas } from "@/shared/api/client";
 import { Routes } from "@/shared/constants/routes";
-import { dateFormat } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/date-format";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
@@ -25,7 +25,7 @@ export function NewsCard({
       />
       <div className="flex-1">
         <time dateTime={createdAt} className="text-muted text-sm">
-          {dateFormat(new Date(createdAt))}
+          {formatDate(new Date(createdAt))}
         </time>
         <h4 className="text-h4 text-primary ~mt-2/3 group-hover:text-primary-accent">
           {title}

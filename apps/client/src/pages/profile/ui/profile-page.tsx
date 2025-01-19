@@ -1,6 +1,6 @@
 import { getUserCompanyQueryOptions } from "@/entities/company";
 import { useQuery } from "@tanstack/react-query";
-import { phoneMask } from "@/shared/lib/phone-mask";
+import { formatPhone } from "@/shared/lib/phone-format";
 import { Button } from "@/shared/ui/button";
 import { useSignOut } from "@/features/auth";
 import { ChangePasswordDialog } from "@/features/change-password";
@@ -33,7 +33,7 @@ export function ProfilePage() {
             </TextMorph>
           </dd>
           <dt className="text-muted ~mt-4/7">Контактный телефон</dt>
-          <dd>{phoneMask(session?.phone ?? "")}</dd>
+          <dd>{formatPhone(session?.phone ?? "")}</dd>
           <dt className="text-muted ~mt-4/7">E-mail</dt>
           <dd>{session?.email}</dd>
         </dl>

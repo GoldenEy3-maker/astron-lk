@@ -177,7 +177,7 @@ userRouter.post(
 
     tokenService.sendRefreshToken(res, refreshToken, remember);
 
-    res.json({ message: "Успешно" });
+    res.json({ message: "Ваш пароль успешно изменен" });
   }
 );
 

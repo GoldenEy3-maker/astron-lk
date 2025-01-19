@@ -111,6 +111,15 @@ const EmployeeTesting = z
     result: z.number().int(),
   })
   .strict();
+const sendFeedback_Body = z
+  .object({
+    fio: z.string(),
+    phone: z.string(),
+    message: z.string(),
+    privacy: z.boolean(),
+    personalData: z.boolean(),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -140,6 +149,7 @@ export const schemas = {
   News,
   SearchResult,
   EmployeeTesting,
+  sendFeedback_Body,
   User,
 };
 
@@ -232,6 +242,20 @@ const endpoints = makeApi([
     alias: "getDocumentCategories",
     requestFormat: "json",
     response: z.array(z.string()),
+  },
+  {
+    method: "post",
+    path: "/api/feedback",
+    alias: "sendFeedback",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "body",
+        type: "Body",
+        schema: sendFeedback_Body,
+      },
+    ],
+    response: z.object({ message: z.string() }).strict(),
   },
   {
     method: "get",

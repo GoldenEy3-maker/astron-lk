@@ -55,7 +55,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                 <FormItem>
                   <FormLabel>Логин</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input type="email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,6 +98,9 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                     disabled={field.disabled}
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    ref={field.ref}
+                    onBlur={field.onBlur}
+                    name={field.name}
                   />
                 </FormControl>
                 <FormLabel className="text-sm">Запомнить меня</FormLabel>

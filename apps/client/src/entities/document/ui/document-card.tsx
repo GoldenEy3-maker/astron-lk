@@ -1,4 +1,4 @@
-import { dateFormat } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/date-format";
 import { formatBytes } from "@/shared/lib/format-bytes";
 import { getFileUrlExt } from "@/shared/lib/get-file-url-ext";
 import { Icons } from "@/shared/ui/icons";
@@ -47,7 +47,7 @@ export function DocumentCard(document: DocumentCardProps) {
       </h4>
       <div className="flex text-sm mt-auto items-center justify-between gap-4 pt-5">
         <time dateTime={createdAt} className="text-muted">
-          {dateFormat(new Date(createdAt))}
+          {formatDate(new Date(createdAt))}
         </time>
         <span className="flex text-muted hover:text-primary transition-colors items-center gap-1">
           <Icons.ArrowDown />

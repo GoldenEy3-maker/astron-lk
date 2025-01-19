@@ -17,8 +17,8 @@ export function useChangePassword({ onSuccess }: UseChangePasswordProps = {}) {
       }
       console.error(error);
     },
-    onSuccess: () => {
-      toast.success("Ваш пароль успешно изменен");
+    onSuccess: (data) => {
+      toast.success(data.message);
       onSuccess?.();
     },
   });

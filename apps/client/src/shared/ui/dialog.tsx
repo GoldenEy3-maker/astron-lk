@@ -69,10 +69,14 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+>(({ className, children, onPointerDownOutside, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay>
       <DialogPrimitive.Content
+        onPointerDownOutside={(e) => {
+          if ((e.target as HTMLElement).closest(".toaster")) e.preventDefault();
+          onPointerDownOutside?.(e);
+        }}
         ref={ref}
         className={cn(
           "grid gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",

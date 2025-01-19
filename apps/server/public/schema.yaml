@@ -680,6 +680,46 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EmployeeTesting"
+  /api/feedback:
+    post:
+      summary: Форма обратной связи
+      operationId: sendFeedback
+      tags:
+        - Обратная связь
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fio
+                - phone
+                - message
+                - privacy
+                - personalData
+              properties:
+                fio:
+                  type: string
+                  example: "Иванов Иван Иванович"
+                phone:
+                  type: string
+                  example: "+79231665038"
+                message:
+                  type: string
+                  example: "Хороший сайт"
+                privacy:
+                  type: boolean
+                  example: true
+                personalData:
+                  type: boolean
+                  example: true
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
 components:
   schemas:
     User:
