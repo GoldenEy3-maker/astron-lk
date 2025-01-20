@@ -21,10 +21,10 @@ kpiRouter.get(
         | "prev-prev-year";
     };
 
-    const user = res.locals.user;
-    const company = dbService
-      .get("companies")
-      .find((company) => company.userId === user.id);
+    // const user = res.locals.user;
+    // const company = dbService
+    //   .get("companies")
+    //   .find((company) => company.userId === user.id);
 
     const employeeTests = dbService.get("employeeTests");
     const employees = dbService.get("employees");
@@ -37,21 +37,42 @@ kpiRouter.get(
     res.json(
       data
         .filter((employeeTest) => {
-          const createdAt = new Date(employeeTest.createdAt);
+          const createdAt = new Date(
+            Date.UTC(
+              new Date(employeeTest.createdAt).getUTCFullYear(),
+              new Date(employeeTest.createdAt).getUTCMonth(),
+              new Date(employeeTest.createdAt).getUTCDate(),
+              12,
+              0,
+              0,
+              0
+            )
+          );
+          const now = new Date(
+            Date.UTC(
+              new Date().getUTCFullYear(),
+              new Date().getUTCMonth(),
+              new Date().getUTCDate(),
+              12,
+              0,
+              0,
+              0
+            )
+          );
 
           switch (period) {
             case "month":
-              return createdAt.getMonth() === new Date().getMonth();
+              return createdAt.getUTCMonth() === now.getUTCMonth();
             case "quarter":
-              return getQuarter(createdAt) === getQuarter(new Date());
+              return getQuarter(createdAt) === getQuarter(now);
             case "year":
-              return createdAt.getFullYear() === new Date().getFullYear();
+              return createdAt.getUTCFullYear() === now.getUTCFullYear();
             case "today":
-              return createdAt.toDateString() === new Date().toDateString();
+              return createdAt.toDateString() === now.toDateString();
             case "prev-year":
-              return createdAt.getFullYear() === new Date().getFullYear() - 1;
+              return createdAt.getUTCFullYear() === now.getUTCFullYear() - 1;
             case "prev-prev-year":
-              return createdAt.getFullYear() === new Date().getFullYear() - 2;
+              return createdAt.getUTCFullYear() === now.getUTCFullYear() - 2;
             default:
               return true;
           }

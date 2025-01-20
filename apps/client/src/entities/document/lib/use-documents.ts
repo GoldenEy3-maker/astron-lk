@@ -9,7 +9,7 @@ import {
   resetDocumentsQueryPages,
 } from "../api/documents-query";
 import { useDocumentsToolbar } from "./use-documents-toolbar";
-import { isoStringWithoutTime } from "@/shared/lib/iso-string-without-time";
+import { isoStringWithoutTime } from "@repo/date";
 
 type UseDocumentsProps = {
   limit: number;

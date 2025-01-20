@@ -2,16 +2,25 @@ import {
   useQueryState,
   parseAsStringEnum,
   parseAsString,
-  parseAsIsoDate,
+  createParser,
 } from "nuqs";
 import { DateRange } from "react-day-picker";
-import { getUTCDate } from "@/shared/lib/get-utc-date";
+import { getUTCDate, getUTCFromDate, isoStringWithoutTime } from "@repo/date";
 import { DocumentsSortKeyMap } from "../constants/documents-sort-maps";
 
 type UseDocumentsToolbarProps = {
   onCategoryUpdate?: () => void;
   onDateUpdate?: () => void;
 };
+
+const parseAsIsoUTCDate = createParser({
+  serialize(value: Date) {
+    return isoStringWithoutTime(value);
+  },
+  parse(value: string) {
+    return getUTCFromDate(new Date(value));
+  },
+});
 
 export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
   const defaultFromDateFilter = getUTCDate(
@@ -32,11 +41,11 @@ export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
-    parseAsIsoDate
+    parseAsIsoUTCDate
   );
   const [toDateFilter, setToDateFilter] = useQueryState(
     "toDate",
-    parseAsIsoDate
+    parseAsIsoUTCDate
   );
   const [category, setCategory] = useQueryState("category", parseAsString);
 

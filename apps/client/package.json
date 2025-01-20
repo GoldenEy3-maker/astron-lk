@@ -48,7 +48,8 @@
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
     "vaul": "^1.1.2",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.2",
+    "@repo/date": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
