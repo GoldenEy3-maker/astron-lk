@@ -12,7 +12,7 @@ export function CurrentNews(props: CurrentNewsProps) {
     <Section {...props}>
       <SectionHeader>
         <h1 className="text-h1 text-heading-h2">Актуальные новости</h1>
-        <Button asChild variant="link" size="hug">
+        <Button asChild variant="link" size="hug" className="font-normal">
           <Link to={Routes.News}>
             <span>Читать блог</span>
             <Icons.ArrowRightLong />

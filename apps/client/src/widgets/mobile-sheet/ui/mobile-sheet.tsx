@@ -65,7 +65,7 @@ export function MobileSheet() {
                   key={link.url}
                   size="sm"
                   asChild
-                  className="justify-start text-muted gap-2.5 group/button">
+                  className="justify-start w-full text-muted gap-2.5 group/button">
                   <NavLink to={link.url} onClick={() => setIsOpen(false)}>
                     {({ isActive }) => (
                       <>

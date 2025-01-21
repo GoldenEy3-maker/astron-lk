@@ -7,7 +7,7 @@ export function SearchPage() {
 
   return (
     <Section
-      space="md"
+      space="sm"
       className="col-span-full grid grid-cols-subgrid auto-rows-max">
       <SectionHeader className="col-span-full">
         <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>

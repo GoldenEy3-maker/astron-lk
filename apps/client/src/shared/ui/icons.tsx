@@ -1181,4 +1181,20 @@ export const Icons = {
       </svg>
     );
   },
+  Play: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        width="15"
+        height="20"
+        viewBox="0 0 15 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <path
+          d="M13.5616 11.6273L3.32248 18.9409C1.99874 19.8864 0.160004 18.9402 0.160004 17.3134V2.68618C0.160004 1.05944 1.99874 0.113189 3.32248 1.05872L13.5616 8.37234C14.6782 9.16998 14.6783 10.8296 13.5616 11.6273Z"
+          fill="currentCOlor"
+        />
+      </svg>
+    );
+  },
 };

@@ -16,26 +16,28 @@ export function CurrentBulletins({
     <Section className={cn("grid grid-cols-subgrid", className)} {...props}>
       <SectionHeader className="col-span-full">
         <h1 className="text-h1 text-heading-h2">Актуальные бюллетени</h1>
-        <Button asChild variant="link" size="hug">
+        <Button asChild variant="link" size="hug" className="font-normal">
           <Link to={Routes.Bulletins}>
             <span>Все бюллетени</span>
             <Icons.ArrowRightLong />
           </Link>
         </Button>
       </SectionHeader>
-      <SectionContent className="grid col-span-full gap-y-8 grid-cols-subgrid space-y-0">
-        <div className="m-xl:col-span-8 m-md:col-span-11 md:col-span-9 col-span-full ~text-base/lg leading-[1.3]">
-          <p>
-            Наши бюллетени&nbsp;&mdash; это надёжный источник информации
-            о&nbsp;последних тенденциях в&nbsp;строительстве быстровозводимых
-            зданий. Вы&nbsp;всегда будете в&nbsp;курсе самых актуальных новостей
-            и&nbsp;сможете принимать обоснованные решения, основанные
-            на&nbsp;проверенных данных.
-          </p>
+      <SectionContent className="current-section-layout space-y-0">
+        <div className="current-section-layout__first">
+          <div className="current-section-layout__text">
+            <p>
+              Наши бюллетени&nbsp;&mdash; это надёжный источник информации
+              о&nbsp;последних тенденциях в&nbsp;строительстве быстровозводимых
+              зданий. Вы&nbsp;всегда будете в&nbsp;курсе самых актуальных
+              новостей и&nbsp;сможете принимать обоснованные решения, основанные
+              на&nbsp;проверенных данных.
+            </p>
+          </div>
         </div>
         <Documents
           queryKey="bulletins"
-          className="m-xl:col-[11/span_9] m-md:col-[15/span_10] md:col-[13/span_12] col-span-full"
+          className="current-section-layout__second"
           limit={3}
         />
       </SectionContent>

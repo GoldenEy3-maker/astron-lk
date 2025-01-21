@@ -39,11 +39,15 @@ const DialogClose = React.forwardRef<
     size?: ButtonProps["size"];
   }
 >(({ className, variant = "ghost", size = "icon", ...props }, ref) => (
-  <DialogPrimitive.Close ref={ref} className={cn(className)} asChild {...props}>
-    <Button
-      variant={variant}
-      size={size}
-      className="text-border hover:bg-transparent hover:text-foreground">
+  <DialogPrimitive.Close
+    ref={ref}
+    className={cn(
+      "text-border hover:bg-transparent hover:text-foreground",
+      className
+    )}
+    asChild
+    {...props}>
+    <Button variant={variant} size={size}>
       {props.children || <Icons.X />}
     </Button>
   </DialogPrimitive.Close>
@@ -68,31 +72,64 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, onPointerDownOutside, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay>
-      <DialogPrimitive.Content
-        onPointerDownOutside={(e) => {
-          if ((e.target as HTMLElement).closest(".toaster")) e.preventDefault();
-          onPointerDownOutside?.(e);
-        }}
-        ref={ref}
-        className={cn(
-          "grid gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",
-          "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-bottom-12 data-[state=open]:slide-in-from-bottom-12 data-[state=open]:zoom-in-95",
-          className
-        )}
-        {...props}>
-        <ScrollArea className="flex flex-col w-full max-h-dvh">
-          <div className="w-full px-12 flex flex-col gap-8 py-9">
-            {children}
-          </div>
-        </ScrollArea>
-      </DialogPrimitive.Content>
-    </DialogOverlay>
-  </DialogPortal>
-));
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+    scrollAreaClassName?: string;
+    wrapperClassName?: string;
+    overlayClassName?: string;
+    isOutsideClose?: boolean;
+  }
+>(
+  (
+    {
+      className,
+      children,
+      onPointerDownOutside,
+      scrollAreaClassName,
+      wrapperClassName,
+      overlayClassName,
+      isOutsideClose,
+      ...props
+    },
+    ref
+  ) => (
+    <DialogPortal>
+      <DialogOverlay className={overlayClassName}>
+        <DialogPrimitive.Content
+          onPointerDownOutside={(e) => {
+            if ((e.target as HTMLElement).closest(".toaster"))
+              e.preventDefault();
+            onPointerDownOutside?.(e);
+          }}
+          ref={ref}
+          className={cn(
+            "flex flex-col gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",
+            "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+            className
+          )}
+          {...props}>
+          {isOutsideClose ? (
+            <div className="flex justify-end z-10 absolute top-3 rounded-full right-3 sm:static">
+              <DialogClose className="hover:text-white bg-zinc-700 hover:bg-zinc-800 sm:bg-transparent" />
+            </div>
+          ) : null}
+          <ScrollArea
+            className={cn(
+              "flex flex-col w-full max-h-dvh",
+              scrollAreaClassName
+            )}>
+            <div
+              className={cn(
+                "w-full px-12 flex flex-col gap-8 py-9",
+                wrapperClassName
+              )}>
+              {children}
+            </div>
+          </ScrollArea>
+        </DialogPrimitive.Content>
+      </DialogOverlay>
+    </DialogPortal>
+  )
+);
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({
