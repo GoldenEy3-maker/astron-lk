@@ -5,6 +5,7 @@ import { useDocumentTitle } from "usehooks-ts";
 import { Kpi } from "@/widgets/kpi";
 import { FeedbackCard } from "@/features/feedback";
 import { Factory } from "@/widgets/factory";
+import { Academy } from "@/widgets/academy";
 
 export function HomePage() {
   useDocumentTitle("Главная");
@@ -14,6 +15,7 @@ export function HomePage() {
       <Kpi className="col-span-full" />
       <CurrentNews className="col-span-full" />
       <CurrentBulletins className="col-span-full" />
+      <Academy className="col-span-full" />
       <Factory className="col-span-full" />
       <FeedbackCard className="col-span-full" />
     </div>
