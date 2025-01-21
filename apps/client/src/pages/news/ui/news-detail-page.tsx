@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNewsByIdQueryOptions } from "../api/news-detail-query";
+import { getNewsByIdQueryOptions } from "../api/news-query";
 import { useParams } from "react-router-dom";
 import { formatDate } from "@/shared/lib/date-format";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";

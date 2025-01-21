@@ -65,7 +65,9 @@ export function AcademyList() {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] ~gap-x-6/14 ~gap-y-4/10">
       {academyListData.map((item) => (
-        <article className="text-primary flex flex-col group hover:text-primary-foreground bg-primary/10 px-7 py-7 ~min-h-[12rem]/[17.5rem] rounded-main relative transition duration-300">
+        <article
+          key={item.href}
+          className="text-primary flex flex-col group hover:text-primary-foreground bg-primary/10 px-7 py-7 ~min-h-[12rem]/[17.5rem] rounded-main relative transition duration-300">
           <Link
             to={item.href}
             className="absolute inset-0 z-20 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"

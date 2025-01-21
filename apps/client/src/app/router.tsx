@@ -68,6 +68,12 @@ const AcademyPage = lazy(() =>
   }))
 );
 
+const AcademySalesPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademySalesPage,
+  }))
+);
+
 const DocumentsPage = lazy(() =>
   import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -87,7 +93,7 @@ const NewsPage = lazy(() =>
 );
 
 const NewsDetailPage = lazy(() =>
-  import("../pages/news-detail").then((module) => ({
+  import("../pages/news").then((module) => ({
     default: module.NewsDetailPage,
   }))
 );
@@ -172,9 +178,14 @@ export function createRouter() {
           />
           <Route
             path={Routes.Academy}
-            element={<AcademyPage />}
-            handle={setCrumbHandle(Routes.Academy, "Академия")}
-          />
+            handle={setCrumbHandle(Routes.Academy, "Академия Astron")}>
+            <Route index element={<AcademyPage />} />
+            <Route
+              path={Routes.AcademySales}
+              element={<AcademySalesPage />}
+              handle={setCrumbHandle(Routes.AcademySales, "Процесс продаж")}
+            />
+          </Route>
           <Route
             path={Routes.Documents}
             element={<DocumentsPage />}

@@ -11,6 +11,7 @@ export default {
   theme: {
     screens: {
       ...screens,
+      xs: "30rem",
       "m-md": "62rem",
       "m-xl": "75rem",
     },
