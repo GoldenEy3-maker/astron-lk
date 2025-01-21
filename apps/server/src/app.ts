@@ -8,6 +8,7 @@ import { bulletinsRouter } from "./routes/bulletins.router";
 import { searchRouter } from "./routes/search.router";
 import { kpiRouter } from "./routes/kpi.router";
 import { feedbackRouter } from "./routes/feedback.router";
+import { factoryRouter } from "./routes/factory.router";
 
 const app: Express = express();
 
@@ -66,17 +67,12 @@ app.get("/api/docs", async (req, res) => {
 });
 
 app.use("/api/user", userRouter);
-
 app.use("/api/news", newsRouter);
-
 app.use("/api/documents", documentsRouter);
-
 app.use("/api/bulletins", bulletinsRouter);
-
 app.use("/api/search", searchRouter);
-
 app.use("/api/kpi", kpiRouter);
-
 app.use("/api/feedback", feedbackRouter);
+app.use("/api/factory", factoryRouter);
 
 export default app;

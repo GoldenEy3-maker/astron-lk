@@ -1,6 +1,8 @@
-import { DocumentCard } from "@/entities/document";
+import { DocumentCard, DocumentCardSkeleton } from "@/entities/document";
 import { cn } from "@/shared/lib/cn";
 import { VideoDialog } from "@/shared/ui/video-dialog";
+import { useQuery } from "@tanstack/react-query";
+import { getFactoryDocumentQueryOptions } from "../api/factory-query";
 
 type FactoryAboutProps = {
   extended?: boolean;
@@ -11,6 +13,11 @@ export function FactoryAbout({
   extended,
   ...props
 }: FactoryAboutProps) {
+  const { data: document, isLoading: isLoadingDocument } = useQuery({
+    ...getFactoryDocumentQueryOptions(),
+    enabled: !!extended,
+  });
+
   return (
     <div className={cn("current-section-layout", className)} {...props}>
       <div
@@ -33,14 +40,11 @@ export function FactoryAbout({
           </p>
         </div>
         {extended ? (
-          <DocumentCard
-            id="1"
-            category="Изменение цены"
-            title="Брошюра о заводе Astron в&nbsp;Ярославле"
-            createdAt="2025-01-20"
-            file={{ size: 607232, url: "/test.pdf" }}
-            className="w-full sm:w-5/6"
-          />
+          !isLoadingDocument && document ? (
+            <DocumentCard className="w-full sm:w-5/6" {...document} />
+          ) : (
+            <DocumentCardSkeleton className="w-full sm:w-5/6" />
+          )
         ) : null}
       </div>
       <div className="current-section-layout__second">

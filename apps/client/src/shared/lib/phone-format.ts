@@ -7,7 +7,7 @@ type Options = {
 };
 
 export const phoneFormatOptions: Options = {
-  mask: "+_ (___) ___-__-__",
+  mask: "+_ (___) ___ __ __",
   replacement: { _: /\d/ },
 };
 

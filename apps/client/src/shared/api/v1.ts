@@ -244,6 +244,13 @@ const endpoints = makeApi([
     response: z.array(z.string()),
   },
   {
+    method: "get",
+    path: "/api/factory/document",
+    alias: "getFactoryDocument",
+    requestFormat: "json",
+    response: Document,
+  },
+  {
     method: "post",
     path: "/api/feedback",
     alias: "sendFeedback",

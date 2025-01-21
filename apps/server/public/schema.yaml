@@ -720,6 +720,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
+  /api/factory/document:
+    get:
+      summary: Получить документ о заводе Астрон
+      operationId: getFactoryDocument
+      tags:
+        - Завод Астрон
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
 components:
   schemas:
     User:
