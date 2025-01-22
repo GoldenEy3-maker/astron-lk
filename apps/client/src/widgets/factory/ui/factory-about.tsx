@@ -2,7 +2,9 @@ import { DocumentCard, DocumentCardSkeleton } from "@/entities/document";
 import { cn } from "@/shared/lib/cn";
 import { VideoDialog } from "@/shared/ui/video-dialog";
 import { useQuery } from "@tanstack/react-query";
-import { getFactoryDocumentQueryOptions } from "../api/factory-query";
+import { getFactoryInfoQueryOptions } from "../api/factory-query";
+import { Skeleton } from "@/shared/ui/skeleton";
+import { HTMLParser } from "@/shared/ui/html-parser";
 
 type FactoryAboutProps = {
   extended?: boolean;
@@ -13,10 +15,7 @@ export function FactoryAbout({
   extended,
   ...props
 }: FactoryAboutProps) {
-  const { data: document, isLoading: isLoadingDocument } = useQuery({
-    ...getFactoryDocumentQueryOptions(),
-    enabled: !!extended,
-  });
+  const { data, isLoading } = useQuery(getFactoryInfoQueryOptions());
 
   return (
     <div className={cn("current-section-layout", className)} {...props}>
@@ -24,24 +23,21 @@ export function FactoryAbout({
         className={cn("current-section-layout__first ~space-y-4/9", {
           "_col-one-more": extended,
         })}>
-        <div className="current-section-layout__text">
-          <p>
-            Наш завод&nbsp;&mdash; наша гордость. Общая площадь комплекса
-            составляет 25&nbsp;000&nbsp;м&sup2;, а&nbsp;производственные
-            мощности включают 3-этажный АБК, цехи и&nbsp;крытый склад площадью
-            2600&nbsp;м&sup2;.
-          </p>
-          <p>
-            Цепочка поставок Astron локализована и&nbsp;не&nbsp;подвержена
-            санкционным ограничениям. Пул поставщиков сформирован
-            из&nbsp;проверенных российских производителей, что гарантирует
-            стабильность поставок сырья, прогнозируемость ценообразования
-            и&nbsp;соблюдение обязательств Astron перед заказчиками.
-          </p>
-        </div>
+        {!isLoading && data ? (
+          <HTMLParser html={data.text} className="~space-y-2/3 leading-[1.3]" />
+        ) : (
+          <div className="space-y-2">
+            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="w-full h-3 !rounded-full" />
+          </div>
+        )}
         {extended ? (
-          !isLoadingDocument && document ? (
-            <DocumentCard className="w-full sm:w-5/6" {...document} />
+          !isLoading && data ? (
+            <DocumentCard className="w-full sm:w-5/6" {...data.document} />
           ) : (
             <DocumentCardSkeleton className="w-full sm:w-5/6" />
           )
@@ -49,18 +45,24 @@ export function FactoryAbout({
       </div>
       <div className="current-section-layout__second">
         {extended ? (
-          <img
-            src="/video-poster-2.webp"
-            className="rounded-main w-full h-full object-cover"
-            alt="Картинка завода Астрон"
-          />
-        ) : (
+          !isLoading && data ? (
+            <img
+              src={data.img.src}
+              className="rounded-main size-full object-cover"
+              alt={data.img.alt}
+            />
+          ) : (
+            <Skeleton className="size-full !rounded-main" />
+          )
+        ) : !isLoading && data ? (
           <VideoDialog
-            thumbnailSrc="/video-poster-2.webp"
-            thumbnailAlt="Видео о заводе Астрон"
-            videoSrc="https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true"
+            thumbnailSrc={data.video.thumbnail}
+            thumbnailAlt={data.video.alt}
+            videoSrc={data.video.src}
             triggerClassName={"~h-[18rem]/[22.5rem]"}
           />
+        ) : (
+          <Skeleton className="w-full ~h-[18rem]/[22.5rem] !rounded-main" />
         )}
       </div>
     </div>
