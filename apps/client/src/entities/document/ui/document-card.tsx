@@ -1,4 +1,4 @@
-import { formatDate } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/format-date";
 import { formatBytes } from "@/shared/lib/format-bytes";
 import { getFileUrlExt } from "@/shared/lib/get-file-url-ext";
 import { Icons } from "@/shared/ui/icons";

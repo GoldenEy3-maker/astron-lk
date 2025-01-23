@@ -1,4 +1,4 @@
-import { formatDate } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/format-date";
 import { Calendar } from "@/shared/ui/calendar";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";

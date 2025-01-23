@@ -1,6 +1,6 @@
 import { getUserCompanyQueryOptions } from "@/entities/company";
 import { useQuery } from "@tanstack/react-query";
-import { formatPhone } from "@/shared/lib/phone-format";
+import { formatPhone } from "@/shared/lib/format-phone";
 import { Button } from "@/shared/ui/button";
 import { useSignOut } from "@/features/auth";
 import { ChangePasswordDialog } from "@/features/change-password";

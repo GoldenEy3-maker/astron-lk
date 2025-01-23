@@ -1,51 +1,25 @@
-import {
-  useQueryState,
-  parseAsStringEnum,
-  parseAsString,
-  createParser,
-} from "nuqs";
+import { useQueryState, parseAsStringEnum, parseAsString } from "nuqs";
 import { DateRange } from "react-day-picker";
-import { getUTCDate, getUTCFromDate, isoStringWithoutTime } from "@repo/date";
 import { DocumentsSortKeyMap } from "../constants/documents-sort-maps";
+import { parseAsLocalDate } from "@/shared/lib/format-date";
 
 type UseDocumentsToolbarProps = {
   onCategoryUpdate?: () => void;
   onDateUpdate?: () => void;
 };
 
-const parseAsIsoUTCDate = createParser({
-  serialize(value: Date) {
-    return isoStringWithoutTime(value);
-  },
-  parse(value: string) {
-    return getUTCFromDate(new Date(value));
-  },
-});
-
 export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
-  const defaultFromDateFilter = getUTCDate(
-    new Date().getUTCFullYear(),
-    new Date().getUTCMonth(),
-    1
-  );
-
-  const defaultToDateFilter = getUTCDate(
-    new Date().getUTCFullYear(),
-    new Date().getUTCMonth() + 1,
-    0
-  );
-
   const [sort, setSort] = useQueryState(
     "sort",
     parseAsStringEnum(Object.values(DocumentsSortKeyMap))
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
-    parseAsIsoUTCDate
+    parseAsLocalDate
   );
   const [toDateFilter, setToDateFilter] = useQueryState(
     "toDate",
-    parseAsIsoUTCDate
+    parseAsLocalDate
   );
   const [category, setCategory] = useQueryState("category", parseAsString);
 
@@ -64,21 +38,11 @@ export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
     params?.onDateUpdate?.();
   }
 
-  // useEffect(() => {
-  //   if (!fromDateFilter && !toDateFilter) {
-  //     setFromDateFilter(defaultFromDateFilter);
-  //     setToDateFilter(defaultToDateFilter);
-  //     params?.onDateUpdate?.();
-  //   }
-  // }, []);
-
   return {
     category,
     sort,
     fromDateFilter,
     toDateFilter,
-    defaultFromDateFilter,
-    defaultToDateFilter,
     onSortChange,
     onDateChange,
     onCategoryChange,
