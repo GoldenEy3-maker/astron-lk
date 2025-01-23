@@ -14,3 +14,10 @@ export function getAcademyConversationsQueryOptions() {
     queryFn: ({ signal }) => apiClient.getAcademyConversations({ signal }),
   });
 }
+
+export function getAcademyAnalysisQueryOptions() {
+  return queryOptions({
+    queryKey: ["academy", "analysis"],
+    queryFn: ({ signal }) => apiClient.getAcademyAnalysis({ signal }),
+  });
+}

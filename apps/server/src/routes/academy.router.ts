@@ -277,4 +277,51 @@ academyRouter.get(
   }
 );
 
+academyRouter.get(
+  "/analysis",
+  async (req: Request, res: Response<{ content: InfoBlock[] }>) => {
+    const documents = dbService.get("documents");
+    res.json({
+      content: [
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Примеры ТЗ для тендеров",
+          },
+          documents: Array(2)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Сравнение технологий",
+          },
+          documents: Array(3)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Сравнение с КП конкурентов",
+          },
+          documents: Array(7)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+      ],
+    });
+  }
+);
+
 export { academyRouter };
