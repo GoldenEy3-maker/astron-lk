@@ -65,6 +65,15 @@ const Favorite = z.union([Document, Bulletin]);
 const Image = z
   .object({ src: z.string(), alt: z.string().optional() })
   .strict();
+const NewsInList = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+    createdAt: z.string().datetime({ offset: true }).optional(),
+  })
+  .strict();
 const ImageBlock = z
   .object({
     type: z.literal("image"),
@@ -162,6 +171,23 @@ const AcademySales = z
     content: z.array(InfoBlock),
   })
   .strict();
+const AcademyProjectInList = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+  })
+  .strict();
+const AcademyProject = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+    content: z.array(InfoBlock),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -189,6 +215,7 @@ export const schemas = {
   Bulletin,
   Favorite,
   Image,
+  NewsInList,
   ImageBlock,
   VideoBlock,
   MediaBlock,
@@ -203,6 +230,8 @@ export const schemas = {
   Video,
   FactoryTeam,
   AcademySales,
+  AcademyProjectInList,
+  AcademyProject,
   User,
 };
 
@@ -227,6 +256,34 @@ const endpoints = makeApi([
     alias: "getAcademyConversations",
     requestFormat: "json",
     response: z.object({ content: z.array(InfoBlock) }).strict(),
+  },
+  {
+    method: "get",
+    path: "/api/academy/projects",
+    alias: "getAcademyProjects",
+    requestFormat: "json",
+    response: z.array(AcademyProjectInList),
+  },
+  {
+    method: "get",
+    path: "/api/academy/projects/:id",
+    alias: "getAcademyProjectById",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "id",
+        type: "Path",
+        schema: z.string(),
+      },
+    ],
+    response: AcademyProject,
+    errors: [
+      {
+        status: 404,
+        description: `Проект не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "get",
@@ -399,7 +456,7 @@ const endpoints = makeApi([
       },
     ],
     response: z
-      .object({ data: z.array(News), nextPage: z.number().int() })
+      .object({ data: z.array(NewsInList), nextPage: z.number().int() })
       .strict(),
   },
   {

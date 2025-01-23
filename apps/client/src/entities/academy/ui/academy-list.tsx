@@ -70,18 +70,18 @@ export function AcademyList() {
           className="text-primary flex flex-col group hover:text-primary-foreground bg-primary/10 px-7 py-7 ~min-h-[12rem]/[17.5rem] rounded-main relative transition duration-300">
           <Link
             to={item.href}
-            className="absolute inset-0 z-20 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
+            className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
           />
           <img
             src={item.bgImg}
             alt={`Фоновое изображение ссылки академии - ${item.title}`}
-            className="absolute inset-0 w-full h-full rounded-main object-cover opacity-0 group-hover:opacity-100 duration-300 transition"
+            className="absolute inset-0 size-full -z-[1] rounded-main object-cover opacity-0 group-hover:opacity-100 duration-300 transition"
           />
-          <div className="flex items-start relative z-10 justify-between gap-6">
+          <div className="flex items-start justify-between gap-6">
             <h3 className="text-h3">{item.title}</h3>
             {item.icon}
           </div>
-          <div className="flex items-center relative z-10 gap-3 mt-auto">
+          <div className="flex items-center gap-3 mt-auto">
             <span>Перейти в раздел</span>
             <Icons.ArrowRight className="w-5 h-3.5" />
           </div>

@@ -413,7 +413,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/News"
+                      $ref: "#/components/schemas/NewsInList"
                   nextPage:
                     type: integer
                     example: 1
@@ -838,6 +838,90 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/InfoBlock"
+  /api/academy/projects:
+    get:
+      summary: Получить список проектов и отзывов
+      operationId: getAcademyProjects
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AcademyProjectInList"
+  /api/academy/projects/{id}:
+    get:
+      summary: Получить информацию о проекте
+      operationId: getAcademyProjectById
+      tags:
+        - Академия
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID проекта
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcademyProject"
+        "404":
+          description: Проект не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/academy/webinars:
+    get:
+      summary: Получить список вебинаров
+      operationId: getAcademyWebinars
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AcademyWebinarInList"
+  /api/academy/webinars/{id}:
+    get:
+      summary: Получить информацию о вебинаре
+      operationId: getAcademyWebinarById
+      tags:
+        - Академия
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID вебинара
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcademyWebinar"
+        "404":
+          description: Вебинар не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -980,6 +1064,29 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/InfoBlock"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-12-30T12:34:56Z"
+    NewsInList:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Ключевая ставка достигла 30%"
+        description:
+          type: string
+          example: "Деняк нет, но вы держитесь"
+        img:
+          $ref: "#/components/schemas/Image"
         createdAt:
           type: string
           format: date-time
@@ -1129,6 +1236,92 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/InfoBlock"
+    AcademyProject:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+        - content
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Проект"
+        description:
+          type: string
+          example: "Описание проекта"
+        img:
+          $ref: "#/components/schemas/Image"
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
+    AcademyProjectInList:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Проект"
+        description:
+          type: string
+          example: "Описание проекта"
+        img:
+          $ref: "#/components/schemas/Image"
+    AcademyWebinar:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+        - content
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Вебинар"
+        description:
+          type: string
+          example: "Описание вебинара"
+        img:
+          $ref: "#/components/schemas/Image"
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
+    AcademyWebinarInList:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Вебинар"
+        description:
+          type: string
+          example: "Описание вебинара"
+        img:
+          $ref: "#/components/schemas/Image"
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"

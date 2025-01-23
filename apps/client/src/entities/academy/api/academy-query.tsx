@@ -7,3 +7,10 @@ export function getAcademySalesQueryOptions() {
     queryFn: ({ signal }) => apiClient.getAcademySales({ signal }),
   });
 }
+
+export function getAcademyProjectsQueryOptions() {
+  return queryOptions({
+    queryKey: ["academy", "projects"],
+    queryFn: ({ signal }) => apiClient.getAcademyProjects({ signal }),
+  });
+}

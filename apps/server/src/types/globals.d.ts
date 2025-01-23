@@ -4,6 +4,7 @@ export type Session = components["schemas"]["Session"];
 export type User = components["schemas"]["User"];
 export type Company = components["schemas"]["Company"];
 export type News = components["schemas"]["News"];
+export type NewsInList = components["schemas"]["NewsInList"];
 export type Error = components["schemas"]["Error"];
 export type Success = components["schemas"]["Success"];
 export type Document = components["schemas"]["Document"];
@@ -15,4 +16,7 @@ export type Video = components["schemas"]["Video"];
 export type Image = components["schemas"]["Image"];
 export type FactoryTeam = components["schemas"]["FactoryTeam"];
 export type AcademySales = components["schemas"]["AcademySales"];
+export type AcademyProject = components["schemas"]["AcademyProject"];
+export type AcademyProjectInList =
+  components["schemas"]["AcademyProjectInList"];
 export type InfoBlock = components["schemas"]["InfoBlock"];

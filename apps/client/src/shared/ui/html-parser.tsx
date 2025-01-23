@@ -59,6 +59,7 @@ export function HTMLParser({ html, className, ...props }: HTMLParserProps) {
                 thumbnailSrc={props.poster ?? ""}
                 videoSrc={props.src ?? ""}
                 thumbnailAlt={props.title}
+                triggerClassName="!~mt-4/6"
               />
             );
           }

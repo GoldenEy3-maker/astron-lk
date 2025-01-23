@@ -98,6 +98,18 @@ const AcademyCommercialPage = lazy(() =>
   }))
 );
 
+const AcademyProjectsPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyProjectsPage,
+  }))
+);
+
+const AcademyProjectsDetailPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyProjectsDetailPage,
+  }))
+);
+
 const DocumentsPage = lazy(() =>
   import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -241,6 +253,19 @@ export function createRouter() {
                 "Оформление коммерческого предложения"
               )}
             />
+            <Route
+              path={Routes.AcademyProjects}
+              handle={setCrumbHandle(
+                Routes.AcademyProjects,
+                "Подборки проектов и отзывы"
+              )}>
+              <Route index element={<AcademyProjectsPage />} />
+              <Route
+                path={Routes.AcademyProjects + "/:projectId"}
+                element={<AcademyProjectsDetailPage />}
+                handle={setCrumbHandleFromParams("projectId")}
+              />
+            </Route>
           </Route>
           <Route
             path={Routes.Documents}

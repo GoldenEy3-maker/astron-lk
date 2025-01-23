@@ -1,12 +1,12 @@
 import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
-import { Error, News } from "../types/globals";
+import { Error, News, NewsInList } from "../types/globals";
 
 const newsRouter = Router();
 
 newsRouter.get(
   "/",
-  (req: Request, res: Response<{ data: News[]; nextPage: number }>) => {
+  (req: Request, res: Response<{ data: NewsInList[]; nextPage: number }>) => {
     const { page = "1", limit = "10" } = req.query as {
       page: string;
       limit: string;
@@ -21,7 +21,7 @@ newsRouter.get(
     const nextPage = currentPage + 1;
 
     res.json({
-      data: news,
+      data: news.map(({ content, ...news }) => news),
       nextPage: nextPage <= totalPages ? nextPage : 0,
     });
   }

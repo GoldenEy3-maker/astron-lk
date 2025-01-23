@@ -98,11 +98,6 @@
   .html-parser {
     @apply ~space-y-3/4 ~text-base/lg;
 
-    // img {
-    //   width: 100%;
-    //   @apply rounded-main;
-    // }
-
     h2 {
       &:not(:first-child) {
         margin-top: utils.calc-clamp(1.5rem, 2rem, 640, 1536) !important;
@@ -116,11 +111,6 @@
       }
       @apply text-h3 text-heading-h4;
     }
-
-    // video {
-    //   width: 100%;
-    //   margin-top: 1.5rem !important;
-    // }
 
     ul {
       @apply space-y-1;

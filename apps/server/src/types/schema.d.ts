@@ -446,6 +446,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/academy/projects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список проектов и отзывов */
+        get: operations["getAcademyProjects"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/projects/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить информацию о проекте */
+        get: operations["getAcademyProjectById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -519,6 +553,20 @@ export interface components {
              */
             createdAt: string;
         };
+        NewsInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Ключевая ставка достигла 30% */
+            title: string;
+            /** @example Деняк нет, но вы держитесь */
+            description: string;
+            img: components["schemas"]["Image"];
+            /**
+             * Format: date-time
+             * @example 2024-12-30T12:34:56Z
+             */
+            createdAt?: string;
+        };
         Document: {
             /** @example 1 */
             id: string;
@@ -591,6 +639,25 @@ export interface components {
             /** @example new */
             slug: string;
             content: components["schemas"]["InfoBlock"][];
+        };
+        AcademyProject: {
+            /** @example 1 */
+            id: string;
+            /** @example Проект */
+            title: string;
+            /** @example Описание проекта */
+            description: string;
+            img: components["schemas"]["Image"];
+            content: components["schemas"]["InfoBlock"][];
+        };
+        AcademyProjectInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Проект */
+            title: string;
+            /** @example Описание проекта */
+            description: string;
+            img: components["schemas"]["Image"];
         };
         InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
         SectionBlock: {
@@ -1133,7 +1200,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["News"][];
+                        data: components["schemas"]["NewsInList"][];
                         /** @example 1 */
                         nextPage: number;
                     };
@@ -1506,6 +1573,58 @@ export interface operations {
                     "application/json": {
                         content: components["schemas"]["InfoBlock"][];
                     };
+                };
+            };
+        };
+    };
+    getAcademyProjects: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyProjectInList"][];
+                };
+            };
+        };
+    };
+    getAcademyProjectById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID проекта */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyProject"];
+                };
+            };
+            /** @description Проект не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

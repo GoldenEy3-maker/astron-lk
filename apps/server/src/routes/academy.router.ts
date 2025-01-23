@@ -1,5 +1,11 @@
 import { Request, Response, Router } from "express";
-import { AcademySales, InfoBlock } from "../types/globals";
+import {
+  AcademyProject,
+  AcademyProjectInList,
+  AcademySales,
+  Error,
+  InfoBlock,
+} from "../types/globals";
 import { generateSlug } from "../libs/utils";
 import dbService from "../services/db.service";
 
@@ -379,6 +385,28 @@ academyRouter.get(
         },
       ],
     });
+  }
+);
+
+academyRouter.get(
+  "/projects",
+  async (req: Request, res: Response<AcademyProjectInList[]>) => {
+    const projects = dbService.get("academyProjects");
+    res.json(projects.map(({ content, ...project }) => project));
+  }
+);
+
+academyRouter.get(
+  "/projects/:projectId",
+  async (req: Request, res: Response<AcademyProject | Error>) => {
+    const projectId = req.params.projectId;
+    const project = dbService
+      .get("academyProjects")
+      .find((project) => project.id === projectId);
+    if (!project) {
+      res.status(404).json({ message: "Проект не найден" });
+    }
+    res.json(project);
   }
 );
 
