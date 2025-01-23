@@ -36,7 +36,7 @@ const SOCIAL_LINKS = [
 
 export function Socials() {
   return (
-    <div className="bg-card ~py-5/7 ~pb-3/5 ~pl-3/9 ~pr-4/12 rounded-main relative z-10 before:opacity-[0.06] before:absolute before:-z-10 before:inset-0 before:bg-[url(/pattern.png)] before:bg-no-repeat before:bg-cover before:bg-center">
+    <div className="bg-card ~py-5/7 ~pb-3/5 ~pl-3/9 ~pr-4/12 rounded-main relative z-10 before:opacity-[0.06] before:absolute before:-z-10 before:inset-0 before:bg-[url(/pattern.webp)] before:bg-no-repeat before:bg-cover before:bg-center">
       <h3 className="text-h3 text-heading-h4 pl-3">
         Читайте нас&nbsp;в&nbsp;социальных сетях
       </h3>

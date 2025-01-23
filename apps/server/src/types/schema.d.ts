@@ -461,8 +461,7 @@ export interface components {
             /** @example Деняк нет, но вы держитесь */
             description: string;
             img: components["schemas"]["Image"];
-            /** @example <p>Деняк нет, но вы держитесь</p> */
-            content: string;
+            content: components["schemas"]["InfoBlock"][];
             /**
              * Format: date-time
              * @example 2024-12-30T12:34:56Z

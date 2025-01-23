@@ -917,8 +917,9 @@ components:
         img:
           $ref: "#/components/schemas/Image"
         content:
-          type: string
-          example: "<p>Деняк нет, но вы держитесь</p>"
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
         createdAt:
           type: string
           format: date-time

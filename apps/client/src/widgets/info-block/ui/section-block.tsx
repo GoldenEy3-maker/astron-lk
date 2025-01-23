@@ -21,7 +21,7 @@ const sectionTitleVariants = cva("", {
     type: {
       h1: "text-h1 mb-4 text-heading-h2",
       h2: "text-h2 ~mb-4/6 text-heading-h3",
-      h3: "text-h3 mb-7",
+      h3: "text-h3 ~mb-5/7",
     },
   },
   defaultVariants: {

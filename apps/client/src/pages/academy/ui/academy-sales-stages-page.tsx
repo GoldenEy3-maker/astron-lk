@@ -1,11 +1,8 @@
-import {
-  InfoBlockParser,
-  InfoBlockSkeleton,
-} from "@/features/info-block-parsing";
+import { InfoBlockParser, InfoBlockSkeleton } from "@/widgets/info-block";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { Tabs, TabsTrigger, TabsList, TabsContent } from "@/shared/ui/tabs";
-import { getAcademySalesQueryOptions } from "@/widgets/academy";
+import { getAcademySalesQueryOptions } from "../api/academy-query";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsString, useQueryState } from "nuqs";
 

@@ -26,7 +26,7 @@ export function DocumentCard({
     <article
       data-id={id}
       className={cn(
-        "bg-card rounded-main relative z-10 group/item before:bg-[url(/pattern.png)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-10 before:-z-10 ~py-3/5 ~px-4/7",
+        "bg-card rounded-main relative z-10 group/item before:bg-[url(/pattern.webp)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-10 before:-z-10 ~py-3/5 ~px-4/7",
         className
       )}
       {...props}>
