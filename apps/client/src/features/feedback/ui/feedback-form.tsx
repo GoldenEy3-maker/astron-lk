@@ -19,7 +19,10 @@ export function FeedbackForm() {
   const { form, isPending, sendFeedbackHandler } = useFeedbackForm();
 
   function onSubmit(values: FeedbackFormSchema) {
-    sendFeedbackHandler({ ...values, phone: unformatPhone(values.phone) });
+    sendFeedbackHandler({
+      ...values,
+      phone: unformatPhone(values.phone) ?? "",
+    });
   }
 
   return (
@@ -48,7 +51,7 @@ export function FeedbackForm() {
               <FormItem>
                 <FormLabel>Телефон</FormLabel>
                 <FormControl>
-                  <PhoneInput {...field} />
+                  <PhoneInput placeholder="+7" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

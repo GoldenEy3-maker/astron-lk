@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "api:generate": "openapi-zod-client http://localhost:3000/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --export-types=true --strict-objects=true --additional-props-default-value=false"
+    "api:generate": "openapi-zod-client http://localhost:3000/schema.yaml -o ./src/shared/api/v1.ts --export-schemas=true --strict-objects=true --additional-props-default-value=false"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -21,8 +21,10 @@
     "@radix-ui/react-select": "^2.1.4",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.2",
     "@radix-ui/react-visually-hidden": "^1.1.1",
     "@react-input/mask": "^2.0.4",
+    "@repo/date": "workspace:*",
     "@tanstack/react-query": "^5.62.11",
     "@tanstack/react-query-devtools": "^5.62.11",
     "@zodios/core": "^10.9.6",
@@ -41,6 +43,7 @@
     "react-day-picker": "8.10.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
+    "react-phone-number-input": "^3.4.11",
     "react-router-dom": "^7.1.1",
     "recharts": "^2.15.0",
     "sonner": "^1.7.1",
@@ -48,8 +51,7 @@
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
     "vaul": "^1.1.2",
-    "zustand": "^5.0.2",
-    "@repo/date": "workspace:*"
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
