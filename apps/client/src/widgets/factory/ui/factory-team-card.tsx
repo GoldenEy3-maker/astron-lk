@@ -1,5 +1,5 @@
 import { schemas } from "@/shared/api/v1";
-import { formatPhone } from "@/shared/lib/phone-format";
+import { formatPhone } from "@/shared/lib/format-phone";
 import { Button } from "@/shared/ui/button";
 import { z } from "zod";
 

@@ -11,3 +11,7 @@ export type Bulletin = components["schemas"]["Bulletin"];
 export type Favorite = components["schemas"]["Favorite"];
 export type SearchResult = components["schemas"]["SearchResult"];
 export type EmployeeTesting = components["schemas"]["EmployeeTesting"];
+export type Video = components["schemas"]["Video"];
+export type Image = components["schemas"]["Image"];
+export type FactoryTeam = components["schemas"]["FactoryTeam"];
+export type AcademySales = components["schemas"]["AcademySales"];

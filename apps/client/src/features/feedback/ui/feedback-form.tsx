@@ -13,7 +13,7 @@ import { PhoneInput } from "@/shared/ui/phone-input";
 import { FeedbackFormSchema } from "../model/feedback-form-schema";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { useFeedbackForm } from "../lib/use-feedback-form";
-import { unformatPhone } from "@/shared/lib/phone-format";
+import { unformatPhone } from "@/shared/lib/format-phone";
 
 export function FeedbackForm() {
   const { form, isPending, sendFeedbackHandler } = useFeedbackForm();

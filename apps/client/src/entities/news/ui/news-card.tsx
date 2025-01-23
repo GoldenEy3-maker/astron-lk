@@ -1,6 +1,6 @@
 import { schemas } from "@/shared/api/client";
 import { Routes } from "@/shared/constants/routes";
-import { formatDate } from "@/shared/lib/date-format";
+import { formatDate } from "@/shared/lib/format-date";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
@@ -34,8 +34,8 @@ export function NewsCard({
       </div>
       <div className="relative rounded-main shrink-0 overflow-hidden w-[9.375rem] h-[7.5rem]">
         <img
-          src={img}
-          alt={title}
+          src={img.src}
+          alt={img.alt}
           className="object-cover absolute inset-0 w-full h-full"
         />
       </div>

@@ -13,3 +13,7 @@ export function generateRandomDate(start: Date, end: Date) {
 export function generateRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function generateSlug(title: string) {
+  return title.toLowerCase().replace(/ /g, "-");
+}

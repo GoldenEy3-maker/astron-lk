@@ -344,15 +344,49 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/factory/document": {
+    "/api/factory": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Получить документ о заводе Астрон */
-        get: operations["getFactoryDocument"];
+        /** Получить информацию о заводе Астрон */
+        get: operations["getFactoryInfo"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/factory/team": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список сотрудников завода Астрон */
+        get: operations["getFactoryTeam"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/sales": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить этапы процесса продаж в Академии */
+        get: operations["getAcademySales"];
         put?: never;
         post?: never;
         delete?: never;
@@ -426,8 +460,7 @@ export interface components {
             title: string;
             /** @example Деняк нет, но вы держитесь */
             description: string;
-            /** @example /path/to/img.jpg */
-            img: string;
+            img: components["schemas"]["Image"];
             /** @example <p>Деняк нет, но вы держитесь</p> */
             content: string;
             /**
@@ -475,12 +508,6 @@ export interface components {
             createdAt: string;
         };
         Favorite: components["schemas"]["Document"] | components["schemas"]["Bulletin"];
-        Error: {
-            message: string;
-        };
-        Success: {
-            message: string;
-        };
         SearchResult: {
             /** @example 1 */
             id: string;
@@ -493,6 +520,98 @@ export interface components {
             /** @example /path/to/file.pdf */
             fileUrl?: string;
         };
+        FactoryTeam: {
+            /** @example 1 */
+            id: string;
+            img: components["schemas"]["Image"];
+            /** @example Генеральный директор */
+            role: string;
+            /** @example Ягодкин Помидорослав */
+            title: string;
+            /** @example +79000000000 */
+            phone: string;
+            /** @example email@astron.biz */
+            email: string;
+        };
+        AcademySales: {
+            /** @example New */
+            title: string;
+            /** @example Новый запрос на здание */
+            description: string;
+            /** @example new */
+            slug: string;
+            content: components["schemas"]["InfoBlock"][];
+        };
+        InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
+        SectionBlock: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "section";
+            title: {
+                /** @enum {string} */
+                type: "h1" | "h2" | "h3";
+                text: string;
+            };
+            text?: string;
+            media?: components["schemas"]["MediaBlock"];
+            documents?: components["schemas"]["Document"][];
+        };
+        SeparatorBlock: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "separator";
+        };
+        HtmlBlock: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "html";
+            content: string;
+        };
+        MediaBlock: components["schemas"]["ImageBlock"] | components["schemas"]["VideoBlock"];
+        ImageBlock: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "image";
+            /** @example /path/to/img.jpg */
+            src: string;
+            /** @example Картинка завода Астрон */
+            alt?: string;
+        };
+        VideoBlock: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "video";
+            /** @example /path/to/video.mp4 or https://www.youtube.com/watch?v=dQw4w9WgXcQ */
+            src: string;
+            /** @example /path/to/thumbnail.jpg */
+            thumbnail: string;
+            /** @example Видео о заводе Астрон */
+            alt?: string;
+        };
+        Image: {
+            /** @example /path/to/img.jpg */
+            src: string;
+            /** @example Картинка завода Астрон */
+            alt?: string;
+        };
+        Video: {
+            /** @example /path/to/video.mp4 or https://www.youtube.com/watch?v=dQw4w9WgXcQ */
+            src: string;
+            /** @example /path/to/thumbnail.jpg */
+            thumbnail: string;
+            /** @example Видео о заводе Астрон */
+            alt?: string;
+        };
         EmployeeTesting: {
             /** @example 1 */
             id: string;
@@ -502,6 +621,12 @@ export interface components {
             name: string;
             /** @example 81 */
             result: number;
+        };
+        Error: {
+            message: string;
+        };
+        Success: {
+            message: string;
         };
     };
     responses: never;
@@ -1203,7 +1328,7 @@ export interface operations {
             };
         };
     };
-    getFactoryDocument: {
+    getFactoryInfo: {
         parameters: {
             query?: never;
             header?: never;
@@ -1218,7 +1343,53 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Document"];
+                    "application/json": {
+                        /** @example <p>Текст о заводе Астрон</p> */
+                        text: string;
+                        img: components["schemas"]["Image"];
+                        video: components["schemas"]["Video"];
+                        document: components["schemas"]["Document"];
+                    };
+                };
+            };
+        };
+    };
+    getFactoryTeam: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FactoryTeam"][];
+                };
+            };
+        };
+    };
+    getAcademySales: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademySales"][];
                 };
             };
         };

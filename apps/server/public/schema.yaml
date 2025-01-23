@@ -720,10 +720,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
-  /api/factory/document:
+  /api/factory:
     get:
-      summary: Получить документ о заводе Астрон
-      operationId: getFactoryDocument
+      summary: Получить информацию о заводе Астрон
+      operationId: getFactoryInfo
       tags:
         - Завод Астрон
       responses:
@@ -732,7 +732,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Document"
+                type: object
+                required:
+                  - text
+                  - img
+                  - video
+                  - document
+                properties:
+                  text:
+                    type: string
+                    example: "<p>Текст о заводе Астрон</p>"
+                  img:
+                    $ref: "#/components/schemas/Image"
+                  video:
+                    $ref: "#/components/schemas/Video"
+                  document:
+                    $ref: "#/components/schemas/Document"
+  /api/factory/team:
+    get:
+      summary: Получить список сотрудников завода Астрон
+      operationId: getFactoryTeam
+      tags:
+        - Завод Астрон
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FactoryTeam"
+  /api/academy/sales:
+    get:
+      summary: Получить этапы процесса продаж в Академии
+      operationId: getAcademySales
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AcademySales"
 components:
   schemas:
     User:
@@ -870,8 +915,7 @@ components:
           type: string
           example: Деняк нет, но вы держитесь
         img:
-          type: string
-          example: "/path/to/img.jpg"
+          $ref: "#/components/schemas/Image"
         content:
           type: string
           example: "<p>Деняк нет, но вы держитесь</p>"
@@ -951,20 +995,6 @@ components:
       oneOf:
         - $ref: "#/components/schemas/Document"
         - $ref: "#/components/schemas/Bulletin"
-    Error:
-      type: object
-      required:
-        - message
-      properties:
-        message:
-          type: string
-    Success:
-      type: object
-      required:
-        - message
-      properties:
-        message:
-          type: string
     SearchResult:
       type: object
       required:
@@ -990,6 +1020,181 @@ components:
         fileUrl:
           type: string
           example: "/path/to/file.pdf"
+    FactoryTeam:
+      type: object
+      required:
+        - id
+        - img
+        - role
+        - title
+        - phone
+        - email
+      properties:
+        id:
+          type: string
+          example: "1"
+        img:
+          $ref: "#/components/schemas/Image"
+        role:
+          type: string
+          example: "Генеральный директор"
+        title:
+          type: string
+          example: "Ягодкин Помидорослав"
+        phone:
+          type: string
+          example: "+79000000000"
+        email:
+          type: string
+          example: "email@astron.biz"
+    AcademySales:
+      type: object
+      required:
+        - title
+        - description
+        - slug
+        - content
+      properties:
+        title:
+          type: string
+          example: "New"
+        description:
+          type: string
+          example: "Новый запрос на здание"
+        slug:
+          type: string
+          example: "new"
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
+    InfoBlock:
+      oneOf:
+        - $ref: "#/components/schemas/SectionBlock"
+        - $ref: "#/components/schemas/SeparatorBlock"
+        - $ref: "#/components/schemas/HtmlBlock"
+      discriminator:
+        propertyName: type
+        mapping:
+          section: "#/components/schemas/SectionBlock"
+          separator: "#/components/schemas/SeparatorBlock"
+          html: "#/components/schemas/HtmlBlock"
+    SectionBlock:
+      type: object
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          enum: [section]
+        title:
+          type: object
+          required:
+            - type
+            - text
+          properties:
+            type:
+              type: string
+              enum: [h1, h2, h3]
+            text:
+              type: string
+        text:
+          type: string
+        media:
+          $ref: "#/components/schemas/MediaBlock"
+        documents:
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+    SeparatorBlock:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum: [separator]
+    HtmlBlock:
+      type: object
+      required:
+        - type
+        - content
+      properties:
+        type:
+          type: string
+          enum: [html]
+        content:
+          type: string
+    MediaBlock:
+      oneOf:
+        - $ref: "#/components/schemas/ImageBlock"
+        - $ref: "#/components/schemas/VideoBlock"
+      discriminator:
+        propertyName: type
+        mapping:
+          image: "#/components/schemas/ImageBlock"
+          video: "#/components/schemas/VideoBlock"
+    ImageBlock:
+      type: object
+      required:
+        - type
+        - src
+      properties:
+        type:
+          type: string
+          enum: [image]
+        src:
+          type: string
+          example: "/path/to/img.jpg"
+        alt:
+          type: string
+          example: "Картинка завода Астрон"
+    VideoBlock:
+      type: object
+      required:
+        - type
+        - src
+        - thumbnail
+      properties:
+        type:
+          type: string
+          enum: [video]
+        src:
+          type: string
+          example: "/path/to/video.mp4 or https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        thumbnail:
+          type: string
+          example: "/path/to/thumbnail.jpg"
+        alt:
+          type: string
+          example: "Видео о заводе Астрон"
+    Image:
+      type: object
+      required:
+        - src
+      properties:
+        src:
+          type: string
+          example: "/path/to/img.jpg"
+        alt:
+          type: string
+          example: "Картинка завода Астрон"
+    Video:
+      type: object
+      required:
+        - src
+        - thumbnail
+      properties:
+        src:
+          type: string
+          example: "/path/to/video.mp4 or https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        thumbnail:
+          type: string
+          example: "/path/to/thumbnail.jpg"
+        alt:
+          type: string
+          example: "Видео о заводе Астрон"
     EmployeeTesting:
       type: object
       required:
@@ -1010,6 +1215,20 @@ components:
         result:
           type: integer
           example: 81
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Success:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

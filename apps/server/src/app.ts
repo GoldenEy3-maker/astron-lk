@@ -9,6 +9,7 @@ import { searchRouter } from "./routes/search.router";
 import { kpiRouter } from "./routes/kpi.router";
 import { feedbackRouter } from "./routes/feedback.router";
 import { factoryRouter } from "./routes/factory.router";
+import { academyRouter } from "./routes/academy.router";
 
 const app: Express = express();
 
@@ -74,5 +75,6 @@ app.use("/api/search", searchRouter);
 app.use("/api/kpi", kpiRouter);
 app.use("/api/feedback", feedbackRouter);
 app.use("/api/factory", factoryRouter);
+app.use("/api/academy", academyRouter);
 
 export default app;

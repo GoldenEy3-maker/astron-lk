@@ -23,6 +23,7 @@ export const Routes = {
   AcademyProjects: "/academy/projects",
   AcademyWebinars: "/academy/webinars",
   AcademySales: "/academy/sales",
+  AcademySalesStages: "/academy/sales/stages",
   AcademyBenefits: "/academy/benefits",
 } as const;
 

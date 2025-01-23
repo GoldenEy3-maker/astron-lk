@@ -1,28 +1,6 @@
 import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
-type Favorite = Document | Bulletin;
-type Document = {
-  id: string;
-  title: string;
-  file: {
-    url: string;
-    size: number;
-  };
-  category: string;
-  createdAt: string;
-};
-type Bulletin = {
-  id: string;
-  title: string;
-  file: {
-    url: string;
-    size: number;
-  };
-  category: string;
-  createdAt: string;
-};
-
 const signIn_Body = z
   .object({
     login: z.string(),
@@ -65,7 +43,7 @@ const Company = z
     userId: z.string(),
   })
   .strict();
-const Document: z.ZodType<Document> = z
+const Document = z
   .object({
     id: z.string(),
     title: z.string(),
@@ -74,7 +52,7 @@ const Document: z.ZodType<Document> = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
-const Bulletin: z.ZodType<Bulletin> = z
+const Bulletin = z
   .object({
     id: z.string(),
     title: z.string(),
@@ -83,13 +61,16 @@ const Bulletin: z.ZodType<Bulletin> = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
-const Favorite: z.ZodType<Favorite> = z.union([Document, Bulletin]);
+const Favorite = z.union([Document, Bulletin]);
+const Image = z
+  .object({ src: z.string(), alt: z.string().optional() })
+  .strict();
 const News = z
   .object({
     id: z.string(),
     title: z.string(),
     description: z.string(),
-    img: z.string(),
+    img: Image,
     content: z.string(),
     createdAt: z.string().datetime({ offset: true }),
   })
@@ -120,6 +101,67 @@ const sendFeedback_Body = z
     personalData: z.boolean(),
   })
   .strict();
+const Video = z
+  .object({
+    src: z.string(),
+    thumbnail: z.string(),
+    alt: z.string().optional(),
+  })
+  .strict();
+const FactoryTeam = z
+  .object({
+    id: z.string(),
+    img: Image,
+    role: z.string(),
+    title: z.string(),
+    phone: z.string(),
+    email: z.string(),
+  })
+  .strict();
+const ImageBlock = z
+  .object({
+    type: z.literal("image"),
+    src: z.string(),
+    alt: z.string().optional(),
+  })
+  .strict();
+const VideoBlock = z
+  .object({
+    type: z.literal("video"),
+    src: z.string(),
+    thumbnail: z.string(),
+    alt: z.string().optional(),
+  })
+  .strict();
+const MediaBlock = z.discriminatedUnion("type", [ImageBlock, VideoBlock]);
+const SectionBlock = z
+  .object({
+    type: z.literal("section"),
+    title: z
+      .object({ type: z.enum(["h1", "h2", "h3"]), text: z.string() })
+      .strict(),
+    text: z.string().optional(),
+    media: MediaBlock.optional(),
+    documents: z.array(Document).optional(),
+  })
+  .strict();
+const SeparatorBlock = z.object({ type: z.literal("separator") }).strict();
+const HtmlBlock = z
+  .object({ type: z.literal("html"), content: z.string() })
+  .strict();
+const InfoBlock = z.discriminatedUnion("type", [
+  SectionBlock,
+  SeparatorBlock,
+  HtmlBlock,
+]);
+const AcademySales = z
+  .object({
+    title: z.string(),
+    description: z.string(),
+    slug: z.string(),
+    content: z.array(InfoBlock),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -146,14 +188,32 @@ export const schemas = {
   Document,
   Bulletin,
   Favorite,
+  Image,
   News,
   SearchResult,
   EmployeeTesting,
   sendFeedback_Body,
+  Video,
+  FactoryTeam,
+  ImageBlock,
+  VideoBlock,
+  MediaBlock,
+  SectionBlock,
+  SeparatorBlock,
+  HtmlBlock,
+  InfoBlock,
+  AcademySales,
   User,
 };
 
 const endpoints = makeApi([
+  {
+    method: "get",
+    path: "/api/academy/sales",
+    alias: "getAcademySales",
+    requestFormat: "json",
+    response: z.array(AcademySales),
+  },
   {
     method: "get",
     path: "/api/bulletins",
@@ -245,10 +305,24 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/api/factory/document",
-    alias: "getFactoryDocument",
+    path: "/api/factory",
+    alias: "getFactoryInfo",
     requestFormat: "json",
-    response: Document,
+    response: z
+      .object({
+        text: z.string(),
+        img: Image,
+        video: Video,
+        document: Document,
+      })
+      .strict(),
+  },
+  {
+    method: "get",
+    path: "/api/factory/team",
+    alias: "getFactoryTeam",
+    requestFormat: "json",
+    response: z.array(FactoryTeam),
   },
   {
     method: "post",
