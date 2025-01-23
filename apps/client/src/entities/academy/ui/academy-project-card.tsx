@@ -4,7 +4,7 @@ import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
-type AcademyProjectCardProps = {} & z.infer<
+type AcademyProjectCardProps = { asWebinars?: boolean } & z.infer<
   typeof schemas.AcademyProjectInList
 >;
 
@@ -13,11 +13,14 @@ export function AcademyProjectCard({
   description,
   id,
   img,
+  asWebinars,
 }: AcademyProjectCardProps) {
   return (
     <article className="flex flex-col ~py-5/8 ~px-5/7 group bg-primary/10 rounded-main relative ~min-h-[12rem]/[17.5rem]">
       <Link
-        to={`${Routes.AcademyProjects}/${id}`}
+        to={`${
+          asWebinars ? Routes.AcademyWebinars : Routes.AcademyProjects
+        }/${id}`}
         className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
       />
       <img

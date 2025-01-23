@@ -6,3 +6,5 @@ export { AcademyAnalysisPage } from "./ui/academy-analysis-page";
 export { AcademyCommercialPage } from "./ui/academy-commercial-page";
 export { AcademyProjectsPage } from "./ui/academy-projects-page";
 export { AcademyProjectsDetailPage } from "./ui/academy-projects-detail-page";
+export { AcademyWebinarsPage } from "./ui/academy-webinars-page";
+export { AcademyWebinarsDetailPage } from "./ui/academy-webinars-detail-page";

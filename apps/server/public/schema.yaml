@@ -253,131 +253,6 @@ paths:
                 $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
-  /api/user/favorites:
-    get:
-      summary: Получить список избранных документов/бюллетеней
-      operationId: getUserFavorites
-      tags:
-        - Избранное
-      parameters:
-        - name: page
-          in: query
-          required: false
-          description: Номер страницы
-          schema:
-            type: integer
-            example: 1
-        - name: limit
-          in: query
-          required: false
-          description: Количество документов на странице
-          schema:
-            type: integer
-            example: 10
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                  - nextPage
-                  - totalPages
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Favorite"
-                  nextPage:
-                    type: integer
-                    example: 1
-                  totalPages:
-                    type: integer
-                    example: 10
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
-  /api/user/favorites/add:
-    post:
-      summary: Добавить документ/бюллетень в избранное
-      operationId: addFavorite
-      tags:
-        - Избранное
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - id
-              properties:
-                id:
-                  type: string
-      responses:
-        "200":
-          description: Документ/бюллетень успешно добавлен в избранное
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Success"
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Документ/бюллетень с таким ID не найден
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
-  /api/user/favorites/remove:
-    delete:
-      summary: Удалить документ/бюллетень из избранного
-      operationId: removeFavorite
-      tags:
-        - Избранное
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - id
-              properties:
-                id:
-                  type: string
-      responses:
-        "200":
-          description: Документ/бюллетень успешно удален из избранного
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Success"
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Документ/бюллетень с таким ID не найден
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
   /api/news:
     get:
       summary: Получить список новостей
@@ -597,6 +472,131 @@ paths:
                 items:
                   type: string
                   example: "Изменение цены"
+  /api/user/favorites:
+    get:
+      summary: Получить список избранных документов/бюллетеней
+      operationId: getUserFavorites
+      tags:
+        - Избранное
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество документов на странице
+          schema:
+            type: integer
+            example: 10
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - nextPage
+                  - totalPages
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Favorite"
+                  nextPage:
+                    type: integer
+                    example: 1
+                  totalPages:
+                    type: integer
+                    example: 10
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/user/favorites/add:
+    post:
+      summary: Добавить документ/бюллетень в избранное
+      operationId: addFavorite
+      tags:
+        - Избранное
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Документ/бюллетень успешно добавлен в избранное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Документ/бюллетень с таким ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/user/favorites/remove:
+    delete:
+      summary: Удалить документ/бюллетень из избранного
+      operationId: removeFavorite
+      tags:
+        - Избранное
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Документ/бюллетень успешно удален из избранного
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Документ/бюллетень с таким ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/search:
     get:
       summary: Поиск документов/бюллетеней/новостей
@@ -650,36 +650,6 @@ paths:
                   nextPage:
                     type: integer
                     example: 1
-  /api/kpi/employee-testing:
-    get:
-      summary: Получить данные тестирования сотрудников
-      operationId: getEmployeeTesting
-      tags:
-        - KPI
-      parameters:
-        - name: period
-          in: query
-          required: true
-          description: Период
-          schema:
-            type: string
-            enum:
-              - all
-              - today
-              - month
-              - quarter
-              - year
-              - prev-year
-              - prev-prev-year
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/EmployeeTesting"
   /api/feedback:
     post:
       summary: Форма обратной связи
@@ -720,12 +690,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
+  /api/kpi/employee-testing:
+    get:
+      summary: Получить данные тестирования сотрудников
+      operationId: getEmployeeTesting
+      tags:
+        - KPI
+      parameters:
+        - name: period
+          in: query
+          required: true
+          description: Период
+          schema:
+            type: string
+            enum:
+              - all
+              - today
+              - month
+              - quarter
+              - year
+              - prev-year
+              - prev-prev-year
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EmployeeTesting"
   /api/factory:
     get:
       summary: Получить информацию о заводе Астрон
       operationId: getFactoryInfo
       tags:
-        - Завод Астрон
+        - Завод
       responses:
         "200":
           description: Успешный ответ
@@ -753,7 +753,7 @@ paths:
       summary: Получить список сотрудников завода Астрон
       operationId: getFactoryTeam
       tags:
-        - Завод Астрон
+        - Завод
       responses:
         "200":
           description: Успешный ответ

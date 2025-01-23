@@ -3,6 +3,8 @@ import {
   AcademyProject,
   AcademyProjectInList,
   AcademySales,
+  AcademyWebinar,
+  AcademyWebinarInList,
   Error,
   InfoBlock,
 } from "../types/globals";
@@ -407,6 +409,28 @@ academyRouter.get(
       res.status(404).json({ message: "Проект не найден" });
     }
     res.json(project);
+  }
+);
+
+academyRouter.get(
+  "/webinars",
+  async (req: Request, res: Response<AcademyWebinarInList[]>) => {
+    const webinars = dbService.get("academyWebinars");
+    res.json(webinars.map(({ content, ...webinar }) => webinar));
+  }
+);
+
+academyRouter.get(
+  "/webinars/:webinarId",
+  async (req: Request, res: Response<AcademyWebinar | Error>) => {
+    const webinarId = req.params.webinarId;
+    const webinar = dbService
+      .get("academyWebinars")
+      .find((webinar) => webinar.id === webinarId);
+    if (!webinar) {
+      res.status(404).json({ message: "Вебинар не найден" });
+    }
+    res.json(webinar);
   }
 );
 

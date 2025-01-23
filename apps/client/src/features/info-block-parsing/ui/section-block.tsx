@@ -51,7 +51,7 @@ export function SectionBlock({
       {documents && (
         <DocumentsList
           className={cn({
-            "~mt-7/9": media,
+            "~mt-7/9": media || text,
           })}
           skeletons={4}
           documents={documents}

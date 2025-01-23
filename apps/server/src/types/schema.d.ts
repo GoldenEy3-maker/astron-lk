@@ -140,57 +140,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/user/favorites": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить список избранных документов/бюллетеней */
-        get: operations["getUserFavorites"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/user/favorites/add": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Добавить документ/бюллетень в избранное */
-        post: operations["addFavorite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/user/favorites/remove": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Удалить документ/бюллетень из избранного */
-        delete: operations["removeFavorite"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/news": {
         parameters: {
             query?: never;
@@ -293,6 +242,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/user/favorites": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список избранных документов/бюллетеней */
+        get: operations["getUserFavorites"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/user/favorites/add": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Добавить документ/бюллетень в избранное */
+        post: operations["addFavorite"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/user/favorites/remove": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Удалить документ/бюллетень из избранного */
+        delete: operations["removeFavorite"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/search": {
         parameters: {
             query?: never;
@@ -302,23 +302,6 @@ export interface paths {
         };
         /** Поиск документов/бюллетеней/новостей */
         get: operations["search"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/kpi/employee-testing": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить данные тестирования сотрудников */
-        get: operations["getEmployeeTesting"];
         put?: never;
         post?: never;
         delete?: never;
@@ -338,6 +321,23 @@ export interface paths {
         put?: never;
         /** Форма обратной связи */
         post: operations["sendFeedback"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/employee-testing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные тестирования сотрудников */
+        get: operations["getEmployeeTesting"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -472,6 +472,40 @@ export interface paths {
         };
         /** Получить информацию о проекте */
         get: operations["getAcademyProjectById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/webinars": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список вебинаров */
+        get: operations["getAcademyWebinars"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/webinars/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить информацию о вебинаре */
+        get: operations["getAcademyWebinarById"];
         put?: never;
         post?: never;
         delete?: never;
@@ -656,6 +690,25 @@ export interface components {
             /** @example Проект */
             title: string;
             /** @example Описание проекта */
+            description: string;
+            img: components["schemas"]["Image"];
+        };
+        AcademyWebinar: {
+            /** @example 1 */
+            id: string;
+            /** @example Вебинар */
+            title: string;
+            /** @example Описание вебинара */
+            description: string;
+            img: components["schemas"]["Image"];
+            content: components["schemas"]["InfoBlock"][];
+        };
+        AcademyWebinarInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Вебинар */
+            title: string;
+            /** @example Описание вебинара */
             description: string;
             img: components["schemas"]["Image"];
         };
@@ -1051,134 +1104,6 @@ export interface operations {
             };
         };
     };
-    getUserFavorites: {
-        parameters: {
-            query?: {
-                /** @description Номер страницы */
-                page?: number;
-                /** @description Количество документов на странице */
-                limit?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Favorite"][];
-                        /** @example 1 */
-                        nextPage: number;
-                        /** @example 10 */
-                        totalPages: number;
-                    };
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    addFavorite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    id: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Документ/бюллетень успешно добавлен в избранное */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Success"];
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Документ/бюллетень с таким ID не найден */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    removeFavorite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    id: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Документ/бюллетень успешно удален из избранного */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Success"];
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Документ/бюллетень с таким ID не найден */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
     getNews: {
         parameters: {
             query?: {
@@ -1352,6 +1277,134 @@ export interface operations {
             };
         };
     };
+    getUserFavorites: {
+        parameters: {
+            query?: {
+                /** @description Номер страницы */
+                page?: number;
+                /** @description Количество документов на странице */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["Favorite"][];
+                        /** @example 1 */
+                        nextPage: number;
+                        /** @example 10 */
+                        totalPages: number;
+                    };
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    addFavorite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Документ/бюллетень успешно добавлен в избранное */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Документ/бюллетень с таким ID не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    removeFavorite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Документ/бюллетень успешно удален из избранного */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Документ/бюллетень с таким ID не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     search: {
         parameters: {
             query: {
@@ -1387,29 +1440,6 @@ export interface operations {
             };
         };
     };
-    getEmployeeTesting: {
-        parameters: {
-            query: {
-                /** @description Период */
-                period: "all" | "today" | "month" | "quarter" | "year" | "prev-year" | "prev-prev-year";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EmployeeTesting"][];
-                };
-            };
-        };
-    };
     sendFeedback: {
         parameters: {
             query?: never;
@@ -1441,6 +1471,29 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Success"];
+                };
+            };
+        };
+    };
+    getEmployeeTesting: {
+        parameters: {
+            query: {
+                /** @description Период */
+                period: "all" | "today" | "month" | "quarter" | "year" | "prev-year" | "prev-prev-year";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmployeeTesting"][];
                 };
             };
         };
@@ -1619,6 +1672,58 @@ export interface operations {
                 };
             };
             /** @description Проект не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getAcademyWebinars: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyWebinarInList"][];
+                };
+            };
+        };
+    };
+    getAcademyWebinarById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID вебинара */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyWebinar"];
+                };
+            };
+            /** @description Вебинар не найден */
             404: {
                 headers: {
                     [name: string]: unknown;

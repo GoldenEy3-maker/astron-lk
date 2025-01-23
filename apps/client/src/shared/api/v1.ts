@@ -43,25 +43,6 @@ const Company = z
     userId: z.string(),
   })
   .strict();
-const Document = z
-  .object({
-    id: z.string(),
-    title: z.string(),
-    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
-    category: z.string(),
-    createdAt: z.string().datetime({ offset: true }),
-  })
-  .strict();
-const Bulletin = z
-  .object({
-    id: z.string(),
-    title: z.string(),
-    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
-    category: z.string(),
-    createdAt: z.string().datetime({ offset: true }),
-  })
-  .strict();
-const Favorite = z.union([Document, Bulletin]);
 const Image = z
   .object({ src: z.string(), alt: z.string().optional() })
   .strict();
@@ -90,6 +71,15 @@ const VideoBlock = z
   })
   .strict();
 const MediaBlock = z.discriminatedUnion("type", [ImageBlock, VideoBlock]);
+const Document = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
+    category: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
+  })
+  .strict();
 const SectionBlock = z
   .object({
     type: z.literal("section"),
@@ -120,6 +110,16 @@ const News = z
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
+const Bulletin = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    file: z.object({ url: z.string(), size: z.number().int() }).strict(),
+    category: z.string(),
+    createdAt: z.string().datetime({ offset: true }),
+  })
+  .strict();
+const Favorite = z.union([Document, Bulletin]);
 const SearchResult = z
   .object({
     id: z.string(),
@@ -129,14 +129,6 @@ const SearchResult = z
     fileUrl: z.string().optional(),
   })
   .strict();
-const EmployeeTesting = z
-  .object({
-    id: z.string(),
-    test: z.string(),
-    name: z.string(),
-    result: z.number().int(),
-  })
-  .strict();
 const sendFeedback_Body = z
   .object({
     fio: z.string(),
@@ -144,6 +136,14 @@ const sendFeedback_Body = z
     message: z.string(),
     privacy: z.boolean(),
     personalData: z.boolean(),
+  })
+  .strict();
+const EmployeeTesting = z
+  .object({
+    id: z.string(),
+    test: z.string(),
+    name: z.string(),
+    result: z.number().int(),
   })
   .strict();
 const Video = z
@@ -188,6 +188,23 @@ const AcademyProject = z
     content: z.array(InfoBlock),
   })
   .strict();
+const AcademyWebinarInList = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+  })
+  .strict();
+const AcademyWebinar = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+    content: z.array(InfoBlock),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -211,27 +228,29 @@ export const schemas = {
   changeUserPassword_Body,
   recoveryUserPassword_Body,
   Company,
-  Document,
-  Bulletin,
-  Favorite,
   Image,
   NewsInList,
   ImageBlock,
   VideoBlock,
   MediaBlock,
+  Document,
   SectionBlock,
   SeparatorBlock,
   HtmlBlock,
   InfoBlock,
   News,
+  Bulletin,
+  Favorite,
   SearchResult,
-  EmployeeTesting,
   sendFeedback_Body,
+  EmployeeTesting,
   Video,
   FactoryTeam,
   AcademySales,
   AcademyProjectInList,
   AcademyProject,
+  AcademyWebinarInList,
+  AcademyWebinar,
   User,
 };
 
@@ -291,6 +310,34 @@ const endpoints = makeApi([
     alias: "getAcademySales",
     requestFormat: "json",
     response: z.array(AcademySales),
+  },
+  {
+    method: "get",
+    path: "/api/academy/webinars",
+    alias: "getAcademyWebinars",
+    requestFormat: "json",
+    response: z.array(AcademyWebinarInList),
+  },
+  {
+    method: "get",
+    path: "/api/academy/webinars/:id",
+    alias: "getAcademyWebinarById",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "id",
+        type: "Path",
+        schema: z.string(),
+      },
+    ],
+    response: AcademyWebinar,
+    errors: [
+      {
+        status: 404,
+        description: `Вебинар не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "get",

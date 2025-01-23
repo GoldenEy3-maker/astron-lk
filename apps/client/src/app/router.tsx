@@ -110,6 +110,18 @@ const AcademyProjectsDetailPage = lazy(() =>
   }))
 );
 
+const AcademyWebinarsPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyWebinarsPage,
+  }))
+);
+
+const AcademyWebinarsDetailPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyWebinarsDetailPage,
+  }))
+);
+
 const DocumentsPage = lazy(() =>
   import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -264,6 +276,16 @@ export function createRouter() {
                 path={Routes.AcademyProjects + "/:projectId"}
                 element={<AcademyProjectsDetailPage />}
                 handle={setCrumbHandleFromParams("projectId")}
+              />
+            </Route>
+            <Route
+              path={Routes.AcademyWebinars}
+              handle={setCrumbHandle(Routes.AcademyWebinars, "Вебинары")}>
+              <Route index element={<AcademyWebinarsPage />} />
+              <Route
+                path={Routes.AcademyWebinars + "/:webinarId"}
+                element={<AcademyWebinarsDetailPage />}
+                handle={setCrumbHandleFromParams("webinarId")}
               />
             </Route>
           </Route>

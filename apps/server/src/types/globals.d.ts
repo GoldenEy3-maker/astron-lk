@@ -20,3 +20,6 @@ export type AcademyProject = components["schemas"]["AcademyProject"];
 export type AcademyProjectInList =
   components["schemas"]["AcademyProjectInList"];
 export type InfoBlock = components["schemas"]["InfoBlock"];
+export type AcademyWebinar = components["schemas"]["AcademyWebinar"];
+export type AcademyWebinarInList =
+  components["schemas"]["AcademyWebinarInList"];
