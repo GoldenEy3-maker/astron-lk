@@ -1,5 +1,5 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { AcademyList } from "@/widgets/academy";
+import { AcademyList } from "@/entities/academy";
 
 export function AcademyPage() {
   return (

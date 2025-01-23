@@ -1,5 +1,8 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { InfoBlockParser, InfoBlockSkeleton } from "@/widgets/info-block";
+import {
+  InfoBlockParser,
+  InfoBlockSkeleton,
+} from "@/features/info-block-parsing";
 import { getAcademyConversationsQueryOptions } from "../api/academy-query";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,5 +1,5 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { AcademySalesList } from "./academy-sales-list";
+import { AcademySalesList } from "@/entities/academy";
 
 export function AcademySalesPage() {
   return (

@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { formatDate } from "@/shared/lib/format-date";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { InfoBlockParser, InfoBlockSkeleton } from "@/widgets/info-block";
+import {
+  InfoBlockParser,
+  InfoBlockSkeleton,
+} from "@/features/info-block-parsing";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { Image } from "@/shared/ui/image";
 import { ImageSkeleton } from "@/shared/ui/image-skeleton";

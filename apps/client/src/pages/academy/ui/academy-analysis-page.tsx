@@ -1,7 +1,10 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { getAcademyAnalysisQueryOptions } from "../api/academy-query";
 import { useQuery } from "@tanstack/react-query";
-import { InfoBlockParser, InfoBlockSkeleton } from "@/widgets/info-block";
+import {
+  InfoBlockParser,
+  InfoBlockSkeleton,
+} from "@/features/info-block-parsing";
 
 export function AcademyAnalysisPage() {
   const { data, isLoading } = useQuery(getAcademyAnalysisQueryOptions());

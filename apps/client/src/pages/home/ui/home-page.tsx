@@ -5,7 +5,7 @@ import { useDocumentTitle } from "usehooks-ts";
 import { Kpi } from "@/widgets/kpi";
 import { FeedbackCard } from "@/features/feedback";
 import { Factory } from "@/widgets/factory";
-import { Academy } from "@/widgets/academy";
+import { Academy } from "@/entities/academy";
 
 export function HomePage() {
   useDocumentTitle("Главная");
