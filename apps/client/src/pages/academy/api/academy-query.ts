@@ -21,3 +21,10 @@ export function getAcademyAnalysisQueryOptions() {
     queryFn: ({ signal }) => apiClient.getAcademyAnalysis({ signal }),
   });
 }
+
+export function getAcademyCommercialQueryOptions() {
+  return queryOptions({
+    queryKey: ["academy", "commercial"],
+    queryFn: ({ signal }) => apiClient.getAcademyCommercial({ signal }),
+  });
+}

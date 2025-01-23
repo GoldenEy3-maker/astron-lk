@@ -216,6 +216,13 @@ const endpoints = makeApi([
   },
   {
     method: "get",
+    path: "/api/academy/commercial",
+    alias: "getAcademyCommercial",
+    requestFormat: "json",
+    response: z.object({ content: z.array(InfoBlock) }).strict(),
+  },
+  {
+    method: "get",
     path: "/api/academy/conversations",
     alias: "getAcademyConversations",
     requestFormat: "json",

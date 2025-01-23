@@ -818,6 +818,26 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/InfoBlock"
+  /api/academy/commercial:
+    get:
+      summary: Получить информацию о коммерческом предложении
+      operationId: getAcademyCommercial
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - content
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InfoBlock"
 components:
   schemas:
     User:

@@ -92,6 +92,12 @@ const AcademyAnalysisPage = lazy(() =>
   }))
 );
 
+const AcademyCommercialPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyCommercialPage,
+  }))
+);
+
 const DocumentsPage = lazy(() =>
   import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -225,6 +231,14 @@ export function createRouter() {
               handle={setCrumbHandle(
                 Routes.AcademyAnalysis,
                 "Конъюнктурный анализ"
+              )}
+            />
+            <Route
+              path={Routes.AcademyCommercial}
+              element={<AcademyCommercialPage />}
+              handle={setCrumbHandle(
+                Routes.AcademyCommercial,
+                "Оформление коммерческого предложения"
               )}
             />
           </Route>

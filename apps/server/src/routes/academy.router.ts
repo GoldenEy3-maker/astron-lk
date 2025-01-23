@@ -324,4 +324,62 @@ academyRouter.get(
   }
 );
 
+academyRouter.get(
+  "/commercial",
+  async (req: Request, res: Response<{ content: InfoBlock[] }>) => {
+    const documents = dbService.get("documents");
+    res.json({
+      content: [
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Бланки коммерческих предложений",
+          },
+          documents: Array(3)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Сравнение технологий",
+          },
+          documents: Array(3)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Формирование графика работ",
+          },
+          documents: Array(1)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Калькулятор толщины теплоизоляции",
+          },
+          text: "<a href='#' target='_blank' rel='noopener noreferrer'>Онлайн-инструмент (калькулятор)</a>",
+        },
+      ],
+    });
+  }
+);
+
 export { academyRouter };
