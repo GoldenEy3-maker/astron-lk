@@ -209,6 +209,13 @@ export const schemas = {
 const endpoints = makeApi([
   {
     method: "get",
+    path: "/api/academy/conversations",
+    alias: "getAcademyConversations",
+    requestFormat: "json",
+    response: z.object({ content: z.array(InfoBlock) }).strict(),
+  },
+  {
+    method: "get",
     path: "/api/academy/sales",
     alias: "getAcademySales",
     requestFormat: "json",

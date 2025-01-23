@@ -15,3 +15,4 @@ export type Video = components["schemas"]["Video"];
 export type Image = components["schemas"]["Image"];
 export type FactoryTeam = components["schemas"]["FactoryTeam"];
 export type AcademySales = components["schemas"]["AcademySales"];
+export type InfoBlock = components["schemas"]["InfoBlock"];

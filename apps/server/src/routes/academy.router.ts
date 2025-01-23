@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { AcademySales } from "../types/globals";
+import { AcademySales, InfoBlock } from "../types/globals";
 import { generateSlug } from "../libs/utils";
 import dbService from "../services/db.service";
 
@@ -227,5 +227,54 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
     },
   ]);
 });
+
+academyRouter.get(
+  "/conversations",
+  async (req: Request, res: Response<{ content: InfoBlock[] }>) => {
+    const documents = dbService.get("documents");
+    res.json({
+      content: [
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Чек-лист",
+          },
+          text: "<p>Чек-лист подготовки к переговорам. Это документ, в котором перечислены ключевые цели конкретной встречи, возможные возражения, с которыми могут столкнуться участники. Чек-лист очень хорошо помогает и в составлении протокола проведенной встречи.</p>",
+          media: {
+            type: "image",
+            src: "/academy-conversations-1.webp",
+          },
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Карта переговоров",
+          },
+          documents: Array(3)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+        {
+          type: "separator",
+        },
+        {
+          type: "section",
+          title: {
+            type: "h2",
+            text: "Оценка качества",
+          },
+          documents: Array(4)
+            .fill(null)
+            .map(() => documents[Math.floor(Math.random() * documents.length)]),
+        },
+      ],
+    });
+  }
+);
 
 export { academyRouter };

@@ -80,6 +80,12 @@ const AcademySalesStagesPage = lazy(() =>
   }))
 );
 
+const AcademyConversationsPage = lazy(() =>
+  import("../pages/academy").then((module) => ({
+    default: module.AcademyConversationsPage,
+  }))
+);
+
 const DocumentsPage = lazy(() =>
   import("../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -199,6 +205,14 @@ export function createRouter() {
                 )}
               />
             </Route>
+            <Route
+              path={Routes.AcademyConversations}
+              element={<AcademyConversationsPage />}
+              handle={setCrumbHandle(
+                Routes.AcademyConversations,
+                "Подготовка к переговорам"
+              )}
+            />
           </Route>
           <Route
             path={Routes.Documents}

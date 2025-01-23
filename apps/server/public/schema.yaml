@@ -778,6 +778,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AcademySales"
+  /api/academy/conversations:
+    get:
+      summary: Получить информацию о подготовке к переговорам
+      operationId: getAcademyConversations
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - content
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InfoBlock"
 components:
   schemas:
     User:
