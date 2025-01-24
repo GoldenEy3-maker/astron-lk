@@ -72,7 +72,9 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
               target="_blank"
               className="justify-between">
               <span>Избранные проекты</span>
-              <span className="text-muted">12</span>
+              <span className="text-muted">
+                {session?.favoriteProjects ?? 0}
+              </span>
             </a>
           </Button>
           <Button

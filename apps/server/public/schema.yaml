@@ -1066,6 +1066,7 @@ components:
         - name
         - phone
         - favorites
+        - favoriteProjects
       properties:
         email:
           type: string
@@ -1086,6 +1087,9 @@ components:
           type: array
           items:
             type: string
+        favoriteProjects:
+          type: integer
+          example: 10
     Company:
       type: object
       required:

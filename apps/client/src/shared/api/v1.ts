@@ -16,6 +16,7 @@ const Session = z
     patronymic: z.string().optional(),
     phone: z.string(),
     favorites: z.array(z.string()),
+    favoriteProjects: z.number().int(),
   })
   .strict();
 const Error = z.object({ message: z.string() }).strict();

@@ -44,7 +44,15 @@ userRouter.post(
 
     res.json({
       accessToken,
-      user: { email, name, surname, patronymic, phone, favorites },
+      user: {
+        email,
+        name,
+        surname,
+        patronymic,
+        phone,
+        favorites,
+        favoriteProjects: 10,
+      },
     });
   }
 );
@@ -99,7 +107,15 @@ userRouter.get(
   (req: Request, res: Response<Session>) => {
     const { email, name, surname, patronymic, phone, favorites } =
       res.locals.user;
-    res.json({ email, name, surname, patronymic, phone, favorites });
+    res.json({
+      email,
+      name,
+      surname,
+      patronymic,
+      phone,
+      favorites,
+      favoriteProjects: 10,
+    });
   }
 );
 

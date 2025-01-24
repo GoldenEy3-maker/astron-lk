@@ -600,6 +600,8 @@ export interface components {
             /** @example +79231665038 */
             phone: string;
             favorites: string[];
+            /** @example 10 */
+            favoriteProjects: number;
         };
         Company: {
             /** @example 1 */
