@@ -6,7 +6,7 @@ import { AcademySalesCard } from "./academy-sales-card";
 import { AcademySalesCardSkeleton } from "./academy-sales-card-skeleton";
 
 export function AcademySalesList() {
-  const mdBreakpoint = useMediaQuery("(min-width: 56.4375rem)");
+  const mdBreakpoint = useMediaQuery("(min-width: 56.25rem)");
   const xsBreakpoint = useMediaQuery("(min-width: 30rem)");
 
   const { data, isLoading } = useQuery(getAcademySalesQueryOptions());
@@ -28,7 +28,7 @@ export function AcademySalesList() {
 
   return (
     <div
-      className="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-[2.125rem]"
+      className="grid grid-cols-1 xs:grid-cols-2 min-[56.25rem]:grid-cols-3 gap-[2.125rem]"
       ref={containerRef}
       style={
         {
@@ -41,7 +41,7 @@ export function AcademySalesList() {
               key={item.slug}
               isNextArrowLine={
                 index !== data.length - 1 &&
-                (xsBreakpoint ? index !== data.length - 2 : true) &&
+                index !== data.length - 2 &&
                 (mdBreakpoint
                   ? index % 3 !== 2
                   : xsBreakpoint

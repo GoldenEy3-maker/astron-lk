@@ -27,7 +27,7 @@ export function NewsDetailPage() {
               className="block text-muted text-sm">
               {formatDate(new Date(data.createdAt))}
             </time>
-            <Image src={data.img.src} alt={data.img.alt} />
+            <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />
           </>
         ) : null}
       </SectionHeader>

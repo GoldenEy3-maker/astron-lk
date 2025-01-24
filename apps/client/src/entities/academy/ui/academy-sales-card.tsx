@@ -23,9 +23,9 @@ export function AcademySalesCard({
       className={cn(
         "~py-3/4 ~px-4/7 group rounded-main ~min-h-[8rem]/[9.25rem] hover:bg-primary transition duration-300 hover:text-primary-foreground bg-primary/10 text-primary relative",
         {
-          "after:absolute xs:after:rotate-0 after:rotate-90 after:top-[calc(100%)] max-xs:after:-translate-x-1/2 after:right-1/2 xs:after:top-1/2 xs:after:-right-[2.125rem] after:w-[2.125rem] after:bg-[url('/icons/dashed-arrow-line.svg')] after:bg-no-repeat after:bg-center after:h-1.5 after:pointer-events-none":
+          "after:absolute xs:after:rotate-0 after:rotate-90 after:top-[110%] max-xs:after:-translate-x-1/2 after:left-1/2 after:right-auto xs:after:left-auto xs:after:top-1/2 xs:after:-right-[2.125rem] after:w-[2.125rem] after:bg-[url('/icons/dashed-arrow-line.svg')] after:bg-no-repeat after:bg-center after:h-1.5 after:pointer-events-none":
             isNextArrowLine,
-          "xs:before:absolute before:-bottom-8 before:right-0 before:w-[var(--container-width)] before:h-8 before:bg-[url('/icons/dashed-wrap-arrow-line.svg')] before:bg-no-repeat before:bg-center before:pointer-events-none":
+          "xs:before:absolute before:-bottom-8 before:right-0 before:w-[var(--container-width)] before:h-8 min-[56.25rem]:before:bg-[url('/icons/dashed-wrap-arrow-line.svg')] min-[43.75rem]:before:bg-[url('/icons/m-md-dashed-wrap-arrow-line.svg')] before:bg-[url('/icons/md-dashed-wrap-arrow-line.svg')] before:bg-no-repeat before:bg-center before:pointer-events-none":
             isWrapArrowLine,
         }
       )}>
