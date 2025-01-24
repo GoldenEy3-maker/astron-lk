@@ -6,6 +6,7 @@ import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/button";
 import { DocumentsQueryFnData } from "../api/documents-query";
 import { useDocumentsFavorites } from "../lib/use-documents-favorites";
+import parse from "html-react-parser";
 
 type DocumentCardProps = {} & DocumentsQueryFnData &
   React.ComponentProps<"article">;
@@ -55,7 +56,7 @@ export function DocumentCard({
         </Button>
       </div>
       <h4 className="text-h4 mt-2 group-hover/item:text-primary transition-colors">
-        {title}
+        {parse(title)}
       </h4>
       <div className="flex text-sm mt-auto items-center justify-between gap-4 pt-5">
         <time dateTime={createdAt} className="text-muted">

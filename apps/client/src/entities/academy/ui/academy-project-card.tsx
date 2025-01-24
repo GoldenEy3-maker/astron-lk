@@ -3,6 +3,7 @@ import { Routes } from "@/shared/constants/routes";
 import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { z } from "zod";
+import parse from "html-react-parser";
 
 type AcademyProjectCardProps = { asWebinars?: boolean } & z.infer<
   typeof schemas.AcademyProjectInList
@@ -29,10 +30,10 @@ export function AcademyProjectCard({
         className="absolute inset-0 size-full -z-[1] rounded-main object-cover opacity-0 group-hover:opacity-100 duration-300 transition brightness-[60%]"
       />
       <h3 className="text-primary text-h3 group-hover:text-primary-foreground transition duration-300">
-        {title}
+        {parse(title)}
       </h3>
       <p className="~text-base/lg group-hover:text-primary-foreground transition duration-300 mt-3 !leading-[1.3]">
-        {description}
+        {parse(description)}
       </p>
       <div className="flex pt-5 items-center gap-3 text-primary group-hover:text-primary-foreground transition duration-300 mt-auto">
         <span>Перейти</span>

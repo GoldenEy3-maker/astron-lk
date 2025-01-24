@@ -4,6 +4,7 @@ import { cn } from "@/shared/lib/cn";
 import { Icons } from "@/shared/ui/icons";
 import { Link } from "react-router-dom";
 import { z } from "zod";
+import parse from "html-react-parser";
 
 type AcademySalesCardProps = {
   isWrapArrowLine?: boolean;
@@ -38,7 +39,7 @@ export function AcademySalesCard({
         <Icons.ArrowRight className="inline w-3 h-2 opacity-0 group-hover:opacity-100 duration-300 transition-[opacity]" />
       </h3>
       <p className="~text-base/lg ~mt-2/3 !leading-[1.3] opacity-0 group-hover:opacity-100 duration-300 transition-[opacity]">
-        {description}
+        {parse(description)}
       </p>
     </article>
   );

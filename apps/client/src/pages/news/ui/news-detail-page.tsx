@@ -9,6 +9,7 @@ import {
   InfoBlockSkeleton,
 } from "@/features/info-block-parsing";
 import { Image } from "@/shared/ui/image";
+import parse from "html-react-parser";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -21,7 +22,7 @@ export function NewsDetailPage() {
       <SectionHeader className="flex-col items-start gap-3">
         {!isLoading && data ? (
           <>
-            <h1 className="text-h1 text-heading-h2">{data.title}</h1>
+            <h1 className="text-h1 text-heading-h2">{parse(data.title)}</h1>
             <time
               dateTime={data.createdAt}
               className="block text-muted text-sm">

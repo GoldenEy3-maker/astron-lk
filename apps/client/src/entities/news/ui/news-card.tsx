@@ -3,7 +3,7 @@ import { Routes } from "@/shared/constants/routes";
 import { formatDate } from "@/shared/lib/format-date";
 import { Link } from "react-router-dom";
 import { z } from "zod";
-
+import parse from "html-react-parser";
 type NewsCardProps = Omit<z.infer<typeof schemas.News>, "content"> &
   React.ComponentProps<"article">;
 
@@ -28,9 +28,9 @@ export function NewsCard({
           {formatDate(new Date(createdAt))}
         </time>
         <h4 className="text-h4 text-primary ~mt-2/3 group-hover:text-primary-accent">
-          {title}
+          {parse(title)}
         </h4>
-        <p className="text-muted mt-2 line-clamp-3">{description}</p>
+        <p className="text-muted mt-2 line-clamp-3">{parse(description)}</p>
       </div>
       <div className="relative rounded-main shrink-0 overflow-hidden w-[9.375rem] h-[7.5rem]">
         <img
