@@ -2,7 +2,6 @@ import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
 import { cn } from "@/shared/lib/cn";
-import { ScrollArea } from "./scroll-area";
 import { Button, ButtonProps } from "./button";
 
 const Drawer = ({
@@ -54,10 +53,7 @@ const DrawerOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
-    className={cn(
-      "fixed grid place-items-end inset-0 z-50 bg-black/80",
-      className
-    )}
+    className={cn("fixed inset-0 z-50 bg-black/80", className)}
     {...props}
   />
 ));
@@ -68,22 +64,17 @@ const DrawerContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <DrawerPortal>
-    <DrawerOverlay>
-      <DrawerPrimitive.Content
-        ref={ref}
-        className={cn(
-          "z-50 flex w-full h-auto flex-col rounded-t-[10px] border bg-card",
-          className
-        )}
-        {...props}>
-        <ScrollArea className="overflow-y-auto flex flex-col px-5 max-h-dvh">
-          <div className="pt-4 sticky z-10 pb-2 flex justify-center top-0 shrink-0 bg-card">
-            <span className="w-[100px] h-1.5 rounded-full bg-muted"></span>
-          </div>
-          <div className="flex flex-col px-1 pb-6 gap-4">{children}</div>
-        </ScrollArea>
-      </DrawerPrimitive.Content>
-    </DrawerOverlay>
+    <DrawerOverlay />
+    <DrawerPrimitive.Content
+      ref={ref}
+      className={cn(
+        "z-50 inset-x-0 bottom-0 max-h-[82vh] fixed flex h-auto flex-col rounded-t-[10px] px-5 pb-6 border bg-card",
+        className
+      )}
+      {...props}>
+      <div className="mx-auto mt-4 shrink-0 h-1.5 w-[100px] rounded-full bg-muted" />
+      {children}
+    </DrawerPrimitive.Content>
   </DrawerPortal>
 ));
 DrawerContent.displayName = "DrawerContent";

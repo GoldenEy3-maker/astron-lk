@@ -48,7 +48,7 @@ export function ChangePasswordDialog() {
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={setOpen} repositionInputs={false}>
       <DrawerTrigger
         variant="outline"
         className="bg-transparent w-full sm:w-auto">
