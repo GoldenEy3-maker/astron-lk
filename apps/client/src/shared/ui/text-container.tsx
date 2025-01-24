@@ -9,11 +9,18 @@ import { VideoDialog } from "./video-dialog";
 import { Image } from "./image";
 import { Button } from "./button";
 
-type HTMLParserProps = { html: string } & React.ComponentProps<"div">;
+type TextContainerProps = { html: string } & Omit<
+  React.ComponentProps<"div">,
+  "children"
+>;
 
-export function HTMLParser({ html, className, ...props }: HTMLParserProps) {
+export function TextContainer({
+  html,
+  className,
+  ...props
+}: TextContainerProps) {
   return (
-    <div className={cn("html-parser", className)} {...props}>
+    <div className={cn("text-container", className)} {...props}>
       {parse(html, {
         replace(domNode) {
           if (

@@ -27,7 +27,11 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL
       ? [`https://${process.env.CLIENT_URL}`]
-      : ["http://localhost:5173", "http://localhost:4173"],
+      : [
+          "http://localhost:5173",
+          "http://localhost:4173",
+          "http://127.0.0.1:5500",
+        ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

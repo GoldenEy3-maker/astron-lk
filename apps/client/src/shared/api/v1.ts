@@ -52,7 +52,7 @@ const NewsInList = z
     title: z.string(),
     description: z.string(),
     img: Image,
-    createdAt: z.string().datetime({ offset: true }).optional(),
+    createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
 const ImageBlock = z
@@ -205,6 +205,28 @@ const AcademyWebinar = z
     content: z.array(InfoBlock),
   })
   .strict();
+const AcademyBenefitTag = z
+  .object({ id: z.string(), label: z.string(), slug: z.string() })
+  .strict();
+const AcademyBenefitInList = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+    tags: z.array(AcademyBenefitTag),
+  })
+  .strict();
+const AcademyBenefit = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    img: Image,
+    tags: z.array(AcademyBenefitTag),
+    content: z.array(InfoBlock),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -251,6 +273,9 @@ export const schemas = {
   AcademyProject,
   AcademyWebinarInList,
   AcademyWebinar,
+  AcademyBenefitTag,
+  AcademyBenefitInList,
+  AcademyBenefit,
   User,
 };
 
@@ -261,6 +286,64 @@ const endpoints = makeApi([
     alias: "getAcademyAnalysis",
     requestFormat: "json",
     response: z.object({ content: z.array(InfoBlock) }).strict(),
+  },
+  {
+    method: "get",
+    path: "/api/academy/benefits",
+    alias: "getAcademyBenefits",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "page",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional(),
+      },
+      {
+        name: "tags",
+        type: "Query",
+        schema: z.array(z.string()).optional(),
+      },
+    ],
+    response: z
+      .object({
+        data: z.array(AcademyBenefitInList),
+        nextPage: z.number().int(),
+        totalResults: z.number().int(),
+      })
+      .strict(),
+  },
+  {
+    method: "get",
+    path: "/api/academy/benefits/:id",
+    alias: "getAcademyBenefitById",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "id",
+        type: "Path",
+        schema: z.string(),
+      },
+    ],
+    response: AcademyBenefit,
+    errors: [
+      {
+        status: 404,
+        description: `Преимущество не найдено`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/academy/benefits/tags",
+    alias: "getAcademyBenefitTags",
+    requestFormat: "json",
+    response: z.array(AcademyBenefitTag),
   },
   {
     method: "get",

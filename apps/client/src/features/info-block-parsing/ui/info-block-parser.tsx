@@ -1,7 +1,7 @@
 import { schemas } from "@/shared/api/v1";
 import { z } from "zod";
 import { SectionBlock } from "./section-block";
-import { HTMLParser } from "@/shared/ui/html-parser";
+import { TextContainer } from "@/shared/ui/text-container";
 import { Separator } from "@/shared/ui/separator";
 
 type InfoBlockParserProps = {
@@ -16,7 +16,7 @@ export function InfoBlockParser({ content }: InfoBlockParserProps) {
           case "section":
             return <SectionBlock key={index} {...block} />;
           case "html":
-            return <HTMLParser key={index} html={block.content} />;
+            return <TextContainer key={index} html={block.content} />;
           case "separator":
             return <Separator key={index} className="!~my-10/12" />;
           default:

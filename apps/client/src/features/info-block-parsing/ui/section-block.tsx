@@ -1,6 +1,6 @@
 import { DocumentsList } from "@/entities/document";
 import { schemas } from "@/shared/api/v1";
-import { HTMLParser } from "@/shared/ui/html-parser";
+import { TextContainer } from "@/shared/ui/text-container";
 import { z } from "zod";
 import { MediaBlock } from "./media-block";
 import { cva } from "class-variance-authority";
@@ -46,9 +46,9 @@ export function SectionBlock({
   return (
     <section>
       <SectionTitle type={title.type} text={title.text} />
-      {text && <HTMLParser html={text} />}
-      {media && <MediaBlock className="~mt-4/6" media={media} />}
-      {documents && (
+      {text ? <TextContainer html={text} /> : null}
+      {media ? <MediaBlock className="~mt-4/6" media={media} /> : null}
+      {documents ? (
         <DocumentsList
           className={cn({
             "~mt-7/9": media || text,
@@ -57,7 +57,7 @@ export function SectionBlock({
           documents={documents}
           isLoading={false}
         />
-      )}
+      ) : null}
     </section>
   );
 }

@@ -8,9 +8,7 @@ import {
   InfoBlockParser,
   InfoBlockSkeleton,
 } from "@/features/info-block-parsing";
-import { Skeleton } from "@/shared/ui/skeleton";
 import { Image } from "@/shared/ui/image";
-import { ImageSkeleton } from "@/shared/ui/image-skeleton";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -29,20 +27,11 @@ export function NewsDetailPage() {
               className="block text-muted text-sm">
               {formatDate(new Date(data.createdAt))}
             </time>
+            <Image src={data.img.src} alt={data.img.alt} />
           </>
-        ) : (
-          <>
-            <Skeleton className="h-5 w-3/4 rounded-full" />
-            <Skeleton className="h-3 w-1/4 rounded-full" />
-          </>
-        )}
+        ) : null}
       </SectionHeader>
       <SectionContent>
-        {!isLoading && data ? (
-          <Image src={data.img.src} alt={data.img.alt} />
-        ) : (
-          <ImageSkeleton />
-        )}
         {!isLoading && data ? (
           <InfoBlockParser content={data.content} />
         ) : (

@@ -4,7 +4,7 @@ import { VideoDialog } from "@/shared/ui/video-dialog";
 import { useQuery } from "@tanstack/react-query";
 import { getFactoryInfoQueryOptions } from "../api/factory-query";
 import { Skeleton } from "@/shared/ui/skeleton";
-import { HTMLParser } from "@/shared/ui/html-parser";
+import { TextContainer } from "@/shared/ui/text-container";
 
 type FactoryAboutProps = {
   extended?: boolean;
@@ -24,7 +24,10 @@ export function FactoryAbout({
           "_col-one-more": extended,
         })}>
         {!isLoading && data ? (
-          <HTMLParser html={data.text} className="~space-y-2/3 leading-[1.3]" />
+          <TextContainer
+            html={data.text}
+            className="~space-y-2/3 leading-[1.3]"
+          />
         ) : (
           <div className="space-y-2">
             <Skeleton className="w-full h-3 !rounded-full" />

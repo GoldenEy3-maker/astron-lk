@@ -8,3 +8,5 @@ export { AcademyProjectsPage } from "./ui/academy-projects-page";
 export { AcademyProjectsDetailPage } from "./ui/academy-projects-detail-page";
 export { AcademyWebinarsPage } from "./ui/academy-webinars-page";
 export { AcademyWebinarsDetailPage } from "./ui/academy-webinars-detail-page";
+export { AcademyBenefitsPage } from "./ui/academy-benefits-page";
+export { AcademyBenefitsDetailPage } from "./ui/academy-benefits-detail-page";

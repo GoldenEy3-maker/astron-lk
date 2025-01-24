@@ -21,8 +21,6 @@ export function AcademySalesList() {
     height: undefined,
   });
 
-  // const onResize = useDebounceCallback(setContainerDimensions, 200);
-
   useResizeObserver({
     ref: containerRef,
     onResize: setContainerDimensions,

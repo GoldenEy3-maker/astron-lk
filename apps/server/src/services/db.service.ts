@@ -2,8 +2,11 @@ import {
   generateId,
   generateRandomDate,
   generateRandomNumber,
+  generateSlug,
 } from "../libs/utils";
 import {
+  AcademyBenefit,
+  AcademyBenefitTag,
   AcademyProject,
   AcademyWebinar,
   Bulletin,
@@ -43,6 +46,8 @@ type DBData = {
   employeeTests: EmployeeTest[];
   academyProjects: AcademyProject[];
   academyWebinars: AcademyWebinar[];
+  academyBenefits: AcademyBenefit[];
+  academyBenefitTags: AcademyBenefitTag[];
 };
 
 export default new (class DBService {
@@ -57,6 +62,8 @@ export default new (class DBService {
     employeeTests: [],
     academyProjects: [],
     academyWebinars: [],
+    academyBenefits: [],
+    academyBenefitTags: [],
   };
 
   constructor() {
@@ -3426,6 +3433,410 @@ export default new (class DBService {
                 .map(
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
+            },
+          ],
+        },
+      ],
+      academyBenefitTags: [
+        {
+          id: "1",
+          label: "Соответствие техническим требованиям",
+          slug: generateSlug("Соответствие техническим требованиям"),
+        },
+        {
+          id: "2",
+          label: "Долговечность",
+          slug: generateSlug("Долговечность"),
+        },
+        {
+          id: "3",
+          label: "Престиж",
+          slug: generateSlug("Престиж"),
+        },
+        {
+          id: "4",
+          label: "Экологичность",
+          slug: generateSlug("Экологичность"),
+        },
+        {
+          id: "5",
+          label: "Уникальность",
+          slug: generateSlug("Уникальность"),
+        },
+      ],
+      academyBenefits: [
+        {
+          id: "1",
+          title: "60 лет&nbsp;опыта",
+          description:
+            "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
+          img: { src: "/academy-benefits-1.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "1",
+              label: "Соответствие техническим требованиям",
+              slug: generateSlug("Соответствие техническим требованиям"),
+            },
+            {
+              id: "2",
+              label: "Долговечность",
+              slug: generateSlug("Долговечность"),
+            },
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "2",
+          title: "Короткие сроки строительства",
+          description:
+            "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
+          img: { src: "/academy-benefits-2.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+            {
+              id: "5",
+              label: "Уникальность",
+              slug: generateSlug("Уникальность"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "3",
+          title: "60 лет&nbsp;опыта",
+          description:
+            "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
+          img: { src: "/academy-benefits-1.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "1",
+              label: "Соответствие техническим требованиям",
+              slug: generateSlug("Соответствие техническим требованиям"),
+            },
+            {
+              id: "2",
+              label: "Долговечность",
+              slug: generateSlug("Долговечность"),
+            },
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "4",
+          title: "Короткие сроки строительства",
+          description:
+            "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
+          img: { src: "/academy-benefits-2.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+            {
+              id: "5",
+              label: "Уникальность",
+              slug: generateSlug("Уникальность"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "5",
+          title: "60 лет&nbsp;опыта",
+          description:
+            "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
+          img: { src: "/academy-benefits-1.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "1",
+              label: "Соответствие техническим требованиям",
+              slug: generateSlug("Соответствие техническим требованиям"),
+            },
+            {
+              id: "2",
+              label: "Долговечность",
+              slug: generateSlug("Долговечность"),
+            },
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "6",
+          title: "Короткие сроки строительства",
+          description:
+            "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
+          img: { src: "/academy-benefits-2.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+            {
+              id: "5",
+              label: "Уникальность",
+              slug: generateSlug("Уникальность"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "7",
+          title: "60 лет&nbsp;опыта",
+          description:
+            "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
+          img: { src: "/academy-benefits-1.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "1",
+              label: "Соответствие техническим требованиям",
+              slug: generateSlug("Соответствие техническим требованиям"),
+            },
+            {
+              id: "2",
+              label: "Долговечность",
+              slug: generateSlug("Долговечность"),
+            },
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "8",
+          title: "Короткие сроки строительства",
+          description:
+            "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
+          img: { src: "/academy-benefits-2.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+            {
+              id: "5",
+              label: "Уникальность",
+              slug: generateSlug("Уникальность"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "9",
+          title: "60 лет&nbsp;опыта",
+          description:
+            "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
+          img: { src: "/academy-benefits-1.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "1",
+              label: "Соответствие техническим требованиям",
+              slug: generateSlug("Соответствие техническим требованиям"),
+            },
+            {
+              id: "2",
+              label: "Долговечность",
+              slug: generateSlug("Долговечность"),
+            },
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
+            },
+          ],
+        },
+        {
+          id: "10",
+          title: "Короткие сроки строительства",
+          description:
+            "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
+          img: { src: "/academy-benefits-2.webp", alt: "Описание изображения" },
+          tags: [
+            {
+              id: "3",
+              label: "Престиж",
+              slug: generateSlug("Престиж"),
+            },
+            {
+              id: "5",
+              label: "Уникальность",
+              slug: generateSlug("Уникальность"),
+            },
+          ],
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "60 лет опыта и более 60 000 построенных зданий говорят сами за себя",
+              },
+              text: "<p>Короткометражный фильм от Гая Ричи о истории успеха Astron Buildings</p>",
+              media: {
+                type: "video",
+                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
+                thumbnail: "/video-poster-1.webp",
+                alt: "Видео завода Астрон",
+              },
             },
           ],
         },

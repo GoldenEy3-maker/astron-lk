@@ -514,6 +514,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/academy/benefits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список преимуществ */
+        get: operations["getAcademyBenefits"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/benefits/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить информацию о преимуществе */
+        get: operations["getAcademyBenefitById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/benefits/tags": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список тегов преимуществ */
+        get: operations["getAcademyBenefitTags"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -599,7 +650,7 @@ export interface components {
              * Format: date-time
              * @example 2024-12-30T12:34:56Z
              */
-            createdAt?: string;
+            createdAt: string;
         };
         Document: {
             /** @example 1 */
@@ -711,6 +762,35 @@ export interface components {
             /** @example Описание вебинара */
             description: string;
             img: components["schemas"]["Image"];
+        };
+        AcademyBenefit: {
+            /** @example 1 */
+            id: string;
+            /** @example Преимущество */
+            title: string;
+            /** @example Описание преимущества */
+            description: string;
+            img: components["schemas"]["Image"];
+            tags: components["schemas"]["AcademyBenefitTag"][];
+            content: components["schemas"]["InfoBlock"][];
+        };
+        AcademyBenefitInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Преимущество */
+            title: string;
+            /** @example Описание преимущества */
+            description: string;
+            img: components["schemas"]["Image"];
+            tags: components["schemas"]["AcademyBenefitTag"][];
+        };
+        AcademyBenefitTag: {
+            /** @example 1 */
+            id: string;
+            /** @example Соответствие техническим требованиям */
+            label: string;
+            /** @example technical-requirements */
+            slug: string;
         };
         InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
         SectionBlock: {
@@ -1730,6 +1810,91 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getAcademyBenefits: {
+        parameters: {
+            query?: {
+                /** @description Номер страницы */
+                page?: number;
+                /** @description Количество преимуществ на странице */
+                limit?: number;
+                /** @description Теги преимуществ */
+                tags?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AcademyBenefitInList"][];
+                        /** @example 1 */
+                        nextPage: number;
+                        /** @example 100 */
+                        totalResults: number;
+                    };
+                };
+            };
+        };
+    };
+    getAcademyBenefitById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID преимущества */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyBenefit"];
+                };
+            };
+            /** @description Преимущество не найдено */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getAcademyBenefitTags: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademyBenefitTag"][];
                 };
             };
         };

@@ -3,3 +3,7 @@ export { AcademyList } from "./ui/academy-list";
 export { AcademySalesList } from "./ui/academy-sales-list";
 export { getAcademySalesQueryOptions } from "./api/academy-query";
 export { AcademyProjectsList } from "./ui/academy-projects-list";
+export { AcademyBenefitsTagsFilter } from "./ui/academy-benefits-tags-filter";
+export { AcademyBenefitsCard } from "./ui/academy-benefits-card";
+export { AcademyBenefitsCardSkeleton } from "./ui/academy-benefits-card-skeleton";
+export { AcademyBenefitsTagsBadge } from "./ui/academy-benefits-tags-badge";

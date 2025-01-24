@@ -1,5 +1,5 @@
 import { apiClient } from "@/shared/api/client";
-import { queryOptions } from "@tanstack/react-query";
+import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
 export function getAcademyConversationsQueryOptions() {
   return queryOptions({
@@ -49,5 +49,48 @@ export function getAcademyWebinarByIdQueryOptions(id: string) {
     queryKey: ["academy", "webinar", id],
     queryFn: ({ signal }) =>
       apiClient.getAcademyWebinarById({ params: { id }, signal }),
+  });
+}
+
+type GetAcademyBenefitsParams = {
+  tags?: string[];
+  limit?: number;
+};
+
+export function getAcademyBenefitsInfiniteQueryOptions(
+  params?: GetAcademyBenefitsParams
+) {
+  return infiniteQueryOptions({
+    queryKey: ["academy", "benefits", params?.tags, params?.limit],
+    queryFn: ({ signal, pageParam }) =>
+      apiClient.getAcademyBenefits({
+        queries: {
+          limit: params?.limit,
+          tags: params?.tags,
+          page: pageParam,
+        },
+        signal,
+      }),
+    getNextPageParam: (lastPage) => lastPage.nextPage || undefined,
+    initialPageParam: 1,
+    select: (result) => ({
+      data: result.pages.flatMap((page) => page.data),
+      totalResults: result.pages[0].totalResults,
+    }),
+  });
+}
+
+export function getAcademyBenefitsTagsQueryOptions() {
+  return queryOptions({
+    queryKey: ["academy", "benefits", "tags"],
+    queryFn: ({ signal }) => apiClient.getAcademyBenefitTags({ signal }),
+  });
+}
+
+export function getAcademyBenefitByIdQueryOptions(id: string) {
+  return queryOptions({
+    queryKey: ["academy", "benefit", id],
+    queryFn: ({ signal }) =>
+      apiClient.getAcademyBenefitById({ params: { id }, signal }),
   });
 }

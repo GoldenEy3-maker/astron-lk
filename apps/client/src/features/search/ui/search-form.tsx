@@ -1,3 +1,4 @@
+import { enumerate } from "@/shared/lib/enumerate";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 
@@ -48,7 +49,10 @@ export function SearchForm({
         </div>
       </form>
       {query && totalResults ? (
-        <span className="text-sm text-muted">{totalResults} результатов</span>
+        <span className="text-sm text-muted">
+          {totalResults}{" "}
+          {enumerate(totalResults, ["результат", "результата", "результатов"])}
+        </span>
       ) : null}
     </div>
   );

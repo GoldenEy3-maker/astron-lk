@@ -23,3 +23,7 @@ export type InfoBlock = components["schemas"]["InfoBlock"];
 export type AcademyWebinar = components["schemas"]["AcademyWebinar"];
 export type AcademyWebinarInList =
   components["schemas"]["AcademyWebinarInList"];
+export type AcademyBenefit = components["schemas"]["AcademyBenefit"];
+export type AcademyBenefitInList =
+  components["schemas"]["AcademyBenefitInList"];
+export type AcademyBenefitTag = components["schemas"]["AcademyBenefitTag"];

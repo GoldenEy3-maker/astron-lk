@@ -64,7 +64,9 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
           <Fragment key={crumb.href}>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link to={crumb.href}>{crumb.label ?? "Загрузка..."}</Link>
+                <Link to={crumb.href}>
+                  {crumb.label?.replace("&nbsp;", " ") ?? "Загрузка..."}
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -72,7 +74,8 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
         ))}
         <BreadcrumbItem>
           <BreadcrumbPage>
-            {crumbs[crumbs.length - 1]?.label ?? "Загрузка..."}
+            {crumbs[crumbs.length - 1]?.label?.replace("&nbsp;", " ") ??
+              "Загрузка..."}
           </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>

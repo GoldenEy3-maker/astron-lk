@@ -1,5 +1,8 @@
 import { Request, Response, Router } from "express";
 import {
+  AcademyBenefit,
+  AcademyBenefitInList,
+  AcademyBenefitTag,
   AcademyProject,
   AcademyProjectInList,
   AcademySales,
@@ -431,6 +434,73 @@ academyRouter.get(
       res.status(404).json({ message: "Вебинар не найден" });
     }
     res.json(webinar);
+  }
+);
+
+academyRouter.get(
+  "/benefits",
+  async (
+    req: Request,
+    res: Response<{
+      data: AcademyBenefitInList[];
+      nextPage: number;
+      totalResults: number;
+    }>
+  ) => {
+    const {
+      page = "1",
+      limit = "10",
+      tags,
+    } = req.query as {
+      page: string;
+      limit: string;
+      tags: string[] | undefined;
+    };
+
+    const startIndex = (parseInt(page) - 1) * parseInt(limit);
+    const endIndex = parseInt(page) * parseInt(limit);
+
+    const benefits = dbService
+      .get("academyBenefits")
+      .filter(
+        (benefit) =>
+          tags?.every((tag) => benefit.tags.some((t) => t.slug === tag)) ?? true
+      );
+
+    const totalBenefits = benefits.length;
+    const totalPages = Math.ceil(totalBenefits / parseInt(limit));
+    const currentPage = parseInt(page);
+    const nextPage = currentPage + 1;
+
+    res.json({
+      data: benefits
+        .slice(startIndex, endIndex)
+        .map(({ content, ...benefit }) => benefit),
+      nextPage: nextPage <= totalPages ? nextPage : 0,
+      totalResults: totalBenefits,
+    });
+  }
+);
+
+academyRouter.get(
+  "/benefits/tags",
+  async (req: Request, res: Response<AcademyBenefitTag[]>) => {
+    const tags = dbService.get("academyBenefitTags");
+    res.json(tags);
+  }
+);
+
+academyRouter.get(
+  "/benefits/:benefitId",
+  async (req: Request, res: Response<AcademyBenefit | Error>) => {
+    const benefitId = req.params.benefitId;
+    const benefit = dbService
+      .get("academyBenefits")
+      .find((benefit) => benefit.id === benefitId);
+    if (!benefit) {
+      res.status(404).json({ message: "Преимущество не найдено" });
+    }
+    res.json(benefit);
   }
 );
 

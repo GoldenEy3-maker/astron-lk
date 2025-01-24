@@ -922,6 +922,100 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /api/academy/benefits:
+    get:
+      summary: Получить список преимуществ
+      operationId: getAcademyBenefits
+      tags:
+        - Академия
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          description: Количество преимуществ на странице
+          schema:
+            type: integer
+            example: 10
+        - name: tags
+          in: query
+          required: false
+          description: Теги преимуществ
+          schema:
+            type: array
+            items:
+              type: string
+              example: "technical-requirements"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - nextPage
+                  - totalResults
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AcademyBenefitInList"
+                  nextPage:
+                    type: integer
+                    example: 1
+                  totalResults:
+                    type: integer
+                    example: 100
+  /api/academy/benefits/{id}:
+    get:
+      summary: Получить информацию о преимуществе
+      operationId: getAcademyBenefitById
+      tags:
+        - Академия
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID преимущества
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcademyBenefit"
+        "404":
+          description: Преимущество не найдено
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/academy/benefits/tags:
+    get:
+      summary: Получить список тегов преимуществ
+      operationId: getAcademyBenefitTags
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AcademyBenefitTag"
 components:
   schemas:
     User:
@@ -1075,6 +1169,7 @@ components:
         - title
         - description
         - img
+        - createdAt
       properties:
         id:
           type: string
@@ -1322,6 +1417,75 @@ components:
           example: "Описание вебинара"
         img:
           $ref: "#/components/schemas/Image"
+    AcademyBenefit:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+        - tags
+        - content
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Преимущество"
+        description:
+          type: string
+          example: "Описание преимущества"
+        img:
+          $ref: "#/components/schemas/Image"
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/AcademyBenefitTag"
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
+    AcademyBenefitInList:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - img
+        - tags
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Преимущество"
+        description:
+          type: string
+          example: "Описание преимущества"
+        img:
+          $ref: "#/components/schemas/Image"
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/AcademyBenefitTag"
+    AcademyBenefitTag:
+      type: object
+      required:
+        - id
+        - label
+        - slug
+      properties:
+        id:
+          type: string
+          example: "1"
+        label:
+          type: string
+          example: "Соответствие техническим требованиям"
+        slug:
+          type: string
+          example: "technical-requirements"
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"
