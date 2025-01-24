@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
-import { Bulletin } from "../types/globals";
+import { Bulletin, DocumentCategory } from "../types/globals";
 
 const bulletinsRouter = Router();
 
@@ -37,14 +37,16 @@ bulletinsRouter.get(
       .sort((a, b) => {
         if (sort === "oldest")
           return (
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
           );
 
         return (
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
       })
-      .filter((bulletin) => (category ? bulletin.category === category : true))
+      .filter((bulletin) =>
+        category ? bulletin.category.slug === category : true
+      )
       .filter((bulletin) => {
         if (fromDate && toDate)
           return (
@@ -70,15 +72,17 @@ bulletinsRouter.get(
   }
 );
 
-bulletinsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
-  const categories = new Set(
-    dbService.get("bulletins").map((bulletin) => bulletin.category)
-  );
-  res.json(Array.from(categories));
-});
+bulletinsRouter.get(
+  "/categories",
+  (req: Request, res: Response<DocumentCategory[]>) => {
+    const categories = dbService.get("bulletinsCategories");
+    res.json(categories);
+  }
+);
 
 bulletinsRouter.get("/all", (req: Request, res: Response<Bulletin[]>) => {
-  res.json(dbService.get("bulletins"));
+  const bulletins = dbService.get("bulletins");
+  res.json(bulletins);
 });
 
 export { bulletinsRouter };

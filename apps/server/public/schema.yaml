@@ -381,8 +381,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
-                  example: "Изменение цены"
+                  $ref: "#/components/schemas/DocumentCategory"
   /api/bulletins:
     get:
       summary: Получить список бюллетеней
@@ -470,8 +469,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
-                  example: "Изменение цены"
+                  $ref: "#/components/schemas/DocumentCategory"
   /api/user/favorites:
     get:
       summary: Получить список избранных документов/бюллетеней
@@ -1214,8 +1212,7 @@ components:
               type: integer
               example: 607232
         category:
-          type: string
-          example: "Изменение цены"
+          $ref: "#/components/schemas/DocumentCategory"
         createdAt:
           type: string
           format: date-time
@@ -1248,12 +1245,27 @@ components:
               type: integer
               example: 607232
         category:
-          type: string
-          example: "Изменение цены"
+          $ref: "#/components/schemas/DocumentCategory"
         createdAt:
           type: string
           format: date-time
           example: "2024-12-30T12:34:56Z"
+    DocumentCategory:
+      type: object
+      required:
+        - id
+        - label
+        - slug
+      properties:
+        id:
+          type: string
+          example: "1"
+        label:
+          type: string
+          example: "Изменение цены"
+        slug:
+          type: string
+          example: "price-change"
     Favorite:
       oneOf:
         - $ref: "#/components/schemas/Document"

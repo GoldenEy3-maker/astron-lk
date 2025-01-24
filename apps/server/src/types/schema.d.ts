@@ -663,8 +663,7 @@ export interface components {
                 /** @example 607232 */
                 size: number;
             };
-            /** @example Изменение цены */
-            category: string;
+            category: components["schemas"]["DocumentCategory"];
             /**
              * Format: date-time
              * @example 2024-12-30T12:34:56Z
@@ -682,13 +681,20 @@ export interface components {
                 /** @example 607232 */
                 size: number;
             };
-            /** @example Изменение цены */
-            category: string;
+            category: components["schemas"]["DocumentCategory"];
             /**
              * Format: date-time
              * @example 2024-12-30T12:34:56Z
              */
             createdAt: string;
+        };
+        DocumentCategory: {
+            /** @example 1 */
+            id: string;
+            /** @example Изменение цены */
+            label: string;
+            /** @example price-change */
+            slug: string;
         };
         Favorite: components["schemas"]["Document"] | components["schemas"]["Bulletin"];
         SearchResult: {
@@ -1293,7 +1299,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": string[];
+                    "application/json": components["schemas"]["DocumentCategory"][];
                 };
             };
         };
@@ -1352,7 +1358,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": string[];
+                    "application/json": components["schemas"]["DocumentCategory"][];
                 };
             };
         };

@@ -110,7 +110,9 @@ export function getDocumentsInfiniteQueryOptions(
 
 const DocumentsCategoriesQueryFn: Record<
   GetDocumentsQueryKeys,
-  (params: { signal: AbortSignal }) => Promise<string[]>
+  (params: {
+    signal: AbortSignal;
+  }) => Promise<z.infer<typeof schemas.DocumentCategory>[]>
 > = {
   documents: ({ signal }) => apiClient.getDocumentCategories({ signal }),
   bulletins: ({ signal }) => apiClient.getBulletinCategories({ signal }),

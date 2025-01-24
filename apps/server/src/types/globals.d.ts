@@ -8,6 +8,7 @@ export type NewsInList = components["schemas"]["NewsInList"];
 export type Error = components["schemas"]["Error"];
 export type Success = components["schemas"]["Success"];
 export type Document = components["schemas"]["Document"];
+export type DocumentCategory = components["schemas"]["DocumentCategory"];
 export type Bulletin = components["schemas"]["Bulletin"];
 export type Favorite = components["schemas"]["Favorite"];
 export type SearchResult = components["schemas"]["SearchResult"];

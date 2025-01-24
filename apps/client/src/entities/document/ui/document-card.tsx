@@ -37,7 +37,7 @@ export function DocumentCard({
       />
       <div className="flex items-center justify-between gap-4">
         <span className="text-sm py-1.5 px-3 rounded-main text-primary bg-primary/10">
-          {category}
+          {category.label}
         </span>
         <Button
           variant="ghost-primary"

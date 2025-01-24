@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
-import { Document } from "../types/globals";
+import { Document, DocumentCategory } from "../types/globals";
 
 const documentsRouter = Router();
 
@@ -28,7 +28,11 @@ documentsRouter.get(
 
     const documents = dbService
       .get("documents")
-      .filter((doc) => (category ? doc.category === category : true));
+      .filter((doc) => (category ? doc.category.slug === category : true))
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
 
     const totalPages = Math.ceil(documents.length / parseInt(limit));
     const currentPage = parseInt(page);
@@ -42,15 +46,17 @@ documentsRouter.get(
   }
 );
 
-documentsRouter.get("/categories", (req: Request, res: Response<string[]>) => {
-  const categories = new Set(
-    dbService.get("documents").map((doc) => doc.category)
-  );
-  res.json(Array.from(categories));
-});
+documentsRouter.get(
+  "/categories",
+  (req: Request, res: Response<DocumentCategory[]>) => {
+    const categories = dbService.get("documentCategories");
+    res.json(categories);
+  }
+);
 
 documentsRouter.get("/all", (req: Request, res: Response<Document[]>) => {
-  res.json(dbService.get("documents"));
+  const documents = dbService.get("documents");
+  res.json(documents);
 });
 
 export { documentsRouter };

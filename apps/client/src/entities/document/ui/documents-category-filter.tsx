@@ -32,8 +32,8 @@ export function DocumentsCategoryFilter({
       <SelectContent align="end">
         <SelectItem value="all">Все категории</SelectItem>
         {data?.map((category) => (
-          <SelectItem key={category} value={category}>
-            {category}
+          <SelectItem key={category.id} value={category.slug}>
+            {category.label}
           </SelectItem>
         ))}
       </SelectContent>

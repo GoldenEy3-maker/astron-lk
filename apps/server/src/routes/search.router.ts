@@ -64,7 +64,7 @@ searchRouter.get(
           prepareSearchString(bulletin.title).includes(
             prepareSearchString(query)
           ) ||
-          prepareSearchString(bulletin.category).includes(
+          prepareSearchString(bulletin.category.slug).includes(
             prepareSearchString(query)
           )
       )
@@ -79,7 +79,7 @@ searchRouter.get(
           prepareSearchString(document.title).includes(
             prepareSearchString(query)
           ) ||
-          prepareSearchString(document.category).includes(
+          prepareSearchString(document.category.slug).includes(
             prepareSearchString(query)
           )
       )

@@ -71,12 +71,15 @@ const VideoBlock = z
   })
   .strict();
 const MediaBlock = z.discriminatedUnion("type", [ImageBlock, VideoBlock]);
+const DocumentCategory = z
+  .object({ id: z.string(), label: z.string(), slug: z.string() })
+  .strict();
 const Document = z
   .object({
     id: z.string(),
     title: z.string(),
     file: z.object({ url: z.string(), size: z.number().int() }).strict(),
-    category: z.string(),
+    category: DocumentCategory,
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
@@ -115,7 +118,7 @@ const Bulletin = z
     id: z.string(),
     title: z.string(),
     file: z.object({ url: z.string(), size: z.number().int() }).strict(),
-    category: z.string(),
+    category: DocumentCategory,
     createdAt: z.string().datetime({ offset: true }),
   })
   .strict();
@@ -255,6 +258,7 @@ export const schemas = {
   ImageBlock,
   VideoBlock,
   MediaBlock,
+  DocumentCategory,
   Document,
   SectionBlock,
   SeparatorBlock,
@@ -472,7 +476,7 @@ const endpoints = makeApi([
     path: "/api/bulletins/categories",
     alias: "getBulletinCategories",
     requestFormat: "json",
-    response: z.array(z.string()),
+    response: z.array(DocumentCategory),
   },
   {
     method: "get",
@@ -509,7 +513,7 @@ const endpoints = makeApi([
     path: "/api/documents/categories",
     alias: "getDocumentCategories",
     requestFormat: "json",
-    response: z.array(z.string()),
+    response: z.array(DocumentCategory),
   },
   {
     method: "get",
