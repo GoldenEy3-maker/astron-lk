@@ -5,10 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { formatDate } from "@/shared/lib/format-date";
 
-type KpiProps = {} & React.ComponentProps<typeof Section>;
+type KpiProps = {
+  partnerId?: string;
+} & React.ComponentProps<typeof Section>;
 
-export function Kpi(props: KpiProps) {
-  const { data, isLoading } = useQuery(getKpiUploadedDate());
+export function Kpi({ partnerId, ...props }: KpiProps) {
+  const { data, isLoading } = useQuery(getKpiUploadedDate(partnerId));
 
   return (
     <Section space="lg" {...props}>
@@ -23,7 +25,7 @@ export function Kpi(props: KpiProps) {
         )}
       </SectionHeader>
       <SectionContent>
-        <EmployeeTestingCard />
+        <EmployeeTestingCard partnerId={partnerId} />
       </SectionContent>
     </Section>
   );

@@ -1,22 +1,34 @@
 import { apiClient } from "@/shared/api/client";
 import { queryOptions } from "@tanstack/react-query";
 
-export function getEmployeeTestingQueryOptions(year?: string) {
+type GetEmployeeTestingQueryOptionsProps = {
+  year?: string;
+  partnerId?: string;
+};
+
+export function getEmployeeTestingQueryOptions(
+  params: GetEmployeeTestingQueryOptionsProps
+) {
   return queryOptions({
-    queryKey: ["employee-testing", year],
+    queryKey: ["employee-testing", params?.year, params?.partnerId],
     queryFn: ({ signal }) =>
       apiClient.getEmployeeTesting({
-        queries: { year: year! },
+        queries: { year: params.year!, partnerId: params?.partnerId },
         signal,
       }),
-    enabled: !!year,
+    enabled: !!params.year,
   });
 }
 
-export function getEmployeeTestingUploadedYearsQueryOptions() {
+export function getEmployeeTestingUploadedYearsQueryOptions(
+  partnerId?: string
+) {
   return queryOptions({
-    queryKey: ["employee-testing", "uploaded-years"],
+    queryKey: ["employee-testing", "uploaded-years", partnerId],
     queryFn: ({ signal }) =>
-      apiClient.getEmployeeTestingUploadedYears({ signal }),
+      apiClient.getEmployeeTestingUploadedYears({
+        signal,
+        queries: { partnerId },
+      }),
   });
 }

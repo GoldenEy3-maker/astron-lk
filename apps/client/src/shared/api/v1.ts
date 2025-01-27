@@ -605,6 +605,11 @@ const endpoints = makeApi([
         type: "Query",
         schema: z.string(),
       },
+      {
+        name: "partnerId",
+        type: "Query",
+        schema: z.string().optional(),
+      },
     ],
     response: z
       .object({
@@ -613,12 +618,31 @@ const endpoints = makeApi([
         updatedAt: z.string().datetime({ offset: true }),
       })
       .strict(),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 404,
+        description: `Партнёр не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "get",
     path: "/api/kpi/employee-testing/uploaded-years",
     alias: "getEmployeeTestingUploadedYears",
     requestFormat: "json",
+    parameters: [
+      {
+        name: "partnerId",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+    ],
     response: z.array(z.string()),
   },
   {
@@ -626,7 +650,26 @@ const endpoints = makeApi([
     path: "/api/kpi/uploaded-date",
     alias: "getKpiUploadedDate",
     requestFormat: "json",
+    parameters: [
+      {
+        name: "partnerId",
+        type: "Query",
+        schema: z.string().optional(),
+      },
+    ],
     response: z.string().datetime({ offset: true }),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 404,
+        description: `Партнёр не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "get",

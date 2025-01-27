@@ -1,11 +1,16 @@
+import { getPartnerByIdQueryOptions } from "@/entities/partner";
 import { EmployeeTestingCard } from "@/features/employee-testing";
 import { getEmployeeTestingUploadedYearsQueryOptions } from "@/features/employee-testing";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { YearSelect } from "@/shared/ui/year-select";
+import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsString, useQueryState } from "nuqs";
+import { useParams } from "react-router-dom";
 
 export function EmployeeTestingPage() {
+  const { partnerId } = useParams<{ partnerId: string }>();
+
   const { data: uploadedYears, isLoading: isUploadedYearsLoading } = useQuery(
     getEmployeeTestingUploadedYearsQueryOptions()
   );
@@ -14,6 +19,13 @@ export function EmployeeTestingPage() {
     "year",
     parseAsString.withDefault(uploadedYears?.[0] ?? "")
   );
+
+  const { data: partner } = useQuery({
+    ...getPartnerByIdQueryOptions(partnerId!),
+    enabled: !!partnerId,
+  });
+
+  useBreadcrumbs("partnerId", partner?.title);
 
   return (
     <Section className="col-span-full">

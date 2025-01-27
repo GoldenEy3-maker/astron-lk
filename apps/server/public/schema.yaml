@@ -251,8 +251,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    security:
-      - bearerAuth: []
+      security:
+        - bearerAuth: []
   /api/partners/{id}:
     get:
       summary: Получить Партнера-Строителя по ID
@@ -306,8 +306,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    security:
-      - bearerAuth: []
+      security:
+        - bearerAuth: []
   /api/partners:
     get:
       summary: Получить список партнеров
@@ -344,8 +344,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    security:
-      - bearerAuth: []
+      security:
+        - bearerAuth: []
   /api/partners/select:
     get:
       summary: Получить список партнеров для выбора
@@ -367,8 +367,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    security:
-      - bearerAuth: []
+      security:
+        - bearerAuth: []
   /api/news:
     get:
       summary: Получить список новостей
@@ -810,6 +810,13 @@ paths:
       operationId: getKpiUploadedDate
       tags:
         - KPI
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
       responses:
         "200":
           description: Успешный ответ
@@ -819,6 +826,20 @@ paths:
                 type: string
                 format: date-time
                 example: "2024-01-01T00:00:00.000Z"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/kpi/employee-testing:
     get:
       summary: Получить данные тестирования сотрудников
@@ -830,6 +851,12 @@ paths:
           in: query
           required: true
           description: Год
+          schema:
+            type: string
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
           schema:
             type: string
       responses:
@@ -856,12 +883,33 @@ paths:
                     type: string
                     format: date-time
                     example: "2024-01-01T00:00:00.000Z"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/kpi/employee-testing/uploaded-years:
     get:
       summary: Получить список годов, за которые были загружены данные тестирования сотрудников
       operationId: getEmployeeTestingUploadedYears
       tags:
         - KPI
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
       responses:
         "200":
           description: Успешный ответ
@@ -872,6 +920,8 @@ paths:
                 items:
                   type: string
                   example: "2024"
+      security:
+        - bearerAuth: []
   /api/factory:
     get:
       summary: Получить информацию о заводе Астрон

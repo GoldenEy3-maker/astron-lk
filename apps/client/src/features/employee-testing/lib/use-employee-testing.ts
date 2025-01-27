@@ -9,14 +9,16 @@ import { useMemo } from "react";
 type UseEmployeeTestingProps = {
   year?: string | null;
   onYearChange?: (year: string) => void;
+  partnerId?: string;
 };
 
 export function useEmployeeTesting({
   year,
   onYearChange,
+  partnerId,
 }: UseEmployeeTestingProps) {
   const { data: uploadedYears, isLoading: isUploadedYearsLoading } = useQuery(
-    getEmployeeTestingUploadedYearsQueryOptions()
+    getEmployeeTestingUploadedYearsQueryOptions(partnerId)
   );
 
   const [controlledYear, setControlledYear] = useControllableState({
@@ -26,7 +28,7 @@ export function useEmployeeTesting({
   });
 
   const { data, isLoading } = useQuery(
-    getEmployeeTestingQueryOptions(controlledYear)
+    getEmployeeTestingQueryOptions({ year: controlledYear, partnerId })
   );
 
   const chartData = useMemo(() => {

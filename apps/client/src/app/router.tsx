@@ -146,6 +146,12 @@ const PartnersPage = lazy(() =>
   }))
 );
 
+const PartnersDetailPage = lazy(() =>
+  import("../pages/partners").then((module) => ({
+    default: module.PartnersDetailPage,
+  }))
+);
+
 const BulletinsPage = lazy(() =>
   import("../pages/bulletins").then((module) => ({
     default: module.BulletinsPage,
@@ -221,9 +227,22 @@ export function createRouter() {
           />
           <Route
             path={Routes.Partners}
-            element={<PartnersPage />}
-            handle={setCrumbHandle(Routes.Partners, "Партнеры-Строители")}
-          />
+            handle={setCrumbHandle(Routes.Partners, "Партнеры-Строители")}>
+            <Route index element={<PartnersPage />} />
+            <Route
+              path={Routes.Partners + "/:partnerId"}
+              handle={setCrumbHandleFromParams("partnerId")}>
+              <Route index element={<PartnersDetailPage />} />
+              <Route
+                path={Routes.Partners + "/:partnerId" + Routes.EmployeeTesting}
+                element={<EmployeeTestingPage />}
+                handle={setCrumbHandle(
+                  Routes.EmployeeTesting,
+                  "Тестирование сотрудников"
+                )}
+              />
+            </Route>
+          </Route>
           <Route
             path={Routes.EmployeeTesting}
             element={<EmployeeTestingPage />}

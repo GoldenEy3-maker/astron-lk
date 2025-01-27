@@ -14,12 +14,14 @@ type EmployeeTestingCardProps = {
   year?: string | null;
   onYearChange?: (year: string) => void;
   extended?: boolean;
+  partnerId?: string;
 };
 
 export function EmployeeTestingCard({
   year,
   onYearChange,
   extended = false,
+  partnerId,
 }: EmployeeTestingCardProps) {
   const {
     controlledYear,
@@ -34,6 +36,7 @@ export function EmployeeTestingCard({
   } = useEmployeeTesting({
     year,
     onYearChange,
+    partnerId,
   });
 
   return (
@@ -68,7 +71,11 @@ export function EmployeeTestingCard({
               size="hug"
               className="gap-3 font-normal items-baseline">
               <Link
-                to={Routes.EmployeeTesting}
+                to={
+                  partnerId
+                    ? `${Routes.Partners}/${partnerId}${Routes.EmployeeTesting}`
+                    : Routes.EmployeeTesting
+                }
                 className="text-h3 leading-none">
                 <span>Тестирование сотрудников</span>
                 <Icons.ArrowRight />

@@ -1866,7 +1866,10 @@ export interface operations {
     };
     getKpiUploadedDate: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1882,6 +1885,24 @@ export interface operations {
                     "application/json": string;
                 };
             };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     getEmployeeTesting: {
@@ -1889,6 +1910,8 @@ export interface operations {
             query: {
                 /** @description Год */
                 year: string;
+                /** @description ID партнёра */
+                partnerId?: string;
             };
             header?: never;
             path?: never;
@@ -1917,11 +1940,32 @@ export interface operations {
                     };
                 };
             };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     getEmployeeTestingUploadedYears: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
