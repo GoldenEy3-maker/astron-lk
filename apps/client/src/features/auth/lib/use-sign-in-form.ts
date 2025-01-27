@@ -2,7 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useSignIn } from "./use-sign-in";
-import { SignInFormSchema, signInFormSchema } from "./sign-in-form-schema";
+import {
+  SignInFormSchema,
+  signInFormSchema,
+} from "../model/sign-in-form-schema";
 import { Routes } from "@/shared/constants/routes";
 
 export function useSignInForm() {
@@ -18,12 +21,12 @@ export function useSignInForm() {
     },
   });
 
-  const { isPending, isUserBanned, signInHandler, isError, error } = useSignIn({
+  const { isPending, isUserBanned, signInHandler } = useSignIn({
     onSuccess() {
       form.reset();
       navigate(searchParams.get("callbackUrl") ?? Routes.Home);
     },
   });
 
-  return { form, isPending, isUserBanned, signInHandler, isError, error };
+  return { form, isPending, isUserBanned, signInHandler };
 }

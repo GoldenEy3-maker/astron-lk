@@ -1,5 +1,7 @@
+import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { Routes } from "@/shared/constants/routes";
 import { Icons } from "@/shared/ui/icons";
+import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
 type SidebarNavLink = {
@@ -11,6 +13,8 @@ type SidebarNavLink = {
 };
 
 export function useSidebarNav() {
+  const { data: session } = useQuery(getSessionQueryOptions());
+
   const nav = useMemo(() => {
     const links: SidebarNavLink[][] = [
       [
@@ -18,26 +22,6 @@ export function useSidebarNav() {
           url: Routes.Home,
           icon: <Icons.Home />,
           label: "Главная",
-        },
-        {
-          url: Routes.EmployeeTesting,
-          icon: <Icons.PersonalCard />,
-          label: "Тестирование",
-        },
-        {
-          url: Routes.Leads,
-          icon: <Icons.Graph />,
-          label: "Лидогенерация",
-        },
-        {
-          url: Routes.Booking,
-          icon: <Icons.Diagram />,
-          label: "Букинги",
-        },
-        {
-          url: Routes.Sales,
-          icon: <Icons.StatusUp />,
-          label: "Продажи",
         },
       ],
       [
@@ -78,8 +62,43 @@ export function useSidebarNav() {
         },
       ],
     ];
+    if (session?.role === "partner") {
+      links[0].push(
+        ...[
+          {
+            url: Routes.EmployeeTesting,
+            icon: <Icons.PersonalCard />,
+            label: "Тестирование",
+          },
+          {
+            url: Routes.Leads,
+            icon: <Icons.Graph />,
+            label: "Лидогенерация",
+          },
+          {
+            url: Routes.Booking,
+            icon: <Icons.Diagram />,
+            label: "Букинги",
+          },
+          {
+            url: Routes.Sales,
+            icon: <Icons.StatusUp />,
+            label: "Продажи",
+          },
+        ]
+      );
+    }
+    if (session?.role === "manager") {
+      links.splice(1, 0, [
+        {
+          url: Routes.Partners,
+          icon: <Icons.UserOctagon />,
+          label: "Партнёры-строители",
+        },
+      ]);
+    }
     return links;
-  }, []);
+  }, [session?.role]);
 
   return nav;
 }

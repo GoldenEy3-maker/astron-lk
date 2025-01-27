@@ -584,6 +584,11 @@ export interface components {
             phone: string;
             /** @example 123 */
             password: string;
+            /**
+             * @example manager
+             * @enum {string}
+             */
+            role: "manager" | "employee" | "partner";
             tokenVersion: number;
             isBanned: boolean;
             favorites: string[];
@@ -597,6 +602,11 @@ export interface components {
             name: string;
             /** @example Николаевич */
             patronymic?: string;
+            /**
+             * @example manager
+             * @enum {string}
+             */
+            role: "manager" | "employee" | "partner";
             /** @example +79231665038 */
             phone: string;
             favorites: string[];

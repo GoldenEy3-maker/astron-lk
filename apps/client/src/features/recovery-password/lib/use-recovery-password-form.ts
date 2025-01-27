@@ -15,12 +15,10 @@ export function useRecoveryPasswordForm(token: string) {
     },
   });
 
-  const { recoveryPasswordHandler, isPending, isSuccess, isError, error } =
+  const { recoveryPasswordHandler, isPending, isSuccess } =
     useRecoveryPassword(token);
 
   const isPasswordNotSecured = form.formState.errors.password;
-
-  console.log(isPasswordNotSecured);
 
   return {
     form,
@@ -29,7 +27,5 @@ export function useRecoveryPasswordForm(token: string) {
     isSubmitted: form.formState.isSubmitted,
     isPending,
     isSuccess,
-    isError,
-    error,
   };
 }

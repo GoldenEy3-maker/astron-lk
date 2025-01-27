@@ -77,15 +77,18 @@ export function ChangePasswordForm({
             Пароль должен состоять минимум из 6 символов
           </span>
         </div>
-        <div className="flex items-center flex-wrap gap-4 !mt-8">
-          <Button type="submit" disabled={isPending}>
+        <div className="flex items-center flex-wrap gap-x-4 gap-y-2 !mt-8">
+          <Button
+            type="submit"
+            disabled={isPending}
+            className="flex-1 xs:flex-none">
             Сохранить
           </Button>
           {onCancel ? (
             <Button
               type="button"
               variant="ghost"
-              className="text-primary"
+              className="text-primary flex-1 max-xs:bg-muted/10 xs:flex-none"
               onClick={onCancel}
               disabled={isPending}>
               Отмена

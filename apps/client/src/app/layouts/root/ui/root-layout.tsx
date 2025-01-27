@@ -9,7 +9,7 @@ export function RootLayout() {
       <Header />
       <Outlet />
       <Footer />
-      <Toaster richColors />
+      <Toaster />
       <ScrollRestoration />
     </div>
   );

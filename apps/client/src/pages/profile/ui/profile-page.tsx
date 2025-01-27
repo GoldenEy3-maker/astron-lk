@@ -26,12 +26,16 @@ export function ProfilePage() {
           <dd>
             {session?.surname} {session?.name} {session?.patronymic}
           </dd>
-          <dt className="text-muted ~mt-4/7">Партнёр-Строитель</dt>
-          <dd>
-            <TextMorph as="span">
-              {!isLoading && company ? company.title : "Загрузка..."}
-            </TextMorph>
-          </dd>
+          {session?.role === "partner" ? (
+            <>
+              <dt className="text-muted ~mt-4/7">Партнёр-Строитель</dt>
+              <dd>
+                <TextMorph as="span">
+                  {!isLoading && company ? company.title : "Загрузка..."}
+                </TextMorph>
+              </dd>
+            </>
+          ) : null}
           <dt className="text-muted ~mt-4/7">Контактный телефон</dt>
           <dd>{formatPhone(session?.phone ?? "")}</dd>
           <dt className="text-muted ~mt-4/7">E-mail</dt>

@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { z } from "zod";
 import { useSessionStore } from "@/shared/store/session-store";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 type UseSignInProps = {
   onSuccess?: () => void;
@@ -22,9 +24,20 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
     onSuccess(data) {
       setToken(data.accessToken);
       queryClient.setQueryData(getSessionQueryOptions().queryKey, data.user);
+      toast.success("Вы успешно авторизовались!", {
+        position: "bottom-center",
+      });
       onSuccess?.();
     },
     onError(error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 403) setIsUserBanned(true);
+        else
+          toast.error(error.response?.data.message, {
+            position: "bottom-center",
+          });
+      }
+
       console.error(error);
     },
   });
@@ -37,7 +50,5 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
     signInHandler,
     isPending: signInMutation.isPending,
     isUserBanned,
-    isError: signInMutation.isError,
-    error: signInMutation.error,
   };
 }

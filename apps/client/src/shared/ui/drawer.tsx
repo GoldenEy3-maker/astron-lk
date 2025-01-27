@@ -67,12 +67,15 @@ const DrawerContent = React.forwardRef<
     <DrawerOverlay />
     <DrawerPrimitive.Content
       ref={ref}
+      onPointerDownOutside={(e) => {
+        if ((e.target as HTMLElement).closest(".toaster")) e.preventDefault();
+      }}
       className={cn(
         "z-50 inset-x-0 bottom-0 max-h-[82vh] fixed flex h-auto flex-col rounded-t-[10px] px-5 pb-6 border bg-card",
         className
       )}
       {...props}>
-      <div className="mx-auto mt-4 shrink-0 h-1.5 w-[100px] rounded-full bg-muted" />
+      <div className="mx-auto mt-4 shrink-0 h-1 w-[100px] rounded-full bg-muted" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
@@ -84,7 +87,7 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("grid gap-1.5 pt-2 pb-4 text-center sm:text-left", className)}
+    className={cn("grid gap-1.5 pt-3 pb-4 text-center sm:text-left", className)}
     {...props}
   />
 );

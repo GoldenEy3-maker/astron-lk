@@ -1025,6 +1025,7 @@ components:
         - email
         - phone
         - password
+        - role
         - favorites
         - tokenVersion
         - isBanned
@@ -1050,6 +1051,13 @@ components:
         password:
           type: string
           example: 123
+        role:
+          type: string
+          enum:
+            - manager
+            - employee
+            - partner
+          example: "manager"
         tokenVersion:
           type: integer
         isBanned:
@@ -1067,6 +1075,7 @@ components:
         - phone
         - favorites
         - favoriteProjects
+        - role
       properties:
         email:
           type: string
@@ -1080,6 +1089,13 @@ components:
         patronymic:
           type: string
           example: Николаевич
+        role:
+          type: string
+          enum:
+            - manager
+            - employee
+            - partner
+          example: "manager"
         phone:
           type: string
           example: "+79231665038"

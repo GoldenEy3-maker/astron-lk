@@ -17,7 +17,6 @@ import { RecoveryPasswordSuccessAlert } from "./recovery-password-success-alert"
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { SecurePasswordAlert } from "./secure-password-alert";
-import { ErrorAlert } from "@/shared/ui/error-alert";
 
 type RecoveryPasswordFormProps = {
   token: string;
@@ -34,8 +33,6 @@ export function RecoveryPasswordForm({
     isSubmitted,
     isPending,
     isSuccess,
-    isError,
-    error,
   } = useRecoveryPasswordForm(token);
 
   return (
@@ -71,14 +68,7 @@ export function RecoveryPasswordForm({
               mass: 0.3,
             }}>
             <AnimatePresence>
-              {isError ? (
-                <motion.div
-                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                  animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
-                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
-                  <ErrorAlert error={error} />
-                </motion.div>
-              ) : isPasswordNotSecured ? (
+              {isPasswordNotSecured ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}

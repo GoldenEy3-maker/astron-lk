@@ -39,18 +39,25 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
           {session ? `${session.surname} ${session.name}` : "Личный кабинет"}
         </TextMorph>
       </PopoverTrigger>
-      <PopoverContent side="bottom" align="end" className="pb-3 px-0">
-        <div className="text-heading-h3 px-5">
-          <TextMorph as="h3" className="text-h3">
-            {!isCompanyLoading && company ? company.title : "Загрузка..."}
-          </TextMorph>
-        </div>
+      <PopoverContent
+        side="bottom"
+        align="end"
+        className={cn("pb-3 px-0", {
+          "pt-3": session?.role !== "partner",
+        })}>
+        {session?.role === "partner" ? (
+          <div className="text-heading-h3 px-5 mb-2">
+            <TextMorph as="h3" className="text-h3">
+              {!isCompanyLoading && company ? company.title : "Загрузка..."}
+            </TextMorph>
+          </div>
+        ) : null}
         {/* {!isCompanyLoading && company ? (
           <h3 className="text-h3">{company.title}</h3>
         ) : (
           <Skeleton className="rounded-md h-6 w-32" />
         )} */}
-        <nav className="mt-2">
+        <nav>
           <Button
             variant="ghost"
             asChild

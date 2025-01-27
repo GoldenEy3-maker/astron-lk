@@ -9,6 +9,7 @@ export const Routes = {
   Favorites: "/favorites",
   Profile: "/profile",
   EmployeeTesting: "/employee-testing",
+  Partners: "/partners",
   Leads: "/leads",
   Sales: "/sales",
   Booking: "/booking",

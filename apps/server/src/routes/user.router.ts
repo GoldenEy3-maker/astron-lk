@@ -40,11 +40,12 @@ userRouter.post(
 
     tokenService.sendRefreshToken(res, refreshToken, remember);
 
-    const { email, name, surname, patronymic, phone, favorites } = user;
+    const { email, name, surname, patronymic, phone, favorites, role } = user;
 
     res.json({
       accessToken,
       user: {
+        role,
         email,
         name,
         surname,
@@ -105,9 +106,10 @@ userRouter.get(
   "/session",
   authMiddleware,
   (req: Request, res: Response<Session>) => {
-    const { email, name, surname, patronymic, phone, favorites } =
+    const { email, name, surname, patronymic, phone, favorites, role } =
       res.locals.user;
     res.json({
+      role,
       email,
       name,
       surname,
@@ -231,7 +233,9 @@ userRouter.post(
       return;
     }
 
-    res.json({ message: "Успешно" });
+    res.json({
+      message: "Ссылка на восстановление пароля отправлена на почту!",
+    });
   }
 );
 
@@ -244,7 +248,7 @@ userRouter.post(
 
     if (!tokenPayload) {
       res.status(403).json({
-        message: "Время на восстановление пароля по этой ссылке истекло",
+        message: "Ссылка на восстановление пароля недействительна",
       });
       return;
     }
