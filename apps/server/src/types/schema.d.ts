@@ -123,15 +123,83 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/user/company": {
+    "/api/partners/session": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Получить компанию пользователя */
-        get: operations["getUserCompany"];
+        /** Получить Партнера-Строителя пользователя */
+        get: operations["getPartnerBySession"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/partners/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить Партнера-Строителя по ID */
+        get: operations["getPartnerById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/partners/uploaded-date": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить дату последней выгрузки партнеров */
+        get: operations["getPartnersUploadedDate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/partners": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список партнеров */
+        get: operations["getPartners"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/partners/select": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список партнеров для выбора */
+        get: operations["getPartnersSelect"];
         put?: never;
         post?: never;
         delete?: never;
@@ -321,6 +389,23 @@ export interface paths {
         put?: never;
         /** Форма обратной связи */
         post: operations["sendFeedback"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/uploaded-date": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить дату последней выгрузки данных KPI */
+        get: operations["getKpiUploadedDate"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -582,23 +667,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/partners": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить список партнеров */
-        get: operations["getPartners"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -626,6 +694,8 @@ export interface components {
             tokenVersion: number;
             isBanned: boolean;
             favorites: string[];
+            /** @example 1 */
+            partnerId?: string;
         };
         Session: {
             /** @example dev@mail.ru */
@@ -647,7 +717,7 @@ export interface components {
             /** @example 10 */
             favoriteProjects: number;
         };
-        Company: {
+        Partner: {
             /** @example 1 */
             id: string;
             /** @example NABUCCO Architecture & Construction */
@@ -666,8 +736,64 @@ export interface components {
             logo: string;
             /** @example /path/to/certificate.pdf */
             certificate: string;
+            sales: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
+            booking: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
+        };
+        PartnerCard: {
             /** @example 1 */
-            userId: string;
+            id: string;
+            /** @example Партнер */
+            title: string;
+            projects: {
+                /** @example 23 */
+                count: number;
+                /** @example /link/to/projects */
+                link: string;
+                /** @example 6578 */
+                implementedArea: number;
+            };
+            /** @example 12 */
+            cooperationYears: number;
+            /** @example /path/to/logo.svg */
+            logo: string;
+            /** @example /path/to/certificate.pdf */
+            certificate: string;
+        };
+        PartnerInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Партнер */
+            title: string;
+            /** @example /path/to/logo.png */
+            logo: string;
+            sales: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
+            booking: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
+        };
+        PartnerInSelect: {
+            /** @example 1 */
+            id: string;
+            /** @example Партнер */
+            title: string;
         };
         News: {
             /** @example 1 */
@@ -843,26 +969,6 @@ export interface components {
             label: string;
             /** @example technical-requirements */
             slug: string;
-        };
-        Partner: {
-            /** @example 1 */
-            id: string;
-            /** @example Партнер */
-            title: string;
-            /** @example /path/to/logo.png */
-            logo: string;
-            sales: {
-                /** @example 1000000 */
-                total: number;
-                /** @example 88 */
-                percent: number;
-            };
-            booking: {
-                /** @example 1000000 */
-                total: number;
-                /** @example 88 */
-                percent: number;
-            };
         };
         InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
         SectionBlock: {
@@ -1227,7 +1333,7 @@ export interface operations {
             };
         };
     };
-    getUserCompany: {
+    getPartnerBySession: {
         parameters: {
             query?: never;
             header?: never;
@@ -1242,7 +1348,138 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Company"];
+                    "application/json": components["schemas"]["PartnerCard"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getPartnerById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID партнера */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PartnerCard"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнер-Строитель не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getPartnersUploadedDate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getPartners: {
+        parameters: {
+            query?: {
+                /** @description Сортировка партнеров */
+                sort?: "asc-sales" | "desc-sales" | "asc-bookings" | "desc-bookings" | "asc-name" | "desc-name";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PartnerInList"][];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getPartnersSelect: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PartnerInSelect"][];
                 };
             };
             /** @description Пользователь не авторизован */
@@ -1627,6 +1864,26 @@ export interface operations {
             };
         };
     };
+    getKpiUploadedDate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+        };
+    };
     getEmployeeTesting: {
         parameters: {
             query: {
@@ -1999,26 +2256,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AcademyBenefitTag"][];
-                };
-            };
-        };
-    };
-    getPartners: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Partner"][];
                 };
             };
         };

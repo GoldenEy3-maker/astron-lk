@@ -2,7 +2,6 @@ import { components } from "./schema";
 
 export type Session = components["schemas"]["Session"];
 export type User = components["schemas"]["User"];
-export type Company = components["schemas"]["Company"];
 export type News = components["schemas"]["News"];
 export type NewsInList = components["schemas"]["NewsInList"];
 export type Error = components["schemas"]["Error"];
@@ -28,3 +27,7 @@ export type AcademyBenefit = components["schemas"]["AcademyBenefit"];
 export type AcademyBenefitInList =
   components["schemas"]["AcademyBenefitInList"];
 export type AcademyBenefitTag = components["schemas"]["AcademyBenefitTag"];
+export type Partner = components["schemas"]["Partner"];
+export type PartnerCard = components["schemas"]["PartnerCard"];
+export type PartnerInList = components["schemas"]["PartnerInList"];
+export type PartnerInSelect = components["schemas"]["PartnerInSelect"];

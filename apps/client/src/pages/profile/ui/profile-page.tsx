@@ -1,4 +1,3 @@
-import { getUserCompanyQueryOptions } from "@/entities/company";
 import { useQuery } from "@tanstack/react-query";
 import { formatPhone } from "@/shared/lib/format-phone";
 import { Button } from "@/shared/ui/button";
@@ -7,10 +6,13 @@ import { ChangePasswordDialog } from "@/features/change-password";
 import { TextMorph } from "@/shared/ui/text-morph";
 import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
+import { getPartnerBySessionQueryOptions } from "@/entities/partner/api/partner-query";
 
 export function ProfilePage() {
   const { data: session } = useQuery(getSessionQueryOptions());
-  const { data: company, isLoading } = useQuery(getUserCompanyQueryOptions());
+  const { data: partner, isLoading } = useQuery(
+    getPartnerBySessionQueryOptions()
+  );
   const { signOutHandler, isPending } = useSignOut();
 
   return (
@@ -31,7 +33,7 @@ export function ProfilePage() {
               <dt className="text-muted ~mt-4/7">Партнёр-Строитель</dt>
               <dd>
                 <TextMorph as="span">
-                  {!isLoading && company ? company.title : "Загрузка..."}
+                  {!isLoading && partner ? partner.title : "Загрузка..."}
                 </TextMorph>
               </dd>
             </>

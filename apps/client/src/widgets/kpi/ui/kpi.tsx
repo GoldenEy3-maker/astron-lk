@@ -1,14 +1,26 @@
 import { EmployeeTestingCard } from "@/features/employee-testing";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
+import { getKpiUploadedDate } from "../api/kpi-query";
+import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@/shared/ui/skeleton";
+import { formatDate } from "@/shared/lib/format-date";
 
 type KpiProps = {} & React.ComponentProps<typeof Section>;
 
 export function Kpi(props: KpiProps) {
+  const { data, isLoading } = useQuery(getKpiUploadedDate());
+
   return (
     <Section space="lg" {...props}>
       <SectionHeader>
         <h1 className="text-h1 text-heading-h2">Выполнение KPI</h1>
-        <span className="text-muted">Результаты выгрузки от 01.12.2024</span>
+        {!isLoading && data ? (
+          <span className="text-muted">
+            Результаты выгрузки от {formatDate(new Date(data), "dd.MM.yyyy")}
+          </span>
+        ) : (
+          <Skeleton className="w-1/4 h-4 rounded-full" />
+        )}
       </SectionHeader>
       <SectionContent>
         <EmployeeTestingCard />

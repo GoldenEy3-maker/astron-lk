@@ -1,16 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserCompanyQueryOptions } from "../api/company-query";
 import { Icons } from "@/shared/ui/icons";
 import { Button } from "@/shared/ui/button";
 import { getProjectsCountText } from "../lib/get-projects-count-text";
 import { getCooperationYearsText } from "../lib/get-cooperation-years-text";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { cn } from "@/shared/lib/cn";
+import {
+  getPartnerByIdQueryOptions,
+  getPartnerBySessionQueryOptions,
+} from "../api/partner-query";
 
-type CompanyCardProps = {} & React.ComponentProps<"article">;
+type PartnerCardProps = { id?: string } & React.ComponentProps<"article">;
 
-export function CompanyCard({ className, ...props }: CompanyCardProps) {
-  const { data, isLoading } = useQuery(getUserCompanyQueryOptions());
+export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
+  const { data, isLoading } = useQuery(
+    id ? getPartnerByIdQueryOptions(id) : getPartnerBySessionQueryOptions()
+  );
 
   return (
     <article
@@ -19,7 +24,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
         className
       )}
       {...props}>
-      {!isLoading ? (
+      {!isLoading && data ? (
         <img
           src={data?.logo}
           alt={data?.title}
@@ -30,7 +35,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
       )}
       <div className="flex-1">
         <div className="flex justify-between items-start flex-col sm:flex-row gap-x-6 gap-y-3">
-          {!isLoading ? (
+          {!isLoading && data ? (
             <h2 className="text-h2 text-heading-h3 order-2 sm:order-1 max-w-[31.25rem]">
               {data?.title}
             </h2>
@@ -40,7 +45,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
               <Skeleton className="w-2/5 h-4 !rounded-full" />
             </div>
           )}
-          {!isLoading ? (
+          {!isLoading && data ? (
             <div className="flex items-center gap-3 text-gold font-medium order-1 sm:order-2">
               <Icons.Cup className="shrink-0" />
               <span className="~text-sm/base">Золотой Партнёр</span>
@@ -51,7 +56,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 ~mt-4/5">
           <div className="flex flex-col items-start">
-            {!isLoading ? (
+            {!isLoading && data ? (
               <>
                 <Button
                   asChild
@@ -74,7 +79,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
             )}
           </div>
           <div className="flex flex-col items-start">
-            {!isLoading ? (
+            {!isLoading && data ? (
               <>
                 <h4 className="text-h4">
                   {new Intl.NumberFormat("ru-RU", {
@@ -94,7 +99,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
             )}
           </div>
           <div className="flex flex-col items-start">
-            {!isLoading ? (
+            {!isLoading && data ? (
               <>
                 <h4 className="text-h4">
                   {getCooperationYearsText(data?.cooperationYears || 0)}
@@ -112,7 +117,7 @@ export function CompanyCard({ className, ...props }: CompanyCardProps) {
           </div>
         </div>
         <div className="~mt-4/5">
-          {!isLoading ? (
+          {!isLoading && data ? (
             <Button
               asChild
               variant="link"

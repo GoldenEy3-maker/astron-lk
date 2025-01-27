@@ -44,7 +44,10 @@ export function EmployeeTestingCard({
             {!isLoading && uploadedAt ? (
               <h2 className="text-h2 text-heading-h3">
                 Результаты выгрузки{" "}
-                {formatDate(new Date(uploadedAt), "dd.MM.yyyy")}
+                {formatDate(
+                  new Date(new Date(uploadedAt).setHours(12, 0, 0, 0)),
+                  "dd.MM.yyyy"
+                )}
               </h2>
             ) : (
               <Skeleton className="w-1/2 h-7 rounded-full" />

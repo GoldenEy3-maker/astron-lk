@@ -140,6 +140,12 @@ const DocumentsPage = lazy(() =>
   }))
 );
 
+const PartnersPage = lazy(() =>
+  import("../pages/partners").then((module) => ({
+    default: module.PartnersPage,
+  }))
+);
+
 const BulletinsPage = lazy(() =>
   import("../pages/bulletins").then((module) => ({
     default: module.BulletinsPage,
@@ -212,6 +218,11 @@ export function createRouter() {
             path={Routes.Profile}
             element={<ProfilePage />}
             handle={setCrumbHandle(Routes.Profile, "Профиль")}
+          />
+          <Route
+            path={Routes.Partners}
+            element={<PartnersPage />}
+            handle={setCrumbHandle(Routes.Partners, "Партнеры-Строители")}
           />
           <Route
             path={Routes.EmployeeTesting}

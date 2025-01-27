@@ -28,7 +28,7 @@ const changeUserPassword_Body = z
 const recoveryUserPassword_Body = z
   .object({ password: z.string(), token: z.string() })
   .strict();
-const Company = z
+const PartnerCard = z
   .object({
     id: z.string(),
     title: z.string(),
@@ -42,8 +42,23 @@ const Company = z
     cooperationYears: z.number().int(),
     logo: z.string(),
     certificate: z.string(),
-    userId: z.string(),
   })
+  .strict();
+const PartnerInList = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    logo: z.string(),
+    sales: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
+    booking: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
+  })
+  .strict();
+const PartnerInSelect = z
+  .object({ id: z.string(), title: z.string() })
   .strict();
 const Image = z
   .object({ src: z.string(), alt: z.string().optional() })
@@ -232,19 +247,6 @@ const AcademyBenefit = z
     content: z.array(InfoBlock),
   })
   .strict();
-const Partner = z
-  .object({
-    id: z.string(),
-    title: z.string(),
-    logo: z.string(),
-    sales: z
-      .object({ total: z.number().int(), percent: z.number().int() })
-      .strict(),
-    booking: z
-      .object({ total: z.number().int(), percent: z.number().int() })
-      .strict(),
-  })
-  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -258,6 +260,29 @@ const User = z
     tokenVersion: z.number().int(),
     isBanned: z.boolean(),
     favorites: z.array(z.string()),
+    partnerId: z.string().optional(),
+  })
+  .strict();
+const Partner = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    projects: z
+      .object({
+        count: z.number().int(),
+        link: z.string(),
+        implementedArea: z.number().int(),
+      })
+      .strict(),
+    cooperationYears: z.number().int(),
+    logo: z.string(),
+    certificate: z.string(),
+    sales: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
+    booking: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
   })
   .strict();
 
@@ -268,7 +293,9 @@ export const schemas = {
   Success,
   changeUserPassword_Body,
   recoveryUserPassword_Body,
-  Company,
+  PartnerCard,
+  PartnerInList,
+  PartnerInSelect,
   Image,
   NewsInList,
   ImageBlock,
@@ -296,8 +323,8 @@ export const schemas = {
   AcademyBenefitTag,
   AcademyBenefitInList,
   AcademyBenefit,
-  Partner,
   User,
+  Partner,
 };
 
 const endpoints = makeApi([
@@ -596,6 +623,13 @@ const endpoints = makeApi([
   },
   {
     method: "get",
+    path: "/api/kpi/uploaded-date",
+    alias: "getKpiUploadedDate",
+    requestFormat: "json",
+    response: z.string().datetime({ offset: true }),
+  },
+  {
+    method: "get",
     path: "/api/news",
     alias: "getNews",
     requestFormat: "json",
@@ -641,7 +675,99 @@ const endpoints = makeApi([
     path: "/api/partners",
     alias: "getPartners",
     requestFormat: "json",
-    response: z.array(Partner),
+    parameters: [
+      {
+        name: "sort",
+        type: "Query",
+        schema: z
+          .enum([
+            "asc-sales",
+            "desc-sales",
+            "asc-bookings",
+            "desc-bookings",
+            "asc-name",
+            "desc-name",
+          ])
+          .optional()
+          .default("asc-sales"),
+      },
+    ],
+    response: z.array(PartnerInList),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/partners/:id",
+    alias: "getPartnerById",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "id",
+        type: "Path",
+        schema: z.string(),
+      },
+    ],
+    response: PartnerCard,
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+      {
+        status: 404,
+        description: `Партнер-Строитель не найден`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/partners/select",
+    alias: "getPartnersSelect",
+    requestFormat: "json",
+    response: z.array(PartnerInSelect),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/partners/session",
+    alias: "getPartnerBySession",
+    requestFormat: "json",
+    response: PartnerCard,
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
+  },
+  {
+    method: "get",
+    path: "/api/partners/uploaded-date",
+    alias: "getPartnersUploadedDate",
+    requestFormat: "json",
+    response: z.string().datetime({ offset: true }),
+    errors: [
+      {
+        status: 401,
+        description: `Пользователь не авторизован`,
+        schema: z.object({ message: z.string() }).strict(),
+      },
+    ],
   },
   {
     method: "get",
@@ -673,20 +799,6 @@ const endpoints = makeApi([
         nextPage: z.number().int(),
       })
       .strict(),
-  },
-  {
-    method: "get",
-    path: "/api/user/company",
-    alias: "getUserCompany",
-    requestFormat: "json",
-    response: Company,
-    errors: [
-      {
-        status: 401,
-        description: `Пользователь не авторизован`,
-        schema: z.object({ message: z.string() }).strict(),
-      },
-    ],
   },
   {
     method: "get",

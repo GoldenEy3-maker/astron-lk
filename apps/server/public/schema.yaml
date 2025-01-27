@@ -232,27 +232,143 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /api/user/company:
+  /api/partners/session:
     get:
-      summary: Получить компанию пользователя
-      operationId: getUserCompany
+      summary: Получить Партнера-Строителя пользователя
+      operationId: getPartnerBySession
       tags:
-        - Пользователи
+        - Партнеры-Строители
       responses:
         "200":
           description: Успешный ответ
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Company"
+                $ref: "#/components/schemas/PartnerCard"
         "401":
           description: Пользователь не авторизован
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
+    security:
+      - bearerAuth: []
+  /api/partners/{id}:
+    get:
+      summary: Получить Партнера-Строителя по ID
+      operationId: getPartnerById
+      tags:
+        - Партнеры-Строители
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID партнера
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartnerCard"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Партнер-Строитель не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/partners/uploaded-date:
+    get:
+      summary: Получить дату последней выгрузки партнеров
+      operationId: getPartnersUploadedDate
+      tags:
+        - Партнеры-Строители
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date-time
+                example: "2024-01-01T12:00:00.000Z"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    security:
+      - bearerAuth: []
+  /api/partners:
+    get:
+      summary: Получить список партнеров
+      operationId: getPartners
+      tags:
+        - Партнеры-Строители
+      parameters:
+        - name: sort
+          in: query
+          required: false
+          description: Сортировка партнеров
+          schema:
+            type: string
+            enum:
+              - asc-sales
+              - desc-sales
+              - asc-bookings
+              - desc-bookings
+              - asc-name
+              - desc-name
+            default: asc-sales
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PartnerInList"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    security:
+      - bearerAuth: []
+  /api/partners/select:
+    get:
+      summary: Получить список партнеров для выбора
+      operationId: getPartnersSelect
+      tags:
+        - Партнеры-Строители
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PartnerInSelect"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    security:
+      - bearerAuth: []
   /api/news:
     get:
       summary: Получить список новостей
@@ -688,6 +804,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
+  /api/kpi/uploaded-date:
+    get:
+      summary: Получить дату последней выгрузки данных KPI
+      operationId: getKpiUploadedDate
+      tags:
+        - KPI
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date-time
+                example: "2024-01-01T00:00:00.000Z"
   /api/kpi/employee-testing:
     get:
       summary: Получить данные тестирования сотрудников
@@ -1037,21 +1168,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AcademyBenefitTag"
-  /api/partners:
-    get:
-      summary: Получить список партнеров
-      operationId: getPartners
-      tags:
-        - Партнеры-Строители
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Partner"
+
 components:
   schemas:
     User:
@@ -1104,6 +1221,9 @@ components:
           type: array
           items:
             type: string
+        partnerId:
+          type: string
+          example: "1"
     Session:
       type: object
       required:
@@ -1144,7 +1264,7 @@ components:
         favoriteProjects:
           type: integer
           example: 10
-    Company:
+    Partner:
       type: object
       required:
         - id
@@ -1153,7 +1273,8 @@ components:
         - cooperationYears
         - logo
         - certificate
-        - userId
+        - sales
+        - booking
       properties:
         id:
           type: string
@@ -1186,9 +1307,125 @@ components:
         certificate:
           type: string
           example: "/path/to/certificate.pdf"
-        userId:
+        sales:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
+        booking:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
+    PartnerCard:
+      type: object
+      required:
+        - id
+        - title
+        - projects
+        - cooperationYears
+        - logo
+        - certificate
+      properties:
+        id:
           type: string
           example: "1"
+        title:
+          type: string
+          example: "Партнер"
+        projects:
+          type: object
+          required:
+            - count
+            - link
+            - implementedArea
+          properties:
+            count:
+              type: integer
+              example: 23
+            link:
+              type: string
+              example: "/link/to/projects"
+            implementedArea:
+              type: integer
+              example: 6578
+        cooperationYears:
+          type: integer
+          example: 12
+        logo:
+          type: string
+          example: "/path/to/logo.svg"
+        certificate:
+          type: string
+          example: "/path/to/certificate.pdf"
+    PartnerInList:
+      type: object
+      required:
+        - id
+        - title
+        - logo
+        - sales
+        - booking
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Партнер"
+        logo:
+          type: string
+          example: "/path/to/logo.png"
+        sales:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
+        booking:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
+    PartnerInSelect:
+      type: object
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Партнер"
     News:
       type: object
       required:
@@ -1556,48 +1793,7 @@ components:
         slug:
           type: string
           example: "technical-requirements"
-    Partner:
-      type: object
-      required:
-        - id
-        - title
-        - logo
-        - sales
-        - booking
-      properties:
-        id:
-          type: string
-          example: "1"
-        title:
-          type: string
-          example: "Партнер"
-        logo:
-          type: string
-          example: "/path/to/logo.png"
-        sales:
-          type: object
-          required:
-            - total
-            - percent
-          properties:
-            total:
-              type: integer
-              example: 1000000
-            percent:
-              type: integer
-              example: 88
-        booking:
-          type: object
-          required:
-            - total
-            - percent
-          properties:
-            total:
-              type: integer
-              example: 1000000
-            percent:
-              type: integer
-              example: 88
+
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"

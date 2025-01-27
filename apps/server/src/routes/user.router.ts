@@ -4,7 +4,14 @@ import tokenService from "../services/token.service";
 import mailService from "../services/mail.service";
 import dbService from "../services/db.service";
 import passwordService from "../services/password.service";
-import { Company, Error, Favorite, Session, Success } from "../types/globals";
+import {
+  Error,
+  Favorite,
+  Partner,
+  PartnerCard,
+  Session,
+  Success,
+} from "../types/globals";
 
 const userRouter = Router();
 
@@ -118,19 +125,6 @@ userRouter.get(
       favorites,
       favoriteProjects: 10,
     });
-  }
-);
-
-userRouter.get(
-  "/company",
-  authMiddleware,
-  (req: Request, res: Response<Company>) => {
-    const userId = res.locals.user.id;
-    const company = dbService
-      .get("companies")
-      .find((company) => company.userId === userId);
-
-    res.json(company);
   }
 );
 

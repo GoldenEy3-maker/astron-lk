@@ -1,4 +1,4 @@
-import { getUserCompanyQueryOptions } from "@/entities/company";
+import { getPartnerBySessionQueryOptions } from "@/entities/partner";
 import { getSessionQueryOptions } from "@/shared/api/session-query";
 import { Routes } from "@/shared/constants/routes";
 import { cn } from "@/shared/lib/cn";
@@ -21,8 +21,8 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
   const [open, setOpen] = useState(false);
   const isMobileSm = useMediaQuery("(max-width: 640px)");
   const { data: session } = useQuery(getSessionQueryOptions());
-  const { data: company, isLoading: isCompanyLoading } = useQuery({
-    ...getUserCompanyQueryOptions(),
+  const { data: partner, isLoading: isPartnerLoading } = useQuery({
+    ...getPartnerBySessionQueryOptions(),
     enabled: session !== null,
   });
 
@@ -48,7 +48,7 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
         {session?.role === "partner" ? (
           <div className="text-heading-h3 px-5 mb-2">
             <TextMorph as="h3" className="text-h3">
-              {!isCompanyLoading && company ? company.title : "Загрузка..."}
+              {!isPartnerLoading && partner ? partner.title : "Загрузка..."}
             </TextMorph>
           </div>
         ) : null}

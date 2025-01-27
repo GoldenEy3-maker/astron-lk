@@ -1,5 +1,5 @@
 import { CurrentBulletins } from "@/entities/document";
-import { CompanyCard } from "@/entities/company";
+import { PartnerCard } from "@/entities/partner";
 import { CurrentNews } from "@/entities/news";
 import { useDocumentTitle } from "usehooks-ts";
 import { Kpi } from "@/widgets/kpi";
@@ -17,7 +17,7 @@ export function HomePage() {
     <div className="main-space grid grid-cols-subgrid col-span-full">
       {session?.role === "partner" ? (
         <>
-          <CompanyCard className="col-span-full" />
+          <PartnerCard className="col-span-full" />
           <Kpi className="col-span-full" />
         </>
       ) : null}

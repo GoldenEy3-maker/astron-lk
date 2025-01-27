@@ -10,14 +10,13 @@ import {
   AcademyProject,
   AcademyWebinar,
   Bulletin,
-  Company,
   Document,
   DocumentCategory,
   News,
+  Partner,
   User,
 } from "../types/globals";
 import passwordService from "./password.service";
-import { eachDayOfInterval } from "date-fns";
 
 type Employee = {
   id: string;
@@ -40,7 +39,6 @@ type EmployeeTest = {
 type DBData = {
   users: User[];
   news: News[];
-  companies: Company[];
   documents: Document[];
   documentCategories: DocumentCategory[];
   bulletinsCategories: DocumentCategory[];
@@ -52,13 +50,13 @@ type DBData = {
   academyWebinars: AcademyWebinar[];
   academyBenefits: AcademyBenefit[];
   academyBenefitTags: AcademyBenefitTag[];
+  partners: Partner[];
 };
 
 export default new (class DBService {
   private data: DBData = {
     users: [],
     news: [],
-    companies: [],
     documents: [],
     documentCategories: [],
     bulletinsCategories: [],
@@ -70,6 +68,7 @@ export default new (class DBService {
     academyWebinars: [],
     academyBenefits: [],
     academyBenefitTags: [],
+    partners: [],
   };
 
   constructor() {
@@ -946,6 +945,7 @@ export default new (class DBService {
           role: "partner",
           isBanned: false,
           favorites: [],
+          partnerId: "1",
         },
         {
           id: "2",
@@ -959,6 +959,7 @@ export default new (class DBService {
           role: "partner",
           isBanned: false,
           favorites: [],
+          partnerId: "1",
         },
         {
           id: "3",
@@ -972,6 +973,7 @@ export default new (class DBService {
           role: "partner",
           isBanned: true,
           favorites: [],
+          partnerId: "1",
         },
         {
           id: "4",
@@ -985,6 +987,7 @@ export default new (class DBService {
           isBanned: false,
           role: "partner",
           favorites: [],
+          partnerId: "1",
         },
         {
           id: "5",
@@ -998,6 +1001,7 @@ export default new (class DBService {
           isBanned: false,
           role: "manager",
           favorites: [],
+          partnerId: "1",
         },
         {
           id: "6",
@@ -1011,6 +1015,7 @@ export default new (class DBService {
           isBanned: false,
           role: "employee",
           favorites: [],
+          partnerId: "1",
         },
       ],
       news: [
@@ -1635,7 +1640,7 @@ export default new (class DBService {
           createdAt: "2024-12-30T12:34:56Z",
         },
       ],
-      companies: [
+      partners: [
         {
           id: "1",
           title: "NABUCCO Architecture & Construction",
@@ -1647,7 +1652,14 @@ export default new (class DBService {
           cooperationYears: 12,
           logo: "/company-logo.webp",
           certificate: "/",
-          userId: "1",
+          booking: {
+            percent: 90,
+            total: 19800000,
+          },
+          sales: {
+            percent: 88,
+            total: 19800000,
+          },
         },
         {
           id: "2",
@@ -1660,7 +1672,14 @@ export default new (class DBService {
           cooperationYears: 12,
           logo: "/company-logo.webp",
           certificate: "/",
-          userId: "2",
+          booking: {
+            percent: 90,
+            total: 19800000,
+          },
+          sales: {
+            percent: 88,
+            total: 19800000,
+          },
         },
         {
           id: "3",
@@ -1673,7 +1692,14 @@ export default new (class DBService {
           cooperationYears: 12,
           logo: "/company-logo.webp",
           certificate: "/",
-          userId: "4",
+          booking: {
+            percent: 90,
+            total: 19800000,
+          },
+          sales: {
+            percent: 88,
+            total: 19800000,
+          },
         },
       ],
       documentCategories: [
