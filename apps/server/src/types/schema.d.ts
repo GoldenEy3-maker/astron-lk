@@ -344,6 +344,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/kpi/employee-testing/uploaded-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список годов, за которые были загружены данные тестирования сотрудников */
+        get: operations["getEmployeeTestingUploadedYears"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/factory": {
         parameters: {
             query?: never;
@@ -557,6 +574,23 @@ export interface paths {
         };
         /** Получить список тегов преимуществ */
         get: operations["getAcademyBenefitTags"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/partners": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список партнеров */
+        get: operations["getPartners"];
         put?: never;
         post?: never;
         delete?: never;
@@ -809,6 +843,26 @@ export interface components {
             label: string;
             /** @example technical-requirements */
             slug: string;
+        };
+        Partner: {
+            /** @example 1 */
+            id: string;
+            /** @example Партнер */
+            title: string;
+            /** @example /path/to/logo.png */
+            logo: string;
+            sales: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
+            booking: {
+                /** @example 1000000 */
+                total: number;
+                /** @example 88 */
+                percent: number;
+            };
         };
         InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
         SectionBlock: {
@@ -1576,8 +1630,8 @@ export interface operations {
     getEmployeeTesting: {
         parameters: {
             query: {
-                /** @description Период */
-                period: "all" | "today" | "month" | "quarter" | "year" | "prev-year" | "prev-prev-year";
+                /** @description Год */
+                year: string;
             };
             header?: never;
             path?: never;
@@ -1591,7 +1645,39 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["EmployeeTesting"][];
+                    "application/json": {
+                        data: components["schemas"]["EmployeeTesting"][];
+                        /**
+                         * Format: date-time
+                         * @example 2024-01-01T00:00:00.000Z
+                         */
+                        uploadedAt: string;
+                        /**
+                         * Format: date-time
+                         * @example 2024-01-01T00:00:00.000Z
+                         */
+                        updatedAt: string;
+                    };
+                };
+            };
+        };
+    };
+    getEmployeeTestingUploadedYears: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string[];
                 };
             };
         };
@@ -1913,6 +1999,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AcademyBenefitTag"][];
+                };
+            };
+        };
+    };
+    getPartners: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Partner"][];
                 };
             };
         };

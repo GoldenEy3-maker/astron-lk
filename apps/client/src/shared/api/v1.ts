@@ -232,6 +232,19 @@ const AcademyBenefit = z
     content: z.array(InfoBlock),
   })
   .strict();
+const Partner = z
+  .object({
+    id: z.string(),
+    title: z.string(),
+    logo: z.string(),
+    sales: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
+    booking: z
+      .object({ total: z.number().int(), percent: z.number().int() })
+      .strict(),
+  })
+  .strict();
 const User = z
   .object({
     id: z.string(),
@@ -283,6 +296,7 @@ export const schemas = {
   AcademyBenefitTag,
   AcademyBenefitInList,
   AcademyBenefit,
+  Partner,
   User,
 };
 
@@ -560,20 +574,25 @@ const endpoints = makeApi([
     requestFormat: "json",
     parameters: [
       {
-        name: "period",
+        name: "year",
         type: "Query",
-        schema: z.enum([
-          "all",
-          "today",
-          "month",
-          "quarter",
-          "year",
-          "prev-year",
-          "prev-prev-year",
-        ]),
+        schema: z.string(),
       },
     ],
-    response: z.array(EmployeeTesting),
+    response: z
+      .object({
+        data: z.array(EmployeeTesting),
+        uploadedAt: z.string().datetime({ offset: true }),
+        updatedAt: z.string().datetime({ offset: true }),
+      })
+      .strict(),
+  },
+  {
+    method: "get",
+    path: "/api/kpi/employee-testing/uploaded-years",
+    alias: "getEmployeeTestingUploadedYears",
+    requestFormat: "json",
+    response: z.array(z.string()),
   },
   {
     method: "get",
@@ -616,6 +635,13 @@ const endpoints = makeApi([
         schema: z.object({ message: z.string() }).strict(),
       },
     ],
+  },
+  {
+    method: "get",
+    path: "/api/partners",
+    alias: "getPartners",
+    requestFormat: "json",
+    response: z.array(Partner),
   },
   {
     method: "get",

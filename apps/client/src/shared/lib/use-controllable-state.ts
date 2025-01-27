@@ -45,9 +45,14 @@ const useUncontrolledState = <T>({
   onChange,
 }: Omit<UseControllableStateParams<T>, "prop">) => {
   const uncontrolledState = useState<T | undefined>(defaultProp);
-  const [value] = uncontrolledState;
+  const [value, setValue] = uncontrolledState;
   const prevValueRef = useRef(value);
   const handleChange = useCallbackRef(onChange);
+
+  // Эффект для отслеживания изменений defaultProp
+  useEffect(() => {
+    if (defaultProp !== value) setValue(defaultProp);
+  }, [defaultProp]);
 
   useEffect(() => {
     if (prevValueRef.current !== value) {

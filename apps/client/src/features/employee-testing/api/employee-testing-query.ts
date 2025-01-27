@@ -1,16 +1,22 @@
 import { apiClient } from "@/shared/api/client";
-import { DataPeriodSelectKeyMap } from "@/shared/constants/data-perido-select-maps";
 import { queryOptions } from "@tanstack/react-query";
 
-export function getEmployeeTestingQueryOptions(
-  period?: DataPeriodSelectKeyMap
-) {
+export function getEmployeeTestingQueryOptions(year?: string) {
   return queryOptions({
-    queryKey: ["employee-testing", period ?? "year"],
+    queryKey: ["employee-testing", year],
     queryFn: ({ signal }) =>
       apiClient.getEmployeeTesting({
-        queries: { period: period ?? "year" },
+        queries: { year: year! },
         signal,
       }),
+    enabled: !!year,
+  });
+}
+
+export function getEmployeeTestingUploadedYearsQueryOptions() {
+  return queryOptions({
+    queryKey: ["employee-testing", "uploaded-years"],
+    queryFn: ({ signal }) =>
+      apiClient.getEmployeeTestingUploadedYears({ signal }),
   });
 }

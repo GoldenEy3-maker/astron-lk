@@ -695,20 +695,42 @@ paths:
       tags:
         - KPI
       parameters:
-        - name: period
+        - name: year
           in: query
           required: true
-          description: Период
+          description: Год
           schema:
             type: string
-            enum:
-              - all
-              - today
-              - month
-              - quarter
-              - year
-              - prev-year
-              - prev-prev-year
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - uploadedAt
+                  - updatedAt
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/EmployeeTesting"
+                  uploadedAt:
+                    type: string
+                    format: date-time
+                    example: "2024-01-01T00:00:00.000Z"
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: "2024-01-01T00:00:00.000Z"
+  /api/kpi/employee-testing/uploaded-years:
+    get:
+      summary: Получить список годов, за которые были загружены данные тестирования сотрудников
+      operationId: getEmployeeTestingUploadedYears
+      tags:
+        - KPI
       responses:
         "200":
           description: Успешный ответ
@@ -717,7 +739,8 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/EmployeeTesting"
+                  type: string
+                  example: "2024"
   /api/factory:
     get:
       summary: Получить информацию о заводе Астрон
@@ -1014,6 +1037,21 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AcademyBenefitTag"
+  /api/partners:
+    get:
+      summary: Получить список партнеров
+      operationId: getPartners
+      tags:
+        - Партнеры-Строители
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Partner"
 components:
   schemas:
     User:
@@ -1518,6 +1556,48 @@ components:
         slug:
           type: string
           example: "technical-requirements"
+    Partner:
+      type: object
+      required:
+        - id
+        - title
+        - logo
+        - sales
+        - booking
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Партнер"
+        logo:
+          type: string
+          example: "/path/to/logo.png"
+        sales:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
+        booking:
+          type: object
+          required:
+            - total
+            - percent
+          properties:
+            total:
+              type: integer
+              example: 1000000
+            percent:
+              type: integer
+              example: 88
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"
