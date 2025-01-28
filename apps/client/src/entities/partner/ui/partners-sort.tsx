@@ -30,7 +30,7 @@ export function PartnersSort({ value, onChange }: PartnersSortProps) {
       <SelectTrigger className="font-normal" variant="outline" size="sm">
         <SelectValue placeholder="Сортировать по" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent align="end">
         {Object.entries(PartnersSortKeyToValueMap).map(([key, value]) => (
           <SelectItem key={key} value={key}>
             {value}

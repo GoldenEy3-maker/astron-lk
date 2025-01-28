@@ -38,6 +38,7 @@ export function CurrentBulletins({
         <Documents
           queryKey="bulletins"
           className="current-section-layout__second"
+          documentsListClassName="!grid-cols-1"
           limit={3}
         />
       </SectionContent>

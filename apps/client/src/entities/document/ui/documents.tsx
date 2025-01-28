@@ -13,6 +13,7 @@ type DocumentsProps = {
   queryKey?: GetDocumentsQueryKeys;
   limit?: number;
   scrollToRef?: React.RefObject<HTMLDivElement>;
+  documentsListClassName?: string;
   pagination?: boolean;
   loadMore?: boolean;
   datePicker?: boolean;
@@ -29,6 +30,7 @@ export function Documents({
   datePicker,
   sorting,
   categoryFilter,
+  documentsListClassName,
   ...props
 }: DocumentsProps) {
   const {
@@ -96,6 +98,7 @@ export function Documents({
         isLoading={isLoading}
         documents={data?.documents}
         skeletons={limit ?? DocumentsLimits[queryKey]}
+        className={documentsListClassName}
       />
       {loadMore && hasNextPage ? (
         <div className="flex flex-col items-center mt-8">

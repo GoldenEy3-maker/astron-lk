@@ -32,9 +32,11 @@ export function PartnersPage() {
           <Skeleton className="w-1/4 h-4 rounded-full" />
         )}
       </SectionHeader>
-      <SectionContent className="bg-card rounded-main py-9 px-14">
-        <div className="flex flex-col items-end gap-y-5">
-          <PartnersSort value={sort} onChange={setSort} />
+      <SectionContent className="bg-card rounded-main ~py-6/9 ~px-6/14">
+        <div className="flex flex-col gap-y-5">
+          <div className="flex justify-end">
+            <PartnersSort value={sort} onChange={setSort} />
+          </div>
           <PartnersList sort={sort} />
         </div>
       </SectionContent>
