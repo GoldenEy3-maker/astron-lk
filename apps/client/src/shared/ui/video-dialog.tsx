@@ -1,5 +1,12 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { cn } from "../lib/cn";
-import { Dialog, DialogTrigger, DialogContent } from "./dialog";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "./dialog";
 import { Icons } from "./icons";
 
 type VideoDialogProps = {
@@ -40,6 +47,10 @@ export function VideoDialog({
         }
         overlayClassName={"bg-black/85"}
         isOutsideClose>
+        <VisuallyHidden>
+          <DialogTitle>{thumbnailAlt}</DialogTitle>
+          <DialogDescription>Диалоговое окно с видео</DialogDescription>
+        </VisuallyHidden>
         <iframe
           src={videoSrc}
           className="size-full"

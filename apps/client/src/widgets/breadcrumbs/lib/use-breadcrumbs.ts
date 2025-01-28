@@ -1,15 +1,11 @@
-import { CrumbLabel, useBreadcrumbsStore } from "../model/breadcrumbs-store";
 import { useEffect } from "react";
-import { useShallow } from "zustand/react/shallow";
+import { useBreadcrumbsContext } from "../model/breadcrumbs-context";
+import { CrumbLabel } from "../model/breadcrumbs-context";
 
 export function useBreadcrumbs(param: string, label: CrumbLabel) {
-  const { addParamLabel } = useBreadcrumbsStore(
-    useShallow((state) => ({
-      addParamLabel: state.addParamLabel,
-    }))
-  );
+  const { setDynamicParam } = useBreadcrumbsContext();
 
   useEffect(() => {
-    addParamLabel({ param, label });
+    setDynamicParam(param, label);
   }, [param, label]);
 }

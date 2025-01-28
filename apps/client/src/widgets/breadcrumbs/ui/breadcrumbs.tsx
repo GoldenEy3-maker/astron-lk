@@ -8,7 +8,10 @@ import {
 } from "@/shared/ui/breadcrumb";
 import { Link, useMatches } from "react-router-dom";
 import { Fragment } from "react";
-import { CrumbLabel, useBreadcrumbsStore } from "../model/breadcrumbs-store";
+import {
+  CrumbLabel,
+  useBreadcrumbsContext,
+} from "../model/breadcrumbs-context";
 
 export type CrumbHandle =
   | {
@@ -31,28 +34,26 @@ type BreadcrumbsProps = {
 
 export function Breadcrumbs({ className }: BreadcrumbsProps) {
   const matches = useMatches();
-  const { paramLabels } = useBreadcrumbsStore();
+  const { getDynamicParam } = useBreadcrumbsContext();
 
   const crumbs = matches
     .filter((match) => Boolean((match.handle as CrumbHandle)?.crumb))
     .map((match) => {
       const crumb = (match.handle as CrumbHandle)?.crumb;
 
-      const paramLabel = paramLabels
-        .filter((paramLabel) => {
-          if (typeof crumb === "function") {
-            const { param } = crumb({ href: match.pathname, label: undefined });
-            return param === paramLabel.param;
-          }
-          return true;
-        })
-        .find((paramLabel) =>
-          Object.keys(match.params).includes(paramLabel.param)
-        );
+      if (typeof crumb === "function") {
+        const { param, href } = crumb({
+          href: match.pathname,
+          label: undefined,
+        });
+        const dynamicParam = getDynamicParam(param);
+        return {
+          href,
+          label: dynamicParam?.label ?? "Загрузка...",
+        };
+      }
 
-      return typeof crumb === "function"
-        ? crumb({ href: match.pathname, label: paramLabel?.label })
-        : crumb;
+      return crumb;
     });
 
   if (crumbs.length === 0 || crumbs.length === 1) return null;
@@ -65,7 +66,7 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link to={crumb.href}>
-                  {crumb.label?.replace("&nbsp;", " ") ?? "Загрузка..."}
+                  {crumb.label?.replace("&nbsp;", " ")}
                 </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
@@ -74,8 +75,7 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
         ))}
         <BreadcrumbItem>
           <BreadcrumbPage>
-            {crumbs[crumbs.length - 1]?.label?.replace("&nbsp;", " ") ??
-              "Загрузка..."}
+            {crumbs[crumbs.length - 1]?.label?.replace("&nbsp;", " ")}
           </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>

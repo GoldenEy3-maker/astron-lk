@@ -9,7 +9,7 @@ export function DocumentsPage() {
         Документы
       </h1>
       <Documents
-        scrollToRef={scrollToRef}
+        scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}
         categoryFilter
         loadMore
         pagination

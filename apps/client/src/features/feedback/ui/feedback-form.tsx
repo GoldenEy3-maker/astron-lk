@@ -10,24 +10,17 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 import { PhoneInput } from "@/shared/ui/phone-input";
-import { FeedbackFormSchema } from "../model/feedback-form-schema";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { useFeedbackForm } from "../lib/use-feedback-form";
-import { unformatPhone } from "@/shared/lib/format-phone";
 
 export function FeedbackForm() {
   const { form, isPending, sendFeedbackHandler } = useFeedbackForm();
 
-  function onSubmit(values: FeedbackFormSchema) {
-    sendFeedbackHandler({
-      ...values,
-      phone: unformatPhone(values.phone) ?? "",
-    });
-  }
-
   return (
     <Form {...form}>
-      <form className="~space-y-6/9" onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        className="~space-y-6/9"
+        onSubmit={form.handleSubmit(sendFeedbackHandler)}>
         <div className="grid sm:grid-cols-2 grid-cols-1 ~gap-x-6/14 ~gap-y-4/6">
           <FormField
             control={form.control}

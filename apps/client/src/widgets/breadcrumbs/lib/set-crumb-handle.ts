@@ -1,4 +1,4 @@
-import { CrumbLabel } from "../model/breadcrumbs-store";
+import { CrumbLabel } from "../model/breadcrumbs-context";
 import { CrumbHandle } from "../ui/breadcrumbs";
 
 export function setCrumbHandle(path: string, label: CrumbLabel): CrumbHandle {
