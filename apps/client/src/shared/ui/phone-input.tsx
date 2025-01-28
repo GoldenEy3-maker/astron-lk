@@ -1,16 +1,12 @@
-import { forwardRef } from "react";
 import { Input } from "./input";
 import * as RPNInput from "react-phone-number-input/input";
-import { DefaultInputComponentProps } from "react-phone-number-input";
 
-export const PhoneInput = forwardRef<
-  HTMLInputElement,
-  DefaultInputComponentProps
->((props, ref) => {
+type PhoneInputProps = React.ComponentPropsWithRef<typeof RPNInput.default>;
+
+export function PhoneInput(props: PhoneInputProps) {
   return (
     <RPNInput.default
       inputComponent={Input}
-      ref={ref}
       {...props}
       onChange={props.onChange}
     />
@@ -38,4 +34,4 @@ export const PhoneInput = forwardRef<
     //   {...props}
     // />
   );
-});
+}

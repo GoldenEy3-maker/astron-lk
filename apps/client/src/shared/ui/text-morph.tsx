@@ -1,7 +1,6 @@
-"use client";
 import { cn } from "@/shared/lib/cn";
 import { AnimatePresence, motion } from "motion/react";
-import { useMemo, useId } from "react";
+import { useId } from "react";
 
 type TextMorphProps = {
   children: string;
@@ -19,7 +18,7 @@ export function TextMorph({
 }: TextMorphProps) {
   const uniqueId = useId();
 
-  const characters = useMemo(() => {
+  const characters = () => {
     const charCounts: Record<string, number> = {};
 
     return children.split("").map((char) => {
@@ -31,12 +30,12 @@ export function TextMorph({
         label: char === " " ? "\u00A0" : char,
       };
     });
-  }, [children, uniqueId]);
+  };
 
   return (
     <Component className={cn(className)} aria-label={children} style={style}>
       <AnimatePresence mode="popLayout" initial={false}>
-        {characters.map((character) => (
+        {characters().map((character) => (
           <motion.span
             key={character.id}
             layoutId={character.id}

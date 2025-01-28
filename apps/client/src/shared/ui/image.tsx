@@ -3,7 +3,7 @@ import { cn } from "../lib/cn";
 export function Image({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"img">) {
+}: React.ComponentPropsWithRef<"img">) {
   return (
     <div
       className={cn(

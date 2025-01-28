@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/shared/lib/cn";
@@ -16,48 +15,42 @@ const alertVariants = cva("rounded-main ~py-4/5 ~px-7/12 bg-card", {
   },
 });
 
-const Alert = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-  <div
-    ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
-    {...props}
-  />
-));
-Alert.displayName = "Alert";
+type AlertProps = React.ComponentPropsWithRef<"div"> &
+  VariantProps<typeof alertVariants>;
 
-const AlertHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center gap-2 mb-2", className)}
-    {...props}
-  />
-));
+function Alert({ className, variant, ...props }: AlertProps) {
+  return (
+    <div
+      role="alert"
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
 
-const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h4 ref={ref} className={cn("text-h4 leading-none", className)} {...props} />
-));
-AlertTitle.displayName = "AlertTitle";
+type AlertHeaderProps = React.ComponentPropsWithRef<"div">;
 
-const AlertDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-foreground ~text-sm/base", className)}
-    {...props}
-  />
-));
-AlertDescription.displayName = "AlertDescription";
+function AlertHeader({ className, ...props }: AlertHeaderProps) {
+  return (
+    <div className={cn("flex items-center gap-2 mb-2", className)} {...props} />
+  );
+}
+
+type AlertTitleProps = React.ComponentPropsWithRef<"h4">;
+
+function AlertTitle({ className, ...props }: AlertTitleProps) {
+  return <h4 className={cn("text-h4 leading-none", className)} {...props} />;
+}
+
+type AlertDescriptionProps = React.ComponentPropsWithRef<"div">;
+
+function AlertDescription({ className, ...props }: AlertDescriptionProps) {
+  return (
+    <div
+      className={cn("text-foreground ~text-sm/base", className)}
+      {...props}
+    />
+  );
+}
 
 export { Alert, AlertTitle, AlertHeader, AlertDescription };

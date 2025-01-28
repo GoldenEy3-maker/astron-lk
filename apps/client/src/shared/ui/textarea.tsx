@@ -1,14 +1,12 @@
-import * as React from "react";
-
 import { cn } from "@/shared/lib/cn";
+import { useEffect, useImperativeHandle, useRef } from "react";
 
-const Textarea = React.forwardRef<
-  HTMLTextAreaElement,
-  React.ComponentProps<"textarea">
->(({ className, onChange, ...props }, ref) => {
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+type TextareaProps = React.ComponentPropsWithRef<"textarea">;
 
-  React.useImperativeHandle(ref, () => {
+function Textarea({ className, onChange, ref, ...props }: TextareaProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useImperativeHandle(ref, () => {
     return textareaRef.current!;
   });
 
@@ -25,7 +23,7 @@ const Textarea = React.forwardRef<
     }
   }
 
-  React.useEffect(autoresize, []);
+  useEffect(autoresize, []);
 
   return (
     <textarea
@@ -41,7 +39,7 @@ const Textarea = React.forwardRef<
       {...props}
     />
   );
-});
+}
 Textarea.displayName = "Textarea";
 
 export { Textarea };

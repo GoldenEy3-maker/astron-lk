@@ -17,7 +17,7 @@ export function BulletinsPage() {
         datePicker
         categoryFilter
         className="~mt-5/8"
-        scrollToRef={scrollToRef}
+        scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}
       />
     </div>
   );

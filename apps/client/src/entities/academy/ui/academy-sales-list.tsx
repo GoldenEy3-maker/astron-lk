@@ -22,7 +22,7 @@ export function AcademySalesList() {
   });
 
   useResizeObserver({
-    ref: containerRef,
+    ref: containerRef as React.RefObject<HTMLElement>,
     onResize: setContainerDimensions,
   });
 

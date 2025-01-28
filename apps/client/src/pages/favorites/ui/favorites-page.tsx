@@ -15,7 +15,7 @@ export function FavoritesPage() {
       <SectionContent>
         <Documents
           queryKey="favorites"
-          scrollToRef={scrollToRef}
+          scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}
           className="~mt-1/3"
         />
       </SectionContent>

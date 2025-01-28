@@ -1,6 +1,4 @@
-import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-
 import { cn } from "@/shared/lib/cn";
 import { ScrollArea } from "./scroll-area";
 import { Button, ButtonProps } from "./button";
@@ -8,90 +6,96 @@ import { Icons } from "./icons";
 
 const Dialog = DialogPrimitive.Root;
 
-const DialogTrigger = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Trigger>,
-  Omit<
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>,
-    "asChild"
-  > & {
-    variant?: ButtonProps["variant"];
-    size?: ButtonProps["size"];
-  }
->(({ variant = "default", size = "default", ...props }, ref) => {
+type DialogTriggerProps = Omit<
+  React.ComponentPropsWithRef<typeof DialogPrimitive.Trigger>,
+  "asChild"
+> & {
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
+};
+
+function DialogTrigger({
+  variant = "default",
+  size = "default",
+  ...props
+}: DialogTriggerProps) {
   return (
-    <DialogPrimitive.Trigger ref={ref} asChild {...props}>
+    <DialogPrimitive.Trigger asChild {...props}>
       <Button variant={variant} size={size}>
         {props.children}
       </Button>
     </DialogPrimitive.Trigger>
   );
-});
+}
 
 const DialogPortal = DialogPrimitive.Portal;
 
-const DialogClose = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Close>,
-  Omit<
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>,
-    "asChild"
-  > & {
-    variant?: ButtonProps["variant"];
-    size?: ButtonProps["size"];
-  }
->(({ className, variant = "ghost", size = "icon", ...props }, ref) => (
-  <DialogPrimitive.Close
-    ref={ref}
-    className={cn(
-      "text-border hover:bg-transparent hover:text-foreground",
-      className
-    )}
-    asChild
-    {...props}>
-    <Button variant={variant} size={size}>
-      {props.children || <Icons.X />}
-    </Button>
-  </DialogPrimitive.Close>
-));
-DialogClose.displayName = DialogPrimitive.Close.displayName;
+type DialogCloseProps = Omit<
+  React.ComponentPropsWithRef<typeof DialogPrimitive.Close>,
+  "asChild"
+> & {
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
+};
 
-const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
-    ref={ref}
-    className={cn(
-      "fixed inset-0 z-50 grid place-items-center bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
-      "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
-    )}
-    {...props}
-  />
-));
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
+function DialogClose({
+  className,
+  variant = "ghost",
+  size = "icon",
+  ...props
+}: DialogCloseProps) {
+  return (
+    <DialogPrimitive.Close
+      className={cn(
+        "text-border hover:bg-transparent hover:text-foreground",
+        className
+      )}
+      asChild
+      {...props}>
+      <Button variant={variant} size={size}>
+        {props.children || <Icons.X />}
+      </Button>
+    </DialogPrimitive.Close>
+  );
+}
 
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
-    scrollAreaClassName?: string;
-    wrapperClassName?: string;
-    overlayClassName?: string;
-    isOutsideClose?: boolean;
-  }
->(
-  (
-    {
-      className,
-      children,
-      onPointerDownOutside,
-      scrollAreaClassName,
-      wrapperClassName,
-      overlayClassName,
-      isOutsideClose,
-      ...props
-    },
-    ref
-  ) => (
+type DialogOverlayProps = React.ComponentPropsWithRef<
+  typeof DialogPrimitive.Overlay
+>;
+
+function DialogOverlay({ className, ...props }: DialogOverlayProps) {
+  return (
+    <DialogPrimitive.Overlay
+      className={cn(
+        "fixed inset-0 z-50 grid place-items-center bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
+        "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+type DialogContentProps = React.ComponentPropsWithRef<
+  typeof DialogPrimitive.Content
+> & {
+  scrollAreaClassName?: string;
+  wrapperClassName?: string;
+  overlayClassName?: string;
+  isOutsideClose?: boolean;
+};
+
+function DialogContent({
+  className,
+  children,
+  onPointerDownOutside,
+  scrollAreaClassName,
+  wrapperClassName,
+  overlayClassName,
+  isOutsideClose,
+  ...props
+}: DialogContentProps) {
+  return (
     <DialogPortal>
       <DialogOverlay className={overlayClassName}>
         <DialogPrimitive.Content
@@ -100,7 +104,6 @@ const DialogContent = React.forwardRef<
               e.preventDefault();
             onPointerDownOutside?.(e);
           }}
-          ref={ref}
           className={cn(
             "flex flex-col gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",
             "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -128,9 +131,8 @@ const DialogContent = React.forwardRef<
         </DialogPrimitive.Content>
       </DialogOverlay>
     </DialogPortal>
-  )
-);
-DialogContent.displayName = DialogPrimitive.Content.displayName;
+  );
+}
 
 const DialogHeader = ({
   className,
@@ -157,31 +159,34 @@ const DialogFooter = ({
 );
 DialogFooter.displayName = "DialogFooter";
 
-const DialogTitle = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Title>,
-  Omit<React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>, "asChild">
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn("text-h3", className)}
-    asChild
-    {...props}>
-    <h3>{props.children}</h3>
-  </DialogPrimitive.Title>
-));
-DialogTitle.displayName = DialogPrimitive.Title.displayName;
+type DialogTitleProps = Omit<
+  React.ComponentPropsWithRef<typeof DialogPrimitive.Title>,
+  "asChild"
+>;
 
-const DialogDescription = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-));
-DialogDescription.displayName = DialogPrimitive.Description.displayName;
+function DialogTitle({ className, children, ...props }: DialogTitleProps) {
+  return (
+    <DialogPrimitive.Title
+      className={cn("text-h3", className)}
+      asChild
+      {...props}>
+      <h3>{children}</h3>
+    </DialogPrimitive.Title>
+  );
+}
+
+type DialogDescriptionProps = React.ComponentPropsWithRef<
+  typeof DialogPrimitive.Description
+>;
+
+function DialogDescription({ className, ...props }: DialogDescriptionProps) {
+  return (
+    <DialogPrimitive.Description
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  );
+}
 
 export {
   Dialog,

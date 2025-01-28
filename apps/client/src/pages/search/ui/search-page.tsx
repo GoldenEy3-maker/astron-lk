@@ -15,7 +15,10 @@ export function SearchPage() {
         </h1>
       </SectionHeader>
       <SectionContent className="m-md:col-[span_13] col-span-full">
-        <Search limit={7} scrollToRef={scrollToRef} />
+        <Search
+          limit={7}
+          scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}
+        />
       </SectionContent>
     </Section>
   );
