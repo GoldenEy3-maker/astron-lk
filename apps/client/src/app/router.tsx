@@ -241,6 +241,21 @@ export function createRouter() {
                   "Тестирование сотрудников"
                 )}
               />
+              <Route
+                path={Routes.Partners + "/:partnerId" + Routes.Leads}
+                element={<LeadsPage />}
+                handle={setCrumbHandle(Routes.Leads, "Результаты лидогенераци")}
+              />
+              <Route
+                path={Routes.Partners + "/:partnerId" + Routes.Booking}
+                element={<BookingPage />}
+                handle={setCrumbHandle(Routes.Booking, "Букинг")}
+              />
+              <Route
+                path={Routes.Partners + "/:partnerId" + Routes.Sales}
+                element={<SalesPage />}
+                handle={setCrumbHandle(Routes.Sales, "Продажи")}
+              />
             </Route>
           </Route>
           <Route

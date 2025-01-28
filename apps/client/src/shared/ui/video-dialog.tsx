@@ -27,7 +27,7 @@ export function VideoDialog({
       <DialogTrigger
         variant="ghost"
         className={cn(
-          "p-0 h-auto w-full relative group !rounded-main overflow-hidden",
+          "p-0 w-full relative group !rounded-main overflow-hidden",
           triggerClassName
         )}>
         <img

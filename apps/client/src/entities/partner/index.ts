@@ -6,3 +6,4 @@ export {
 export { PartnersList } from "./ui/partners-list";
 export { PartnersSort } from "./ui/partners-sort";
 export { PartnersSortKeyMap } from "./constants/partners-sort-maps";
+export { PartnersSelect } from "./ui/partners-select";

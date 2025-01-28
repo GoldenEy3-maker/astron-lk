@@ -24,9 +24,9 @@ const buttonVariants = cva(
           "text-foreground-accent hover:bg-primary/10 hover:text-primary aria-disabled:bg-muted/15",
       },
       size: {
-        default: "h-12 px-10 py-3",
-        sm: "h-10 rounded-xl px-4",
-        lg: "h-11 rounded-md px-8",
+        default: "min-h-12 px-10 py-3",
+        sm: "min-h-10 rounded-xl px-4",
+        lg: "min-h-11 rounded-md px-8",
         hug: "",
         "icon-sm": "h-8 w-8 rounded-full",
         icon: "h-10 w-10 rounded-full",

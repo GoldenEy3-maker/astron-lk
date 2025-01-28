@@ -47,7 +47,7 @@ export function AcademyBenefitsTagsFilter({
                 <Button
                   asChild
                   variant="ghost"
-                  className="flex py-[0.4375rem] items-start justify-start cursor-pointer whitespace-normal h-auto rounded-none font-normal px-5 gap-3">
+                  className="flex py-[0.4375rem] items-start justify-start cursor-pointer whitespace-normal min-h-0 rounded-none font-normal px-5 gap-3">
                   <Label key={tag.id} htmlFor={`${id}-${tag.id}`}>
                     <Checkbox
                       id={`${id}-${tag.id}`}

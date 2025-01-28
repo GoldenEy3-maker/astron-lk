@@ -7,3 +7,10 @@ export function getPartnersUploadedDateQueryOptions() {
     queryFn: ({ signal }) => apiClient.getPartnersUploadedDate({ signal }),
   });
 }
+
+export function getPartnersSelectQueryOptions() {
+  return queryOptions({
+    queryKey: ["partners", "select"],
+    queryFn: ({ signal }) => apiClient.getPartnersSelect({ signal }),
+  });
+}
