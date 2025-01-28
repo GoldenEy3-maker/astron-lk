@@ -1017,6 +1017,20 @@ export default new (class DBService {
           favorites: [],
           partnerId: "1",
         },
+        {
+          id: "7",
+          name: "Иван",
+          surname: "Иванов",
+          patronymic: "Иванович",
+          email: "partner@partner.ru",
+          password: passwordService.hashPassword("partner"),
+          phone: "+79131231231",
+          tokenVersion: 0,
+          isBanned: false,
+          role: "partner",
+          favorites: [],
+          partnerId: "1",
+        },
       ],
       news: [
         {
