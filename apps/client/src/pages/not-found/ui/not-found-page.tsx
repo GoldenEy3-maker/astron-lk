@@ -1,4 +1,12 @@
+import { Routes } from "@/shared/constants/routes";
+import { Button } from "@/shared/ui/button";
+import { Link, useSearchParams } from "react-router-dom";
+
 export function NotFoundPage() {
+  const [searchParams] = useSearchParams();
+
+  const isNotAllowedByManager = searchParams.get("denied-role") === "manager";
+
   return (
     <main className="col-[main] py-[3.75rem] flex flex-col items-center justify-center">
       <svg
@@ -63,6 +71,13 @@ export function NotFoundPage() {
       <h3 className="text-h3 text-foreground text-center ~mt-7/[3.75rem]">
         Страница находится в&nbsp;стадии строительства
       </h3>
+      <Button asChild className="mt-10">
+        <Link to={isNotAllowedByManager ? Routes.Partners : Routes.Home}>
+          {isNotAllowedByManager
+            ? "На страницу выбора партнеров"
+            : "На главную"}
+        </Link>
+      </Button>
     </main>
   );
 }

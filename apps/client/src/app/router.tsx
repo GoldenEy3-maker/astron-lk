@@ -6,13 +6,14 @@ import {
 import { RootErrorBoundary, RootLayout } from "./layouts/root";
 import { lazy } from "react";
 import { Routes } from "@/shared/constants/routes";
-import { getSessionLoader } from "@/shared/api/session-query";
+import { accessControlByRoleLoader } from "@/shared/api/access-control-loader";
 import { MainLayout, MainLoading } from "./layouts/main";
 import { AuthLayout } from "./layouts/auth/ui/auth-layout";
 import {
   setCrumbHandle,
   setCrumbHandleFromParams,
 } from "@/widgets/breadcrumbs";
+import { getSessionLoader } from "@/shared/api/session-loader";
 
 const HomePage = lazy(() =>
   import("../pages/home").then((module) => ({
@@ -227,6 +228,7 @@ export function createRouter() {
           />
           <Route
             path={Routes.Partners}
+            loader={accessControlByRoleLoader("manager")}
             handle={setCrumbHandle(Routes.Partners, "Партнеры-Строители")}>
             <Route index element={<PartnersPage />} />
             <Route
@@ -261,6 +263,7 @@ export function createRouter() {
           <Route
             path={Routes.EmployeeTesting}
             element={<EmployeeTestingPage />}
+            loader={accessControlByRoleLoader("partner")}
             handle={setCrumbHandle(
               Routes.EmployeeTesting,
               "Тестирование сотрудников"
@@ -270,16 +273,19 @@ export function createRouter() {
             path={Routes.Leads}
             element={<LeadsPage />}
             handle={setCrumbHandle(Routes.Leads, "Результаты лидогенераци")}
+            loader={accessControlByRoleLoader("partner")}
           />
           <Route
             path={Routes.Booking}
             element={<BookingPage />}
             handle={setCrumbHandle(Routes.Booking, "Букинг")}
+            loader={accessControlByRoleLoader("partner")}
           />
           <Route
             path={Routes.Sales}
             element={<SalesPage />}
             handle={setCrumbHandle(Routes.Sales, "Продажи")}
+            loader={accessControlByRoleLoader("partner")}
           />
           <Route
             path={Routes.Academy}
