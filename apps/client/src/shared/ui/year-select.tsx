@@ -21,7 +21,7 @@ export function YearSelect({ year, setYear, data }: YearSelectProps) {
       <SelectContent align="end">
         {data.map((item) => (
           <SelectItem key={item} value={item}>
-            {item}
+            {item} год
           </SelectItem>
         ))}
       </SelectContent>

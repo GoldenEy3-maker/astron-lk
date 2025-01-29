@@ -41,7 +41,7 @@ export function EmployeeTestingCard({
 
   return (
     <Section space="lg" className="rounded-main bg-card ~py-6/9 ~px-6/14">
-      <SectionHeader className="gap-y-3 items-center">
+      <SectionHeader className="gap-y-2 items-center">
         {extended ? (
           <>
             {!isLoading && uploadedAt ? (
@@ -69,7 +69,7 @@ export function EmployeeTestingCard({
               asChild
               variant="link"
               size="hug"
-              className="gap-3 font-normal items-baseline">
+              className="~gap-1.5/3 font-normal items-center">
               <Link
                 to={
                   partnerId
@@ -78,7 +78,7 @@ export function EmployeeTestingCard({
                 }
                 className="text-h3 leading-none">
                 <span>Тестирование сотрудников</span>
-                <Icons.ArrowRight />
+                <Icons.ArrowRight className="~size-4/6" />
               </Link>
             </Button>
             {!isUploadedYearsLoading && uploadedYears ? (

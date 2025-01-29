@@ -846,6 +846,7 @@ paths:
       operationId: getEmployeeTesting
       tags:
         - KPI
+        - Тестирование сотрудников
       parameters:
         - name: year
           in: query
@@ -903,6 +904,7 @@ paths:
       operationId: getEmployeeTestingUploadedYears
       tags:
         - KPI
+        - Тестирование сотрудников
       parameters:
         - name: partnerId
           in: query
@@ -920,6 +922,138 @@ paths:
                 items:
                   type: string
                   example: "2024"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/lead-generation/uploaded-years:
+    get:
+      summary: Получить список годов, за которые были загружены данные лидогенерации
+      operationId: getLeadGenerationUploadedYears
+      tags:
+        - KPI
+        - Лидогенерация
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "2024"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/lead-generation:
+    get:
+      summary: Получить данные лидогенерации
+      operationId: getLeadGeneration
+      tags:
+        - KPI
+        - Лидогенерация
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeadGeneration"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/lead-generation/quarter-passed:
+    get:
+      summary: Получить количество пройденных лидов по кварталам
+      operationId: getLeadGenerationQuarterPassed
+      tags:
+        - KPI
+        - Лидогенерация
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeadGenerationQuarterPassed"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
   /api/factory:
@@ -1991,6 +2125,44 @@ components:
         result:
           type: integer
           example: 81
+    LeadGeneration:
+      type: object
+      required:
+        - id
+        - project
+        - fixedAt
+      properties:
+        id:
+          type: string
+          example: "1"
+        project:
+          type: object
+          required:
+            - id
+            - name
+          properties:
+            id:
+              type: string
+              example: "1"
+            name:
+              type: string
+              example: "Проект"
+        fixedAt:
+          type: string
+          format: date-time
+          example: "2025-01-01T00:00:00Z"
+    LeadGenerationQuarterPassed:
+      type: object
+      required:
+        - idx
+        - passedCount
+      properties:
+        idx:
+          type: integer
+          example: 1
+        passedCount:
+          type: integer
+          example: 5
     Error:
       type: object
       required:
