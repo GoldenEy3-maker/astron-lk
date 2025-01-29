@@ -92,12 +92,15 @@ export function RecoveryPasswordForm({
                   <FormField
                     control={form.control}
                     name="password"
-                    disabled={isPending}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Новый пароль</FormLabel>
                         <FormControl>
-                          <Input type="password" {...field} />
+                          <Input
+                            disabled={isPending}
+                            type="password"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -106,12 +109,15 @@ export function RecoveryPasswordForm({
                   <FormField
                     control={form.control}
                     name="confirmPassword"
-                    disabled={isPending}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Повторите пароль</FormLabel>
                         <FormControl>
-                          <Input type="password" {...field} />
+                          <Input
+                            disabled={isPending}
+                            type="password"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

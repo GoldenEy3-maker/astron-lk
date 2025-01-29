@@ -41,12 +41,11 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             <FormField
               control={form.control}
               name="login"
-              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Логин</FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} />
+                    <Input disabled={isPending} type="email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -55,7 +54,6 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             <FormField
               control={form.control}
               name="password"
-              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex items-center justify-between">
@@ -71,7 +69,12 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                     </Button>
                   </FormLabel>
                   <FormControl>
-                    <Input type="password" withTrailingReveal {...field} />
+                    <Input
+                      disabled={isPending}
+                      type="password"
+                      withTrailingReveal
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -81,12 +84,11 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
           <FormField
             control={form.control}
             name="remember"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem className="mt-6 space-y-0 flex items-center gap-3">
                 <FormControl>
                   <Checkbox
-                    disabled={field.disabled}
+                    disabled={isPending}
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     ref={field.ref}

@@ -25,12 +25,11 @@ export function FeedbackForm() {
           <FormField
             control={form.control}
             name="fio"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>ФИО</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input disabled={isPending} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -39,12 +38,15 @@ export function FeedbackForm() {
           <FormField
             control={form.control}
             name="phone"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Телефон</FormLabel>
                 <FormControl>
-                  <PhoneInput placeholder="+7" {...field} />
+                  <PhoneInput
+                    disabled={isPending}
+                    placeholder="+7"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -53,12 +55,11 @@ export function FeedbackForm() {
           <FormField
             control={form.control}
             name="message"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem className="sm:col-span-2">
                 <FormLabel>Комментарий</FormLabel>
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea disabled={isPending} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -69,13 +70,12 @@ export function FeedbackForm() {
           <FormField
             control={form.control}
             name="privacy"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center gap-3">
                   <FormControl>
                     <Checkbox
-                      disabled={field.disabled}
+                      disabled={isPending}
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       ref={field.ref}
@@ -115,13 +115,12 @@ export function FeedbackForm() {
           <FormField
             control={form.control}
             name="personalData"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center gap-3">
                   <FormControl>
                     <Checkbox
-                      disabled={field.disabled}
+                      disabled={isPending}
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       ref={field.ref}

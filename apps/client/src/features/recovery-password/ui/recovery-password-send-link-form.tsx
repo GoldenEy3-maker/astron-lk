@@ -29,12 +29,11 @@ export function RecoveryPasswordSendLinkForm({
           <FormField
             control={form.control}
             name="email"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input disabled={isPending} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

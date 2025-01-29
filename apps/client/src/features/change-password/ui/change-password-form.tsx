@@ -32,12 +32,16 @@ export function ChangePasswordForm({
         <FormField
           control={form.control}
           name="password"
-          disabled={isPending}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Старый пароль</FormLabel>
               <FormControl>
-                <Input type="password" autoFocus {...field} />
+                <Input
+                  disabled={isPending}
+                  type="password"
+                  autoFocus
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -46,12 +50,11 @@ export function ChangePasswordForm({
         <FormField
           control={form.control}
           name="newPassword"
-          disabled={isPending}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Новый пароль</FormLabel>
               <FormControl>
-                <Input type="password" {...field} />
+                <Input disabled={isPending} type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,12 +63,11 @@ export function ChangePasswordForm({
         <FormField
           control={form.control}
           name="confirmPassword"
-          disabled={isPending}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Подтверждение нового пароля</FormLabel>
               <FormControl>
-                <Input type="password" {...field} />
+                <Input disabled={isPending} type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
