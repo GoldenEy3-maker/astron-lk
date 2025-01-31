@@ -16,7 +16,10 @@ export async function getSessionLoader({ request }: LoaderFunctionArgs) {
       if (cachedData) return cachedData;
       throw error;
     }
-    console.error(error);
-    return redirect(`${Routes.SignIn}?callbackUrl=${pathname}`);
+    return redirect(
+      `${Routes.SignIn}?callbackUrl=${
+        pathname === "/cabinet/" ? "/" : pathname
+      }`
+    );
   }
 }

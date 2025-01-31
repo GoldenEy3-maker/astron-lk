@@ -39,7 +39,7 @@ factoryRouter.get(
       },
       video: {
         src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-        thumbnail: "/video-poster-2.webp",
+        thumbnail: "/cabinet/video-poster-2.webp",
         alt: "Видео завода Астрон",
       },
       document: documents[Math.floor(Math.random() * documents.length)],
@@ -52,7 +52,7 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     {
       id: "1",
       img: {
-        src: "/factory-team-1.webp",
+        src: "/cabinet/factory-team-1.webp",
         alt: "Фотография сотрудника Астрон",
       },
       role: "Генеральный директор",
@@ -63,7 +63,7 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     {
       id: "2",
       img: {
-        src: "/factory-team-1.webp",
+        src: "/cabinet/factory-team-1.webp",
         alt: "Фотография сотрудника Астрон",
       },
       role: "Менеджер по продажам",
@@ -74,7 +74,7 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     {
       id: "3",
       img: {
-        src: "/factory-team-1.webp",
+        src: "/cabinet/factory-team-1.webp",
         alt: "Фотография сотрудника Астрон",
       },
       role: "Директор по развитию",
@@ -85,7 +85,7 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     {
       id: "4",
       img: {
-        src: "/factory-team-1.webp",
+        src: "/cabinet/factory-team-1.webp",
         alt: "Фотография сотрудника Астрон",
       },
       role: "Агроном",
@@ -96,7 +96,7 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     {
       id: "5",
       img: {
-        src: "/factory-team-1.webp",
+        src: "/cabinet/factory-team-1.webp",
         alt: "Фотография сотрудника Астрон",
       },
       role: "Родственник",

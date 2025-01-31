@@ -401,6 +401,9 @@ export function createRouter() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-    )
+    ),
+    {
+      basename: "/cabinet",
+    }
   );
 }

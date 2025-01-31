@@ -14,7 +14,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           toast:
-            "group toast bg-card grid ~py-4/5 ~px-6/8 gap-x-3 gap-y-2 grid-cols-[auto_1fr] !pointer-events-auto text-foreground border-border rounded-main text-base shadow-lg",
+            "group toast bg-card border-none grid ~py-4/5 ~px-6/8 gap-x-3 gap-y-2 grid-cols-[auto_1fr] !pointer-events-auto text-foreground border-border rounded-main text-base shadow-lg",
           title: "col-start-2 row-start-1 font-normal text-h4",
           icon: "col-start-1 row-start-1 m-0 w-auto h-auto",
           description: "text-foreground row-start-2 col-span-2",

@@ -64,7 +64,7 @@ export function NotFoundPage() {
             id="image0_1803_12208"
             width="2048"
             height="1365"
-            xlinkHref="/404.webp"
+            xlinkHref="/cabinet/404.webp"
           />
         </defs>
       </svg>
