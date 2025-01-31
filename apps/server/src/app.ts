@@ -27,7 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.CLIENT_URL
-      ? [`https://${process.env.CLIENT_URL}`]
+      ? [
+          `https://${process.env.CLIENT_URL}`,
+          "http://astronbuildings.countrydigital.ru",
+        ]
       : [
           "http://localhost:5173",
           "http://localhost:4173",
