@@ -6,7 +6,6 @@ import { z } from "zod";
 type FactoryTeamCardProps = {} & z.infer<typeof schemas.FactoryTeam>;
 
 export function FactoryTeamCard({
-  id,
   img,
   role,
   title,
@@ -14,7 +13,7 @@ export function FactoryTeamCard({
   email,
 }: FactoryTeamCardProps) {
   return (
-    <article key={id} className="flex flex-col items-start">
+    <article className="flex flex-col items-start">
       <img
         src={img.src}
         className="h-80 w-full rounded-main object-cover"

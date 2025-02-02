@@ -24,7 +24,7 @@ export function RootErrorBoundary() {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-2">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-2">
       <h1>Что-то пошло не так! 😩</h1>
       <pre>Ошибка: {renderError()}</pre>
       <Button onClick={() => window.location.reload()}>

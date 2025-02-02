@@ -34,7 +34,7 @@ factoryRouter.get(
       </p>
       `,
       img: {
-        src: "/video-poster-2.webp",
+        src: "/cabinet/video-poster-2.webp",
         alt: "Картинка завода Астрон",
       },
       video: {

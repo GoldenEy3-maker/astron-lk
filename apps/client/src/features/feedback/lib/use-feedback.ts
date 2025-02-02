@@ -13,9 +13,9 @@ export function useFeedback({ onSuccess }: UseFeedbackProps = {}) {
   const feedbackMutation = useMutation({
     mutationFn: apiClient.sendFeedback,
     onError: (error) => {
-      if (error instanceof AxiosError) {
+      if (error instanceof AxiosError)
         toast.error(error.response?.data.message);
-      }
+
       console.error(error);
     },
     onSuccess: (data) => {

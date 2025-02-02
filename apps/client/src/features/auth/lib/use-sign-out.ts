@@ -11,7 +11,7 @@ export function useSignOut() {
 
   const signOutMutation = useMutation({
     mutationFn: () => apiClient.signOut(),
-    async onSettled() {
+    onSettled: async () => {
       await navigate(Routes.SignIn);
       setToken(null);
       queryClient.resetQueries();

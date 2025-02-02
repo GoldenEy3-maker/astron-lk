@@ -12,9 +12,9 @@ export function useChangePassword({ onSuccess }: UseChangePasswordProps = {}) {
   const changePasswordMutation = useMutation({
     mutationFn: apiClient.changeUserPassword,
     onError: (error) => {
-      if (error instanceof AxiosError) {
+      if (error instanceof AxiosError)
         toast.error(error.response?.data.message);
-      }
+
       console.error(error);
     },
     onSuccess: (data) => {

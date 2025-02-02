@@ -9,7 +9,7 @@ const academyListData = [
       <Icons.AcademySales className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademySales,
-    bgImg: "/background-image-1.webp",
+    bgImg: "/cabinet/background-image-1.webp",
   },
   {
     title: "Подготовка к переговорам",
@@ -17,7 +17,7 @@ const academyListData = [
       <Icons.AcademyConversations className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyConversations,
-    bgImg: "/background-image-2.webp",
+    bgImg: "/cabinet/background-image-2.webp",
   },
   {
     title: "Конъюнктурный анализ",
@@ -25,7 +25,7 @@ const academyListData = [
       <Icons.AcademyAnalysis className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyAnalysis,
-    bgImg: "/background-image-3.webp",
+    bgImg: "/cabinet/background-image-3.webp",
   },
   {
     title: "Оформление коммерческого предложения",
@@ -33,7 +33,7 @@ const academyListData = [
       <Icons.AcademyCommercial className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyCommercial,
-    bgImg: "/background-image-4.webp",
+    bgImg: "/cabinet/background-image-4.webp",
   },
   {
     title: "Подборки проектов и отзывы",
@@ -41,7 +41,7 @@ const academyListData = [
       <Icons.AcademyProjects className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyProjects,
-    bgImg: "/background-image-5.webp",
+    bgImg: "/cabinet/background-image-5.webp",
   },
   {
     title: "Вебинары",
@@ -49,7 +49,7 @@ const academyListData = [
       <Icons.AcademyWebinars className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyWebinars,
-    bgImg: "/background-image-6.webp",
+    bgImg: "/cabinet/background-image-6.webp",
   },
   {
     title: "Преимущества",
@@ -57,7 +57,7 @@ const academyListData = [
       <Icons.AcademyBenefits className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyBenefits,
-    bgImg: "/background-image-7.webp",
+    bgImg: "/cabinet/background-image-7.webp",
   },
 ];
 

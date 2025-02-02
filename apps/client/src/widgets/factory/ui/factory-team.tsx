@@ -17,7 +17,9 @@ export function FactoryTeam(props: FactoryTeamProps) {
       <SectionContent>
         <div className="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]">
           {!isLoading && data
-            ? data.map((employee) => <FactoryTeamCard {...employee} />)
+            ? data.map((employee) => (
+                <FactoryTeamCard key={employee.id} {...employee} />
+              ))
             : Array(3)
                 .fill(null)
                 .map((_, index) => <FactoryTeamCardSkeleton key={index} />)}

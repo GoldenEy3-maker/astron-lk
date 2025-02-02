@@ -18,10 +18,10 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
 
   const signInMutation = useMutation({
     mutationFn: apiClient.signIn,
-    onMutate() {
+    onMutate: () => {
       setIsUserBanned(false);
     },
-    onSuccess(data) {
+    onSuccess: (data) => {
       setToken(data.accessToken);
       queryClient.setQueryData(getSessionQueryOptions().queryKey, data.user);
       toast.success("Вы успешно авторизовались!", {
@@ -29,7 +29,7 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
       });
       onSuccess?.();
     },
-    onError(error) {
+    onError: (error) => {
       if (error instanceof AxiosError) {
         if (error.response?.status === 403) setIsUserBanned(true);
         else

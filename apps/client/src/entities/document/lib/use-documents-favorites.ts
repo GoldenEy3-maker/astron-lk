@@ -76,9 +76,9 @@ export function useDocumentsFavorites() {
 
       return { previousSession, previousFavorites };
     },
-    onError: (error, _, context) => {
+    onError: (error, _variables, context) => {
       console.error(error);
-      // Восстанавливаем данные при ошибке
+
       queryClient.setQueryData(
         getSessionQueryOptions().queryKey,
         context?.previousSession,
@@ -94,7 +94,6 @@ export function useDocumentsFavorites() {
       );
     },
     onSettled: () => {
-      // Инвалидируем оба запроса
       queryClient.invalidateQueries(getSessionQueryOptions());
       queryClient.invalidateQueries(
         getDocumentsInfiniteQueryOptions({
