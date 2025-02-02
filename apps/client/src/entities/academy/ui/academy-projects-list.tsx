@@ -20,7 +20,7 @@ export function AcademyProjectsList({
   asWebinars,
 }: AcademyProjectsListProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(17rem,1fr))] m-md:grid-cols-[repeat(auto-fill,minmax(22rem,1fr))] ~gap-x-8/14 ~gap-y-6/10">
+    <div className="grid grid-cols-1 ~gap-x-8/14 ~gap-y-6/10 sm:grid-cols-[repeat(auto-fill,minmax(17rem,1fr))] m-md:grid-cols-[repeat(auto-fill,minmax(22rem,1fr))]">
       {!isLoading && data
         ? data?.map((project) => (
             <AcademyProjectCard

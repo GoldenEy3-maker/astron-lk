@@ -28,7 +28,8 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
           <motion.div
             initial={{ opacity: 0, height: 0, marginBottom: 0 }}
             animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
-            exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+            exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+          >
             <UserBannedAlert />
           </motion.div>
         ) : null}
@@ -36,7 +37,8 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(signInHandler)}
-          className="bg-card rounded-main ~py-5/9 ~px-7/12">
+          className="rounded-main bg-card ~px-7/12 ~py-5/9"
+        >
           <div className="~space-y-4/5">
             <FormField
               control={form.control}
@@ -62,7 +64,8 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
                       variant="link"
                       asChild
                       size="hug"
-                      className="font-normal">
+                      className="font-normal"
+                    >
                       <Link to={Routes.RecoveryPasswordSendLink}>
                         Забыли пароль?
                       </Link>
@@ -85,7 +88,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             control={form.control}
             name="remember"
             render={({ field }) => (
-              <FormItem className="mt-6 space-y-0 flex items-center gap-3">
+              <FormItem className="mt-6 flex items-center gap-3 space-y-0">
                 <FormControl>
                   <Checkbox
                     disabled={isPending}
@@ -100,7 +103,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               </FormItem>
             )}
           />
-          <div className="~mt-6/8 flex items-center gap-4">
+          <div className="flex items-center gap-4 ~mt-6/8">
             <Button disabled={isPending || isUserBanned}>
               Войти в личный кабинет
             </Button>

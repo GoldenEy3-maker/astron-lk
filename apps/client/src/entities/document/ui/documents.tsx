@@ -59,7 +59,7 @@ export function Documents({
   return (
     <div {...props}>
       {datePicker || sorting || categoryFilter ? (
-        <div className="flex items-center ~gap-x-4/8 ~mb-4/8 flex-wrap sm:flex-nowrap gap-y-2">
+        <div className="flex flex-wrap items-center gap-y-2 ~mb-4/8 ~gap-x-4/8 sm:flex-nowrap">
           {datePicker ? (
             <DocumentsDatePicker
               date={{
@@ -84,7 +84,7 @@ export function Documents({
             />
           ) : null}
           {categoryFilter ? (
-            <div className="flex-1 flex justify-end">
+            <div className="flex flex-1 justify-end">
               <DocumentsCategoryFilter
                 queryKey={queryKey}
                 category={category ?? undefined}
@@ -101,17 +101,18 @@ export function Documents({
         className={documentsListClassName}
       />
       {loadMore && hasNextPage ? (
-        <div className="flex flex-col items-center mt-8">
+        <div className="mt-8 flex flex-col items-center">
           <Button
             variant="outline-primary"
             disabled={isFetchingNextPage}
-            onClick={onLoadMore}>
+            onClick={onLoadMore}
+          >
             {isFetchingNextPage ? "Загружаем..." : "Показать еще"}
           </Button>
         </div>
       ) : null}
       {pagination && data?.totalPages && data.totalPages > 1 ? (
-        <div className="flex mt-6 justify-center">
+        <div className="mt-6 flex justify-center">
           <Pagination
             currentPage={displayedPage}
             totalPages={data.totalPages}

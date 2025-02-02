@@ -20,8 +20,9 @@ export function FeedbackForm() {
     <Form {...form}>
       <form
         className="~space-y-6/9"
-        onSubmit={form.handleSubmit(sendFeedbackHandler)}>
-        <div className="grid sm:grid-cols-2 grid-cols-1 ~gap-x-6/14 ~gap-y-4/6">
+        onSubmit={form.handleSubmit(sendFeedbackHandler)}
+      >
+        <div className="grid grid-cols-1 ~gap-x-6/14 ~gap-y-4/6 sm:grid-cols-2">
           <FormField
             control={form.control}
             name="fio"
@@ -89,11 +90,13 @@ export function FeedbackForm() {
                       asChild
                       variant="link"
                       size="hug"
-                      className="font-normal">
+                      className="font-normal"
+                    >
                       <a
                         href="/privacy"
                         target="_blank"
-                        className="text-primary">
+                        className="text-primary"
+                      >
                         политику конфиденциальности
                       </a>
                     </Button>{" "}
@@ -102,7 +105,8 @@ export function FeedbackForm() {
                       asChild
                       variant="link"
                       size="hug"
-                      className="font-normal">
+                      className="font-normal"
+                    >
                       <a href="/terms" target="_blank" className="text-primary">
                         пользовательское соглашение
                       </a>
@@ -134,11 +138,13 @@ export function FeedbackForm() {
                       asChild
                       variant="link"
                       size="hug"
-                      className="font-normal">
+                      className="font-normal"
+                    >
                       <a
                         href="/privacy"
                         target="_blank"
-                        className="text-primary">
+                        className="text-primary"
+                      >
                         обработку персональных данных
                       </a>
                     </Button>

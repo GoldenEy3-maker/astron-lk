@@ -20,9 +20,10 @@ export function NavigationLink({
       size="sm"
       asChild
       className={cn(
-        "justify-start w-full whitespace-normal py-1 leading-[1.3] text-muted gap-2.5 group/link",
-        className
-      )}>
+        "group/link w-full justify-start gap-2.5 whitespace-normal py-1 leading-[1.3] text-muted",
+        className,
+      )}
+    >
       <NavLink to={url} target={isExternal ? "_blank" : undefined} end={end}>
         {({ isActive }) => (
           <>
@@ -32,19 +33,21 @@ export function NavigationLink({
                   "transition group-hover/link:text-border-accent",
                   {
                     "!text-primary": isActive,
-                  }
-                )}>
+                  },
+                )}
+              >
                 {icon}
               </span>
             ) : null}
             <span
               className={cn("transition group-hover/link:text-foreground", {
                 "!text-foreground": isActive,
-              })}>
+              })}
+            >
               {label}
             </span>
             {notifications ? (
-              <span className="h-6 min-w-6 rounded-full text-sm font-normal px-1 inline-flex items-center justify-center bg-primary text-primary-foreground">
+              <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-primary px-1 text-sm font-normal text-primary-foreground">
                 {notifications}
               </span>
             ) : null}

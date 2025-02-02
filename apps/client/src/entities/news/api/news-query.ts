@@ -6,7 +6,7 @@ type GetNewsQueryOptionsParams = {
 };
 
 export function getNewsInfiniteQueryOptions(
-  params?: GetNewsQueryOptionsParams
+  params?: GetNewsQueryOptionsParams,
 ) {
   return infiniteQueryOptions({
     queryKey: ["news", params?.limit],

@@ -27,12 +27,12 @@ export function useDocumentsFavorites() {
             limit: DocumentsLimits[queryKey],
             queryKey,
             page: 1,
-          })
+          }),
         ),
       ]);
 
       const previousSession = queryClient.getQueryData(
-        getSessionQueryOptions().queryKey
+        getSessionQueryOptions().queryKey,
       );
       const previousFavorites = queryClient.getQueryData(
         getDocumentsInfiniteQueryOptions({
@@ -40,7 +40,7 @@ export function useDocumentsFavorites() {
           limit: DocumentsLimits[queryKey],
           queryKey,
           page: 1,
-        }).queryKey
+        }).queryKey,
       );
 
       queryClient.setQueryData(getSessionQueryOptions().queryKey, (oldData) => {
@@ -68,10 +68,10 @@ export function useDocumentsFavorites() {
                     ...page,
                     data: [favorite, ...page.data],
                   }
-                : page
+                : page,
             ),
           };
-        }
+        },
       );
 
       return { previousSession, previousFavorites };
@@ -81,7 +81,7 @@ export function useDocumentsFavorites() {
       // Восстанавливаем данные при ошибке
       queryClient.setQueryData(
         getSessionQueryOptions().queryKey,
-        context?.previousSession
+        context?.previousSession,
       );
       queryClient.setQueryData(
         getDocumentsInfiniteQueryOptions({
@@ -90,7 +90,7 @@ export function useDocumentsFavorites() {
           queryKey,
           page: 1,
         }).queryKey,
-        context?.previousFavorites
+        context?.previousFavorites,
       );
     },
     onSettled: () => {
@@ -102,7 +102,7 @@ export function useDocumentsFavorites() {
           limit: DocumentsLimits[queryKey],
           queryKey,
           page: 1,
-        })
+        }),
       );
     },
   });
@@ -119,12 +119,12 @@ export function useDocumentsFavorites() {
             limit: DocumentsLimits[queryKey],
             queryKey,
             page: 1,
-          })
+          }),
         ),
       ]);
 
       const previousSession = queryClient.getQueryData(
-        getSessionQueryOptions().queryKey
+        getSessionQueryOptions().queryKey,
       );
       const previousFavorites = queryClient.getQueryData(
         getDocumentsInfiniteQueryOptions({
@@ -132,7 +132,7 @@ export function useDocumentsFavorites() {
           limit: DocumentsLimits[queryKey],
           queryKey,
           page: 1,
-        }).queryKey
+        }).queryKey,
       );
 
       queryClient.setQueryData(getSessionQueryOptions().queryKey, (oldData) => {
@@ -159,7 +159,7 @@ export function useDocumentsFavorites() {
               data: page.data.filter((item) => item.id !== favorite.id),
             })),
           };
-        }
+        },
       );
 
       return { previousSession, previousFavorites };
@@ -169,7 +169,7 @@ export function useDocumentsFavorites() {
       // Восстанавливаем данные при ошибке
       queryClient.setQueryData(
         getSessionQueryOptions().queryKey,
-        context?.previousSession
+        context?.previousSession,
       );
       queryClient.setQueryData(
         getDocumentsInfiniteQueryOptions({
@@ -178,7 +178,7 @@ export function useDocumentsFavorites() {
           queryKey,
           page: 1,
         }).queryKey,
-        context?.previousFavorites
+        context?.previousFavorites,
       );
     },
     onSettled: () => {
@@ -189,7 +189,7 @@ export function useDocumentsFavorites() {
           limit: DocumentsLimits[queryKey],
           queryKey,
           page: 1,
-        })
+        }),
       );
     },
   });

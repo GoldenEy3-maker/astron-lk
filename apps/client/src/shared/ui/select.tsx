@@ -29,11 +29,13 @@ function SelectTrigger({
     <Button variant={variant} size={size} asChild>
       <SelectPrimitive.Trigger
         className={cn("group [&>span]:line-clamp-1", className)}
-        {...props}>
+        {...props}
+      >
         {children}
         <SelectPrimitive.Icon
           asChild
-          className="group-data-[state=open]:rotate-180 text-primary transition-transform duration-200">
+          className="text-primary transition-transform duration-200 group-data-[state=open]:rotate-180"
+        >
           <Icons.ChevronDown />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
@@ -55,9 +57,10 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpButton
       className={cn(
         "flex cursor-default items-center justify-center pb-1",
-        className
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <ChevronUp className="h-4 w-4" />
     </SelectPrimitive.ScrollUpButton>
   );
@@ -77,9 +80,10 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownButton
       className={cn(
         "flex cursor-default items-center justify-center pt-1",
-        className
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <ChevronDown className="h-4 w-4" />
     </SelectPrimitive.ScrollDownButton>
   );
@@ -103,19 +107,21 @@ function SelectContent({
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          "relative z-50 max-h-96 max-w-[20rem] min-w-[8rem] overflow-hidden rounded-main py-[0.8125rem] bg-card text-card-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          "relative z-50 max-h-96 min-w-[8rem] max-w-[20rem] overflow-hidden rounded-main bg-card py-[0.8125rem] text-card-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-          className
+          className,
         )}
         position={position}
-        {...props}>
+        {...props}
+      >
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
           className={cn(
             position === "popper" &&
-              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
-          )}>
+              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
+          )}
+        >
           {children}
         </SelectPrimitive.Viewport>
         <SelectScrollDownButton />
@@ -133,7 +139,8 @@ function SelectLabel({ className, children, ...props }: SelectLabelProps) {
   return (
     <SelectPrimitive.Label
       className={cn("py-1.5 pl-4 pr-2 text-sm font-semibold", className)}
-      {...props}>
+      {...props}
+    >
       {children}
     </SelectPrimitive.Label>
   );
@@ -147,10 +154,11 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
   return (
     <SelectPrimitive.Item
       className={cn(
-        "relative flex w-full cursor-default gap-2 select-none items-center py-[0.4375rem] px-5 outline-none focus:bg-muted/15 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-primary",
-        className
+        "relative flex w-full cursor-default select-none items-center gap-2 px-5 py-[0.4375rem] outline-none focus:bg-muted/15 data-[disabled]:pointer-events-none data-[state=checked]:text-primary data-[disabled]:opacity-50",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );

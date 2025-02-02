@@ -25,7 +25,8 @@ export function NewsDetailPage() {
             <h1 className="text-h1 text-heading-h2">{parse(data.title)}</h1>
             <time
               dateTime={data.createdAt}
-              className="block text-muted text-sm">
+              className="block text-sm text-muted"
+            >
               {formatDate(new Date(data.createdAt))}
             </time>
             <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />

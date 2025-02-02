@@ -28,13 +28,14 @@ export function AcademySalesList() {
 
   return (
     <div
-      className="grid grid-cols-1 xs:grid-cols-2 min-[56.25rem]:grid-cols-3 gap-[2.125rem]"
+      className="grid grid-cols-1 gap-[2.125rem] xs:grid-cols-2 min-[56.25rem]:grid-cols-3"
       ref={containerRef}
       style={
         {
           "--container-width": containerDimensions.width + "px",
         } as React.CSSProperties
-      }>
+      }
+    >
       {!isLoading && data
         ? data.map((item, index) => (
             <AcademySalesCard
@@ -45,8 +46,8 @@ export function AcademySalesList() {
                 (mdBreakpoint
                   ? index % 3 !== 2
                   : xsBreakpoint
-                  ? index % 2 !== 1
-                  : true)
+                    ? index % 2 !== 1
+                    : true)
               }
               isWrapArrowLine={
                 mdBreakpoint

@@ -32,22 +32,24 @@ export function AcademyBenefitsTagsFilter({
 
   return (
     <Popover>
-      <PopoverTrigger variant="link" className="group text-primary font-normal">
+      <PopoverTrigger variant="link" className="group font-normal text-primary">
         <span>Фильтр преимуществ</span>
-        <span className="group-data-[state=open]:rotate-180 text-primary transition-transform duration-200">
+        <span className="text-primary transition-transform duration-200 group-data-[state=open]:rotate-180">
           <Icons.ChevronDown />
         </span>
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        className="bg-card px-0 py-[0.8125rem] overflow-hidden">
+        className="overflow-hidden bg-card px-0 py-[0.8125rem]"
+      >
         <div className="flex flex-col">
           {!isLoading && data
             ? data?.map((tag) => (
                 <Button
                   asChild
                   variant="ghost"
-                  className="flex py-[0.4375rem] items-start justify-start cursor-pointer whitespace-normal min-h-0 rounded-none font-normal px-5 gap-3">
+                  className="flex min-h-0 cursor-pointer items-start justify-start gap-3 whitespace-normal rounded-none px-5 py-[0.4375rem] font-normal"
+                >
                   <Label key={tag.id} htmlFor={`${id}-${tag.id}`}>
                     <Checkbox
                       id={`${id}-${tag.id}`}
@@ -70,7 +72,7 @@ export function AcademyBenefitsTagsFilter({
                 .map((_, index) => (
                   <Skeleton
                     key={index}
-                    className="h-6 w-full my-1.5 rounded-full"
+                    className="my-1.5 h-6 w-full rounded-full"
                   />
                 ))}
         </div>

@@ -21,7 +21,7 @@ export function Kpi({ partnerId, ...props }: KpiProps) {
             Результаты выгрузки от {formatDate(new Date(data), "dd.MM.yyyy")}
           </span>
         ) : (
-          <Skeleton className="w-1/4 h-4 rounded-full" />
+          <Skeleton className="h-4 w-1/4 rounded-full" />
         )}
       </SectionHeader>
       <SectionContent>

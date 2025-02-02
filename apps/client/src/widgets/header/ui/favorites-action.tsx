@@ -18,12 +18,13 @@ export function FavoritesAction({ className, ...props }: FavoritesActionProps) {
       size="icon"
       aria-disabled={!session}
       className={cn("relative", className)}
-      {...props}>
+      {...props}
+    >
       <Link to={Routes.Favorites}>
         <Icons.Favorites />
         <span className="sr-only">Избранное</span>
         {session?.favorites.length ? (
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary" />
+          <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-primary" />
         ) : null}
       </Link>
     </Button>

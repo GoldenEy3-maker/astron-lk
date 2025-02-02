@@ -5,7 +5,7 @@ import { createParser } from "nuqs";
 export function formatDate(
   date: DateArg<Date>,
   formatStr: string = "dd MMMM yyyy",
-  options?: FormatOptions
+  options?: FormatOptions,
 ) {
   return format(date, formatStr, {
     locale: ru,
@@ -23,7 +23,7 @@ export const parseAsLocalDate = createParser({
     if (!date) return "";
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
       2,
-      "0"
+      "0",
     )}-${String(date.getDate()).padStart(2, "0")}`;
   },
 });

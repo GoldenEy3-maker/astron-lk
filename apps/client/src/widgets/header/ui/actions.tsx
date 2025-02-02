@@ -23,7 +23,8 @@ export function Actions() {
         aria-disabled={!session}
         className={cn({
           hidden: isMobileSheetOpen,
-        })}>
+        })}
+      >
         <Link to={Routes.Search}>
           <Icons.Search />
           <span className="sr-only">Поиск</span>

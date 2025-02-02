@@ -51,7 +51,8 @@ export function ChangePasswordDialog() {
     <Drawer open={open} onOpenChange={setOpen} repositionInputs={false}>
       <DrawerTrigger
         variant="outline"
-        className="bg-transparent w-full sm:w-auto">
+        className="w-full bg-transparent sm:w-auto"
+      >
         Сменить пароль
       </DrawerTrigger>
       <DrawerContent>

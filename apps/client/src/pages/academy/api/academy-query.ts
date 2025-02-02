@@ -58,7 +58,7 @@ type GetAcademyBenefitsParams = {
 };
 
 export function getAcademyBenefitsInfiniteQueryOptions(
-  params?: GetAcademyBenefitsParams
+  params?: GetAcademyBenefitsParams,
 ) {
   return infiniteQueryOptions({
     queryKey: ["academy", "benefits", params?.tags, params?.limit],

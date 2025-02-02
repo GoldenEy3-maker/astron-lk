@@ -11,7 +11,7 @@ import { getPartnerBySessionQueryOptions } from "@/entities/partner/api/partner-
 export function ProfilePage() {
   const { data: session } = useQuery(getSessionQueryOptions());
   const { data: partner, isLoading } = useQuery(
-    getPartnerBySessionQueryOptions()
+    getPartnerBySessionQueryOptions(),
   );
   const { signOutHandler, isPending } = useSignOut();
 
@@ -43,11 +43,12 @@ export function ProfilePage() {
           <dt className="text-muted ~mt-4/7">E-mail</dt>
           <dd>{session?.email}</dd>
         </dl>
-        <div className="flex items-center flex-col sm:flex-row ~gap-3/5 ~mt-8/12">
+        <div className="flex flex-col items-center ~mt-8/12 ~gap-3/5 sm:flex-row">
           <Button
             disabled={isPending}
             className="w-full sm:w-auto"
-            onClick={signOutHandler}>
+            onClick={signOutHandler}
+          >
             Выйти из аккаунта
           </Button>
           <ChangePasswordDialog />

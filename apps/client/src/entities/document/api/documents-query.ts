@@ -84,7 +84,7 @@ const DocumentsQueryFn: Record<
 };
 
 export function getDocumentsInfiniteQueryOptions(
-  params?: GetDocumentsQueryOptionsParams
+  params?: GetDocumentsQueryOptionsParams,
 ) {
   const queryKey = params?.queryKey ?? "documents";
 
@@ -120,7 +120,7 @@ const DocumentsCategoriesQueryFn: Record<
 };
 
 export function getDocumentsCategoriesQueryOptions(
-  queryKey: GetDocumentsQueryKeys = "documents"
+  queryKey: GetDocumentsQueryKeys = "documents",
 ) {
   return queryOptions({
     queryKey: [queryKey, "categories"],
@@ -139,7 +139,7 @@ type ResetDocumentsQueryPagesParams = {
 };
 
 export function resetDocumentsQueryPages(
-  params: ResetDocumentsQueryPagesParams
+  params: ResetDocumentsQueryPagesParams,
 ) {
   const queryKey = params.queryKey ?? "documents";
 
@@ -159,7 +159,7 @@ export function resetDocumentsQueryPages(
         pages: data.pages.slice(0, 1),
         pageParams: data.pageParams.slice(0, 1),
       };
-    }
+    },
   );
 }
 
@@ -176,7 +176,7 @@ export function prefetchDocumentsPage(params: GetDocumentsQueryOptionsParams) {
         sort: params.sort,
         fromDate: params.fromDate,
         toDate: params.toDate,
-      }).queryKey
+      }).queryKey,
     )
   )
     queryClient.prefetchInfiniteQuery(
@@ -188,6 +188,6 @@ export function prefetchDocumentsPage(params: GetDocumentsQueryOptionsParams) {
         sort: params.sort,
         fromDate: params.fromDate,
         toDate: params.toDate,
-      })
+      }),
     );
 }

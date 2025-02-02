@@ -24,7 +24,7 @@ export function useDocuments({
 }: UseDocumentsProps) {
   const [queryPage, setQueryPage] = useQueryState(
     "page",
-    parseAsInteger.withDefault(1)
+    parseAsInteger.withDefault(1),
   );
   const [displayedPage, setDisplayedPage] = useState(queryPage);
 
@@ -73,7 +73,7 @@ export function useDocuments({
           ? isoStringWithoutTime(fromDateFilter)
           : undefined,
         toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
-      })
+      }),
     );
 
   function handlePageChange(newPage: number) {

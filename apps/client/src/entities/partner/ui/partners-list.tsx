@@ -12,7 +12,7 @@ export function PartnersList({ sort }: PartnersListProps) {
   const { data, isLoading } = useQuery(getPartnersQueryOptions(sort));
 
   return (
-    <div className="grid md:grid-cols-[auto_1fr_1fr] grid-cols-[auto_1fr] m-md:grid-cols-[auto_1fr] m-xl:grid-cols-[auto_1fr_1fr] gap-x-8">
+    <div className="grid grid-cols-[auto_1fr] gap-x-8 md:grid-cols-[auto_1fr_1fr] m-md:grid-cols-[auto_1fr] m-xl:grid-cols-[auto_1fr_1fr]">
       {!isLoading && data
         ? data.map((partner) => (
             <PartnerCardInList key={partner.id} {...partner} />

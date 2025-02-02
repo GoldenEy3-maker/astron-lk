@@ -17,11 +17,11 @@ export function FactoryTeamCard({
     <article key={id} className="flex flex-col items-start">
       <img
         src={img.src}
-        className="rounded-main w-full h-80 object-cover"
+        className="h-80 w-full rounded-main object-cover"
         alt={img.alt}
       />
       <span className="mt-5 text-sm text-muted">{role}</span>
-      <h2 className="text-h2 mt-2">{title}</h2>
+      <h2 className="mt-2 text-h2">{title}</h2>
       <span className="mt-3">{formatPhone(phone)}</span>
       <Button variant="link" size="hug" className="mt-2 font-normal">
         <a href={`mailto:${email}`}>{email}</a>

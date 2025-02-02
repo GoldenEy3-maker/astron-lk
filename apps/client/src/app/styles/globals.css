@@ -1,0 +1,184 @@
+@import "fonts";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 211 41% 97%;
+    --foreground: 214 15% 32%;
+    --foreground-accent: 214 16% 28%;
+    --card: 0 0% 100%;
+    --card-accent: 0 0% 90%;
+    --card-foreground: 214 15% 32%;
+    --popover: 202 100% 96%;
+    --popover-foreground: 214 15% 32%;
+    --primary: 203 82% 42%;
+    --primary-accent: 203 79% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 5% 81%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 214 13% 67%;
+    --muted-foreground: 0 0% 100%;
+    --accent: 203 79% 32%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 2 54% 58%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 154 51% 46%;
+    --success-foreground: 0 0% 98%;
+    --border: 214 16% 76%;
+    --border-accent: 214 10% 57%;
+    --stroke: 0 0% 82%;
+    --gold: 39 97% 61%;
+    --input: 0 0% 90%;
+    --ring: 203 82% 42%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --heading-h2: 213 63% 38%;
+    --heading-h3: 212 78% 32%;
+    --heading-h3-accent: 219 53% 34%;
+    --heading-h4: 219 56% 22%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .main-container {
+    display: grid;
+    grid-template-columns: clamp(1rem,
+        -0.429rem + 3.57vw,
+        3rem) [main-start] repeat(24, 1fr) [main-end] clamp(1rem,
+        -0.429rem + 3.57vw,
+        3rem);
+    grid-auto-rows: max-content;
+  }
+
+  .max-container {
+    max-width: 90rem;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .main-space>*+* {
+    margin-top: clamp(48px, 1.036rem + 4.91vw, 92px);
+  }
+
+  .date-picker-cell:has(.rdp-day_range_start) {
+    @apply rounded-l-xl;
+  }
+
+  .inset-center {
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+}
+
+@layer components {
+  .text-container {
+    font-size: clamp(1rem, 0.911rem + 0.22vw, 1.125rem);
+  }
+
+  .text-container>*+* {
+    margin-top: clamp(0.75rem, 0.571rem + 0.45vw, 1rem);
+  }
+
+  .text-container h2 {
+    @apply text-h2 text-heading-h3;
+  }
+
+  .text-container h2:not(:first-child) {
+    margin-top: clamp(1.5rem, 1.143rem + 0.89vw, 2rem) !important;
+  }
+
+  .text-container h3 {
+    @apply text-h3 text-heading-h4;
+  }
+
+  .text-container h3:not(:first-child) {
+    margin-top: clamp(1rem, 0.643rem + 0.89vw, 1.5rem) !important;
+  }
+
+  .text-containerul {
+    @apply space-y-1;
+  }
+
+  .text-container ul li {
+    display: grid;
+    grid-template-columns: min-content auto;
+    gap: 0.5rem;
+    align-items: baseline;
+    min-height: 2rem;
+  }
+
+  .text-container ul li::before {
+    content: url("/icons/marker.svg");
+    min-width: 2rem;
+    text-align: center;
+  }
+
+  .text-container ol {
+    @apply space-y-1;
+  }
+
+  .text-container ol li {
+    display: grid;
+    grid-template-columns: min-content auto;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-height: 2rem;
+    counter-increment: list-item;
+  }
+
+  .text-container ol li:before {
+    content: counter(list-item, decimal);
+    font-weight: 500;
+    min-width: 2rem;
+    text-align: center;
+
+    @apply text-primary;
+  }
+
+  .current-section-layout {
+    @apply col-span-full grid grid-cols-subgrid gap-y-8;
+  }
+
+  .current-section-layout__first {
+    @apply col-span-full md:col-span-10 m-md:col-span-9 m-xl:col-span-8;
+  }
+
+  .current-section-layout__first._col-one-more {
+    @apply col-span-full md:col-span-11 m-md:col-span-12 m-xl:col-span-9;
+  }
+
+  .current-section-layout__second {
+    @apply col-span-full md:col-[13/span_12] m-md:col-[11/span_10] m-xl:col-[11/span_9];
+  }
+
+  .current-section-layout__text {
+    font-size: clamp(1rem, 0.911rem + 0.22vw, 1.125rem);
+    line-height: 1.3;
+  }
+
+  .current-section-layout__text>*+* {
+    margin-top: clamp(0.5rem, 0.321rem + 0.45vw, 0.75rem);
+  }
+}

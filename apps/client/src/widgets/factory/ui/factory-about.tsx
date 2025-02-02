@@ -22,20 +22,21 @@ export function FactoryAbout({
       <div
         className={cn("current-section-layout__first ~space-y-4/9", {
           "_col-one-more": extended,
-        })}>
+        })}
+      >
         {!isLoading && data ? (
           <TextContainer
             html={data.text}
-            className="~space-y-2/3 leading-[1.3]"
+            className="leading-[1.3] ~space-y-2/3"
           />
         ) : (
           <div className="space-y-2">
-            <Skeleton className="w-full h-3 !rounded-full" />
-            <Skeleton className="w-full h-3 !rounded-full" />
-            <Skeleton className="w-full h-3 !rounded-full" />
-            <Skeleton className="w-full h-3 !rounded-full" />
-            <Skeleton className="w-full h-3 !rounded-full" />
-            <Skeleton className="w-full h-3 !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
+            <Skeleton className="h-3 w-full !rounded-full" />
           </div>
         )}
         {extended ? (
@@ -51,7 +52,7 @@ export function FactoryAbout({
           !isLoading && data ? (
             <img
               src={data.img.src}
-              className="rounded-main size-full object-cover"
+              className="size-full rounded-main object-cover"
               alt={data.img.alt}
             />
           ) : (
@@ -65,7 +66,7 @@ export function FactoryAbout({
             triggerClassName={"~h-[18rem]/[22.5rem]"}
           />
         ) : (
-          <Skeleton className="w-full ~h-[18rem]/[22.5rem] !rounded-main" />
+          <Skeleton className="w-full !rounded-main ~h-[18rem]/[22.5rem]" />
         )}
       </div>
     </div>

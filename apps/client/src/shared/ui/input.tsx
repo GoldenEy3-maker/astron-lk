@@ -33,12 +33,12 @@ function Input({
       <input
         type={isPassword ? (isPasswordReveal ? "text" : "password") : type}
         className={cn(
-          "flex ~h-10/11 w-full rounded-xl border border-border aria-[invalid=true]:border-destructive aria-[invalid=true]:text-destructive aria-[invalid=true]:ring-destructive bg-card px-5 py-2.5 ~text-base/lg ring-offset-background transition file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input",
+          "flex w-full rounded-xl border border-border bg-card px-5 py-2.5 ring-offset-background transition ~text-base/lg ~h-10/11 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input aria-[invalid=true]:border-destructive aria-[invalid=true]:text-destructive aria-[invalid=true]:ring-destructive",
           {
             "pr-12": isPassword || isSearch,
             "tracking-[0.2rem]": isPassword && !isPasswordReveal,
           },
-          className
+          className,
         )}
         disabled={disabled}
         {...props}
@@ -46,15 +46,17 @@ function Input({
       {isSearch && props.value ? (
         <div
           className={cn(
-            "absolute inset-y-px rounded-xl transition flex items-center justify-center right-1",
-            trailingIconClassName
-          )}>
+            "absolute inset-y-px right-1 flex items-center justify-center rounded-xl transition",
+            trailingIconClassName,
+          )}
+        >
           <Button
             type="button"
             variant="ghost"
             size="icon-sm"
-            className="text-muted hover:text-foreground hover:bg-transparent"
-            onClick={onClear}>
+            className="text-muted hover:bg-transparent hover:text-foreground"
+            onClick={onClear}
+          >
             <Icons.X />
           </Button>
         </div>
@@ -62,16 +64,18 @@ function Input({
       {isPassword && withTrailingReveal ? (
         <div
           className={cn(
-            "absolute inset-y-px rounded-xl transition  flex items-center justify-center right-1",
-            trailingIconClassName
-          )}>
+            "absolute inset-y-px right-1 flex items-center justify-center rounded-xl transition",
+            trailingIconClassName,
+          )}
+        >
           <Button
             type="button"
             variant="ghost"
             size="icon"
             disabled={disabled}
-            className="text-border rounded-xl hover:text-border-accent"
-            onClick={togglePasswordReveal}>
+            className="rounded-xl text-border hover:text-border-accent"
+            onClick={togglePasswordReveal}
+          >
             <Icons.EyeSlash />
           </Button>
         </div>

@@ -16,17 +16,19 @@ export function AcademyBenefitsTagsBadge({
   return (
     <div
       className={cn(
-        "text-primary inline-flex overflow-hidden items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full text-sm",
-        className
+        "inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary/10 px-3 py-1.5 text-sm text-primary",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <span className="truncate">{label}</span>
       {onRemoveClick ? (
         <Button
           variant="link"
           size="hug"
           className="text-border hover:text-border-accent"
-          onClick={onRemoveClick}>
+          onClick={onRemoveClick}
+        >
           <Icons.X />
         </Button>
       ) : null}

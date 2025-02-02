@@ -22,28 +22,30 @@ export function SearchForm({
   return (
     <div className="flex flex-col ~gap-1/3">
       <form
-        className="flex relative"
+        className="relative flex"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit();
-        }}>
+        }}
+      >
         <Input
           value={value}
           onChange={(e) => onChange(e.target.value)}
           type="search"
           placeholder="Поиск"
           wrapperClassName="w-full"
-          className="w-full h-12 pr-28"
+          className="h-12 w-full pr-28"
           trailingIconClassName="right-[5.4rem]"
           onClear={() => onChange("")}
         />
-        <div className="absolute right-0 inset-y-0">
+        <div className="absolute inset-y-0 right-0">
           <Button
             variant="link"
             size="sm"
             type="submit"
             disabled={isLoading}
-            className="relative pr-6 pl-3 h-full before:absolute before:inset-x-0 before:inset-y-3 before:border-l before:border-border/40 rounded-l-none">
+            className="relative h-full rounded-l-none pl-3 pr-6 before:absolute before:inset-x-0 before:inset-y-3 before:border-l before:border-border/40"
+          >
             Найти
           </Button>
         </div>

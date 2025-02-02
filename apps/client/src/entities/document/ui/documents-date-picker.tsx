@@ -32,7 +32,8 @@ export function DocumentsDatePicker({
     >
       <PopoverTrigger
         variant="outline"
-        className="font-normal bg-card text-muted basis-80 text-sm justify-between">
+        className="basis-80 justify-between bg-card text-sm font-normal text-muted"
+      >
         {date?.from ? (
           date.to ? (
             <>
@@ -47,7 +48,7 @@ export function DocumentsDatePicker({
         )}
         <Icons.Calendar />
       </PopoverTrigger>
-      <PopoverContent className="!w-auto p-0 z-20" align="start" sideOffset={4}>
+      <PopoverContent className="z-20 !w-auto p-0" align="start" sideOffset={4}>
         <Calendar
           initialFocus
           mode="range"

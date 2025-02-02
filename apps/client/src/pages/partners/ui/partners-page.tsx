@@ -11,12 +11,12 @@ export function PartnersPage() {
   const [sort, setSort] = useQueryState(
     "sort",
     parseAsStringEnum(Object.values(PartnersSortKeyMap)).withDefault(
-      "asc-sales"
-    )
+      "asc-sales",
+    ),
   );
 
   const { data: uploadedDate, isLoading: isUploadedDateLoading } = useQuery(
-    getPartnersUploadedDateQueryOptions()
+    getPartnersUploadedDateQueryOptions(),
   );
 
   return (
@@ -29,10 +29,10 @@ export function PartnersPage() {
             {formatDate(new Date(uploadedDate), "dd.MM.yyyy")}
           </span>
         ) : (
-          <Skeleton className="w-1/4 h-4 rounded-full" />
+          <Skeleton className="h-4 w-1/4 rounded-full" />
         )}
       </SectionHeader>
-      <SectionContent className="bg-card rounded-main ~py-6/9 ~px-6/14">
+      <SectionContent className="rounded-main bg-card ~px-6/14 ~py-6/9">
         <div className="flex flex-col gap-y-5">
           <div className="flex justify-end">
             <PartnersSort value={sort} onChange={setSort} />

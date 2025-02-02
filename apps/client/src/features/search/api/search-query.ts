@@ -8,7 +8,7 @@ type GetSearchInfiniteQueryOptionsProps = {
 };
 
 export function getSearchInfiniteQueryOptions(
-  params: GetSearchInfiniteQueryOptionsProps
+  params: GetSearchInfiniteQueryOptionsProps,
 ) {
   return infiniteQueryOptions({
     queryKey: ["search", "query", params.query, params.page, params.limit],

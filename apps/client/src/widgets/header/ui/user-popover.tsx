@@ -29,24 +29,26 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
-        className={cn("flex items-center gap-3 !ml-0", className)}
+        className={cn("!ml-0 flex items-center gap-3", className)}
         variant="ghost"
         size={isMobileSm ? "icon" : "sm"}
         disabled={!session}
-        {...props}>
+        {...props}
+      >
         <Icons.User className="text-foreground-accent" />
-        <TextMorph as="span" className="font-normal sm:block hidden">
+        <TextMorph as="span" className="hidden font-normal sm:block">
           {session ? `${session.surname} ${session.name}` : "Личный кабинет"}
         </TextMorph>
       </PopoverTrigger>
       <PopoverContent
         side="bottom"
         align="end"
-        className={cn("pb-3 px-0", {
+        className={cn("px-0 pb-3", {
           "pt-3": session?.role !== "partner",
-        })}>
+        })}
+      >
         {session?.role === "partner" ? (
-          <div className="text-heading-h3 px-5 mb-2">
+          <div className="mb-2 px-5 text-heading-h3">
             <TextMorph as="h3" className="text-h3">
               {!isPartnerLoading && partner ? partner.title : "Загрузка..."}
             </TextMorph>
@@ -62,7 +64,8 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
             variant="ghost"
             asChild
             size="sm"
-            className="font-normal w-full justify-start px-5 rounded-none">
+            className="w-full justify-start rounded-none px-5 font-normal"
+          >
             <a href="https://astronbuildings.com/" target="_blank">
               <span>Основной сайт</span>
               <Icons.ExternalLink className="text-border" />
@@ -73,11 +76,13 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
             asChild
             variant="ghost"
             size="sm"
-            className="w-full justify-start font-normal px-5 rounded-none">
+            className="w-full justify-start rounded-none px-5 font-normal"
+          >
             <a
               href="https://astronbuildings.com/"
               target="_blank"
-              className="justify-between">
+              className="justify-between"
+            >
               <span>Избранные проекты</span>
               <span className="text-muted">
                 {session?.favoriteProjects ?? 0}
@@ -89,7 +94,8 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
             variant="ghost"
             size="sm"
             onClick={() => setOpen(false)}
-            className="w-full justify-start font-normal px-5 rounded-none">
+            className="w-full justify-start rounded-none px-5 font-normal"
+          >
             <Link to={Routes.Favorites} className="justify-between">
               <span>Избранные документы</span>
               <span className="text-muted">
@@ -103,7 +109,8 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
             variant="ghost"
             size="sm"
             onClick={() => setOpen(false)}
-            className="w-full justify-start font-normal px-5 rounded-none">
+            className="w-full justify-start rounded-none px-5 font-normal"
+          >
             <Link to={Routes.Profile}>Мой профиль</Link>
           </Button>
         </nav>

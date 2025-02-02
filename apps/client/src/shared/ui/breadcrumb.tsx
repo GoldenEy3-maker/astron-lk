@@ -18,7 +18,7 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
     <ol
       className={cn(
         "flex flex-wrap items-center gap-x-2 gap-y-1 break-words text-sm text-muted",
-        className
+        className,
       )}
       {...props}
     />
@@ -76,8 +76,9 @@ function BreadcrumbSeparator({
     <li
       role="presentation"
       aria-hidden="true"
-      className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)}
-      {...props}>
+      className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
+      {...props}
+    >
       {children ?? "—"}
     </li>
   );
@@ -91,7 +92,8 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
       role="presentation"
       aria-hidden="true"
       className={cn("flex h-9 w-9 items-center justify-center", className)}
-      {...props}>
+      {...props}
+    >
       <MoreHorizontal className="h-4 w-4" />
       <span className="sr-only">More</span>
     </span>

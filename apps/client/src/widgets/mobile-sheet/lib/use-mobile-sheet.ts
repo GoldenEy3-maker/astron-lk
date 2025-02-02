@@ -20,7 +20,7 @@ export function useMobileSheet() {
   }
 
   function onPointerDownOutsideHandler(
-    event: CustomEvent<{ originalEvent: PointerEvent }>
+    event: CustomEvent<{ originalEvent: PointerEvent }>,
   ) {
     if (container?.contains(event.target as Node)) return;
     setIsOpen(false);

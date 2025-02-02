@@ -29,7 +29,7 @@ export function SearchCard({
   fileUrl,
 }: SearchCardProps) {
   return (
-    <article className="relative z-10 flex flex-col ~gap-2.5/3.5 group/item ~py-4/7 border-b border-border/40 last:border-b-0">
+    <article className="group/item relative z-10 flex flex-col border-b border-border/40 ~gap-2.5/3.5 ~py-4/7 last:border-b-0">
       {type === "news" ? (
         <Link to={`${Routes.News}/${id}`} className="absolute inset-0" />
       ) : type === "document" || type === "bulletin" ? (
@@ -48,7 +48,7 @@ export function SearchCard({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <h2 className="text-h2 text-primary group-hover/item:text-primary-accent transition">
+      <h2 className="text-h2 text-primary transition group-hover/item:text-primary-accent">
         {title}
       </h2>
       {description ? <p className="leading-tight">{description}</p> : null}

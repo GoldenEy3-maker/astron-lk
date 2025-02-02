@@ -33,8 +33,8 @@ const TableBody = ({ className, ...props }: TableBodyProps) => {
   return (
     <tbody
       className={cn(
-        "[&_tr:last-child]:border-0 [&_tr:last-child>td]:pb-0",
-        className
+        "[&_tr:last-child>td]:pb-0 [&_tr:last-child]:border-0",
+        className,
       )}
       {...props}
     />
@@ -49,7 +49,7 @@ const TableFooter = ({ className, ...props }: TableFooterProps) => {
     <tfoot
       className={cn(
         "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -64,7 +64,7 @@ const TableRow = ({ className, ...props }: TableRowProps) => {
     <tr
       className={cn(
         "border-b border-stroke transition-colors [&>*+*]:pl-3",
-        className
+        className,
       )}
       {...props}
     />
@@ -79,8 +79,8 @@ function TableHead({ className, ...props }: TableHeadProps) {
   return (
     <th
       className={cn(
-        "text-left align-middle font-normal ~pb-0/1 text-sm text-muted",
-        className
+        "text-left align-middle text-sm font-normal text-muted ~pb-0/1",
+        className,
       )}
       {...props}
     />
@@ -91,7 +91,7 @@ TableHead.displayName = "TableHead";
 type TableCellProps = React.ComponentPropsWithRef<"td">;
 
 const TableCell = ({ className, ...props }: TableCellProps) => {
-  return <td className={cn("~py-2/3 align-middle", className)} {...props} />;
+  return <td className={cn("align-middle ~py-2/3", className)} {...props} />;
 };
 TableCell.displayName = "TableCell";
 

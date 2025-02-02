@@ -17,26 +17,27 @@ export function NewsCard({
 }: NewsCardProps) {
   return (
     <article
-      className="bg-card rounded-main ~py-4/5 ~px-6/7 relative flex flex-col sm:flex-row transition gap-4 group items-start"
-      {...props}>
+      className="group relative flex flex-col items-start gap-4 rounded-main bg-card transition ~px-6/7 ~py-4/5 sm:flex-row"
+      {...props}
+    >
       <Link
         to={Routes.News + "/" + id}
-        className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
+        className="absolute inset-0 z-10 rounded-main ring-offset-background transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       />
       <div className="flex-1">
-        <time dateTime={createdAt} className="text-muted text-sm">
+        <time dateTime={createdAt} className="text-sm text-muted">
           {formatDate(new Date(createdAt))}
         </time>
         <h4 className="text-h4 text-primary ~mt-2/3 group-hover:text-primary-accent">
           {parse(title)}
         </h4>
-        <p className="text-muted mt-2 line-clamp-3">{parse(description)}</p>
+        <p className="mt-2 line-clamp-3 text-muted">{parse(description)}</p>
       </div>
-      <div className="relative rounded-main shrink-0 overflow-hidden w-[9.375rem] h-[7.5rem]">
+      <div className="relative h-[7.5rem] w-[9.375rem] shrink-0 overflow-hidden rounded-main">
         <img
           src={img.src}
           alt={img.alt}
-          className="object-cover absolute inset-0 w-full h-full"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
     </article>

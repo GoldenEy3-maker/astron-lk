@@ -26,21 +26,21 @@ export function AcademyBenefitsPage() {
 
   return (
     <Section space="md" className="col-span-full">
-      <SectionHeader className="flex-col gap-0 items-stretch">
+      <SectionHeader className="flex-col items-stretch gap-0">
         <h1 className="text-h1 text-heading-h2">Преимущества</h1>
-        <div className="flex items-center flex-wrap gap-x-5 mt-5">
+        <div className="mt-5 flex flex-wrap items-center gap-x-5">
           <div className="flex items-center text-muted">
             <span>Найдено:</span>&nbsp;
             {!isBenefitsLoading ? (
               `${benefits?.totalResults ?? 0} ${enumerate(
                 benefits?.totalResults ?? 0,
-                ["преимущество", "преимущества", "преимуществ"]
+                ["преимущество", "преимущества", "преимуществ"],
               )}`
             ) : (
-              <Skeleton className="inline-block h-4 rounded-full w-28" />
+              <Skeleton className="inline-block h-4 w-28 rounded-full" />
             )}
           </div>
-          <div className="flex-1 flex justify-end">
+          <div className="flex flex-1 justify-end">
             <AcademyBenefitsTagsFilter
               data={tags}
               tags={selectedTags}
@@ -50,7 +50,7 @@ export function AcademyBenefitsPage() {
           </div>
         </div>
         {selectedTags.length && tags ? (
-          <div className="flex items-center flex-wrap overflow-hidden max-w-full justify-end gap-2 mt-3">
+          <div className="mt-3 flex max-w-full flex-wrap items-center justify-end gap-2 overflow-hidden">
             {selectedTags.map((tag) => (
               <AcademyBenefitsTagsBadge
                 key={tag}
@@ -82,7 +82,8 @@ export function AcademyBenefitsPage() {
             <Button
               variant="outline-primary"
               onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage}>
+              disabled={isFetchingNextPage}
+            >
               {isFetchingNextPage ? "Загрузка..." : "Показать еще"}
             </Button>
           </div>

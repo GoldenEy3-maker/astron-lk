@@ -14,14 +14,14 @@ import { AcademyBenefitsTagsBadge } from "@/entities/academy";
 export function AcademyBenefitsDetailPage() {
   const { benefitId } = useParams<{ benefitId: string }>();
   const { data, isLoading } = useQuery(
-    getAcademyBenefitByIdQueryOptions(benefitId!)
+    getAcademyBenefitByIdQueryOptions(benefitId!),
   );
 
   useBreadcrumbs("benefitId", data?.title);
 
   return (
     <Section className="col-span-full m-md:col-[span_15]">
-      <SectionHeader className="items-start flex-col gap-3">
+      <SectionHeader className="flex-col items-start gap-3">
         <h1 className="text-h1 text-heading-h2">{parse(data?.title ?? "")}</h1>
         {/* <p className="~text-base/lg">{parse(data?.description ?? "")}</p> */}
         {data?.tags && data?.tags.length > 0 ? (
@@ -34,7 +34,7 @@ export function AcademyBenefitsDetailPage() {
         {data?.img ? (
           <Image
             src={data?.img?.src}
-            className="w-full mt-5"
+            className="mt-5 w-full"
             alt={data?.img?.alt}
           />
         ) : null}

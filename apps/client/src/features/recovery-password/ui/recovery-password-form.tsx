@@ -50,7 +50,8 @@ export function RecoveryPasswordForm({
               stiffness: 280,
               damping: 18,
               mass: 0.3,
-            }}>
+            }}
+          >
             <RecoveryPasswordSuccessAlert />
             <Button asChild className="mt-7">
               <Link to={Routes.SignIn}>Войти</Link>
@@ -66,29 +67,33 @@ export function RecoveryPasswordForm({
               stiffness: 280,
               damping: 18,
               mass: 0.3,
-            }}>
+            }}
+          >
             <AnimatePresence>
               {isPasswordNotSecured ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
-                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                >
                   <NotSecurePasswordAlert />
                 </motion.div>
               ) : isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                   animate={{ opacity: 1, height: "auto", marginBottom: "1rem" }}
-                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}>
+                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                >
                   <SecurePasswordAlert />
                 </motion.div>
               ) : null}
             </AnimatePresence>
-            <div className="bg-card ~px-7/12 ~py-5/9 rounded-main">
+            <div className="rounded-main bg-card ~px-7/12 ~py-5/9">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(recoveryPasswordHandler)}
-                  className="~space-y-4/6">
+                  className="~space-y-4/6"
+                >
                   <FormField
                     control={form.control}
                     name="password"
@@ -123,8 +128,8 @@ export function RecoveryPasswordForm({
                       </FormItem>
                     )}
                   />
-                  <div className="flex items-center gap-2 mt-4">
-                    <Icons.InfoCircle className="text-primary shrink-0" />
+                  <div className="mt-4 flex items-center gap-2">
+                    <Icons.InfoCircle className="shrink-0 text-primary" />
                     <span className="text-sm">
                       Пароль должен состоять минимум из 6 символов
                     </span>

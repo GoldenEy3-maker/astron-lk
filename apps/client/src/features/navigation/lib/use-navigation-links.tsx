@@ -96,7 +96,7 @@ export function useNavigationLinks() {
             icon: <Icons.StatusUp />,
             label: "Продажи",
           },
-        ]
+        ],
       );
     }
     if (session?.role === "manager") {

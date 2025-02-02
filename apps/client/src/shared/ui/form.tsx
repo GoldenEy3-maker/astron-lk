@@ -19,18 +19,18 @@ const Form = FormProvider;
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   name: TName;
 };
 
 const FormFieldContext = createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {} as FormFieldContextValue,
 );
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
@@ -69,7 +69,7 @@ type FormItemContextValue = {
 };
 
 const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {} as FormItemContextValue,
 );
 
 type FormItemProps = React.ComponentPropsWithRef<"div">;
@@ -140,11 +140,13 @@ function FormMessage({ className, children, ...props }: FormMessageProps) {
         <motion.div
           initial={{ opacity: 0, height: 0, marginTop: 0 }}
           animate={{ opacity: 1, height: "auto", marginTop: "0.5rem" }}
-          exit={{ opacity: 0, height: 0, marginTop: 0 }}>
+          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+        >
           <p
             id={formMessageId}
             className={cn("text-destructive", className)}
-            {...props}>
+            {...props}
+          >
             <TextMorph as="span">{body}</TextMorph>
           </p>
         </motion.div>

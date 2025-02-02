@@ -12,14 +12,14 @@ import parse from "html-react-parser";
 export function AcademyProjectsDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
   const { data, isLoading } = useQuery(
-    getAcademyProjectByIdQueryOptions(projectId!)
+    getAcademyProjectByIdQueryOptions(projectId!),
   );
 
   useBreadcrumbs("projectId", data?.title);
 
   return (
     <Section className="col-span-full m-md:col-[span_15]">
-      <SectionHeader className="items-start flex-col gap-5">
+      <SectionHeader className="flex-col items-start gap-5">
         {!isLoading && data ? (
           <>
             <h1 className="text-h1 text-heading-h2">{parse(data?.title)}</h1>

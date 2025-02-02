@@ -27,42 +27,44 @@ export function DocumentCard({
     <article
       data-id={id}
       className={cn(
-        "bg-card rounded-main relative z-10 group/item before:bg-[url(/pattern.webp)] before:bg-no-repeat before:bg-cover flex flex-col before:bg-center before:absolute before:inset-0 before:opacity-10 before:-z-10 ~py-3/5 ~px-4/7",
-        className
+        "group/item relative z-10 flex flex-col rounded-main bg-card ~px-4/7 ~py-3/5 before:absolute before:inset-0 before:-z-10 before:bg-[url(/pattern.webp)] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-10",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <a
         href={file.url}
         download
-        className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
+        className="absolute inset-0 z-10 rounded-main ring-offset-background transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       />
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm py-1.5 px-3 rounded-main text-primary bg-primary/10">
+        <span className="rounded-main bg-primary/10 px-3 py-1.5 text-sm text-primary">
           {category.label}
         </span>
         <Button
           variant="ghost-primary"
           size="icon"
-          className="relative z-10 group/favorite"
-          onClick={() => toggleFavorite(document)}>
+          className="group/favorite relative z-10"
+          onClick={() => toggleFavorite(document)}
+        >
           <Icons.Bookmark
             className={cn(
-              "group-hover/favorite:text-primary transition group-hover/favorite:fill-primary/10",
+              "transition group-hover/favorite:fill-primary/10 group-hover/favorite:text-primary",
               {
                 "!fill-primary !text-primary": isFavorite(id),
-              }
+              },
             )}
           />
         </Button>
       </div>
-      <h4 className="text-h4 mt-2 group-hover/item:text-primary transition-colors">
+      <h4 className="mt-2 text-h4 transition-colors group-hover/item:text-primary">
         {parse(title)}
       </h4>
-      <div className="flex text-sm mt-auto items-center justify-between gap-4 pt-5">
+      <div className="mt-auto flex items-center justify-between gap-4 pt-5 text-sm">
         <time dateTime={createdAt} className="text-muted">
           {formatDate(new Date(createdAt))}
         </time>
-        <span className="flex text-muted hover:text-primary transition-colors items-center gap-1">
+        <span className="flex items-center gap-1 text-muted transition-colors hover:text-primary">
           <Icons.ArrowDown />
           <span className="ml-1.5">{formatBytes(file.size)}</span>
           <span>{getFileUrlExt(file.url)}</span>

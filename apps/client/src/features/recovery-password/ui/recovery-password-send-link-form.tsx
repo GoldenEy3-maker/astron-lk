@@ -22,8 +22,9 @@ export function RecoveryPasswordSendLinkForm({
 
   return (
     <div
-      className={cn("bg-card ~px-7/12 ~py-5/9 rounded-main", className)}
-      {...props}>
+      className={cn("rounded-main bg-card ~px-7/12 ~py-5/9", className)}
+      {...props}
+    >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(recoveryPasswordSendLinkHandler)}>
           <FormField
@@ -39,7 +40,7 @@ export function RecoveryPasswordSendLinkForm({
               </FormItem>
             )}
           />
-          <h4 className="text-h4 mt-5">
+          <h4 className="mt-5 text-h4">
             На указанную почту придёт ссылка для восстановления
           </h4>
           <p className="mt-2">
@@ -48,7 +49,8 @@ export function RecoveryPasswordSendLinkForm({
               asChild
               variant="underline"
               size="hug"
-              className="font-normal">
+              className="font-normal"
+            >
               <a href="#" target="_blank">
                 свяжитесь с нами
               </a>

@@ -10,7 +10,7 @@ import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
 export function useBenefits() {
   const [selectedTags, setSelectedTags] = useQueryState<string[]>(
     "tags",
-    parseAsArrayOf(parseAsString).withDefault([])
+    parseAsArrayOf(parseAsString).withDefault([]),
   );
 
   const {
@@ -20,11 +20,11 @@ export function useBenefits() {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    getAcademyBenefitsInfiniteQueryOptions({ tags: selectedTags, limit: 8 })
+    getAcademyBenefitsInfiniteQueryOptions({ tags: selectedTags, limit: 8 }),
   );
 
   const { data: tags, isLoading: isTagsLoading } = useQuery(
-    getAcademyBenefitsTagsQueryOptions()
+    getAcademyBenefitsTagsQueryOptions(),
   );
 
   function unselectTag(slug: string) {

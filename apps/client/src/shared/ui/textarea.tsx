@@ -28,8 +28,8 @@ function Textarea({ className, onChange, ref, ...props }: TextareaProps) {
   return (
     <textarea
       className={cn(
-        "flex min-h-16 resize-none w-full rounded-xl border border-border bg-card aria-[invalid=true]:border-destructive aria-[invalid=true]:text-destructive aria-[invalid=true]:ring-destructive px-5 py-2.5 overflow-hidden text-base transition ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input md:text-lg",
-        className
+        "flex min-h-16 w-full resize-none overflow-hidden rounded-xl border border-border bg-card px-5 py-2.5 text-base ring-offset-background transition placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-input aria-[invalid=true]:border-destructive aria-[invalid=true]:text-destructive aria-[invalid=true]:ring-destructive md:text-lg",
+        className,
       )}
       onChange={(e) => {
         onChange?.(e);

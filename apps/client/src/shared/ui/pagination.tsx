@@ -57,7 +57,7 @@ const PaginationLink = ({
       className,
       {
         "bg-transparent": isActive,
-      }
+      },
     )}
     {...props}
   />
@@ -71,7 +71,8 @@ const PaginationPrevious = ({
     aria-label="Предыдущая страница"
     variant="default-reverse"
     className={cn("~mr-1/7", className)}
-    {...props}>
+    {...props}
+  >
     <Icons.ChevronLeft className="mr-0.5" />
     <span className="sr-only">Предыдущая страница</span>
   </PaginationLink>
@@ -86,7 +87,8 @@ const PaginationNext = ({
     variant="default-reverse"
     aria-label="Следующая страница"
     className={cn("~ml-1/7", className)}
-    {...props}>
+    {...props}
+  >
     <Icons.ChevronRight className="ml-0.5" />
     <span className="sr-only">Следующая страница</span>
   </PaginationLink>
@@ -100,7 +102,8 @@ const PaginationEllipsis = ({
   <span
     aria-hidden
     className={cn("flex h-9 w-9 items-center justify-center", className)}
-    {...props}>
+    {...props}
+  >
     <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">Еще страницы</span>
   </span>
