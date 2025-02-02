@@ -10,27 +10,30 @@ export function Header() {
   const isMobileSheetOpen = useMobileSheetStore((state) => state.isOpen);
 
   return (
-    <div className="grid col-span-full grid-cols-subgrid" id="header">
+    <div className="col-span-full grid grid-cols-subgrid" id="header">
       <div
         className={cn(
-          "col-[main] ~pt-4/5 bg-background transition-all duration-500 rounded-b-main z-50 relative",
+          "relative z-50 col-[main] rounded-b-main bg-background transition-all duration-500 ~pt-4/5",
           {
             "bg-card": isMobileSheetOpen,
-          }
-        )}>
+          },
+        )}
+      >
         <header
           className={cn(
-            "bg-card justify-between gap-4 transition-all col-[main] duration-300 rounded-main ~py-2/3.5 ~px-3/6 flex items-center shadow-[0_0_0.75rem_0] shadow-black/5",
+            "col-[main] flex items-center justify-between gap-4 rounded-main bg-card shadow-[0_0_0.75rem_0] shadow-black/5 transition-all duration-300 ~px-3/6 ~py-2/3.5",
             {
-              "shadow-none rounded-none !pointer-events-auto":
+              "!pointer-events-auto rounded-none shadow-none":
                 isMobileSheetOpen,
-            }
-          )}>
+            },
+          )}
+        >
           <Link
             to={Routes.Home}
-            className="inline-flex text-primary items-center ~gap-3/4 ~text-base/lg">
+            className="inline-flex items-center text-primary ~text-base/lg ~gap-3/4"
+          >
             <Icons.Logo className="max-w-full ~h-10/11" />
-            <span className="sm:block hidden">Личный кабинет</span>
+            <span className="hidden sm:block">Личный кабинет</span>
           </Link>
           <Actions />
         </header>

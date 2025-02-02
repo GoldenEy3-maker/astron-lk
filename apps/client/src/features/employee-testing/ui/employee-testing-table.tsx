@@ -40,13 +40,15 @@ export function EmployeeTestingTable({
                 <TableCell
                   className={cn("text-success", {
                     "text-destructive": item.result < 80,
-                  })}>
+                  })}
+                >
                   {item.result}%
                 </TableCell>
                 <TableCell
-                  className={cn("text-success whitespace-nowrap", {
+                  className={cn("whitespace-nowrap text-success", {
                     "text-destructive": item.result < 80,
-                  })}>
+                  })}
+                >
                   {item.result >= 80 ? "Пройден" : "Не заcчитан"}
                 </TableCell>
               </TableRow>

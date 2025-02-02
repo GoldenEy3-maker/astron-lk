@@ -13,7 +13,8 @@ export function Factory({ className, ...props }: FactoryProps) {
     <Section
       space="lg"
       className={cn("grid grid-cols-subgrid", className)}
-      {...props}>
+      {...props}
+    >
       <SectionHeader className="col-span-full">
         <h1 className="text-h1 text-heading-h2">О заводе Astron</h1>
         <Button asChild variant="link" size="hug" className="font-normal">
@@ -23,7 +24,7 @@ export function Factory({ className, ...props }: FactoryProps) {
           </Link>
         </Button>
       </SectionHeader>
-      <SectionContent className="space-y-0 grid grid-cols-subgrid col-span-full">
+      <SectionContent className="col-span-full grid grid-cols-subgrid space-y-0">
         <FactoryAbout />
       </SectionContent>
     </Section>

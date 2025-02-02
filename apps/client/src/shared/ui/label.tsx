@@ -8,7 +8,7 @@ function Label({ className, ...props }: LabelProps) {
     <LabelPrimitive.Root
       className={cn(
         "text-base leading-[1.3] peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        className
+        className,
       )}
       {...props}
     />

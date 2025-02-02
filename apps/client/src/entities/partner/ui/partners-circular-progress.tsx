@@ -31,7 +31,8 @@ export function CircularProgress({ value }: CircularProgressProps) {
       innerRadius={innerRadius}
       outerRadius={outerRadius}
       barSize={barSize}
-      data={data}>
+      data={data}
+    >
       <PolarAngleAxis
         type="number"
         domain={[0, 100]}

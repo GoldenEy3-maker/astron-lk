@@ -5,7 +5,7 @@ import { z } from "zod";
 import { schemas } from "./v1";
 
 export function accessControlByRoleLoader(
-  role: z.infer<typeof schemas.User>["role"]
+  role: z.infer<typeof schemas.User>["role"],
 ): LoaderFunction {
   return async () => {
     const query = getSessionQueryOptions();

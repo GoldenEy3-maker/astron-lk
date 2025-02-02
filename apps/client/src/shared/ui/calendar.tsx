@@ -17,7 +17,7 @@ function Calendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       locale={ru}
-      className={cn("p-3 bg-card rounded-main shadow-md", className)}
+      className={cn("rounded-main bg-card p-3 shadow-md", className)}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-6 sm:space-y-0",
         month: "space-y-4",
@@ -26,7 +26,7 @@ function Calendar({
         nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
@@ -38,7 +38,7 @@ function Calendar({
         cell: "h-9 w-9 text-center text-sm p-0 relative date-picker-cell [&:has([aria-selected].day-range-end)]:rounded-r-xl [&:has([aria-selected].day-outside)]:bg-primary/10 [&:has([aria-selected])]:bg-primary/10 first:[&:has([aria-selected])]:rounded-l-xl last:[&:has([aria-selected])]:rounded-r-xl focus-within:relative focus-within:z-20",
         day: cn(
           buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
+          "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
         ),
         day_range_end: "day-range-end",
         day_selected:

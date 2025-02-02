@@ -50,7 +50,7 @@ function DrawerOverlay({ className, ...props }: DrawerOverlayProps) {
     <DrawerPrimitive.Overlay
       className={cn(
         "fixed inset-0 z-50 bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
-        className
+        className,
       )}
       {...props}
     />
@@ -70,11 +70,12 @@ function DrawerContent({ className, children, ...props }: DrawerContentProps) {
           if ((e.target as HTMLElement).closest(".toaster")) e.preventDefault();
         }}
         className={cn(
-          "z-50 inset-x-0 bottom-0 max-h-[82vh] fixed flex h-auto flex-col rounded-t-[10px] px-5 pb-6 border bg-card",
-          className
+          "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[82vh] flex-col rounded-t-[10px] border bg-card px-5 pb-6",
+          className,
         )}
-        {...props}>
-        <div className="mx-auto mt-4 shrink-0 h-1 w-[100px] rounded-full bg-muted" />
+        {...props}
+      >
+        <div className="mx-auto mt-4 h-1 w-[100px] shrink-0 rounded-full bg-muted" />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -88,8 +89,8 @@ function DrawerHeader({
   return (
     <div
       className={cn(
-        "grid gap-1.5 pt-3 pb-4 text-center sm:text-left",
-        className
+        "grid gap-1.5 pb-4 pt-3 text-center sm:text-left",
+        className,
       )}
       {...props}
     />
@@ -117,7 +118,7 @@ function DrawerTitle({ className, ...props }: DrawerTitleProps) {
     <DrawerPrimitive.Title
       className={cn(
         "text-lg font-semibold leading-none tracking-tight",
-        className
+        className,
       )}
       {...props}
     />

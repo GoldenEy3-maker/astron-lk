@@ -14,13 +14,14 @@ export function AcademySalesStagesPage() {
 
   const [tab, setTab] = useQueryState(
     "tab",
-    parseAsString.withDefault(data?.[0]?.slug ?? "")
+    parseAsString.withDefault(data?.[0]?.slug ?? ""),
   );
 
   return (
     <Section
       space="md"
-      className="col-span-full auto-rows-max grid grid-cols-subgrid">
+      className="col-span-full grid auto-rows-max grid-cols-subgrid"
+    >
       <SectionHeader className="col-span-full">
         {!isLoading && data ? (
           <h1 className="text-h1 text-heading-h2">
@@ -34,7 +35,8 @@ export function AcademySalesStagesPage() {
         <Tabs
           value={tab}
           onValueChange={setTab}
-          className="col-span-full grid grid-cols-subgrid">
+          className="col-span-full grid grid-cols-subgrid"
+        >
           <TabsList scrollAreaClassName="col-span-full">
             {!isLoading && data
               ? data?.map((item) => (
@@ -51,7 +53,7 @@ export function AcademySalesStagesPage() {
                     />
                   ))}
           </TabsList>
-          <div className="m-md:col-[span_15] col-span-full mt-8">
+          <div className="col-span-full mt-8 m-md:col-[span_15]">
             {!isLoading && data ? (
               data?.map((item) => (
                 <TabsContent key={item.slug} value={item.slug} className="mt-0">

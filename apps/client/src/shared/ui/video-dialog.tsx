@@ -27,26 +27,28 @@ export function VideoDialog({
       <DialogTrigger
         variant="ghost"
         className={cn(
-          "p-0 w-full relative group !rounded-main overflow-hidden",
-          triggerClassName
-        )}>
+          "group relative w-full overflow-hidden !rounded-main p-0",
+          triggerClassName,
+        )}
+      >
         <img
           src={thumbnailSrc}
           className="size-full object-cover"
           alt={thumbnailAlt}
         />
-        <div className="bg-white w-[3.75rem] group-hover:scale-110 transition absolute inset-center text-primary h-[3.75rem] rounded-full flex items-center justify-center">
-          <Icons.Play className="absolute ml-0.5 inset-center" />
+        <div className="inset-center absolute flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-full bg-white text-primary transition group-hover:scale-110">
+          <Icons.Play className="inset-center absolute ml-0.5" />
         </div>
       </DialogTrigger>
       <DialogContent
-        className="max-w-7xl sm:max-h-[772px] rounded-none gap-3 h-full bg-transparent"
+        className="h-full max-w-7xl gap-3 rounded-none bg-transparent sm:max-h-[772px]"
         scrollAreaClassName="[&>div>div]:h-full h-full"
         wrapperClassName={
           "p-0 h-full rounded-none sm:rounded-main bg-[rgba(24,24,27,.9)] overflow-hidden"
         }
         overlayClassName={"bg-black/85"}
-        isOutsideClose>
+        isOutsideClose
+      >
         <VisuallyHidden>
           <DialogTitle>{thumbnailAlt}</DialogTitle>
           <DialogDescription>Диалоговое окно с видео</DialogDescription>
@@ -55,7 +57,8 @@ export function VideoDialog({
           src={videoSrc}
           className="size-full"
           allowFullScreen
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
       </DialogContent>
     </Dialog>
   );

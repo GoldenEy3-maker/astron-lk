@@ -32,10 +32,11 @@ function SectionHeader({ children, className, ...props }: SectionHeaderProps) {
   return (
     <div
       className={cn(
-        "flex justify-between gap-x-6 gap-y-2 items-end flex-wrap",
-        className
+        "flex flex-wrap items-end justify-between gap-x-6 gap-y-2",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       {children}
     </div>
   );

@@ -15,7 +15,7 @@ export function FactoryTeam(props: FactoryTeamProps) {
         <h2 className="text-h2 text-heading-h2">Команда Astron</h2>
       </SectionHeader>
       <SectionContent>
-        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-x-12 gap-y-8">
+        <div className="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]">
           {!isLoading && data
             ? data.map((employee) => <FactoryTeamCard {...employee} />)
             : Array(3)

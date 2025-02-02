@@ -22,7 +22,7 @@ export function FactoryProduction(props: FactoryProductionProps) {
             triggerClassName="max-h-[30rem]"
           />
         ) : (
-          <Skeleton className="size-full aspect-video !rounded-main max-h-[30rem]" />
+          <Skeleton className="aspect-video size-full max-h-[30rem] !rounded-main" />
         )}
       </SectionContent>
     </Section>

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 export function AuthLayout() {
   return (
-    <main className="~my-10/20 col-[main] w-full mx-auto max-w-[42rem]">
+    <main className="col-[main] mx-auto w-full max-w-[42rem] ~my-10/20">
       <Outlet />
     </main>
   );

@@ -84,7 +84,8 @@ export function Pagination({
                 onClick={(e) => {
                   e.preventDefault();
                   onPageChange(pageNum);
-                }}>
+                }}
+              >
                 {pageNum}
               </PaginationLink>
             </PaginationItem>

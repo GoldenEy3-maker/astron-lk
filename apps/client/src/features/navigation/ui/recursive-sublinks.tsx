@@ -19,7 +19,8 @@ export function RecursiveSublinks({
       className={cn("mt-1 pl-9", { "pl-4": level > 0 })}
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
-      exit={{ opacity: 0, height: 0 }}>
+      exit={{ opacity: 0, height: 0 }}
+    >
       {links.map((link) => (
         <Fragment key={link.url}>
           <NavigationLink {...link} />

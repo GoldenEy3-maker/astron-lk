@@ -29,14 +29,15 @@ export function TextContainer({
             domNode.name === "a"
           ) {
             const props = attributesToProps(
-              domNode.attribs
+              domNode.attribs,
             ) as React.AnchorHTMLAttributes<HTMLAnchorElement>;
             return (
               <Button
                 asChild
                 variant="link"
                 size="hug"
-                className="whitespace-normal inline underline underline-offset-4 font-normal">
+                className="inline whitespace-normal font-normal underline underline-offset-4"
+              >
                 <a {...props}>{domToReact(domNode.children as DOMNode[])}</a>
               </Button>
             );
@@ -48,7 +49,7 @@ export function TextContainer({
             domNode.name === "img"
           ) {
             const props = attributesToProps(
-              domNode.attribs
+              domNode.attribs,
             ) as React.ImgHTMLAttributes<HTMLImageElement>;
             return <Image className="!~mt-6/8" {...props} />;
           }
@@ -59,7 +60,7 @@ export function TextContainer({
             domNode.name === "video"
           ) {
             const props = attributesToProps(
-              domNode.attribs
+              domNode.attribs,
             ) as React.VideoHTMLAttributes<HTMLVideoElement>;
             return (
               <VideoDialog

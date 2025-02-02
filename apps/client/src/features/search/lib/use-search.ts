@@ -12,7 +12,7 @@ type UseSearchProps = {
 export function useSearch({ limit, scrollToRef }: UseSearchProps) {
   const [search, setSearch] = useQueryState(
     "query",
-    parseAsString.withDefault("")
+    parseAsString.withDefault(""),
   );
   const [query, setQuery] = useState(search);
   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));

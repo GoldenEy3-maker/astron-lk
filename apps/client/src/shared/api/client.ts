@@ -10,5 +10,5 @@ export const apiClient = createApiClient(
     axiosConfig: {
       withCredentials: true,
     },
-  }
+  },
 );

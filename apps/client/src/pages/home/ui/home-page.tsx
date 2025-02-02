@@ -14,7 +14,7 @@ export function HomePage() {
 
   useDocumentTitle("Главная");
   return (
-    <div className="main-space grid grid-cols-subgrid col-span-full">
+    <div className="main-space col-span-full grid grid-cols-subgrid">
       {session?.role === "partner" ? (
         <>
           <PartnerCard className="col-span-full" />

@@ -12,12 +12,12 @@ export function EmployeeTestingPage() {
   const { partnerId } = useParams<{ partnerId: string }>();
 
   const { data: uploadedYears, isLoading: isUploadedYearsLoading } = useQuery(
-    getEmployeeTestingUploadedYearsQueryOptions()
+    getEmployeeTestingUploadedYearsQueryOptions(),
   );
 
   const [year, setYear] = useQueryState(
     "year",
-    parseAsString.withDefault(uploadedYears?.[0] ?? "")
+    parseAsString.withDefault(uploadedYears?.[0] ?? ""),
   );
 
   const { data: partner } = useQuery({

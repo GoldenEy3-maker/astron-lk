@@ -8,7 +8,7 @@ export function NotFoundPage() {
   const isNotAllowedByManager = searchParams.get("denied-role") === "manager";
 
   return (
-    <main className="col-[main] py-[3.75rem] flex flex-col items-center justify-center">
+    <main className="col-[main] flex flex-col items-center justify-center py-[3.75rem]">
       <svg
         className="max-w-full ~h-[9rem]/[16rem]"
         width="654"
@@ -16,7 +16,8 @@ export function NotFoundPage() {
         viewBox="0 0 654 255"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink">
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+      >
         <path
           d="M203.386 167.763V210.263H172.153V250.526H121.957V210.263H0V196.842L75.8514 4.47369H127.534L62.4658 167.763H121.957V98.7939H172.153V167.763H203.386Z"
           fill="url(#pattern0_1803_12208)"
@@ -34,7 +35,8 @@ export function NotFoundPage() {
             id="pattern0_1803_12208"
             patternContentUnits="objectBoundingBox"
             width="1"
-            height="1">
+            height="1"
+          >
             <use
               xlinkHref="#image0_1803_12208"
               transform="matrix(0.00100179 0 0 0.00175113 -0.976976 -1.0902)"
@@ -44,7 +46,8 @@ export function NotFoundPage() {
             id="pattern1_1803_12208"
             patternContentUnits="objectBoundingBox"
             width="1"
-            height="1">
+            height="1"
+          >
             <use
               xlinkHref="#image0_1803_12208"
               transform="matrix(0.00100179 0 0 0.00175113 -0.976976 -1.0902)"
@@ -54,7 +57,8 @@ export function NotFoundPage() {
             id="pattern2_1803_12208"
             patternContentUnits="objectBoundingBox"
             width="1"
-            height="1">
+            height="1"
+          >
             <use
               xlinkHref="#image0_1803_12208"
               transform="matrix(0.00100179 0 0 0.00175113 -0.976976 -1.0902)"
@@ -68,7 +72,7 @@ export function NotFoundPage() {
           />
         </defs>
       </svg>
-      <h3 className="text-h3 text-foreground text-center ~mt-7/[3.75rem]">
+      <h3 className="text-center text-h3 text-foreground ~mt-7/[3.75rem]">
         Страница находится в&nbsp;стадии строительства
       </h3>
       <Button asChild className="mt-10">

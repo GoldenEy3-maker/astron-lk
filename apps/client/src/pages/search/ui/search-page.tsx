@@ -8,13 +8,14 @@ export function SearchPage() {
   return (
     <Section
       space="sm"
-      className="col-span-full grid grid-cols-subgrid auto-rows-max">
+      className="col-span-full grid auto-rows-max grid-cols-subgrid"
+    >
       <SectionHeader className="col-span-full">
         <h1 className="text-h1 text-heading-h2" ref={scrollToRef}>
           Поиск по&nbsp;сайту
         </h1>
       </SectionHeader>
-      <SectionContent className="m-md:col-[span_13] col-span-full">
+      <SectionContent className="col-span-full m-md:col-[span_13]">
         <Search
           limit={7}
           scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}

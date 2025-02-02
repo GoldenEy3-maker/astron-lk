@@ -32,7 +32,7 @@ type AlertHeaderProps = React.ComponentPropsWithRef<"div">;
 
 function AlertHeader({ className, ...props }: AlertHeaderProps) {
   return (
-    <div className={cn("flex items-center gap-2 mb-2", className)} {...props} />
+    <div className={cn("mb-2 flex items-center gap-2", className)} {...props} />
   );
 }
 

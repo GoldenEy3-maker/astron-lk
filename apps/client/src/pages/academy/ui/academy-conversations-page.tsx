@@ -11,7 +11,7 @@ export function AcademyConversationsPage() {
 
   return (
     <Section className="col-span-full m-md:col-[span_15]">
-      <SectionHeader className="flex-col gap-5 items-start">
+      <SectionHeader className="flex-col items-start gap-5">
         <h1 className="text-h1 text-heading-h2">Подготовка к переговорам</h1>
         <p className="~text-base/lg">
           В Astron мы в качестве Технического Задания используем&nbsp;так

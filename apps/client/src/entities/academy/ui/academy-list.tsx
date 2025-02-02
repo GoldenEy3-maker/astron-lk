@@ -6,7 +6,7 @@ const academyListData = [
   {
     title: "Процесс продаж",
     icon: (
-      <Icons.AcademySales className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademySales className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademySales,
     bgImg: "/background-image-1.webp",
@@ -14,7 +14,7 @@ const academyListData = [
   {
     title: "Подготовка к переговорам",
     icon: (
-      <Icons.AcademyConversations className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyConversations className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyConversations,
     bgImg: "/background-image-2.webp",
@@ -22,7 +22,7 @@ const academyListData = [
   {
     title: "Конъюнктурный анализ",
     icon: (
-      <Icons.AcademyAnalysis className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyAnalysis className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyAnalysis,
     bgImg: "/background-image-3.webp",
@@ -30,7 +30,7 @@ const academyListData = [
   {
     title: "Оформление коммерческого предложения",
     icon: (
-      <Icons.AcademyCommercial className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyCommercial className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyCommercial,
     bgImg: "/background-image-4.webp",
@@ -38,7 +38,7 @@ const academyListData = [
   {
     title: "Подборки проектов и отзывы",
     icon: (
-      <Icons.AcademyProjects className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyProjects className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyProjects,
     bgImg: "/background-image-5.webp",
@@ -46,7 +46,7 @@ const academyListData = [
   {
     title: "Вебинары",
     icon: (
-      <Icons.AcademyWebinars className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyWebinars className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyWebinars,
     bgImg: "/background-image-6.webp",
@@ -54,7 +54,7 @@ const academyListData = [
   {
     title: "Преимущества",
     icon: (
-      <Icons.AcademyBenefits className="shrink-0 ~w-10/[3.75rem] h-10/[3.75rem]" />
+      <Icons.AcademyBenefits className="h-10/[3.75rem] shrink-0 ~w-10/[3.75rem]" />
     ),
     href: Routes.AcademyBenefits,
     bgImg: "/background-image-7.webp",
@@ -67,23 +67,24 @@ export function AcademyList() {
       {academyListData.map((item) => (
         <article
           key={item.href}
-          className="text-primary flex flex-col group hover:text-primary-foreground bg-primary/10 px-7 py-7 ~min-h-[12rem]/[17.5rem] rounded-main relative transition duration-300">
+          className="group relative flex flex-col rounded-main bg-primary/10 px-7 py-7 text-primary transition duration-300 ~min-h-[12rem]/[17.5rem] hover:text-primary-foreground"
+        >
           <Link
             to={item.href}
-            className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
+            className="absolute inset-0 z-10 rounded-main ring-offset-background transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           <img
             src={item.bgImg}
             alt={`Фоновое изображение ссылки академии - ${item.title}`}
-            className="absolute inset-0 size-full -z-[1] rounded-main object-cover opacity-0 group-hover:opacity-100 duration-300 transition"
+            className="absolute inset-0 -z-[1] size-full rounded-main object-cover opacity-0 transition duration-300 group-hover:opacity-100"
           />
           <div className="flex items-start justify-between gap-6">
             <h3 className="text-h3">{item.title}</h3>
             {item.icon}
           </div>
-          <div className="flex items-center gap-3 mt-auto">
+          <div className="mt-auto flex items-center gap-3">
             <span>Перейти в раздел</span>
-            <Icons.ArrowRight className="w-5 h-3.5" />
+            <Icons.ArrowRight className="h-3.5 w-5" />
           </div>
         </article>
       ))}

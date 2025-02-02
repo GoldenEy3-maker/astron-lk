@@ -19,7 +19,7 @@ export async function getSessionLoader({ request }: LoaderFunctionArgs) {
     return redirect(
       `${Routes.SignIn}?callbackUrl=${
         pathname === "/cabinet/" ? "/" : pathname
-      }`
+      }`,
     );
   }
 }

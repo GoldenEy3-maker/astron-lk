@@ -40,8 +40,8 @@ export function EmployeeTestingCard({
   });
 
   return (
-    <Section space="lg" className="rounded-main bg-card ~py-6/9 ~px-6/14">
-      <SectionHeader className="gap-y-2 items-center">
+    <Section space="lg" className="rounded-main bg-card ~px-6/14 ~py-6/9">
+      <SectionHeader className="items-center gap-y-2">
         {extended ? (
           <>
             {!isLoading && uploadedAt ? (
@@ -49,18 +49,18 @@ export function EmployeeTestingCard({
                 Результаты выгрузки{" "}
                 {formatDate(
                   new Date(new Date(uploadedAt).setHours(12, 0, 0, 0)),
-                  "dd.MM.yyyy"
+                  "dd.MM.yyyy",
                 )}
               </h2>
             ) : (
-              <Skeleton className="w-1/2 h-7 rounded-full" />
+              <Skeleton className="h-7 w-1/2 rounded-full" />
             )}
             {updatedAt ? (
-              <span className="text-muted text-lg">
+              <span className="text-lg text-muted">
                 Обновлён {formatDate(new Date(updatedAt), "dd.MM.yyyy")}
               </span>
             ) : (
-              <Skeleton className="w-1/4 h-4 rounded-full" />
+              <Skeleton className="h-4 w-1/4 rounded-full" />
             )}
           </>
         ) : (
@@ -69,14 +69,16 @@ export function EmployeeTestingCard({
               asChild
               variant="link"
               size="hug"
-              className="~gap-1.5/3 font-normal items-center">
+              className="items-center font-normal ~gap-1.5/3"
+            >
               <Link
                 to={
                   partnerId
                     ? `${Routes.Partners}/${partnerId}${Routes.EmployeeTesting}`
                     : Routes.EmployeeTesting
                 }
-                className="text-h3 leading-none">
+                className="text-h3 leading-none"
+              >
                 <span>Тестирование сотрудников</span>
                 <Icons.ArrowRight className="~size-4/6" />
               </Link>

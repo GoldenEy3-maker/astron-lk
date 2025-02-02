@@ -48,10 +48,11 @@ function DialogClose({
     <DialogPrimitive.Close
       className={cn(
         "text-border hover:bg-transparent hover:text-foreground",
-        className
+        className,
       )}
       asChild
-      {...props}>
+      {...props}
+    >
       <Button variant={variant} size={size}>
         {props.children || <Icons.X />}
       </Button>
@@ -68,8 +69,8 @@ function DialogOverlay({ className, ...props }: DialogOverlayProps) {
     <DialogPrimitive.Overlay
       className={cn(
         "fixed inset-0 z-50 grid place-items-center bg-black/70 supports-[backdrop-filter]:backdrop-blur-sm",
-        "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        className
+        "data-[state=closed]:duration-200 data-[state=open]:duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+        className,
       )}
       {...props}
     />
@@ -105,26 +106,29 @@ function DialogContent({
             onPointerDownOutside?.(e);
           }}
           className={cn(
-            "flex flex-col gap-8 bg-card z-50 max-w-[42rem] w-full rounded-main overflow-hidden shadow-lg",
-            "data-[state=open]:animate-in data-[state=open]:duration-300 data-[state=closed]:duration-200 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-            className
+            "z-50 flex w-full max-w-[42rem] flex-col gap-8 overflow-hidden rounded-main bg-card shadow-lg",
+            "data-[state=closed]:duration-200 data-[state=open]:duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+            className,
           )}
-          {...props}>
+          {...props}
+        >
           {isOutsideClose ? (
-            <div className="flex justify-end z-10 absolute top-3 rounded-full right-3 sm:static">
-              <DialogClose className="hover:text-white bg-zinc-700 hover:bg-zinc-800 sm:bg-transparent" />
+            <div className="absolute right-3 top-3 z-10 flex justify-end rounded-full sm:static">
+              <DialogClose className="bg-zinc-700 hover:bg-zinc-800 hover:text-white sm:bg-transparent" />
             </div>
           ) : null}
           <ScrollArea
             className={cn(
-              "flex flex-col w-full max-h-dvh",
-              scrollAreaClassName
-            )}>
+              "flex max-h-dvh w-full flex-col",
+              scrollAreaClassName,
+            )}
+          >
             <div
               className={cn(
-                "w-full px-12 flex flex-col gap-8 py-9",
-                wrapperClassName
-              )}>
+                "flex w-full flex-col gap-8 px-12 py-9",
+                wrapperClassName,
+              )}
+            >
               {children}
             </div>
           </ScrollArea>
@@ -152,7 +156,7 @@ const DialogFooter = ({
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -169,7 +173,8 @@ function DialogTitle({ className, children, ...props }: DialogTitleProps) {
     <DialogPrimitive.Title
       className={cn("text-h3", className)}
       asChild
-      {...props}>
+      {...props}
+    >
       <h3>{children}</h3>
     </DialogPrimitive.Title>
   );

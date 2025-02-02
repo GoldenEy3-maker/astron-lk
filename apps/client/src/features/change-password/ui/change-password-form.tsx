@@ -28,7 +28,8 @@ export function ChangePasswordForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(changePasswordHandler)}
-        className="space-y-5">
+        className="space-y-5"
+      >
         <FormField
           control={form.control}
           name="password"
@@ -73,26 +74,28 @@ export function ChangePasswordForm({
             </FormItem>
           )}
         />
-        <div className="flex items-center gap-2 !mt-3">
-          <Icons.InfoCircle className="text-primary shrink-0" />
+        <div className="!mt-3 flex items-center gap-2">
+          <Icons.InfoCircle className="shrink-0 text-primary" />
           <span className="text-sm">
             Пароль должен состоять минимум из 6 символов
           </span>
         </div>
-        <div className="flex items-center flex-wrap gap-x-4 gap-y-2 !mt-8">
+        <div className="!mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
           <Button
             type="submit"
             disabled={isPending}
-            className="flex-1 xs:flex-none">
+            className="flex-1 xs:flex-none"
+          >
             Сохранить
           </Button>
           {onCancel ? (
             <Button
               type="button"
               variant="outline-primary"
-              className="text-primary flex-1 xs:flex-none"
+              className="flex-1 text-primary xs:flex-none"
               onClick={onCancel}
-              disabled={isPending}>
+              disabled={isPending}
+            >
               Отмена
             </Button>
           ) : null}

@@ -49,7 +49,8 @@ export function TextMorph({
               stiffness: 280,
               damping: 18,
               mass: 0.3,
-            }}>
+            }}
+          >
             {character.label}
           </motion.span>
         ))}

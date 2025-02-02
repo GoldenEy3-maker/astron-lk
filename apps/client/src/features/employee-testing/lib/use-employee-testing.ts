@@ -18,7 +18,7 @@ export function useEmployeeTesting({
   partnerId,
 }: UseEmployeeTestingProps) {
   const { data: uploadedYears, isLoading: isUploadedYearsLoading } = useQuery(
-    getEmployeeTestingUploadedYearsQueryOptions(partnerId)
+    getEmployeeTestingUploadedYearsQueryOptions(partnerId),
   );
 
   const [controlledYear, setControlledYear] = useControllableState({
@@ -28,7 +28,7 @@ export function useEmployeeTesting({
   });
 
   const { data, isLoading } = useQuery(
-    getEmployeeTestingQueryOptions({ year: controlledYear, partnerId })
+    getEmployeeTestingQueryOptions({ year: controlledYear, partnerId }),
   );
 
   const chartData = useMemo(() => {

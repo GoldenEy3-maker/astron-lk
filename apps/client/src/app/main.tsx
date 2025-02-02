@@ -6,7 +6,7 @@ import { queryClient } from "@/shared/config/query-client";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { BreadcrumbsProvider } from "@/widgets/breadcrumbs";
-import "./styles/index.scss";
+import "./styles/globals.css";
 
 const router = createRouter();
 
@@ -18,5 +18,5 @@ createRoot(document.getElementById("root")!).render(
       </BreadcrumbsProvider>
     </NuqsAdapter>
     <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+  </QueryClientProvider>,
 );

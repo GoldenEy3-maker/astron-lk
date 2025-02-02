@@ -22,11 +22,13 @@ export function PartnersSelect({ data, selectedId }: PartnersSelectProps) {
       onValueChange={(id) => {
         navigate(`/partners/${id}`);
       }}
-      value={selectedId}>
+      value={selectedId}
+    >
       <SelectTrigger
         variant="outline"
         size="sm"
-        className="font-normal !whitespace-normal">
+        className="!whitespace-normal font-normal"
+      >
         <SelectValue placeholder="Выберите партнера" />
       </SelectTrigger>
       <SelectContent align="end">

@@ -23,7 +23,8 @@ export function UserBannedAlert(props: UserBannedAlertProps) {
             asChild
             variant="underline"
             size="hug"
-            className="font-normal">
+            className="font-normal"
+          >
             <a href="#" target="_blank">
               свяжитесь с нами
             </a>

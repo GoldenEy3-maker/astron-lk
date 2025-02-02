@@ -30,7 +30,7 @@ export function useRecoveryPasswordSendLink({
   });
 
   function recoveryPasswordSendLinkHandler(
-    data: RecoveryPasswordSendLinkFormSchema
+    data: RecoveryPasswordSendLinkFormSchema,
   ) {
     recoveryPasswordSendLinkMutation.mutate(data);
   }

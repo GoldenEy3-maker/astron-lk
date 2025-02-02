@@ -14,47 +14,48 @@ type PartnerCardProps = { id?: string } & React.ComponentProps<"article">;
 
 export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
   const { data, isLoading } = useQuery(
-    id ? getPartnerByIdQueryOptions(id) : getPartnerBySessionQueryOptions()
+    id ? getPartnerByIdQueryOptions(id) : getPartnerBySessionQueryOptions(),
   );
 
   return (
     <article
       className={cn(
-        "bg-card rounded-main items-start flex ~gap-7/14 ~py-5/9 ~px-7/14 border-b-2 border-gold",
-        className
+        "flex items-start rounded-main border-b-2 border-gold bg-card ~gap-7/14 ~px-7/14 ~py-5/9",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       {!isLoading && data ? (
         <img
           src={data?.logo}
           alt={data?.title}
-          className="~w-[5rem]/[8rem] max-sm:hidden ~h-16/24"
+          className="~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden"
         />
       ) : (
-        <Skeleton className="~w-[5rem]/[8rem] max-sm:hidden ~h-16/24 !rounded-main" />
+        <Skeleton className="!rounded-main ~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden" />
       )}
       <div className="flex-1">
-        <div className="flex justify-between items-start flex-col sm:flex-row gap-x-6 gap-y-3">
+        <div className="flex flex-col items-start justify-between gap-x-6 gap-y-3 sm:flex-row">
           {!isLoading && data ? (
-            <h2 className="text-h2 text-heading-h3 order-2 sm:order-1 max-w-[31.25rem]">
+            <h2 className="order-2 max-w-[31.25rem] text-h2 text-heading-h3 sm:order-1">
               {data?.title}
             </h2>
           ) : (
-            <div className="space-y-2 w-full">
-              <Skeleton className="w-3/5 h-4 !rounded-full" />
-              <Skeleton className="w-2/5 h-4 !rounded-full" />
+            <div className="w-full space-y-2">
+              <Skeleton className="h-4 w-3/5 !rounded-full" />
+              <Skeleton className="h-4 w-2/5 !rounded-full" />
             </div>
           )}
           {!isLoading && data ? (
-            <div className="flex items-center gap-3 text-gold font-medium order-1 sm:order-2">
+            <div className="order-1 flex items-center gap-3 font-medium text-gold sm:order-2">
               <Icons.Cup className="shrink-0" />
               <span className="~text-sm/base">Золотой Партнёр</span>
             </div>
           ) : (
-            <Skeleton className="w-1/4 h-5 !rounded-full" />
+            <Skeleton className="h-5 w-1/4 !rounded-full" />
           )}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 ~mt-4/5">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2 ~mt-4/5 sm:grid-cols-3">
           <div className="flex flex-col items-start">
             {!isLoading && data ? (
               <>
@@ -62,19 +63,20 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                   asChild
                   variant="underline"
                   size="hug"
-                  className="font-normal justify-start">
+                  className="justify-start font-normal"
+                >
                   <a className="text-h4" href={data?.projects.link}>
                     {getProjectsCountText(data?.projects.count || 0)}
                   </a>
                 </Button>
-                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
                   реализовано с Astron
                 </span>
               </>
             ) : (
               <>
-                <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
+                <Skeleton className="h-4 w-24 !rounded-full" />
+                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
               </>
             )}
           </div>
@@ -87,14 +89,14 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                   }).format(data?.projects.implementedArea || 0)}
                   &nbsp;м²
                 </h4>
-                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
                   реализовано проектов
                 </span>
               </>
             ) : (
               <>
-                <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
+                <Skeleton className="h-4 w-24 !rounded-full" />
+                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
               </>
             )}
           </div>
@@ -104,14 +106,14 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                 <h4 className="text-h4">
                   {getCooperationYearsText(data?.cooperationYears || 0)}
                 </h4>
-                <span className="text-muted leading-tight ~text-sm/base mt-0.5">
+                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
                   сотрудничества
                 </span>
               </>
             ) : (
               <>
-                <Skeleton className="w-24 h-4 !rounded-full" />
-                <Skeleton className="w-4/5 mt-2 h-4 !rounded-full" />
+                <Skeleton className="h-4 w-24 !rounded-full" />
+                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
               </>
             )}
           </div>
@@ -122,14 +124,15 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
               asChild
               variant="link"
               size="sm"
-              className="font-normal ~text-sm/base p-0">
+              className="p-0 font-normal ~text-sm/base"
+            >
               <a href={data?.certificate} target="_blank">
                 <Icons.DocumentDownload />
                 <span>Сертификат Партнёра-Строителя</span>
               </a>
             </Button>
           ) : (
-            <Skeleton className="w-3/4 h-7 !rounded-main" />
+            <Skeleton className="h-7 w-3/4 !rounded-main" />
           )}
         </div>
       </div>

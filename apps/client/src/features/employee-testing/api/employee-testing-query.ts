@@ -7,7 +7,7 @@ type GetEmployeeTestingQueryOptionsProps = {
 };
 
 export function getEmployeeTestingQueryOptions(
-  params: GetEmployeeTestingQueryOptionsProps
+  params: GetEmployeeTestingQueryOptionsProps,
 ) {
   return queryOptions({
     queryKey: ["employee-testing", params?.year, params?.partnerId],
@@ -21,7 +21,7 @@ export function getEmployeeTestingQueryOptions(
 }
 
 export function getEmployeeTestingUploadedYearsQueryOptions(
-  partnerId?: string
+  partnerId?: string,
 ) {
   return queryOptions({
     queryKey: ["employee-testing", "uploaded-years", partnerId],

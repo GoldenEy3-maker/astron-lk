@@ -9,10 +9,11 @@ export function Sidebar({ className, ...props }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "sticky top-6 min-w-[14.375rem] max-h-fit space-y-5",
-        className
+        "sticky top-6 max-h-fit min-w-[14.375rem] space-y-5",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <Navigation navigations={navigations} />
     </aside>
   );

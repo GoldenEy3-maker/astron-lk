@@ -63,7 +63,8 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
         fill="currentColor"
         textAnchor="middle"
         dominantBaseline="middle"
-        className="animate-in fade-in select-none duration-300">
+        className="select-none duration-300 animate-in fade-in"
+      >
         {lines
           .filter((line) => line !== "")
           .map((line, index) => (
@@ -80,7 +81,8 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
       key={!isLoading && data ? key : `${key}-loading`}
       width={450}
       height={215}
-      className="!~h-[9.375rem]/[13.4375rem]">
+      className="!~h-[9.375rem]/[13.4375rem]"
+    >
       {!isLoading && data ? (
         <Pie
           data={data.map((item) => ({
@@ -90,7 +92,8 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
           dataKey="value"
           label={pieLabel}
           animationDuration={600}
-          {...pieProps}>
+          {...pieProps}
+        >
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
@@ -105,13 +108,14 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
           data={Array(3).fill({ value: 1 })}
           dataKey="value"
           animationDuration={0}
-          {...pieProps}>
+          {...pieProps}
+        >
           {Array(3)
             .fill({ value: 1 })
             .map((_, index) => (
               <Cell
                 key={`cell-${index}`}
-                className="fill-muted/30 animate-pulse"
+                className="animate-pulse fill-muted/30"
               />
             ))}
         </Pie>

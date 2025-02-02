@@ -30,11 +30,12 @@ function DropdownMenuSubTrigger({
   return (
     <DropdownMenuPrimitive.SubTrigger
       className={cn(
-        "flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         inset && "pl-8",
-        className
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       {children}
       <ChevronRight className="ml-auto" />
     </DropdownMenuPrimitive.SubTrigger>
@@ -53,7 +54,7 @@ function DropdownMenuSubContent({
     <DropdownMenuPrimitive.SubContent
       className={cn(
         "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -75,7 +76,7 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         className={cn(
           "z-50 min-w-[8rem] overflow-hidden rounded-main bg-card py-[0.8125rem] text-card-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-          className
+          className,
         )}
         {...props}
       />
@@ -97,9 +98,9 @@ function DropdownMenuItem({
   return (
     <DropdownMenuPrimitive.Item
       className={cn(
-        "relative flex cursor-default select-none items-center gap-2 py-[0.4375rem] px-5 outline-none transition-colors focus:bg-muted/15 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+        "relative flex cursor-default select-none items-center gap-2 px-5 py-[0.4375rem] outline-none transition-colors focus:bg-muted/15 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         inset && "pl-8",
-        className
+        className,
       )}
       {...props}
     />
@@ -122,10 +123,11 @@ function DropdownMenuCheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       className={cn(
         "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
+        className,
       )}
       checked={checked}
-      {...props}>
+      {...props}
+    >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
           <Check className="h-4 w-4" />
@@ -149,9 +151,10 @@ function DropdownMenuRadioItem({
     <DropdownMenuPrimitive.RadioItem
       className={cn(
         "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
           <Circle className="h-2 w-2 fill-current" />
@@ -178,7 +181,7 @@ function DropdownMenuLabel({
       className={cn(
         "px-2 py-1.5 text-sm font-semibold",
         inset && "pl-8",
-        className
+        className,
       )}
       {...props}
     />

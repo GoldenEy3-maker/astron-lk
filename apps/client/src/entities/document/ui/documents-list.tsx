@@ -19,10 +19,11 @@ export function DocumentsList({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] m-md:grid-cols-[repeat(auto-fill,minmax(22rem,1fr))] ~gap-x-7/10 ~gap-y-6/9",
-        className
+        "grid grid-cols-1 ~gap-x-7/10 ~gap-y-6/9 sm:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] m-md:grid-cols-[repeat(auto-fill,minmax(22rem,1fr))]",
+        className,
       )}
-      {...props}>
+      {...props}
+    >
       {!isLoading && documents
         ? documents?.map((item) => <DocumentCard key={item.id} {...item} />)
         : Array.from({ length: skeletons }).map((_, index) => (

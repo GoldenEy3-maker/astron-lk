@@ -14,16 +14,16 @@ export function PartnerCardInList({
   booking,
 }: PartnerCardInListProps) {
   return (
-    <article className="grid relative grid-cols-subgrid gap-y-4 py-5 last:border-none border-b border-stroke items-center col-span-full">
+    <article className="relative col-span-full grid grid-cols-subgrid items-center gap-y-4 border-b border-stroke py-5 last:border-none">
       <Link
         to={Routes.Partners + "/" + id}
-        className="absolute inset-0 z-10 ring-offset-background rounded-main focus:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 transition"
+        className="absolute inset-0 z-10 rounded-main ring-offset-background transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       />
       <div className="flex items-center gap-x-8">
-        <img className="w-[4.75rem] h-[3.375rem]" src={logo} alt={title} />
+        <img className="h-[3.375rem] w-[4.75rem]" src={logo} alt={title} />
       </div>
       <h3 className="text-h3">{title}</h3>
-      <div className="flex gap-x-5 gap-y-2 md:col-span-1 col-span-full m-md:col-span-full m-xl:flex-nowrap min-[54.75rem]:flex-nowrap flex-wrap m-md:flex-wrap m-xl:col-span-1">
+      <div className="col-span-full flex flex-wrap gap-x-5 gap-y-2 md:col-span-1 min-[54.75rem]:flex-nowrap m-md:col-span-full m-md:flex-wrap m-xl:col-span-1 m-xl:flex-nowrap">
         <div className="flex gap-3">
           <CircularProgress value={sales.percent} />
           <div>

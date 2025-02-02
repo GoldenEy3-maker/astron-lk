@@ -26,7 +26,8 @@ export function PartnersSort({ value, onChange }: PartnersSortProps) {
   return (
     <Select
       value={sort}
-      onValueChange={(value) => setSort(value as PartnersSortKeyMap)}>
+      onValueChange={(value) => setSort(value as PartnersSortKeyMap)}
+    >
       <SelectTrigger className="font-normal" variant="outline" size="sm">
         <SelectValue placeholder="Сортировать по" />
       </SelectTrigger>

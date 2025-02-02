@@ -36,18 +36,19 @@ const SOCIAL_LINKS = [
 
 export function Socials() {
   return (
-    <div className="bg-card ~py-5/7 ~pb-3/5 ~pl-3/9 ~pr-4/12 rounded-main relative z-10 before:opacity-[0.06] before:absolute before:-z-10 before:inset-0 before:bg-[url(/pattern.webp)] before:bg-no-repeat before:bg-cover before:bg-center">
-      <h3 className="text-h3 text-heading-h4 pl-3">
+    <div className="relative z-10 rounded-main bg-card ~py-5/7 ~pr-4/12 ~pb-3/5 ~pl-3/9 before:absolute before:inset-0 before:-z-10 before:bg-[url(/pattern.webp)] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-[0.06]">
+      <h3 className="pl-3 text-h3 text-heading-h4">
         Читайте нас&nbsp;в&nbsp;социальных сетях
       </h3>
-      <div className="flex items-center flex-wrap gap-x-3 gap-y-2 mt-3">
+      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
         {SOCIAL_LINKS.map((link) => (
           <Button
             key={link.label}
             asChild
             variant="link"
             size="sm"
-            className="font-normal flex items-center justify-start gap-3 text-primary">
+            className="flex items-center justify-start gap-3 font-normal text-primary"
+          >
             <a href={link.href} target="_blank" rel="noopener noreferrer">
               {link.icon}
               <span>{link.label}</span>

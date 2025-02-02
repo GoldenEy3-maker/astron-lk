@@ -11,15 +11,15 @@ type UseDocumentsToolbarProps = {
 export function useDocumentsToolbar(params?: UseDocumentsToolbarProps) {
   const [sort, setSort] = useQueryState(
     "sort",
-    parseAsStringEnum(Object.values(DocumentsSortKeyMap))
+    parseAsStringEnum(Object.values(DocumentsSortKeyMap)),
   );
   const [fromDateFilter, setFromDateFilter] = useQueryState(
     "fromDate",
-    parseAsLocalDate
+    parseAsLocalDate,
   );
   const [toDateFilter, setToDateFilter] = useQueryState(
     "toDate",
-    parseAsLocalDate
+    parseAsLocalDate,
   );
   const [category, setCategory] = useQueryState("category", parseAsString);
 
