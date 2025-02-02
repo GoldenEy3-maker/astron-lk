@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:prod": "turbo run build:prod",
     "dev": "turbo run dev",
     "preview": "turbo run preview",
     "api:generate": "turbo run api:generate"
