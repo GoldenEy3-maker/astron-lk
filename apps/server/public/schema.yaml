@@ -1099,6 +1099,48 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FactoryTeam"
+  /api/academy/sections:
+    get:
+      summary: Получить список разделов академии
+      operationId: getAcademySections
+      tags:
+        - Академия
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AcademySectionInList"
+  /api/academy/sections/{id}:
+    get:
+      summary: Получить информацию о разделе академии
+      operationId: getAcademySectionById
+      tags:
+        - Академия
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID раздела
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcademySection"
+        "404":
+          description: Раздел не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /api/academy/sales:
     get:
       summary: Получить этапы процесса продаж в Академии
@@ -1114,66 +1156,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AcademySales"
-  /api/academy/conversations:
-    get:
-      summary: Получить информацию о подготовке к переговорам
-      operationId: getAcademyConversations
-      tags:
-        - Академия
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - content
-                properties:
-                  content:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/InfoBlock"
-  /api/academy/analysis:
-    get:
-      summary: Получить информацию о конъюнктурном анализе
-      operationId: getAcademyAnalysis
-      tags:
-        - Академия
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - content
-                properties:
-                  content:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/InfoBlock"
-  /api/academy/commercial:
-    get:
-      summary: Получить информацию о коммерческом предложении
-      operationId: getAcademyCommercial
-      tags:
-        - Академия
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - content
-                properties:
-                  content:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/InfoBlock"
   /api/academy/projects:
     get:
       summary: Получить список проектов и отзывов
@@ -1801,6 +1783,45 @@ components:
         email:
           type: string
           example: "email@astron.biz"
+    AcademySection:
+      type: object
+      required:
+        - id
+        - title
+        - content
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Процесс продаж"
+        description:
+          type: string
+          example: "Описание процесса продаж"
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfoBlock"
+    AcademySectionInList:
+      type: object
+      required:
+        - id
+        - title
+        - bgImg
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Процесс продаж"
+        bgImg:
+          type: string
+          example: "/path/to/bg-img.jpg"
+        icon:
+          type: string
+          example: "<svg>...</svg>"
     AcademySales:
       type: object
       required:

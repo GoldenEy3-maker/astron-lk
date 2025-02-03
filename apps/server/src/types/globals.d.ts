@@ -31,3 +31,6 @@ export type Partner = components["schemas"]["Partner"];
 export type PartnerCard = components["schemas"]["PartnerCard"];
 export type PartnerInList = components["schemas"]["PartnerInList"];
 export type PartnerInSelect = components["schemas"]["PartnerInSelect"];
+export type AcademySectionInList =
+  components["schemas"]["AcademySectionInList"];
+export type AcademySection = components["schemas"]["AcademySection"];

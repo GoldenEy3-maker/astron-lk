@@ -6,6 +6,8 @@ import {
   AcademyProject,
   AcademyProjectInList,
   AcademySales,
+  AcademySection,
+  AcademySectionInList,
   AcademyWebinar,
   AcademyWebinarInList,
   Error,
@@ -16,6 +18,36 @@ import dbService from "../services/db.service";
 
 const academyRouter = Router();
 
+academyRouter.get(
+  "/sections",
+  (req: Request, res: Response<AcademySectionInList[]>) => {
+    const sections = dbService.get("academySections");
+
+    res.json(
+      sections.map((section) => ({
+        bgImg: section.bgImg,
+        id: section.id,
+        title: section.title,
+        icon: section.icon,
+      }))
+    );
+  }
+);
+
+academyRouter.get(
+  "/sections/:sectionId",
+  (req: Request, res: Response<AcademySection | Error>) => {
+    const section = dbService
+      .get("academySections")
+      .find((section) => section.id === req.params.sectionId);
+
+    if (!section) res.status(404).json({ message: "Секция не найдена" });
+
+    const { bgImg, icon, ...restSection } = section;
+
+    res.json(restSection);
+  }
+);
 academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
   res.json([
     {

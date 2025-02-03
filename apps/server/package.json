@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "preview": "node dist/src/index.js",
+    "preview:prod": "node dist/src/index.js",
     "dev": "nodemon src/index.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",

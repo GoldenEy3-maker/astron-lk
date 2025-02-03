@@ -54,6 +54,12 @@ const AcademyPage = lazy(() =>
   })),
 );
 
+const AcademySectionDetailPage = lazy(() =>
+  import("../../pages/academy").then((module) => ({
+    default: module.AcademySectionDetailPage,
+  })),
+);
+
 const AcademySalesPage = lazy(() =>
   import("../../pages/academy").then((module) => ({
     default: module.AcademySalesPage,
@@ -63,24 +69,6 @@ const AcademySalesPage = lazy(() =>
 const AcademySalesStagesPage = lazy(() =>
   import("../../pages/academy").then((module) => ({
     default: module.AcademySalesStagesPage,
-  })),
-);
-
-const AcademyConversationsPage = lazy(() =>
-  import("../../pages/academy").then((module) => ({
-    default: module.AcademyConversationsPage,
-  })),
-);
-
-const AcademyAnalysisPage = lazy(() =>
-  import("../../pages/academy").then((module) => ({
-    default: module.AcademyAnalysisPage,
-  })),
-);
-
-const AcademyCommercialPage = lazy(() =>
-  import("../../pages/academy").then((module) => ({
-    default: module.AcademyCommercialPage,
   })),
 );
 
@@ -196,11 +184,9 @@ export {
   BookingPage,
   SalesPage,
   AcademyPage,
+  AcademySectionDetailPage,
   AcademySalesPage,
   AcademySalesStagesPage,
-  AcademyConversationsPage,
-  AcademyAnalysisPage,
-  AcademyCommercialPage,
   AcademyProjectsPage,
   AcademyProjectsDetailPage,
   AcademyWebinarsPage,

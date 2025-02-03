@@ -6,6 +6,7 @@
     "build:prod": "turbo run build:prod",
     "dev": "turbo run dev",
     "preview": "turbo run preview",
+    "preview:prod": "turbo run preview:prod",
     "api:generate": "turbo run api:generate"
   },
   "dependencies": {

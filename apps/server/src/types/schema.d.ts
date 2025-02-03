@@ -446,6 +446,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/kpi/lead-generation/uploaded-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список годов, за которые были загружены данные лидогенерации */
+        get: operations["getLeadGenerationUploadedYears"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/lead-generation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные лидогенерации */
+        get: operations["getLeadGeneration"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/lead-generation/quarter-passed": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить количество пройденных лидов по кварталам */
+        get: operations["getLeadGenerationQuarterPassed"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/factory": {
         parameters: {
             query?: never;
@@ -480,6 +531,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/academy/sections": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список разделов академии */
+        get: operations["getAcademySections"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/academy/sections/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить информацию о разделе академии */
+        get: operations["getAcademySectionById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/academy/sales": {
         parameters: {
             query?: never;
@@ -489,57 +574,6 @@ export interface paths {
         };
         /** Получить этапы процесса продаж в Академии */
         get: operations["getAcademySales"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/academy/conversations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить информацию о подготовке к переговорам */
-        get: operations["getAcademyConversations"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/academy/analysis": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить информацию о конъюнктурном анализе */
-        get: operations["getAcademyAnalysis"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/academy/commercial": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить информацию о коммерческом предложении */
-        get: operations["getAcademyCommercial"];
         put?: never;
         post?: never;
         delete?: never;
@@ -894,6 +928,25 @@ export interface components {
             /** @example email@astron.biz */
             email: string;
         };
+        AcademySection: {
+            /** @example 1 */
+            id: string;
+            /** @example Процесс продаж */
+            title: string;
+            /** @example Описание процесса продаж */
+            description?: string;
+            content: components["schemas"]["InfoBlock"][];
+        };
+        AcademySectionInList: {
+            /** @example 1 */
+            id: string;
+            /** @example Процесс продаж */
+            title: string;
+            /** @example /path/to/bg-img.jpg */
+            bgImg: string;
+            /** @example <svg>...</svg> */
+            icon?: string;
+        };
         AcademySales: {
             /** @example New */
             title: string;
@@ -1049,6 +1102,27 @@ export interface components {
             name: string;
             /** @example 81 */
             result: number;
+        };
+        LeadGeneration: {
+            /** @example 1 */
+            id: string;
+            project: {
+                /** @example 1 */
+                id: string;
+                /** @example Проект */
+                name: string;
+            };
+            /**
+             * Format: date-time
+             * @example 2025-01-01T00:00:00Z
+             */
+            fixedAt: string;
+        };
+        LeadGenerationQuarterPassed: {
+            /** @example 1 */
+            idx: number;
+            /** @example 5 */
+            passedCount: number;
         };
         Error: {
             message: string;
@@ -1981,6 +2055,151 @@ export interface operations {
                     "application/json": string[];
                 };
             };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getLeadGenerationUploadedYears: {
+        parameters: {
+            query?: {
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string[];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getLeadGeneration: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LeadGeneration"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getLeadGenerationQuarterPassed: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LeadGenerationQuarterPassed"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     getFactoryInfo: {
@@ -2029,6 +2248,58 @@ export interface operations {
             };
         };
     };
+    getAcademySections: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademySectionInList"][];
+                };
+            };
+        };
+    };
+    getAcademySectionById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID раздела */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AcademySection"];
+                };
+            };
+            /** @description Раздел не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     getAcademySales: {
         parameters: {
             query?: never;
@@ -2045,72 +2316,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AcademySales"][];
-                };
-            };
-        };
-    };
-    getAcademyConversations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        content: components["schemas"]["InfoBlock"][];
-                    };
-                };
-            };
-        };
-    };
-    getAcademyAnalysis: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        content: components["schemas"]["InfoBlock"][];
-                    };
-                };
-            };
-        };
-    };
-    getAcademyCommercial: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        content: components["schemas"]["InfoBlock"][];
-                    };
                 };
             };
         };

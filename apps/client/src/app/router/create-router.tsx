@@ -111,6 +111,11 @@ export function createRouter() {
           >
             <Route index element={<LazyModules.AcademyPage />} />
             <Route
+              path={Routes.AcademySection + "/:sectionId"}
+              element={<LazyModules.AcademySectionDetailPage />}
+              handle={setCrumbHandleFromParams("sectionId")}
+            />
+            <Route
               path={Routes.AcademySales}
               handle={setCrumbHandle(Routes.AcademySales, "Процесс продаж")}
             >
@@ -124,30 +129,6 @@ export function createRouter() {
                 )}
               />
             </Route>
-            <Route
-              path={Routes.AcademyConversations}
-              element={<LazyModules.AcademyConversationsPage />}
-              handle={setCrumbHandle(
-                Routes.AcademyConversations,
-                "Подготовка к переговорам",
-              )}
-            />
-            <Route
-              path={Routes.AcademyAnalysis}
-              element={<LazyModules.AcademyAnalysisPage />}
-              handle={setCrumbHandle(
-                Routes.AcademyAnalysis,
-                "Конъюнктурный анализ",
-              )}
-            />
-            <Route
-              path={Routes.AcademyCommercial}
-              element={<LazyModules.AcademyCommercialPage />}
-              handle={setCrumbHandle(
-                Routes.AcademyCommercial,
-                "Оформление коммерческого предложения",
-              )}
-            />
             <Route
               path={Routes.AcademyProjects}
               handle={setCrumbHandle(

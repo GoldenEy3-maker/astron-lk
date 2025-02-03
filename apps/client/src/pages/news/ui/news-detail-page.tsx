@@ -19,20 +19,15 @@ export function NewsDetailPage() {
 
   return (
     <Section space="md" className="col-span-full m-md:col-[span_15]">
-      <SectionHeader className="flex-col items-start gap-3">
-        {!isLoading && data ? (
-          <>
-            <h1 className="text-h1 text-heading-h2">{parse(data.title)}</h1>
-            <time
-              dateTime={data.createdAt}
-              className="block text-sm text-muted"
-            >
-              {formatDate(new Date(data.createdAt))}
-            </time>
-            <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />
-          </>
-        ) : null}
-      </SectionHeader>
+      {!isLoading && data ? (
+        <SectionHeader className="flex-col items-start gap-3">
+          <h1 className="text-h1 text-heading-h2">{parse(data.title)}</h1>
+          <time dateTime={data.createdAt} className="block text-sm text-muted">
+            {formatDate(new Date(data.createdAt))}
+          </time>
+          <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />
+        </SectionHeader>
+      ) : null}
       <SectionContent>
         {!isLoading && data ? (
           <InfoBlockParser content={data.content} />

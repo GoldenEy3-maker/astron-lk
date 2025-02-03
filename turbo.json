@@ -17,6 +17,10 @@
       "cache": false,
       "persistent": true
     },
+    "preview:prod": {
+      "cache": false,
+      "persistent": true
+    },
     "api:generate": {
       "cache": false,
       "persistent": true

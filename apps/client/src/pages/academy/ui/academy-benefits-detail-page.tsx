@@ -21,24 +21,24 @@ export function AcademyBenefitsDetailPage() {
 
   return (
     <Section className="col-span-full m-md:col-[span_15]">
-      <SectionHeader className="flex-col items-start gap-3">
-        <h1 className="text-h1 text-heading-h2">{parse(data?.title ?? "")}</h1>
-        {/* <p className="~text-base/lg">{parse(data?.description ?? "")}</p> */}
-        {data?.tags && data?.tags.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {data?.tags.map((tag) => (
-              <AcademyBenefitsTagsBadge label={tag.label} key={tag.id} />
-            ))}
-          </div>
-        ) : null}
-        {data?.img ? (
+      {!isLoading && data ? (
+        <SectionHeader className="flex-col items-start gap-3">
+          <h1 className="text-h1 text-heading-h2">{parse(data.title)}</h1>
+          {/* <p className="~text-base/lg">{parse(data?.description ?? "")}</p> */}
+          {data.tags && data.tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {data?.tags.map((tag) => (
+                <AcademyBenefitsTagsBadge label={tag.label} key={tag.id} />
+              ))}
+            </div>
+          ) : null}
           <Image
-            src={data?.img?.src}
+            src={data.img.src}
             className="mt-5 w-full"
-            alt={data?.img?.alt}
+            alt={data.img.alt}
           />
-        ) : null}
-      </SectionHeader>
+        </SectionHeader>
+      ) : null}
       <SectionContent>
         {!isLoading && data ? (
           <InfoBlockParser content={data.content} />

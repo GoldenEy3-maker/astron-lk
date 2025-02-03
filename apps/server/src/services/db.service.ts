@@ -8,6 +8,8 @@ import {
   AcademyBenefit,
   AcademyBenefitTag,
   AcademyProject,
+  AcademySection,
+  AcademySectionInList,
   AcademyWebinar,
   Bulletin,
   Document,
@@ -46,6 +48,7 @@ type DBData = {
   employees: Employee[];
   tests: Test[];
   employeeTests: EmployeeTest[];
+  academySections: (AcademySection & AcademySectionInList)[];
   academyProjects: AcademyProject[];
   academyWebinars: AcademyWebinar[];
   academyBenefits: AcademyBenefit[];
@@ -64,6 +67,7 @@ export default new (class DBService {
     employees: [],
     tests: [],
     employeeTests: [],
+    academySections: [],
     academyProjects: [],
     academyWebinars: [],
     academyBenefits: [],
@@ -2617,6 +2621,252 @@ export default new (class DBService {
           testId: "3",
           result: 85,
           createdAt: new Date().toISOString(),
+        },
+      ],
+      academySections: [
+        {
+          id: "1",
+          title: "Подготовка к переговорам",
+          description:
+            "В Astron мы в качестве Технического Задания используем так называемую карту проекта. Применяется для обработки входящих запросов.",
+          bgImg: "/background-image-2.webp",
+          icon: `<svg
+        width="60"
+        height="60"
+        viewBox="0 0 60 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M43.735 40.3303L44.5629 47.0389C44.7752 48.8009 42.8858 50.0322 41.3784 49.1194L32.4831 43.8331C31.5065 43.8331 30.5512 43.7695 29.6171 43.6421C31.1881 41.7951 32.1222 39.4597 32.1222 36.9334C32.1222 30.9041 26.8996 26.0213 20.4457 26.0213C17.983 26.0213 15.7114 26.7218 13.822 27.9532C13.7583 27.4224 13.737 26.8916 13.737 26.3397C13.737 16.68 22.1229 8.84619 32.4831 8.84619C42.8433 8.84619 51.2291 16.68 51.2291 26.3397C51.2291 32.0717 48.2782 37.1458 43.735 40.3303Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M32.1222 36.9333C32.1222 39.4597 31.1881 41.7951 29.6171 43.6421C27.5153 46.1897 24.1822 47.8243 20.4457 47.8243L14.9047 51.1149C13.9706 51.6881 12.7817 50.9027 12.9091 49.8199L13.4398 45.6377C10.595 43.6633 8.76923 40.5 8.76923 36.9333C8.76923 33.1969 10.7649 29.9063 13.822 27.9531C15.7114 26.7218 17.983 26.0212 20.4457 26.0212C26.8996 26.0212 32.1222 30.904 32.1222 36.9333Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>`,
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Чек-лист",
+              },
+              text: "<p>Чек-лист подготовки к переговорам. Это документ, в котором перечислены ключевые цели конкретной встречи, возможные возражения, с которыми могут столкнуться участники. Чек-лист очень хорошо помогает и в составлении протокола проведенной встречи.</p>",
+              media: {
+                type: "image",
+                src: "/academy-conversations-1.webp",
+                alt: "Чек-лист подготовки к переговорам",
+              },
+            },
+            { type: "separator" },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Карта переговоров",
+              },
+              documents: Array(3)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+            { type: "separator" },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Оценка качества",
+              },
+              documents: Array(4)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+          ],
+        },
+        {
+          id: "2",
+          title: "Конъюнктурный анализ",
+          description:
+            "В Astron мы в качестве Технического Задания используем так называемую карту проекта. Применяется для обработки входящих запросов. ",
+          bgImg: "/background-image-3.webp",
+          icon: `
+            <svg
+        width="60"
+        height="60"
+        viewBox="0 0 60 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M23.6308 51.2306H36.3692C46.9846 51.2306 51.2308 46.9844 51.2308 36.369V23.6306C51.2308 13.0152 46.9846 8.76904 36.3692 8.76904H23.6308C13.0154 8.76904 8.76924 13.0152 8.76924 23.6306V36.369C8.76924 46.9844 13.0154 51.2306 23.6308 51.2306Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.83295 22.5688H51.2308"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.83295 37.4307H51.2308"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M22.5905 51.2094V8.79028"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M37.452 51.2094V8.79028"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+          `,
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Примеры ТЗ для тендеров",
+              },
+              documents: Array(2)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Сравнение технологий",
+              },
+              documents: Array(3)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Сравнение с КП конкурентов",
+              },
+              documents: Array(7)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+          ],
+        },
+        {
+          id: "3",
+          title: "Оформление коммерческого предложения",
+          description:
+            "В Astron мы в качестве Технического Задания используем так называемую карту проекта. Применяется для обработки входящих запросов. ",
+          bgImg: "/background-image-4.webp",
+          icon: `
+          <svg
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          <path
+            d="M50.0308 18.9229V41.0767C50.0308 47.7229 46.7077 52.1536 38.9538 52.1536H21.2308C13.4769 52.1536 10.1538 47.7229 10.1538 41.0767V18.9229C10.1538 12.2767 13.4769 7.84595 21.2308 7.84595H38.9538C46.7077 7.84595 50.0308 12.2767 50.0308 18.9229Z"
+            stroke="currentColor"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M35.6308 13.3843V17.815C35.6308 20.252 37.6246 22.2458 40.0616 22.2458H44.4923"
+            stroke="currentColor"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M21.2307 32.2148H30.0923"
+            stroke="currentColor"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M21.2307 41.0767H38.9538"
+            stroke="currentColor"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+          `,
+          content: [
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Бланки коммерческих предложений",
+              },
+              documents: Array(3)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Формирование графика работ",
+              },
+              documents: Array(1)
+                .fill(null)
+                .map(
+                  () => documents[Math.floor(Math.random() * documents.length)]
+                ),
+            },
+            {
+              type: "separator",
+            },
+            {
+              type: "section",
+              title: {
+                type: "h2",
+                text: "Калькулятор толщины теплоизоляции",
+              },
+              text: "<a href='#' target='_blank'>Онлайн-инструмент (калькулятор)</a>",
+            },
+          ],
         },
       ],
       academyProjects: [
