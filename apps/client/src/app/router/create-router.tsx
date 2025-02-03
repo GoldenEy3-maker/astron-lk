@@ -226,8 +226,8 @@ export function createRouter() {
         <Route path="*" element={<LazyModules.NotFoundPage />} />
       </Route>,
     ),
-    // {
-    //   basename: "/cabinet",
-    // },
+    {
+      basename: import.meta.env.VITE_BASE_URL ?? "/",
+    },
   );
 }

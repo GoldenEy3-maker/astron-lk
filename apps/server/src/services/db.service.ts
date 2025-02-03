@@ -1039,7 +1039,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1058,7 +1058,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1070,7 +1070,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1089,7 +1089,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1101,7 +1101,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1120,7 +1120,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1132,7 +1132,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1151,7 +1151,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1163,7 +1163,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1182,7 +1182,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1194,7 +1194,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1213,7 +1213,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1225,7 +1225,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1244,7 +1244,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1256,7 +1256,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1275,7 +1275,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1287,7 +1287,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1306,7 +1306,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1318,7 +1318,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1337,7 +1337,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1349,7 +1349,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1368,7 +1368,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1380,7 +1380,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1399,7 +1399,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1411,7 +1411,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1430,7 +1430,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1442,7 +1442,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1461,7 +1461,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1473,7 +1473,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1492,7 +1492,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1504,7 +1504,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1523,7 +1523,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1535,7 +1535,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1554,7 +1554,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1566,7 +1566,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1585,7 +1585,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1597,7 +1597,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1616,7 +1616,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1628,7 +1628,7 @@ export default new (class DBService {
           description:
             "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
           img: {
-            src: "/cabinet/news-1.webp",
+            src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
           content: [
@@ -1647,7 +1647,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
               },
             },
           ],
@@ -1664,7 +1664,7 @@ export default new (class DBService {
             implementedArea: 5678,
           },
           cooperationYears: 12,
-          logo: "/cabinet/partner-logo-1.webp",
+          logo: "/partner-logo-1.webp",
           certificate: "/",
           booking: {
             percent: 90,
@@ -1684,7 +1684,7 @@ export default new (class DBService {
             implementedArea: 4354,
           },
           cooperationYears: 9,
-          logo: "/cabinet/partner-logo-2.webp",
+          logo: "/partner-logo-2.webp",
           certificate: "/",
           booking: {
             percent: 78,
@@ -1704,7 +1704,7 @@ export default new (class DBService {
             implementedArea: 3456,
           },
           cooperationYears: 4,
-          logo: "/cabinet/partner-logo-3.webp",
+          logo: "/partner-logo-3.webp",
           certificate: "/",
           booking: {
             percent: 56,
@@ -1724,7 +1724,7 @@ export default new (class DBService {
             implementedArea: 2345,
           },
           cooperationYears: 10,
-          logo: "/cabinet/partner-logo-4.webp",
+          logo: "/partner-logo-4.webp",
           certificate: "/",
           booking: {
             percent: 100,
@@ -1744,7 +1744,7 @@ export default new (class DBService {
             implementedArea: 1234,
           },
           cooperationYears: 8,
-          logo: "/cabinet/partner-logo-5.webp",
+          logo: "/partner-logo-5.webp",
           certificate: "/",
           booking: {
             percent: 56,
@@ -2626,7 +2626,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2651,7 +2651,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2674,7 +2674,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2699,7 +2699,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2722,7 +2722,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2747,7 +2747,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2770,7 +2770,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2795,7 +2795,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2818,7 +2818,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2843,7 +2843,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2866,7 +2866,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2891,7 +2891,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2914,7 +2914,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2939,7 +2939,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -2962,7 +2962,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -2987,7 +2987,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -3010,7 +3010,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3035,7 +3035,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -3058,7 +3058,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3083,7 +3083,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -3106,7 +3106,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3131,7 +3131,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -3154,7 +3154,7 @@ export default new (class DBService {
           description:
             "В Astron мы в качестве Производстенного объекта используем так называемую карту проекта",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3179,7 +3179,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Заголовок",
               },
-              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
             { type: "separator" },
             {
@@ -3203,7 +3203,7 @@ export default new (class DBService {
           title: "Продукция Astron",
           description: "Вебинары по продукции Astron от Салама Гуссоса",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3213,7 +3213,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары по программному обеспечению: Татьяны Грищенко",
               },
-              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(5)
                 .fill(null)
                 .map(
@@ -3229,7 +3229,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3243,7 +3243,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары Олега Дзабиева по Allplan",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3257,7 +3257,7 @@ export default new (class DBService {
           title: "Монтаж",
           description: "Вебинары по продукции Astron от Салама Гуссоса",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3267,7 +3267,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары по программному обеспечению: Татьяны Грищенко",
               },
-              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(5)
                 .fill(null)
                 .map(
@@ -3283,7 +3283,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3297,7 +3297,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары Олега Дзабиева по Allplan",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3311,7 +3311,7 @@ export default new (class DBService {
           title: "Программное обеспечение",
           description: "Вебинары по продукции Astron от Салама Гуссоса",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3321,7 +3321,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары по программному обеспечению: Татьяны Грищенко",
               },
-              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(5)
                 .fill(null)
                 .map(
@@ -3337,7 +3337,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3351,7 +3351,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары Олега Дзабиева по Allplan",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3365,7 +3365,7 @@ export default new (class DBService {
           title: "Адаптация",
           description: "Вебинары по продукции Astron от Салама Гуссоса",
           img: {
-            src: "/cabinet/academy-projects-1.webp",
+            src: "/academy-projects-1.webp",
             alt: "Описание изображения",
           },
           content: [
@@ -3375,7 +3375,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары по программному обеспечению: Татьяны Грищенко",
               },
-              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(5)
                 .fill(null)
                 .map(
@@ -3391,7 +3391,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3405,7 +3405,7 @@ export default new (class DBService {
                 type: "h2",
                 text: "Вебинары Олега Дзабиева по Allplan",
               },
-              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/cabinet/video-poster-2.webp' title='Видео завода Астрон'></video>",
+              text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
               documents: Array(1)
                 .fill(null)
                 .map(
@@ -3449,7 +3449,7 @@ export default new (class DBService {
           description:
             "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
           img: {
-            src: "/cabinet/academy-benefits-1.webp",
+            src: "/academy-benefits-1.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3480,7 +3480,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3492,7 +3492,7 @@ export default new (class DBService {
           description:
             "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
           img: {
-            src: "/cabinet/academy-benefits-2.webp",
+            src: "/academy-benefits-2.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3518,7 +3518,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3530,7 +3530,7 @@ export default new (class DBService {
           description:
             "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
           img: {
-            src: "/cabinet/academy-benefits-1.webp",
+            src: "/academy-benefits-1.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3561,7 +3561,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3573,7 +3573,7 @@ export default new (class DBService {
           description:
             "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
           img: {
-            src: "/cabinet/academy-benefits-2.webp",
+            src: "/academy-benefits-2.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3599,7 +3599,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3611,7 +3611,7 @@ export default new (class DBService {
           description:
             "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
           img: {
-            src: "/cabinet/academy-benefits-1.webp",
+            src: "/academy-benefits-1.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3642,7 +3642,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3654,7 +3654,7 @@ export default new (class DBService {
           description:
             "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
           img: {
-            src: "/cabinet/academy-benefits-2.webp",
+            src: "/academy-benefits-2.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3680,7 +3680,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3692,7 +3692,7 @@ export default new (class DBService {
           description:
             "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
           img: {
-            src: "/cabinet/academy-benefits-1.webp",
+            src: "/academy-benefits-1.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3723,7 +3723,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3735,7 +3735,7 @@ export default new (class DBService {
           description:
             "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
           img: {
-            src: "/cabinet/academy-benefits-2.webp",
+            src: "/academy-benefits-2.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3761,7 +3761,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3773,7 +3773,7 @@ export default new (class DBService {
           description:
             "60 лет опыта и более 60 000 построенных зданий говорят сами за&nbsp;себя",
           img: {
-            src: "/cabinet/academy-benefits-1.webp",
+            src: "/academy-benefits-1.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3804,7 +3804,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
@@ -3816,7 +3816,7 @@ export default new (class DBService {
           description:
             "Короткие сроки реализации проекта за&nbsp;счет использования готовых решений обеспечивают скорейший возврат инвестиций и&nbsp;высокую окупаемость",
           img: {
-            src: "/cabinet/academy-benefits-2.webp",
+            src: "/academy-benefits-2.webp",
             alt: "Описание изображения",
           },
           tags: [
@@ -3842,7 +3842,7 @@ export default new (class DBService {
               media: {
                 type: "video",
                 src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1",
-                thumbnail: "/cabinet/video-poster-1.webp",
+                thumbnail: "/video-poster-1.webp",
                 alt: "Видео завода Астрон",
               },
             },
