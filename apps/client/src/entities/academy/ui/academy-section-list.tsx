@@ -16,7 +16,7 @@ export function AcademySectionList() {
         <>
           <AcademySectionCard
             link={Routes.AcademySales}
-            bgImg="/background-image-1.webp"
+            bgImg="/cabinet/background-image-1.webp"
             title="Процесс продаж"
             Icon={Icons.AcademySales}
           />
@@ -31,19 +31,19 @@ export function AcademySectionList() {
           ))}
           <AcademySectionCard
             link={Routes.AcademyProjects}
-            bgImg="/background-image-5.webp"
+            bgImg="/cabinet/background-image-5.webp"
             title="Подборки проектов и отзывы"
             Icon={Icons.AcademyProjects}
           />
           <AcademySectionCard
             link={Routes.AcademyWebinars}
-            bgImg="/background-image-6.webp"
+            bgImg="/cabinet/background-image-6.webp"
             title="Вебинары"
             Icon={Icons.AcademyWebinars}
           />
           <AcademySectionCard
             link={Routes.AcademyBenefits}
-            bgImg="/background-image-7.webp"
+            bgImg="/cabinet/background-image-7.webp"
             title="Преимущества"
             Icon={Icons.AcademyBenefits}
           />

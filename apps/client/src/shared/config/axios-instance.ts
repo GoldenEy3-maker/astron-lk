@@ -24,6 +24,10 @@ axiosInstance.interceptors.request.use((config) => {
 
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
+  if (config.url?.startsWith("/api") && !config.url.endsWith("/")) {
+    config.url = `${config.url}/`;
+  }
+
   return config;
 });
 
@@ -34,13 +38,15 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url !== "/api/user/session/refresh"
+      originalRequest.url !== "/api/user/session/refresh/"
     ) {
       if (!isRefershQueryLoading) {
         isRefershQueryLoading = true;
 
         try {
-          const { data } = await axiosInstance.get("/api/user/session/refresh");
+          const { data } = await axiosInstance.get(
+            "/api/user/session/refresh/",
+          );
           useSessionStore.setState({ token: data.accessToken });
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);

@@ -18,7 +18,7 @@ export async function getSessionLoader({ request }: LoaderFunctionArgs) {
     }
     return redirect(
       `${Routes.SignIn}?callbackUrl=${
-        pathname === "/cabinet/" ? "/" : pathname
+        pathname === "/cabinet" || pathname === "/cabinet/" ? "/" : pathname
       }`,
     );
   }
