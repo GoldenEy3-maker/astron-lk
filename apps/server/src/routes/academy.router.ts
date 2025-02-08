@@ -29,6 +29,7 @@ academyRouter.get(
         id: section.id,
         title: section.title,
         icon: section.icon,
+        url: section.url,
       }))
     );
   }
@@ -43,7 +44,7 @@ academyRouter.get(
 
     if (!section) res.status(404).json({ message: "Секция не найдена" });
 
-    const { bgImg, icon, ...restSection } = section;
+    const { bgImg, icon, url, ...restSection } = section;
 
     res.json(restSection);
   }

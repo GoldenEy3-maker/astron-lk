@@ -1438,7 +1438,6 @@ components:
         - projects
         - cooperationYears
         - logo
-        - certificate
         - sales
         - booking
       properties:
@@ -1505,7 +1504,6 @@ components:
         - projects
         - cooperationYears
         - logo
-        - certificate
       properties:
         id:
           type: string
@@ -1809,9 +1807,6 @@ components:
         description:
           type: string
           example: "Описание процесса продаж"
-        url:
-          type: string
-          example: "/path/to/url"
         content:
           type: array
           items:
@@ -1832,6 +1827,9 @@ components:
         bgImg:
           type: string
           example: "/path/to/bg-img.jpg"
+        url:
+          type: string
+          example: "/path/to/url"
         icon:
           type: string
           example: "<svg>...</svg>"

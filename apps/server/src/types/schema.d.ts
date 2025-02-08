@@ -769,7 +769,7 @@ export interface components {
             /** @example /path/to/logo.svg */
             logo: string;
             /** @example /path/to/certificate.pdf */
-            certificate: string;
+            certificate?: string;
             sales: {
                 /** @example 1000000 */
                 total: number;
@@ -801,7 +801,7 @@ export interface components {
             /** @example /path/to/logo.svg */
             logo: string;
             /** @example /path/to/certificate.pdf */
-            certificate: string;
+            certificate?: string;
         };
         PartnerInList: {
             /** @example 1 */
@@ -939,8 +939,6 @@ export interface components {
             title: string;
             /** @example Описание процесса продаж */
             description?: string;
-            /** @example /path/to/url */
-            url?: string;
             content: components["schemas"]["InfoBlock"][];
         };
         AcademySectionInList: {
@@ -950,6 +948,8 @@ export interface components {
             title: string;
             /** @example /path/to/bg-img.jpg */
             bgImg: string;
+            /** @example /path/to/url */
+            url?: string;
             /** @example <svg>...</svg> */
             icon?: string;
         };

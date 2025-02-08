@@ -27,8 +27,8 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
     >
       {!isLoading && data ? (
         <img
-          src={data?.logo}
-          alt={data?.title}
+          src={data.logo}
+          alt={data.title}
           className="~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden"
         />
       ) : (
@@ -38,7 +38,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
         <div className="flex flex-col items-start justify-between gap-x-6 gap-y-3 sm:flex-row">
           {!isLoading && data ? (
             <h2 className="order-2 max-w-[31.25rem] text-h2 text-heading-h3 sm:order-1">
-              {data?.title}
+              {data.title}
             </h2>
           ) : (
             <div className="w-full space-y-2">
@@ -65,8 +65,8 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                   size="hug"
                   className="justify-start font-normal"
                 >
-                  <a className="text-h4" href={data?.projects.link}>
-                    {getProjectsCountText(data?.projects.count || 0)}
+                  <a className="text-h4" href={data.projects.link}>
+                    {getProjectsCountText(data.projects.count || 0)}
                   </a>
                 </Button>
                 <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
@@ -86,7 +86,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                 <h4 className="text-h4">
                   {new Intl.NumberFormat("ru-RU", {
                     minimumFractionDigits: 0,
-                  }).format(data?.projects.implementedArea || 0)}
+                  }).format(data.projects.implementedArea || 0)}
                   &nbsp;м²
                 </h4>
                 <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
@@ -104,7 +104,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
             {!isLoading && data ? (
               <>
                 <h4 className="text-h4">
-                  {getCooperationYearsText(data?.cooperationYears || 0)}
+                  {getCooperationYearsText(data.cooperationYears || 0)}
                 </h4>
                 <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
                   сотрудничества
@@ -120,17 +120,19 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
         </div>
         <div className="~mt-4/5">
           {!isLoading && data ? (
-            <Button
-              asChild
-              variant="link"
-              size="sm"
-              className="p-0 font-normal ~text-sm/base"
-            >
-              <a href={data?.certificate} target="_blank">
-                <Icons.DocumentDownload />
-                <span>Сертификат Партнёра-Строителя</span>
-              </a>
-            </Button>
+            data.certificate ? (
+              <Button
+                asChild
+                variant="link"
+                size="sm"
+                className="p-0 font-normal ~text-sm/base"
+              >
+                <a href={data.certificate} target="_blank">
+                  <Icons.DocumentDownload />
+                  <span>Сертификат Партнёра-Строителя</span>
+                </a>
+              </Button>
+            ) : null
           ) : (
             <Skeleton className="h-7 w-3/4 !rounded-main" />
           )}

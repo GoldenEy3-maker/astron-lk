@@ -25,7 +25,6 @@ export function DocumentCard({
 
   return (
     <article
-      data-id={id}
       className={cn(
         "group/item relative z-10 flex flex-col rounded-main bg-card ~px-4/7 ~py-3/5 before:absolute before:inset-0 before:-z-10 before:bg-[url(/pattern.webp)] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-10",
         className,
