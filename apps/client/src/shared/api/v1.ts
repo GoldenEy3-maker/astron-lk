@@ -15,21 +15,10 @@ const PartnerInList = z.object({ id: z.string(), title: z.string(), logo: z.stri
 const PartnerInSelect = z.object({ id: z.string(), title: z.string() }).strict();
 const Image = z.object({ src: z.string(), alt: z.string().optional() }).strict();
 const NewsInList = z.object({ id: z.string(), title: z.string(), description: z.string(), img: Image, createdAt: z.string().datetime({ offset: true }) }).strict();
-const ImageBlock = z.object({ type: z.literal("image"), src: z.string(), alt: z.string().optional() }).strict();
-const VideoBlock = z.object({ type: z.literal("video"), src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
-const MediaBlock = 
-                z.discriminatedUnion("type", [ImageBlock, VideoBlock])
-            ;
 const DocumentCategory = z.object({ id: z.string(), label: z.string(), slug: z.string() }).strict();
 const Document = z.object({ id: z.string(), title: z.string(), file: z.object({ url: z.string(), size: z.number().int() }).strict(), category: DocumentCategory, createdAt: z.string().datetime({ offset: true }) }).strict();
-const SectionBlock = z.object({ type: z.literal("section"), title: z.object({ type: z.enum(["h1", "h2", "h3"]), text: z.string() }).strict(), text: z.string().optional(), media: MediaBlock.optional(), documents: z.array(Document).optional() }).strict();
-const SeparatorBlock = z.object({ type: z.literal("separator") }).strict();
-const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).strict();
-const InfoBlock = 
-                z.discriminatedUnion("type", [SectionBlock, SeparatorBlock, HtmlBlock])
-            ;
-const News = z.object({ id: z.string(), title: z.string(), description: z.string(), img: Image, content: z.array(InfoBlock), createdAt: z.string().datetime({ offset: true }) }).strict();
 const Bulletin = z.object({ id: z.string(), title: z.string(), file: z.object({ url: z.string(), size: z.number().int() }).strict(), category: DocumentCategory, createdAt: z.string().datetime({ offset: true }) }).strict();
+const News = z.object({ id: z.string(), title: z.string(), description: z.string(), img: Image, content: z.object({ text: z.string(), documents: z.array(z.union([Document, Bulletin])).optional() }).strict(), createdAt: z.string().datetime({ offset: true }) }).strict();
 const Favorite = z.union([Document, Bulletin]);
 const SearchResult = z.object({ id: z.string(), title: z.string(), type: z.enum(["news", "document", "bulletin"]), description: z.string().optional(), fileUrl: z.string().optional() }).strict();
 const sendFeedback_Body = z.object({ fio: z.string(), phone: z.string(), message: z.string(), privacy: z.boolean(), personalData: z.boolean() }).strict();
@@ -39,7 +28,18 @@ const LeadGenerationQuarterPassed = z.object({ idx: z.number().int(), passedCoun
 const Video = z.object({ src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
 const FactoryTeam = z.object({ id: z.string(), img: Image, role: z.string(), title: z.string(), phone: z.string(), email: z.string() }).strict();
 const AcademySectionInList = z.object({ id: z.string(), title: z.string(), bgImg: z.string(), icon: z.string().optional() }).strict();
-const AcademySection = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), content: z.array(InfoBlock) }).strict();
+const ImageBlock = z.object({ type: z.literal("image"), src: z.string(), alt: z.string().optional() }).strict();
+const VideoBlock = z.object({ type: z.literal("video"), src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
+const MediaBlock = 
+                z.discriminatedUnion("type", [ImageBlock, VideoBlock])
+            ;
+const SectionBlock = z.object({ type: z.literal("section"), title: z.object({ type: z.enum(["h1", "h2", "h3"]), text: z.string() }).strict(), text: z.string().optional(), media: MediaBlock.optional(), documents: z.array(Document).optional() }).strict();
+const SeparatorBlock = z.object({ type: z.literal("separator") }).strict();
+const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).strict();
+const InfoBlock = 
+                z.discriminatedUnion("type", [SectionBlock, SeparatorBlock, HtmlBlock])
+            ;
+const AcademySection = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), url: z.string().optional(), content: z.array(InfoBlock) }).strict();
 const AcademySales = z.object({ title: z.string(), description: z.string(), slug: z.string(), content: z.array(InfoBlock) }).strict();
 const AcademyProjectInList = z.object({ id: z.string(), title: z.string(), description: z.string(), img: Image }).strict();
 const AcademyProject = z.object({ id: z.string(), title: z.string(), description: z.string(), img: Image, content: z.array(InfoBlock) }).strict();
@@ -63,17 +63,10 @@ export const schemas = {
 	PartnerInSelect,
 	Image,
 	NewsInList,
-	ImageBlock,
-	VideoBlock,
-	MediaBlock,
 	DocumentCategory,
 	Document,
-	SectionBlock,
-	SeparatorBlock,
-	HtmlBlock,
-	InfoBlock,
-	News,
 	Bulletin,
+	News,
 	Favorite,
 	SearchResult,
 	sendFeedback_Body,
@@ -83,6 +76,13 @@ export const schemas = {
 	Video,
 	FactoryTeam,
 	AcademySectionInList,
+	ImageBlock,
+	VideoBlock,
+	MediaBlock,
+	SectionBlock,
+	SeparatorBlock,
+	HtmlBlock,
+	InfoBlock,
 	AcademySection,
 	AcademySales,
 	AcademyProjectInList,

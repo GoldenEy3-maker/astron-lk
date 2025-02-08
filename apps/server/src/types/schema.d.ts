@@ -837,7 +837,11 @@ export interface components {
             /** @example Деняк нет, но вы держитесь */
             description: string;
             img: components["schemas"]["Image"];
-            content: components["schemas"]["InfoBlock"][];
+            content: {
+                /** @example Текст новости */
+                text: string;
+                documents?: (components["schemas"]["Document"] | components["schemas"]["Bulletin"])[];
+            };
             /**
              * Format: date-time
              * @example 2024-12-30T12:34:56Z
@@ -935,6 +939,8 @@ export interface components {
             title: string;
             /** @example Описание процесса продаж */
             description?: string;
+            /** @example /path/to/url */
+            url?: string;
             content: components["schemas"]["InfoBlock"][];
         };
         AcademySectionInList: {

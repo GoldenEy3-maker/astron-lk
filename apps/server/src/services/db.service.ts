@@ -1046,26 +1046,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1077,26 +1061,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1108,26 +1076,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1139,26 +1091,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1170,26 +1106,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1201,26 +1121,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1232,26 +1136,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1263,26 +1151,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1294,26 +1166,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1325,26 +1181,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1356,26 +1196,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1387,26 +1211,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1418,26 +1226,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1449,26 +1241,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
+          },
+
           createdAt: "2024-12-30T12:34:56Z",
         },
         {
@@ -1480,181 +1256,10 @@ export default new (class DBService {
             src: "/news-1.webp",
             alt: "Картинка завода Астрон",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
-          createdAt: "2024-12-30T12:34:56Z",
-        },
-        {
-          id: "16",
-          title: "Перечень выдаваемой отделом проектирования документации",
-          description:
-            "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
-          img: {
-            src: "/news-1.webp",
-            alt: "Картинка завода Астрон",
+          content: {
+            text: "<img src='/news-1.webp' alt='Картинка завода Астрон'><h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol><h2>Прямая трансляция</h2><p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true' poster='/video-poster-1.webp'></video><iframe src='https://kinescope.io/embed/wUMuBbXwX4NEkoqBRptFx2' allow='autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;' frameborder='0' allowfullscreen=''></iframe>",
           },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
-          createdAt: "2024-12-30T12:34:56Z",
-        },
-        {
-          id: "17",
-          title: "Перечень выдаваемой отделом проектирования документации",
-          description:
-            "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
-          img: {
-            src: "/news-1.webp",
-            alt: "Картинка завода Астрон",
-          },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
-          createdAt: "2024-12-30T12:34:56Z",
-        },
-        {
-          id: "18",
-          title: "Перечень выдаваемой отделом проектирования документации",
-          description:
-            "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
-          img: {
-            src: "/news-1.webp",
-            alt: "Картинка завода Астрон",
-          },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
-          createdAt: "2024-12-30T12:34:56Z",
-        },
-        {
-          id: "19",
-          title: "Перечень выдаваемой отделом проектирования документации",
-          description:
-            "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
-          img: {
-            src: "/news-1.webp",
-            alt: "Картинка завода Астрон",
-          },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
-          createdAt: "2024-12-30T12:34:56Z",
-        },
-        {
-          id: "20",
-          title: "Перечень выдаваемой отделом проектирования документации",
-          description:
-            "Уважаемые Партнеры, По ссылке>> бюллетень c актуальным перечнем документации, выдаваемой отделом проектирования",
-          img: {
-            src: "/news-1.webp",
-            alt: "Картинка завода Астрон",
-          },
-          content: [
-            {
-              type: "html",
-              content:
-                "<h2>Ежегодная складская конференция</h2><p>Коллеги, представляем вашему вниманию полный цикл сессий Ежегодной конференции Knight Frank 2022.</p><h3>Расписание сессий</h3><ul><li>Сессия 1. Общеэкономическая ситуация</li><li>Сессия 2. Тенденции и прогнозы развития рынка складской логистики</li><li>Сессия 3. Перспективы «логистики третьего поколения»</li><li>Сессия 4. E-commerce vs классический ретейл. Кто основной драйвер рынка?</li><li>Сессия 5. Промышленное строительство</li></ul><h3>Спикеры</h3><ol><li>Ягодкин Помидорослав</li><li>Травин Бананослав</li><li>Директоров Крутослав</li><li>Наследников Сынослав</li></ol>",
-            },
-            {
-              type: "section",
-              title: {
-                type: "h2",
-                text: "Прямая трансляция",
-              },
-              text: "<p>Репортёр от Astron Buildings в течении 72 часов неустанно будет осыпать вас свежими новостями</p>",
-              media: {
-                type: "video",
-                src: "https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=true",
-                thumbnail: "/video-poster-1.webp",
-              },
-            },
-          ],
+
           createdAt: "2024-12-30T12:34:56Z",
         },
       ],

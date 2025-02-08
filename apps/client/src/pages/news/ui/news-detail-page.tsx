@@ -4,12 +4,9 @@ import { useParams } from "react-router-dom";
 import { formatDate } from "@/shared/lib/format-date";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import {
-  InfoBlockParser,
-  InfoBlockSkeleton,
-} from "@/features/info-block-parsing";
-import { Image } from "@/shared/ui/image";
+import { InfoBlockSkeleton } from "@/features/info-block-parsing";
 import parse from "html-react-parser";
+import { TextContainer } from "@/shared/ui/text-container";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -25,12 +22,11 @@ export function NewsDetailPage() {
           <time dateTime={data.createdAt} className="block text-sm text-muted">
             {formatDate(new Date(data.createdAt))}
           </time>
-          <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />
         </SectionHeader>
       ) : null}
       <SectionContent>
         {!isLoading && data ? (
-          <InfoBlockParser content={data.content} />
+          <TextContainer html={data.content.text} />
         ) : (
           <InfoBlockSkeleton />
         )}
