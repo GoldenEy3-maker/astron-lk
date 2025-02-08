@@ -27,7 +27,7 @@ export function VideoDialog({
       <DialogTrigger
         variant="ghost"
         className={cn(
-          "group relative w-full overflow-hidden !rounded-main p-0",
+          "group relative aspect-video w-full overflow-hidden !rounded-main p-0",
           triggerClassName,
         )}
       >
