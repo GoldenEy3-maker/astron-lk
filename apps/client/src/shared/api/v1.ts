@@ -33,7 +33,7 @@ const VideoBlock = z.object({ type: z.literal("video"), src: z.string(), thumbna
 const MediaBlock = 
                 z.discriminatedUnion("type", [ImageBlock, VideoBlock])
             ;
-const SectionBlock = z.object({ type: z.literal("section"), title: z.object({ type: z.enum(["h1", "h2", "h3"]), text: z.string() }).strict(), text: z.string().optional(), media: MediaBlock.optional(), documents: z.array(Document).optional() }).strict();
+const SectionBlock = z.object({ type: z.literal("section"), title: z.string(), text: z.string().optional(), media: MediaBlock.optional(), documents: z.array(Document).optional() }).strict();
 const SeparatorBlock = z.object({ type: z.literal("separator") }).strict();
 const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).strict();
 const InfoBlock = 

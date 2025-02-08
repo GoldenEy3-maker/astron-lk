@@ -1036,11 +1036,8 @@ export interface components {
              * @enum {string}
              */
             type: "section";
-            title: {
-                /** @enum {string} */
-                type: "h1" | "h2" | "h3";
-                text: string;
-            };
+            /** @example Заголовок */
+            title: string;
             text?: string;
             media?: components["schemas"]["MediaBlock"];
             documents?: components["schemas"]["Document"][];

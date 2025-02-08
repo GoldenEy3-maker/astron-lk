@@ -58,10 +58,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -82,10 +79,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -106,10 +100,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -131,10 +122,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -155,10 +143,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -179,10 +164,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -203,10 +185,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -227,10 +206,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -252,10 +228,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "CRM",
-          },
+          title: "CRM",
           text: "Для официальных Партнеров-Строителей Astron предусмотрена возможнось использования учетной записи в AmoCRM.",
           media: {
             type: "image",
@@ -280,10 +253,7 @@ academyRouter.get(
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Чек-лист",
-          },
+          title: "Чек-лист",
           text: "<p>Чек-лист подготовки к переговорам. Это документ, в котором перечислены ключевые цели конкретной встречи, возможные возражения, с которыми могут столкнуться участники. Чек-лист очень хорошо помогает и в составлении протокола проведенной встречи.</p>",
           media: {
             type: "image",
@@ -295,10 +265,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Карта переговоров",
-          },
+          title: "Карта переговоров",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -308,10 +275,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Оценка качества",
-          },
+          title: "Оценка качества",
           documents: Array(4)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -329,10 +293,7 @@ academyRouter.get(
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Примеры ТЗ для тендеров",
-          },
+          title: "Примеры ТЗ для тендеров",
           documents: Array(2)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -342,10 +303,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Сравнение технологий",
-          },
+          title: "Сравнение технологий",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -355,10 +313,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Сравнение с КП конкурентов",
-          },
+          title: "Сравнение с КП конкурентов",
           documents: Array(7)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -376,10 +331,7 @@ academyRouter.get(
       content: [
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Бланки коммерческих предложений",
-          },
+          title: "Бланки коммерческих предложений",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -389,10 +341,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Сравнение технологий",
-          },
+          title: "Сравнение технологий",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -402,10 +351,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Формирование графика работ",
-          },
+          title: "Формирование графика работ",
           documents: Array(1)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
@@ -415,10 +361,7 @@ academyRouter.get(
         },
         {
           type: "section",
-          title: {
-            type: "h2",
-            text: "Калькулятор толщины теплоизоляции",
-          },
+          title: "Калькулятор толщины теплоизоляции",
           text: "<a href='#' target='_blank' rel='noopener noreferrer'>Онлайн-инструмент (калькулятор)</a>",
         },
       ],

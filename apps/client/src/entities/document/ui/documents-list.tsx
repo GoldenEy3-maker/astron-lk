@@ -6,7 +6,7 @@ import { cn } from "@/shared/lib/cn";
 type DocumentsListProps = {
   isLoading: boolean;
   documents: DocumentsQueryFnData[] | undefined;
-  skeletons: number;
+  skeletons?: number;
 } & React.ComponentProps<"div">;
 
 export function DocumentsList({
@@ -26,9 +26,11 @@ export function DocumentsList({
     >
       {!isLoading && documents
         ? documents?.map((item) => <DocumentCard key={item.id} {...item} />)
-        : Array.from({ length: skeletons }).map((_, index) => (
-            <DocumentCardSkeleton key={index} />
-          ))}
+        : skeletons
+          ? Array.from({ length: skeletons }).map((_, index) => (
+              <DocumentCardSkeleton key={index} />
+            ))
+          : null}
     </div>
   );
 }

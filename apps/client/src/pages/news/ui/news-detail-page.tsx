@@ -7,6 +7,7 @@ import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { InfoBlockSkeleton } from "@/features/info-block-parsing";
 import parse from "html-react-parser";
 import { TextContainer } from "@/shared/ui/text-container";
+import { DocumentsList } from "@/entities/document";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -26,7 +27,15 @@ export function NewsDetailPage() {
       ) : null}
       <SectionContent>
         {!isLoading && data ? (
-          <TextContainer html={data.content.text} />
+          <>
+            <TextContainer html={data.content.text} />
+            {data.content.documents ? (
+              <DocumentsList
+                isLoading={false}
+                documents={data.content.documents}
+              />
+            ) : null}
+          </>
         ) : (
           <InfoBlockSkeleton />
         )}

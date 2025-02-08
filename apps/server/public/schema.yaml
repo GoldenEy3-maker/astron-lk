@@ -2031,16 +2031,8 @@ components:
           type: string
           enum: [section]
         title:
-          type: object
-          required:
-            - type
-            - text
-          properties:
-            type:
-              type: string
-              enum: [h1, h2, h3]
-            text:
-              type: string
+          type: string
+          example: "Заголовок"
         text:
           type: string
         media:
