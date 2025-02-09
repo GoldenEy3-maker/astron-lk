@@ -242,6 +242,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/news/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Пометить новость как прочитанную */
+        post: operations["readNews"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/documents": {
         parameters: {
             query?: never;
@@ -304,6 +321,23 @@ export interface paths {
         get: operations["getBulletinCategories"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/bulletins/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Пометить бюллетень как прочитанный */
+        post: operations["readBulletin"];
         delete?: never;
         options?: never;
         head?: never;
@@ -750,6 +784,8 @@ export interface components {
             favorites: string[];
             /** @example 10 */
             favoriteProjects: number;
+            unreadNews?: string[];
+            unreadBulletins?: string[];
         };
         Partner: {
             /** @example 1 */
@@ -837,6 +873,7 @@ export interface components {
             /** @example Деняк нет, но вы держитесь */
             description: string;
             img: components["schemas"]["Image"];
+            /** @example false */
             content: {
                 /** @example Текст новости */
                 text: string;
@@ -1597,6 +1634,15 @@ export interface operations {
                     };
                 };
             };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
         };
     };
     getNewsById: {
@@ -1618,6 +1664,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["News"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Новость с таким ID не найдена */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    readNews: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Новость успешно прочитана */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
             /** @description Новость с таким ID не найдена */
@@ -1739,6 +1838,50 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DocumentCategory"][];
+                };
+            };
+        };
+    };
+    readBulletin: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    id: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Бюллетень успешно прочитан */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Success"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Бюллетень с таким ID не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

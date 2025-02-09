@@ -40,11 +40,21 @@ type EmployeeTest = {
 
 type DBData = {
   users: User[];
-  news: News[];
+  news: Omit<News, "isReaded">[];
+  newsReadedByUsers: {
+    userId: string;
+    newsId: string;
+    createdAt: string;
+  }[];
   documents: Document[];
   documentCategories: DocumentCategory[];
   bulletinsCategories: DocumentCategory[];
-  bulletins: Bulletin[];
+  bulletins: Omit<Bulletin, "isReaded">[];
+  bulletinsReadedByUsers: {
+    userId: string;
+    bulletinId: string;
+    createdAt: string;
+  }[];
   employees: Employee[];
   tests: Test[];
   employeeTests: EmployeeTest[];
@@ -60,10 +70,12 @@ export default new (class DBService {
   private data: DBData = {
     users: [],
     news: [],
+    newsReadedByUsers: [],
     documents: [],
     documentCategories: [],
     bulletinsCategories: [],
     bulletins: [],
+    bulletinsReadedByUsers: [],
     employees: [],
     tests: [],
     employeeTests: [],
@@ -1266,6 +1278,7 @@ export default new (class DBService {
           createdAt: "2024-12-30T12:34:56Z",
         },
       ],
+      newsReadedByUsers: [],
       partners: [
         {
           id: "1",
@@ -2083,6 +2096,7 @@ export default new (class DBService {
           },
         },
       ],
+      bulletinsReadedByUsers: [],
       employees: [
         {
           id: "1",
@@ -3827,17 +3841,21 @@ export default new (class DBService {
     }));
   }
 
+  insert<T extends keyof DBData>(type: T, newData: DBData[T][number]) {
+    if (!this.data[type]) throw new Error(`Invalid db type: ${type}`);
+
+    this.data[type].push(newData as any);
+  }
+
   update(type: keyof DBData, newData: any[]) {
-    if (!this.data[type]) {
-      throw new Error(`Invalid db type: ${type}`);
-    }
+    if (!this.data[type]) throw new Error(`Invalid db type: ${type}`);
+
     this.data[type] = newData;
   }
 
   get<T extends keyof DBData>(type: T): DBData[T] {
-    if (!this.data[type]) {
-      throw new Error(`Invalid db type: ${type}`);
-    }
+    if (!this.data[type]) throw new Error(`Invalid db type: ${type}`);
+
     return this.data[type];
   }
 })();

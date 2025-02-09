@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
-import { Bulletin, DocumentCategory } from "../types/globals";
+import { Bulletin, DocumentCategory, Success } from "../types/globals";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const bulletinsRouter = Router();
 
@@ -29,6 +30,7 @@ bulletinsRouter.get(
       fromDate?: string;
       toDate?: string;
     };
+
     const startIndex = (parseInt(page) - 1) * parseInt(limit);
     const endIndex = parseInt(page) * parseInt(limit);
 
@@ -80,8 +82,27 @@ bulletinsRouter.get(
   }
 );
 
+bulletinsRouter.post(
+  "/read",
+  authMiddleware,
+  (req: Request, res: Response<Success>) => {
+    const { id } = req.body;
+
+    const { user } = res.locals;
+
+    dbService.insert("bulletinsReadedByUsers", {
+      userId: user.id,
+      bulletinId: id,
+      createdAt: new Date().toISOString(),
+    });
+
+    res.json({ message: "Бюллетень успешно прочитан" });
+  }
+);
+
 bulletinsRouter.get("/all", (req: Request, res: Response<Bulletin[]>) => {
   const bulletins = dbService.get("bulletins");
+
   res.json(bulletins);
 });
 

@@ -8,12 +8,24 @@ import { InfoBlockSkeleton } from "@/features/info-block-parsing";
 import parse from "html-react-parser";
 import { TextContainer } from "@/shared/ui/text-container";
 import { DocumentsList } from "@/entities/document";
+import { useReadNews } from "@/entities/news";
+import { useEffect } from "react";
+import { getSessionQueryOptions } from "@/shared/api/session-query";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
+
+  const { data: session } = useQuery(getSessionQueryOptions());
   const { data, isLoading } = useQuery(getNewsByIdQueryOptions(params.newsId!));
 
+  const { readNewsHandler } = useReadNews();
+
   useBreadcrumbs("newsId", data?.title);
+
+  useEffect(() => {
+    if (!isLoading && data && session?.unreadNews?.includes(data.id))
+      readNewsHandler(data.id);
+  }, [data, isLoading, readNewsHandler, session?.unreadNews]);
 
   return (
     <Section space="md" className="col-span-full m-md:col-[span_15]">

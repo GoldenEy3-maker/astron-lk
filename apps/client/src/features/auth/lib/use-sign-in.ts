@@ -22,11 +22,16 @@ export function useSignIn({ onSuccess }: UseSignInProps = {}) {
       setIsUserBanned(false);
     },
     onSuccess: (data) => {
+      queryClient.resetQueries();
+      queryClient.removeQueries();
+
       setToken(data.accessToken);
       queryClient.setQueryData(getSessionQueryOptions().queryKey, data.user);
+
       toast.success("Вы успешно авторизовались!", {
         position: "bottom-center",
       });
+
       onSuccess?.();
     },
     onError: (error) => {

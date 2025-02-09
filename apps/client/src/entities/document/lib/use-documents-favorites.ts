@@ -1,18 +1,32 @@
 import { apiClient, schemas } from "@/shared/api/client";
 import { getSessionQueryOptions } from "@/shared/api/session-query";
-import { queryClient } from "@/shared/config/query-client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { z } from "zod";
-import { getDocumentsInfiniteQueryOptions } from "../api/documents-query";
+import {
+  DocumentsQueryFnData,
+  getDocumentsInfiniteQueryOptions,
+} from "../api/documents-query";
 import { DocumentsLimits } from "../constants/documents-limits";
 
-export function useDocumentsFavorites() {
-  const queryKey = "favorites";
+type UseDocumentsFavoritesProps = {
+  onRemoveFavoritesExceedMinimum?: () => void;
+  currentPage?: number;
+};
 
-  const { data: user } = useQuery(getSessionQueryOptions());
+export function useDocumentsFavorites(params?: UseDocumentsFavoritesProps) {
+  const baseQueryKey = "favorites";
+
+  const queryClient = useQueryClient();
+
+  const { data: session } = useQuery(getSessionQueryOptions());
 
   function isFavorite(id: string) {
-    return user?.favorites.includes(id);
+    return session?.favorites.includes(id);
   }
 
   const addFavoriteMutation = useMutation({
@@ -21,14 +35,7 @@ export function useDocumentsFavorites() {
     onMutate: async (favorite) => {
       await Promise.all([
         queryClient.cancelQueries(getSessionQueryOptions()),
-        queryClient.cancelQueries(
-          getDocumentsInfiniteQueryOptions({
-            // ...params,
-            limit: DocumentsLimits[queryKey],
-            queryKey,
-            page: 1,
-          }),
-        ),
+        queryClient.cancelQueries({ queryKey: [baseQueryKey] }),
       ]);
 
       const previousSession = queryClient.getQueryData(
@@ -36,9 +43,8 @@ export function useDocumentsFavorites() {
       );
       const previousFavorites = queryClient.getQueryData(
         getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
+          queryKey: baseQueryKey,
+          limit: DocumentsLimits[baseQueryKey],
           page: 1,
         }).queryKey,
       );
@@ -53,29 +59,29 @@ export function useDocumentsFavorites() {
 
       queryClient.setQueryData(
         getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
+          limit: DocumentsLimits[baseQueryKey],
+          queryKey: baseQueryKey,
           page: 1,
         }).queryKey,
         (oldData) => {
           if (!oldData?.pages?.[0]) return oldData;
+
           return {
             ...oldData,
-            pages: oldData.pages.map((page, index) =>
-              index === 0
-                ? {
-                    ...page,
-                    data: [favorite, ...page.data],
-                  }
-                : page,
-            ),
+            pages: oldData.pages.map((page) => ({
+              ...page,
+              data: [
+                favorite,
+                ...page.data.filter((item) => item.id !== favorite.id),
+              ],
+            })),
           };
         },
       );
 
       return { previousSession, previousFavorites };
     },
+
     onError: (error, _variables, context) => {
       console.error(error);
 
@@ -85,9 +91,8 @@ export function useDocumentsFavorites() {
       );
       queryClient.setQueryData(
         getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
+          queryKey: baseQueryKey,
+          limit: DocumentsLimits[baseQueryKey],
           page: 1,
         }).queryKey,
         context?.previousFavorites,
@@ -95,14 +100,7 @@ export function useDocumentsFavorites() {
     },
     onSettled: () => {
       queryClient.invalidateQueries(getSessionQueryOptions());
-      queryClient.invalidateQueries(
-        getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
-          page: 1,
-        }),
-      );
+      queryClient.invalidateQueries({ queryKey: [baseQueryKey] });
     },
   });
 
@@ -112,27 +110,55 @@ export function useDocumentsFavorites() {
     onMutate: async (favorite) => {
       await Promise.all([
         queryClient.cancelQueries(getSessionQueryOptions()),
-        queryClient.cancelQueries(
-          getDocumentsInfiniteQueryOptions({
-            // ...params,
-            limit: DocumentsLimits[queryKey],
-            queryKey,
-            page: 1,
-          }),
-        ),
+        queryClient.cancelQueries({ queryKey: [baseQueryKey] }),
       ]);
 
       const previousSession = queryClient.getQueryData(
         getSessionQueryOptions().queryKey,
       );
-      const previousFavorites = queryClient.getQueryData(
-        getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
-          page: 1,
-        }).queryKey,
-      );
+      const previousFavoritesQueries = queryClient.getQueriesData<
+        InfiniteData<
+          {
+            data: DocumentsQueryFnData[];
+            nextPage: number;
+            totalPages: number;
+          },
+          number
+        >
+      >({
+        queryKey: [baseQueryKey],
+      });
+
+      queryClient.setQueriesData<
+        InfiniteData<
+          {
+            data: DocumentsQueryFnData[];
+            nextPage: number;
+            totalPages: number;
+          },
+          number
+        >
+      >({ queryKey: [baseQueryKey] }, (oldData) => {
+        if (!oldData) return;
+
+        return {
+          ...oldData,
+          pages: oldData.pages.map((page) => {
+            const newData = page.data.filter((item) => item.id !== favorite.id);
+
+            if (
+              newData.length === 0 &&
+              oldData.pageParams[0] === params?.currentPage
+            )
+              params?.onRemoveFavoritesExceedMinimum?.();
+
+            return {
+              ...page,
+              data: newData,
+            };
+          }),
+        };
+      });
 
       queryClient.setQueryData(getSessionQueryOptions().queryKey, (oldData) => {
         if (!oldData) return;
@@ -142,54 +168,21 @@ export function useDocumentsFavorites() {
         };
       });
 
-      queryClient.setQueryData(
-        getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
-          page: 1,
-        }).queryKey,
-        (oldData) => {
-          if (!oldData?.pages) return oldData;
-          return {
-            ...oldData,
-            pages: oldData.pages.map((page) => ({
-              ...page,
-              data: page.data.filter((item) => item.id !== favorite.id),
-            })),
-          };
-        },
-      );
-
-      return { previousSession, previousFavorites };
+      return { previousSession, previousFavoritesQueries };
     },
     onError: (error, _, context) => {
       console.error(error);
-      // Восстанавливаем данные при ошибке
       queryClient.setQueryData(
         getSessionQueryOptions().queryKey,
         context?.previousSession,
       );
-      queryClient.setQueryData(
-        getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
-          page: 1,
-        }).queryKey,
-        context?.previousFavorites,
-      );
+      context?.previousFavoritesQueries.forEach((query) => {
+        queryClient.setQueryData(query[0], query[1]);
+      });
     },
     onSettled: () => {
       queryClient.invalidateQueries(getSessionQueryOptions());
-      queryClient.invalidateQueries(
-        getDocumentsInfiniteQueryOptions({
-          // ...params,
-          limit: DocumentsLimits[queryKey],
-          queryKey,
-          page: 1,
-        }),
-      );
+      queryClient.invalidateQueries({ queryKey: [baseQueryKey] });
     },
   });
 

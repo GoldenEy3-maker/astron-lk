@@ -10,6 +10,7 @@ import {
 } from "../api/documents-query";
 import { useDocumentsToolbar } from "./use-documents-toolbar";
 import { isoStringWithoutTime } from "@repo/date";
+import { useReadBulletins } from "./use-read-bulletins";
 
 type UseDocumentsProps = {
   limit: number;
@@ -45,8 +46,11 @@ export function useDocuments({
     onDateUpdate: resetPagination,
   });
 
+  const { readBulletinsHandler } = useReadBulletins();
+
   function resetPagination() {
     setQueryPage(1);
+
     setDisplayedPage(1);
     resetDocumentsQueryPages({
       queryKey,
@@ -117,11 +121,16 @@ export function useDocuments({
     handlePageChange(displayedPage + 1);
   }
 
+  function onRemoveFavoritesExceedMinimum() {
+    handlePageChange(displayedPage - 1);
+  }
+
   return {
     data,
     displayedPage,
     isLoading,
     isFetchingNextPage,
+    onRemoveFavoritesExceedMinimum,
     hasNextPage,
     handlePageChange,
     category,
@@ -134,5 +143,6 @@ export function useDocuments({
     onLoadMore,
     onPreviousPage,
     onNextPage,
+    readBulletinsHandler,
   };
 }

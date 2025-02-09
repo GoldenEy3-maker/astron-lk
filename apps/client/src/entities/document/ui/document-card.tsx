@@ -7,8 +7,15 @@ import { Button } from "@/shared/ui/button";
 import { DocumentsQueryFnData } from "../api/documents-query";
 import { useDocumentsFavorites } from "../lib/use-documents-favorites";
 import parse from "html-react-parser";
+import { useIntersectionObserver } from "usehooks-ts";
+import { useQuery } from "@tanstack/react-query";
+import { getSessionQueryOptions } from "@/shared/api/session-query";
 
-type DocumentCardProps = {} & DocumentsQueryFnData &
+type DocumentCardProps = {
+  onRemoveFavoritesExceedMinimum?: () => void;
+  currentPage?: number;
+  onIntersectingUnread?: (id: string) => void;
+} & DocumentsQueryFnData &
   React.ComponentProps<"article">;
 
 export function DocumentCard({
@@ -18,10 +25,30 @@ export function DocumentCard({
   category,
   createdAt,
   className,
+  onRemoveFavoritesExceedMinimum,
+  currentPage,
+  onIntersectingUnread,
   ...props
 }: DocumentCardProps) {
   const document = { id, title, file, category, createdAt };
-  const { isFavorite, toggleFavorite } = useDocumentsFavorites();
+
+  const { isFavorite, toggleFavorite } = useDocumentsFavorites({
+    onRemoveFavoritesExceedMinimum,
+    currentPage,
+  });
+
+  const { data: session } = useQuery(getSessionQueryOptions());
+
+  const isReaded = !session?.unreadBulletins?.includes(id);
+
+  const { ref } = useIntersectionObserver({
+    onChange: (isIntersecting) => {
+      if (isIntersecting && isReaded === false) {
+        onIntersectingUnread?.(id);
+      }
+    },
+    freezeOnceVisible: true,
+  });
 
   return (
     <article
@@ -29,6 +56,7 @@ export function DocumentCard({
         "group/item relative z-10 flex flex-col rounded-main bg-card ~px-4/7 ~py-3/5 before:absolute before:inset-0 before:-z-10 before:bg-[url(/pattern.webp)] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-10",
         className,
       )}
+      ref={ref}
       {...props}
     >
       <a

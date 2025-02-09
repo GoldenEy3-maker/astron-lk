@@ -23,16 +23,7 @@ export function News({ limit, className, loadMore, ...props }: NewsProps) {
       {...props}
     >
       {!isLoading
-        ? data?.map((item) => (
-            <NewsCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              description={item.description}
-              img={item.img}
-              createdAt={item.createdAt}
-            />
-          ))
+        ? data?.map((item) => <NewsCard key={item.id} {...item} />)
         : Array(limit || 2)
             .fill(null)
             .map((_, idx) => <NewsCardSkeleton key={idx} />)}

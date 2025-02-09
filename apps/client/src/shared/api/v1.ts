@@ -5,7 +5,7 @@ import { z } from "zod";
 
 
 const signIn_Body = z.object({ login: z.string(), password: z.string(), remember: z.boolean().optional() }).strict();
-const Session = z.object({ email: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), role: z.enum(["manager", "employee", "partner"]), phone: z.string(), favorites: z.array(z.string()), favoriteProjects: z.number().int() }).strict();
+const Session = z.object({ email: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), role: z.enum(["manager", "employee", "partner"]), phone: z.string(), favorites: z.array(z.string()), favoriteProjects: z.number().int(), unreadNews: z.array(z.string()).optional(), unreadBulletins: z.array(z.string()).optional() }).strict();
 const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
 const changeUserPassword_Body = z.object({ password: z.string(), newPassword: z.string() }).strict();
@@ -287,6 +287,32 @@ const endpoints = makeApi([
 		response: z.array(DocumentCategory),
 	},
 	{
+		method: "post",
+		path: "/api/bulletins/read",
+		alias: "readBulletin",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "body",
+				type: "Body",
+				schema: z.object({ id: z.string() }).strict()
+			},
+		],
+		response: z.object({ message: z.string() }).strict(),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Бюллетень с таким ID не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
 		method: "get",
 		path: "/api/documents",
 		alias: "getDocuments",
@@ -534,6 +560,13 @@ const endpoints = makeApi([
 			},
 		],
 		response: z.object({ data: z.array(NewsInList), nextPage: z.number().int() }).strict(),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
 	},
 	{
 		method: "get",
@@ -549,6 +582,37 @@ const endpoints = makeApi([
 		],
 		response: News,
 		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Новость с таким ID не найдена`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "post",
+		path: "/api/news/read",
+		alias: "readNews",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "body",
+				type: "Body",
+				schema: z.object({ id: z.string() }).strict()
+			},
+		],
+		response: z.object({ message: z.string() }).strict(),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
 			{
 				status: 404,
 				description: `Новость с таким ID не найдена`,

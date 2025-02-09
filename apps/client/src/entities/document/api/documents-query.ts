@@ -101,6 +101,7 @@ export function getDocumentsInfiniteQueryOptions(
     queryFn: DocumentsQueryFn[queryKey](params),
     initialPageParam: params?.page ?? 1,
     getNextPageParam: (result) => result.nextPage || undefined,
+    staleTime: queryKey === "favorites" ? 0 : undefined,
     select: (result) => ({
       documents: result.pages.flatMap((page) => page.data),
       totalPages: result.pages[0].totalPages,

@@ -7,6 +7,9 @@ type DocumentsListProps = {
   isLoading: boolean;
   documents: DocumentsQueryFnData[] | undefined;
   skeletons?: number;
+  onRemoveFavoritesExceedMinimum?: () => void;
+  currentPage?: number;
+  onIntersectingUnread?: (id: string) => void;
 } & React.ComponentProps<"div">;
 
 export function DocumentsList({
@@ -14,6 +17,9 @@ export function DocumentsList({
   documents,
   skeletons,
   className,
+  onRemoveFavoritesExceedMinimum,
+  currentPage,
+  onIntersectingUnread,
   ...props
 }: DocumentsListProps) {
   return (
@@ -25,7 +31,15 @@ export function DocumentsList({
       {...props}
     >
       {!isLoading && documents
-        ? documents?.map((item) => <DocumentCard key={item.id} {...item} />)
+        ? documents?.map((item) => (
+            <DocumentCard
+              key={item.id}
+              onRemoveFavoritesExceedMinimum={onRemoveFavoritesExceedMinimum}
+              currentPage={currentPage}
+              onIntersectingUnread={onIntersectingUnread}
+              {...item}
+            />
+          ))
         : skeletons
           ? Array.from({ length: skeletons }).map((_, index) => (
               <DocumentCardSkeleton key={index} />

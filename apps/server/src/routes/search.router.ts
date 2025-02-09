@@ -95,7 +95,7 @@ searchRouter.get(
             id: res.id,
             title: res.title,
             type: "news",
-            description: (res as News).description,
+            description: (res as Omit<News, "isReaded">).description,
           };
         }
 

@@ -17,6 +17,8 @@ export function FavoritesPage() {
           queryKey="favorites"
           scrollToRef={scrollToRef as React.RefObject<HTMLDivElement>}
           className="~mt-1/3"
+          pagination={true}
+          loadMore={true}
         />
       </SectionContent>
     </Section>

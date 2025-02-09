@@ -4,7 +4,8 @@ import { formatDate } from "@/shared/lib/format-date";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import parse from "html-react-parser";
-type NewsCardProps = Omit<z.infer<typeof schemas.News>, "content"> &
+
+type NewsCardProps = {} & Omit<z.infer<typeof schemas.News>, "content"> &
   React.ComponentProps<"article">;
 
 export function NewsCard({

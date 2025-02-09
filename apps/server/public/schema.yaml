@@ -408,6 +408,14 @@ paths:
                   nextPage:
                     type: integer
                     example: 1
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/news/{id}:
     get:
       summary: Получить новость по ID
@@ -434,6 +442,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/news/read:
+    post:
+      summary: Пометить новость как прочитанную
+      operationId: readNews
+      tags:
+        - Новости
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Новость успешно прочитана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "404":
+          description: Новость с таким ID не найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/documents:
     get:
       summary: Получить список документов
@@ -586,6 +639,43 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/DocumentCategory"
+  /api/bulletins/read:
+    post:
+      summary: Пометить бюллетень как прочитанный
+      operationId: readBulletin
+      tags:
+        - Бюллетени
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: Бюллетень успешно прочитан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        "404":
+          description: Бюллетень с таким ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/user/favorites:
     get:
       summary: Получить список избранных документов/бюллетеней
@@ -1430,6 +1520,14 @@ components:
         favoriteProjects:
           type: integer
           example: 10
+        unreadNews:
+          type: array
+          items:
+            type: string
+        unreadBulletins:
+          type: array
+          items:
+            type: string
     Partner:
       type: object
       required:
@@ -1625,6 +1723,7 @@ components:
                 oneOf:
                   - $ref: "#/components/schemas/Document"
                   - $ref: "#/components/schemas/Bulletin"
+          example: false
         createdAt:
           type: string
           format: date-time
@@ -2009,7 +2108,6 @@ components:
         slug:
           type: string
           example: "technical-requirements"
-
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"

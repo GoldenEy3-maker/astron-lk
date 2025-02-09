@@ -50,6 +50,8 @@ export function Documents({
     onLoadMore,
     onPreviousPage,
     onNextPage,
+    onRemoveFavoritesExceedMinimum,
+    readBulletinsHandler,
   } = useDocuments({
     limit: limit ?? DocumentsLimits[queryKey],
     scrollToRef,
@@ -99,7 +101,13 @@ export function Documents({
         documents={data?.documents}
         skeletons={limit ?? DocumentsLimits[queryKey]}
         className={documentsListClassName}
+        onRemoveFavoritesExceedMinimum={
+          queryKey === "favorites" ? onRemoveFavoritesExceedMinimum : undefined
+        }
+        currentPage={displayedPage}
+        onIntersectingUnread={readBulletinsHandler}
       />
+
       {loadMore && hasNextPage ? (
         <div className="mt-8 flex flex-col items-center">
           <Button

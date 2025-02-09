@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import dbService from "../services/db.service";
-import { Error, News, NewsInList } from "../types/globals";
+import { Error, News, NewsInList, Success } from "../types/globals";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const newsRouter = Router();
 
@@ -11,6 +12,7 @@ newsRouter.get(
       page: string;
       limit: string;
     };
+
     const startIndex = (parseInt(page) - 1) * parseInt(limit);
     const endIndex = parseInt(page) * parseInt(limit);
 
@@ -24,6 +26,22 @@ newsRouter.get(
       data: news.map(({ content, ...news }) => news),
       nextPage: nextPage <= totalPages ? nextPage : 0,
     });
+  }
+);
+
+newsRouter.post(
+  "/read",
+  authMiddleware,
+  (req: Request, res: Response<Success>) => {
+    const { user } = res.locals;
+    const { id } = req.body;
+
+    dbService.insert("newsReadedByUsers", {
+      userId: user.id,
+      newsId: id,
+      createdAt: new Date().toISOString(),
+    });
+    res.json({ message: "Новость прочитана" });
   }
 );
 

@@ -4,14 +4,7 @@ import tokenService from "../services/token.service";
 import mailService from "../services/mail.service";
 import dbService from "../services/db.service";
 import passwordService from "../services/password.service";
-import {
-  Error,
-  Favorite,
-  Partner,
-  PartnerCard,
-  Session,
-  Success,
-} from "../types/globals";
+import { Error, Favorite, Session, Success } from "../types/globals";
 
 const userRouter = Router();
 
@@ -60,6 +53,29 @@ userRouter.post(
         phone,
         favorites,
         favoriteProjects: 10,
+        unreadNews: dbService
+          .get("news")
+          .filter(
+            ({ id }) =>
+              !dbService
+                .get("newsReadedByUsers")
+                .some(
+                  ({ newsId, userId }) => newsId === id && userId === user.id
+                )
+          )
+          .map(({ id }) => id),
+        unreadBulletins: dbService
+          .get("bulletins")
+          .filter(
+            ({ id }) =>
+              !dbService
+                .get("bulletinsReadedByUsers")
+                .some(
+                  ({ bulletinId, userId }) =>
+                    bulletinId === id && userId === user.id
+                )
+          )
+          .map(({ id }) => id),
       },
     });
   }
@@ -75,9 +91,8 @@ userRouter.get(
       return;
     }
 
-    const refreshTokenPayload = await tokenService.verifyRefreshToken(
-      reqRefreshToken
-    );
+    const refreshTokenPayload =
+      await tokenService.verifyRefreshToken(reqRefreshToken);
 
     if (!refreshTokenPayload) {
       res.status(401).json({ message: "Refresh token is invalid!" });
@@ -113,8 +128,17 @@ userRouter.get(
   "/session",
   authMiddleware,
   (req: Request, res: Response<Session>) => {
-    const { email, name, surname, patronymic, phone, favorites, role } =
-      res.locals.user;
+    const {
+      email,
+      name,
+      surname,
+      patronymic,
+      phone,
+      favorites,
+      role,
+      id: sessionUserId,
+    } = res.locals.user;
+
     res.json({
       role,
       email,
@@ -124,6 +148,30 @@ userRouter.get(
       phone,
       favorites,
       favoriteProjects: 10,
+      unreadNews: dbService
+        .get("news")
+        .filter(
+          ({ id }) =>
+            !dbService
+              .get("newsReadedByUsers")
+              .some(
+                ({ newsId, userId }) =>
+                  newsId === id && userId === sessionUserId
+              )
+        )
+        .map(({ id }) => id),
+      unreadBulletins: dbService
+        .get("bulletins")
+        .filter(
+          ({ id }) =>
+            !dbService
+              .get("bulletinsReadedByUsers")
+              .some(
+                ({ bulletinId, userId }) =>
+                  bulletinId === id && userId === sessionUserId
+              )
+        )
+        .map(({ id }) => id),
     });
   }
 );
@@ -163,9 +211,8 @@ userRouter.post(
       return;
     }
 
-    const refreshTokenPayload = await tokenService.verifyRefreshToken(
-      reqRefreshToken
-    );
+    const refreshTokenPayload =
+      await tokenService.verifyRefreshToken(reqRefreshToken);
 
     if (!refreshTokenPayload) {
       res.status(401).json({ message: "Пользователь не авторизован!" });

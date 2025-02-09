@@ -56,7 +56,7 @@ export function useNavigationLinks() {
           url: Routes.Bulletins,
           icon: <Icons.Notebook />,
           label: "Бюллетени",
-          notifications: 12,
+          notifications: session?.unreadBulletins?.length,
         },
       ],
       [
@@ -64,7 +64,7 @@ export function useNavigationLinks() {
           url: Routes.News,
           icon: <Icons.Notify />,
           label: "Новости",
-          notifications: 10,
+          notifications: session?.unreadNews?.length,
         },
         {
           url: Routes.Factory,
