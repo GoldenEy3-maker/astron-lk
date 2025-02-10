@@ -15,7 +15,7 @@ export function AcademySectionList() {
         ? sections?.map((section) => (
             <AcademySectionCard
               key={section.id}
-              link={section.url ?? Routes.AcademySection + "/" + section.id}
+              link={section.url || Routes.AcademySection + "/" + section.id}
               bgImg={section.bgImg}
               title={section.title}
               Icon={section.icon}
