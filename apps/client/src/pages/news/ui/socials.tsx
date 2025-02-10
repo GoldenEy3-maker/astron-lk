@@ -3,35 +3,36 @@ import { Icons } from "@/shared/ui/icons";
 
 const SOCIAL_LINKS = [
   {
-    href: "#",
+    href: "https://vk.com/astron_buildings?roistat_visit=308504",
     icon: <Icons.Vk />,
     label: "ВКонтакте",
   },
   {
-    href: "#",
-    icon: <Icons.Dzen />,
-    label: "Дзен",
-  },
-  {
-    href: "#",
-    icon: <Icons.Youtube />,
-    label: "YouTube",
-  },
-  {
-    href: "#",
-    icon: <Icons.Facebook />,
-    label: "Facebook",
-  },
-  {
-    href: "#",
+    href: "https://t.me/AstronBuildingsCIS?roistat_visit=308504",
     icon: <Icons.Telegram />,
     label: "Telegram",
   },
   {
-    href: "#",
-    icon: <Icons.Instagram />,
-    label: "Instagram",
+    href: "https://dzen.ru/astron?roistat_visit=308504",
+    icon: <Icons.Dzen />,
+    label: "Дзен",
   },
+  {
+    href: "https://www.youtube.com/@astron_cis?roistat_visit=308504",
+    icon: <Icons.Youtube />,
+    label: "YouTube",
+  },
+  // {
+  //   href: "#",
+  //   icon: <Icons.Facebook />,
+  //   label: "Facebook",
+  // },
+
+  // {
+  //   href: "#",
+  //   icon: <Icons.Instagram />,
+  //   label: "Instagram",
+  // },
 ];
 
 export function Socials() {

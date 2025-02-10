@@ -17,7 +17,10 @@ export function CTABanner({ className, ...props }: CTABannerProps) {
       </p>
       <div className="mt-6 flex items-center">
         <Button asChild variant="outline-primary" className="~px-4/10">
-          <a href="#" target="_blank">
+          <a
+            href="https://astronbuildings.com/partnjory-stroiteli/become-partner/"
+            target="_blank"
+          >
             Стать Партнёром-Строителем
           </a>
         </Button>
