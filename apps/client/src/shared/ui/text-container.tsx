@@ -91,6 +91,22 @@ export function TextContainer({
               />
             );
           }
+
+          if (
+            domNode instanceof Element &&
+            domNode.attribs &&
+            domNode.name === "li"
+          ) {
+            const props = attributesToProps(
+              domNode.attribs,
+            ) as React.LiHTMLAttributes<HTMLLIElement>;
+
+            return (
+              <li {...props}>
+                <span>{domToReact(domNode.children as DOMNode[])}</span>
+              </li>
+            );
+          }
         },
       })}
     </div>
