@@ -11,18 +11,23 @@ type InfoBlockParserProps = {
 export function InfoBlockParser({ content }: InfoBlockParserProps) {
   return (
     <div className="space-y-8">
-      {content.map((block, index) => {
-        switch (block.type) {
-          case "section":
-            return <SectionBlock key={index} {...block} />;
-          case "html":
-            return <TextContainer key={index} html={block.content} />;
-          case "separator":
-            return <Separator key={index} className="!~my-10/12" />;
-          default:
-            return null;
-        }
-      })}
+      {content.map((block, index) => (
+        <>
+          {index > 0 && <Separator key={index} className="!~my-10/12" />}
+          {(() => {
+            switch (block.type) {
+              case "section":
+                return <SectionBlock key={index} {...block} />;
+              case "html":
+                return <TextContainer key={index} html={block.content} />;
+              // case "separator":
+              //   return <Separator key={index} className="!~my-10/12" />;
+              default:
+                return null;
+            }
+          })()}
+        </>
+      ))}
     </div>
   );
 }
