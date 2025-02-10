@@ -39,9 +39,11 @@ export function AcademySalesCard({
         {title}&nbsp;
         <Icons.ArrowRight className="inline h-2 w-3 opacity-0 transition-[opacity] duration-300 group-hover:opacity-100" />
       </h3>
-      <p className="!leading-[1.3] opacity-0 transition-[opacity] duration-300 ~text-base/lg ~mt-2/3 group-hover:opacity-100">
-        {parse(description)}
-      </p>
+      {description ? (
+        <p className="!leading-[1.3] opacity-0 transition-[opacity] duration-300 ~text-base/lg ~mt-2/3 group-hover:opacity-100">
+          {parse(description)}
+        </p>
+      ) : null}
     </article>
   );
 }

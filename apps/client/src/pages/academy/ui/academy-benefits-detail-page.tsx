@@ -32,11 +32,13 @@ export function AcademyBenefitsDetailPage() {
               ))}
             </div>
           ) : null}
-          <Image
-            src={data.img.src}
-            className="mt-5 w-full"
-            alt={data.img.alt}
-          />
+          {data.img ? (
+            <Image
+              src={data.img.src}
+              className="mt-5 w-full"
+              alt={data.img.alt}
+            />
+          ) : null}
         </SectionHeader>
       ) : null}
       <SectionContent>

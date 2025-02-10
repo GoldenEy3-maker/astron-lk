@@ -25,7 +25,9 @@ export function AcademyBenefitsCard({
       />
       <div className="order-2 flex flex-col gap-3 overflow-hidden sm:order-1">
         <h3 className="text-h3 text-primary">{parse(title)}</h3>
-        <p className="!leading-[1.3] ~text-base/lg">{parse(description)}</p>
+        {description ? (
+          <p className="!leading-[1.3] ~text-base/lg">{parse(description)}</p>
+        ) : null}
         <div className="mt-1 flex flex-wrap items-center gap-2">
           {tags.map((tag) => (
             <AcademyBenefitsTagsBadge key={tag.id} label={tag.label} />
@@ -36,13 +38,15 @@ export function AcademyBenefitsCard({
           <Icons.ArrowRight className="h-3.5 w-5" />
         </div>
       </div>
-      <div className="relative order-1 ml-auto flex h-[15rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-main bg-card-accent sm:order-2 sm:~w-[15rem]/[26.25rem]">
-        <img
-          src={img.src}
-          alt={img.alt}
-          className="absolute inset-0 size-full object-cover"
-        />
-      </div>
+      {img ? (
+        <div className="relative order-1 ml-auto flex h-[15rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-main bg-card-accent sm:order-2 sm:~w-[15rem]/[26.25rem]">
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="absolute inset-0 size-full object-cover"
+          />
+        </div>
+      ) : null}
     </article>
   );
 }

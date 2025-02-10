@@ -56,6 +56,10 @@ newsRouter.get("/:newsId", (req: Request, res: Response<News | Error>) => {
     return;
   }
 
+  if (news.id === "1") {
+    res.json({ ...news, img: undefined });
+  }
+
   res.json(news);
 });
 

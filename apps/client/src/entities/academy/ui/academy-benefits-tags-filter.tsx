@@ -47,10 +47,11 @@ export function AcademyBenefitsTagsFilter({
             ? data?.map((tag) => (
                 <Button
                   asChild
+                  key={tag.id}
                   variant="ghost"
                   className="flex min-h-0 cursor-pointer items-start justify-start gap-3 whitespace-normal rounded-none px-5 py-[0.4375rem] font-normal"
                 >
-                  <Label key={tag.id} htmlFor={`${id}-${tag.id}`}>
+                  <Label htmlFor={`${id}-${tag.id}`}>
                     <Checkbox
                       id={`${id}-${tag.id}`}
                       className="mt-0.5"

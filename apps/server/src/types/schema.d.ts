@@ -792,18 +792,18 @@ export interface components {
             id: string;
             /** @example NABUCCO Architecture & Construction */
             title: string;
-            projects: {
+            projects?: {
                 /** @example 23 */
                 count: number;
                 /** @example /link/to/projects */
                 link: string;
                 /** @example 6578 */
-                implementedArea: number;
+                implementedArea?: number;
             };
             /** @example 12 */
-            cooperationYears: number;
+            cooperationYears?: number;
             /** @example /path/to/logo.svg */
-            logo: string;
+            logo?: string;
             /** @example /path/to/certificate.pdf */
             certificate?: string;
             sales: {
@@ -824,18 +824,18 @@ export interface components {
             id: string;
             /** @example Партнер */
             title: string;
-            projects: {
+            projects?: {
                 /** @example 23 */
                 count: number;
                 /** @example /link/to/projects */
                 link: string;
                 /** @example 6578 */
-                implementedArea: number;
+                implementedArea?: number;
             };
             /** @example 12 */
-            cooperationYears: number;
+            cooperationYears?: number;
             /** @example /path/to/logo.svg */
-            logo: string;
+            logo?: string;
             /** @example /path/to/certificate.pdf */
             certificate?: string;
         };
@@ -845,7 +845,7 @@ export interface components {
             /** @example Партнер */
             title: string;
             /** @example /path/to/logo.png */
-            logo: string;
+            logo?: string;
             sales: {
                 /** @example 1000000 */
                 total: number;
@@ -871,8 +871,8 @@ export interface components {
             /** @example Ключевая ставка достигла 30% */
             title: string;
             /** @example Деняк нет, но вы держитесь */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
             /** @example false */
             content: {
                 /** @example Текст новости */
@@ -891,8 +891,8 @@ export interface components {
             /** @example Ключевая ставка достигла 30% */
             title: string;
             /** @example Деняк нет, но вы держитесь */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
             /**
              * Format: date-time
              * @example 2024-12-30T12:34:56Z
@@ -959,7 +959,7 @@ export interface components {
         FactoryTeam: {
             /** @example 1 */
             id: string;
-            img: components["schemas"]["Image"];
+            img?: components["schemas"]["Image"];
             /** @example Генеральный директор */
             role: string;
             /** @example Ягодкин Помидорослав */
@@ -967,7 +967,7 @@ export interface components {
             /** @example +79000000000 */
             phone: string;
             /** @example email@astron.biz */
-            email: string;
+            email?: string;
         };
         AcademySection: {
             /** @example 1 */
@@ -984,7 +984,7 @@ export interface components {
             /** @example Процесс продаж */
             title: string;
             /** @example /path/to/bg-img.jpg */
-            bgImg: string;
+            bgImg?: string;
             /** @example /path/to/url */
             url?: string;
             /** @example <svg>...</svg> */
@@ -994,7 +994,7 @@ export interface components {
             /** @example New */
             title: string;
             /** @example Новый запрос на здание */
-            description: string;
+            description?: string;
             /** @example new */
             slug: string;
             content: components["schemas"]["InfoBlock"][];
@@ -1005,8 +1005,7 @@ export interface components {
             /** @example Проект */
             title: string;
             /** @example Описание проекта */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
             content: components["schemas"]["InfoBlock"][];
         };
         AcademyProjectInList: {
@@ -1015,8 +1014,8 @@ export interface components {
             /** @example Проект */
             title: string;
             /** @example Описание проекта */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
         };
         AcademyWebinar: {
             /** @example 1 */
@@ -1024,8 +1023,7 @@ export interface components {
             /** @example Вебинар */
             title: string;
             /** @example Описание вебинара */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
             content: components["schemas"]["InfoBlock"][];
         };
         AcademyWebinarInList: {
@@ -1034,8 +1032,8 @@ export interface components {
             /** @example Вебинар */
             title: string;
             /** @example Описание вебинара */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
         };
         AcademyBenefit: {
             /** @example 1 */
@@ -1043,8 +1041,8 @@ export interface components {
             /** @example Преимущество */
             title: string;
             /** @example Описание преимущества */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
             tags: components["schemas"]["AcademyBenefitTag"][];
             content: components["schemas"]["InfoBlock"][];
         };
@@ -1054,8 +1052,8 @@ export interface components {
             /** @example Преимущество */
             title: string;
             /** @example Описание преимущества */
-            description: string;
-            img: components["schemas"]["Image"];
+            description?: string;
+            img?: components["schemas"]["Image"];
             tags: components["schemas"]["AcademyBenefitTag"][];
         };
         AcademyBenefitTag: {

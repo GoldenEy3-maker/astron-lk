@@ -1,5 +1,5 @@
 export { Academy } from "./ui/academy";
-export { AcademySectionList } from "./ui/academy-section-list";
+export { AcademySectionsList } from "./ui/academy-sections-list";
 export { AcademySalesList } from "./ui/academy-sales-list";
 export { getAcademySalesQueryOptions } from "./api/academy-query";
 export { AcademyProjectsList } from "./ui/academy-projects-list";

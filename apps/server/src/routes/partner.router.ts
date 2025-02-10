@@ -17,11 +17,13 @@ partnersRouter.get(
     res.json({
       id: partner.id,
       title: partner.title,
-      projects: {
-        count: partner.projects.count,
-        link: partner.projects.link,
-        implementedArea: partner.projects.implementedArea,
-      },
+      projects: partner.projects
+        ? {
+            count: partner.projects.count,
+            link: partner.projects.link,
+            implementedArea: partner.projects.implementedArea,
+          }
+        : undefined,
       cooperationYears: partner.cooperationYears,
       logo: partner.logo,
       certificate: partner.certificate,

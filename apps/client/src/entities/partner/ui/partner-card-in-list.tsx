@@ -20,7 +20,9 @@ export function PartnerCardInList({
         className="absolute inset-0 z-10 rounded-main ring-offset-background transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       />
       <div className="flex items-center gap-x-8">
-        <img className="h-[3.375rem] w-[4.75rem]" src={logo} alt={title} />
+        {logo ? (
+          <img className="h-[3.375rem] w-[4.75rem]" src={logo} alt={title} />
+        ) : null}
       </div>
       <h3 className="text-h3">{title}</h3>
       <div className="col-span-full flex flex-wrap gap-x-5 gap-y-2 md:col-span-1 min-[54.75rem]:flex-nowrap m-md:col-span-full m-md:flex-wrap m-xl:col-span-1 m-xl:flex-nowrap">

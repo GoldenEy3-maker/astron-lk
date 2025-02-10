@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAcademySectionsQueryOptions } from "../api/academy-query";
 import { AcademySectionCardSkeleton } from "./academy-section-card-sekeleton";
 
-export function AcademySectionList() {
+export function AcademySectionsList() {
   const { data: sections, isLoading } = useQuery(
     getAcademySectionsQueryOptions(),
   );

@@ -22,7 +22,9 @@ export function AcademyProjectsDetailPage() {
       {!isLoading && data ? (
         <SectionHeader className="flex-col items-start gap-5">
           <h1 className="text-h1 text-heading-h2">{parse(data?.title)}</h1>
-          <p className="~text-base/lg">{parse(data?.description)}</p>
+          {data?.description ? (
+            <p className="~text-base/lg">{parse(data?.description)}</p>
+          ) : null}
         </SectionHeader>
       ) : null}
       <SectionContent>

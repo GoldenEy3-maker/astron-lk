@@ -26,11 +26,13 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
       {...props}
     >
       {!isLoading && data ? (
-        <img
-          src={data.logo}
-          alt={data.title}
-          className="~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden"
-        />
+        data.logo ? (
+          <img
+            src={data.logo}
+            alt={data.title}
+            className="~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden"
+          />
+        ) : null
       ) : (
         <Skeleton className="!rounded-main ~h-16/24 ~w-[5rem]/[8rem] max-sm:hidden" />
       )}
@@ -56,67 +58,73 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
           )}
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 ~mt-4/5 sm:grid-cols-3">
-          <div className="flex flex-col items-start">
-            {!isLoading && data ? (
-              <>
-                <Button
-                  asChild
-                  variant="underline"
-                  size="hug"
-                  className="justify-start font-normal"
-                >
-                  <a className="text-h4" href={data.projects.link}>
-                    {getProjectsCountText(data.projects.count || 0)}
-                  </a>
-                </Button>
-                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
-                  реализовано с Astron
-                </span>
-              </>
-            ) : (
-              <>
-                <Skeleton className="h-4 w-24 !rounded-full" />
-                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
-              </>
-            )}
-          </div>
-          <div className="flex flex-col items-start">
-            {!isLoading && data ? (
-              <>
-                <h4 className="text-h4">
-                  {new Intl.NumberFormat("ru-RU", {
-                    minimumFractionDigits: 0,
-                  }).format(data.projects.implementedArea || 0)}
-                  &nbsp;м²
-                </h4>
-                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
-                  реализовано проектов
-                </span>
-              </>
-            ) : (
-              <>
-                <Skeleton className="h-4 w-24 !rounded-full" />
-                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
-              </>
-            )}
-          </div>
-          <div className="flex flex-col items-start">
-            {!isLoading && data ? (
-              <>
-                <h4 className="text-h4">
-                  {getCooperationYearsText(data.cooperationYears || 0)}
-                </h4>
-                <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
-                  сотрудничества
-                </span>
-              </>
-            ) : (
-              <>
-                <Skeleton className="h-4 w-24 !rounded-full" />
-                <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
-              </>
-            )}
-          </div>
+          {!isLoading && data ? (
+            data.projects ? (
+              <div className="flex flex-col items-start">
+                <>
+                  <Button
+                    asChild
+                    variant="underline"
+                    size="hug"
+                    className="justify-start font-normal"
+                  >
+                    <a className="text-h4" href={data.projects.link}>
+                      {getProjectsCountText(data.projects.count || 0)}
+                    </a>
+                  </Button>
+                  <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
+                    реализовано с Astron
+                  </span>
+                </>
+              </div>
+            ) : null
+          ) : (
+            <div className="flex flex-col items-start">
+              <Skeleton className="h-4 w-24 !rounded-full" />
+              <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
+            </div>
+          )}
+          {!isLoading && data ? (
+            data.projects?.implementedArea ? (
+              <div className="flex flex-col items-start">
+                <>
+                  <h4 className="text-h4">
+                    {new Intl.NumberFormat("ru-RU", {
+                      minimumFractionDigits: 0,
+                    }).format(data.projects.implementedArea || 0)}
+                    &nbsp;м²
+                  </h4>
+                  <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
+                    реализовано проектов
+                  </span>
+                </>
+              </div>
+            ) : null
+          ) : (
+            <div className="flex flex-col items-start">
+              <Skeleton className="h-4 w-24 !rounded-full" />
+              <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
+            </div>
+          )}
+          {!isLoading && data ? (
+            data.cooperationYears ? (
+              <div className="flex flex-col items-start">
+                <>
+                  <h4 className="text-h4">
+                    {getCooperationYearsText(data.cooperationYears || 0)}
+                  </h4>
+                  <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
+                    сотрудничества
+                  </span>
+                </>
+              </div>
+            ) : null
+          ) : (
+            <div className="flex flex-col items-start">
+              <Skeleton className="h-4 w-24 !rounded-full" />
+              <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
+            </div>
+          )}
         </div>
         <div className="~mt-4/5">
           {!isLoading && data ? (

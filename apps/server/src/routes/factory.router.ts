@@ -51,14 +51,14 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
   res.json([
     {
       id: "1",
-      img: {
-        src: "/factory-team-1.webp",
-        alt: "Фотография сотрудника Астрон",
-      },
+      // img: {
+      //   src: "/factory-team-1.webp",
+      //   alt: "Фотография сотрудника Астрон",
+      // },
       role: "Генеральный директор",
       title: "Ягодкин Помидорослав",
       phone: "+79000000000",
-      email: "email@astron.biz",
+      // email: "email@astron.biz",
     },
     {
       id: "2",

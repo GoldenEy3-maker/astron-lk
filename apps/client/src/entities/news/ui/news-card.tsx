@@ -32,15 +32,19 @@ export function NewsCard({
         <h4 className="text-h4 text-primary ~mt-2/3 group-hover:text-primary-accent">
           {parse(title)}
         </h4>
-        <p className="mt-2 line-clamp-3 text-muted">{parse(description)}</p>
+        {description ? (
+          <p className="mt-2 line-clamp-3 text-muted">{parse(description)}</p>
+        ) : null}
       </div>
-      <div className="relative h-[7.5rem] w-[9.375rem] shrink-0 overflow-hidden rounded-main">
-        <img
-          src={img.src}
-          alt={img.alt}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </div>
+      {img ? (
+        <div className="relative h-[7.5rem] w-[9.375rem] shrink-0 overflow-hidden rounded-main">
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+      ) : null}
     </article>
   );
 }

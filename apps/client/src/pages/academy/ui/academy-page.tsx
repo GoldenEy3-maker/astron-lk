@@ -1,5 +1,5 @@
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { AcademySectionList } from "@/entities/academy";
+import { AcademySectionsList } from "@/entities/academy";
 
 export function AcademyPage() {
   return (
@@ -8,7 +8,7 @@ export function AcademyPage() {
         <h1 className="text-h1 text-heading-h2">Академия Astron</h1>
       </SectionHeader>
       <SectionContent>
-        <AcademySectionList />
+        <AcademySectionsList />
       </SectionContent>
     </Section>
   );

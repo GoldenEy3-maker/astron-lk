@@ -11,6 +11,7 @@ import { DocumentsList } from "@/entities/document";
 import { useReadNews } from "@/entities/news";
 import { useEffect } from "react";
 import { getSessionQueryOptions } from "@/shared/api/session-query";
+import { Image } from "@/shared/ui/image";
 
 export function NewsDetailPage() {
   const params = useParams<{ newsId: string }>();
@@ -35,6 +36,9 @@ export function NewsDetailPage() {
           <time dateTime={data.createdAt} className="block text-sm text-muted">
             {formatDate(new Date(data.createdAt))}
           </time>
+          {data?.img ? (
+            <Image src={data.img.src} alt={data.img.alt} className="~mt-2/5" />
+          ) : null}
         </SectionHeader>
       ) : null}
       <SectionContent>

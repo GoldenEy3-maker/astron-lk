@@ -1533,9 +1533,6 @@ components:
       required:
         - id
         - title
-        - projects
-        - cooperationYears
-        - logo
         - sales
         - booking
       properties:
@@ -1550,7 +1547,6 @@ components:
           required:
             - count
             - link
-            - implementedArea
           properties:
             count:
               type: integer
@@ -1599,9 +1595,6 @@ components:
       required:
         - id
         - title
-        - projects
-        - cooperationYears
-        - logo
       properties:
         id:
           type: string
@@ -1614,7 +1607,6 @@ components:
           required:
             - count
             - link
-            - implementedArea
           properties:
             count:
               type: integer
@@ -1639,7 +1631,6 @@ components:
       required:
         - id
         - title
-        - logo
         - sales
         - booking
       properties:
@@ -1693,9 +1684,7 @@ components:
       required:
         - id
         - title
-        - description
         - content
-        - img
         - createdAt
       properties:
         id:
@@ -1733,8 +1722,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
         - createdAt
       properties:
         id:
@@ -1867,11 +1854,9 @@ components:
       type: object
       required:
         - id
-        - img
         - role
         - title
         - phone
-        - email
       properties:
         id:
           type: string
@@ -1915,7 +1900,6 @@ components:
       required:
         - id
         - title
-        - bgImg
       properties:
         id:
           type: string
@@ -1936,7 +1920,6 @@ components:
       type: object
       required:
         - title
-        - description
         - slug
         - content
       properties:
@@ -1958,8 +1941,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
         - content
       properties:
         id:
@@ -1971,8 +1952,6 @@ components:
         description:
           type: string
           example: "Описание проекта"
-        img:
-          $ref: "#/components/schemas/Image"
         content:
           type: array
           items:
@@ -1982,8 +1961,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
       properties:
         id:
           type: string
@@ -2001,8 +1978,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
         - content
       properties:
         id:
@@ -2014,8 +1989,6 @@ components:
         description:
           type: string
           example: "Описание вебинара"
-        img:
-          $ref: "#/components/schemas/Image"
         content:
           type: array
           items:
@@ -2025,8 +1998,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
       properties:
         id:
           type: string
@@ -2044,8 +2015,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
         - tags
         - content
       properties:
@@ -2073,8 +2042,6 @@ components:
       required:
         - id
         - title
-        - description
-        - img
         - tags
       properties:
         id:

@@ -53,7 +53,7 @@ academyRouter.get("/sales", (req: Request, res: Response<AcademySales[]>) => {
   res.json([
     {
       title: "New",
-      description: "Новый запрос на здание",
+      // description: "Новый запрос на здание",
       slug: generateSlug("New"),
       content: [
         {
@@ -384,10 +384,15 @@ academyRouter.get(
     const project = dbService
       .get("academyProjects")
       .find((project) => project.id === projectId);
-    if (!project) {
-      res.status(404).json({ message: "Проект не найден" });
-    }
-    res.json(project);
+
+    if (!project) res.status(404).json({ message: "Проект не найден" });
+
+    res.json({
+      id: project.id,
+      title: project.title,
+      description: project.description,
+      content: project.content,
+    });
   }
 );
 
@@ -409,7 +414,12 @@ academyRouter.get(
     if (!webinar) {
       res.status(404).json({ message: "Вебинар не найден" });
     }
-    res.json(webinar);
+    res.json({
+      id: webinar.id,
+      title: webinar.title,
+      description: webinar.description,
+      content: webinar.content,
+    });
   }
 );
 
