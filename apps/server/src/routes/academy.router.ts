@@ -261,17 +261,11 @@ academyRouter.get(
           },
         },
         {
-          type: "separator",
-        },
-        {
           type: "section",
           title: "Карта переговоров",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
-        },
-        {
-          type: "separator",
         },
         {
           type: "section",
@@ -299,17 +293,11 @@ academyRouter.get(
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
         },
         {
-          type: "separator",
-        },
-        {
           type: "section",
           title: "Сравнение технологий",
           documents: Array(3)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
-        },
-        {
-          type: "separator",
         },
         {
           type: "section",
@@ -337,9 +325,6 @@ academyRouter.get(
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
         },
         {
-          type: "separator",
-        },
-        {
           type: "section",
           title: "Сравнение технологий",
           documents: Array(3)
@@ -347,17 +332,11 @@ academyRouter.get(
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
         },
         {
-          type: "separator",
-        },
-        {
           type: "section",
           title: "Формирование графика работ",
           documents: Array(1)
             .fill(null)
             .map(() => documents[Math.floor(Math.random() * documents.length)]),
-        },
-        {
-          type: "separator",
         },
         {
           type: "section",

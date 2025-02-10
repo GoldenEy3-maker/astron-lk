@@ -1034,7 +1034,7 @@ export interface components {
             /** @example technical-requirements */
             slug: string;
         };
-        InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["SeparatorBlock"] | components["schemas"]["HtmlBlock"];
+        InfoBlock: components["schemas"]["SectionBlock"] | components["schemas"]["HtmlBlock"];
         SectionBlock: {
             /**
              * @description discriminator enum property added by openapi-typescript
@@ -1046,13 +1046,6 @@ export interface components {
             text?: string;
             media?: components["schemas"]["MediaBlock"];
             documents?: components["schemas"]["Document"][];
-        };
-        SeparatorBlock: {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            type: "separator";
         };
         HtmlBlock: {
             /**
@@ -2334,9 +2327,9 @@ export interface operations {
                     "application/json": {
                         /** @example <p>Текст о заводе Астрон</p> */
                         text: string;
-                        img: components["schemas"]["Image"];
-                        video: components["schemas"]["Video"];
-                        document: components["schemas"]["Document"];
+                        img?: components["schemas"]["Image"];
+                        video?: components["schemas"]["Video"];
+                        document?: components["schemas"]["Document"];
                     };
                 };
             };

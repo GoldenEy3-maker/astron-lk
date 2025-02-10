@@ -34,10 +34,9 @@ const MediaBlock =
                 z.discriminatedUnion("type", [ImageBlock, VideoBlock])
             ;
 const SectionBlock = z.object({ type: z.literal("section"), title: z.string(), text: z.string().optional(), media: MediaBlock.optional(), documents: z.array(Document).optional() }).strict();
-const SeparatorBlock = z.object({ type: z.literal("separator") }).strict();
 const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).strict();
 const InfoBlock = 
-                z.discriminatedUnion("type", [SectionBlock, SeparatorBlock, HtmlBlock])
+                z.discriminatedUnion("type", [SectionBlock, HtmlBlock])
             ;
 const AcademySection = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), content: z.array(InfoBlock) }).strict();
 const AcademySales = z.object({ title: z.string(), description: z.string().optional(), slug: z.string(), content: z.array(InfoBlock) }).strict();
@@ -79,7 +78,6 @@ export const schemas = {
 	VideoBlock,
 	MediaBlock,
 	SectionBlock,
-	SeparatorBlock,
 	HtmlBlock,
 	InfoBlock,
 	AcademySection,
@@ -346,7 +344,7 @@ const endpoints = makeApi([
 		path: "/api/factory",
 		alias: "getFactoryInfo",
 		requestFormat: "json",
-		response: z.object({ text: z.string(), img: Image, video: Video, document: Document }).strict(),
+		response: z.object({ text: z.string(), img: Image.optional(), video: Video.optional(), document: Document.optional() }).strict(),
 	},
 	{
 		method: "get",

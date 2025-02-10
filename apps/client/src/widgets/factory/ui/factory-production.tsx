@@ -8,6 +8,9 @@ type FactoryProductionProps = {} & React.ComponentProps<typeof Section>;
 
 export function FactoryProduction(props: FactoryProductionProps) {
   const { data, isLoading } = useQuery(getFactoryInfoQueryOptions());
+
+  if (!isLoading && data && !data.video) return null;
+
   return (
     <Section space="md" {...props}>
       <SectionHeader>
@@ -15,12 +18,14 @@ export function FactoryProduction(props: FactoryProductionProps) {
       </SectionHeader>
       <SectionContent>
         {!isLoading && data ? (
-          <VideoDialog
-            thumbnailSrc={data.video.thumbnail}
-            thumbnailAlt={data.video.alt}
-            videoSrc={data.video.src}
-            triggerClassName="max-h-[30rem]"
-          />
+          data.video ? (
+            <VideoDialog
+              thumbnailSrc={data.video.thumbnail}
+              thumbnailAlt={data.video.alt}
+              videoSrc={data.video.src}
+              triggerClassName="max-h-[30rem]"
+            />
+          ) : null
         ) : (
           <Skeleton className="aspect-video size-full max-h-[30rem] !rounded-main" />
         )}

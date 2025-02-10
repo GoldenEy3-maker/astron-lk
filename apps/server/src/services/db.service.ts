@@ -2342,7 +2342,6 @@ export default new (class DBService {
                 alt: "Чек-лист подготовки к переговорам",
               },
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Карта переговоров",
@@ -2352,7 +2351,6 @@ export default new (class DBService {
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Оценка качества",
@@ -2422,9 +2420,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Сравнение технологий",
 
@@ -2433,9 +2428,6 @@ export default new (class DBService {
                 .map(
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
-            },
-            {
-              type: "separator",
             },
             {
               type: "section",
@@ -2504,9 +2496,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Формирование графика работ",
               documents: Array(1)
@@ -2514,9 +2503,6 @@ export default new (class DBService {
                 .map(
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
-            },
-            {
-              type: "separator",
             },
             {
               type: "section",
@@ -2662,14 +2648,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2701,14 +2683,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2740,14 +2718,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2779,14 +2753,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2818,14 +2788,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2857,14 +2823,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2896,14 +2858,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2935,14 +2893,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -2974,14 +2928,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -3013,14 +2963,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -3052,14 +2998,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -3091,14 +3033,10 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title: "Заголовок",
               text: "<h3>Текстовая часть</h3><p>Длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение длинное текстовое сообщение</p><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Текстовая часть</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Заголовок",
@@ -3132,9 +3070,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
@@ -3145,7 +3080,6 @@ export default new (class DBService {
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
@@ -3178,9 +3112,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
@@ -3191,7 +3122,6 @@ export default new (class DBService {
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
@@ -3224,9 +3154,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
@@ -3237,7 +3164,6 @@ export default new (class DBService {
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
@@ -3270,9 +3196,6 @@ export default new (class DBService {
                 ),
             },
             {
-              type: "separator",
-            },
-            {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
@@ -3283,7 +3206,6 @@ export default new (class DBService {
                   () => documents[Math.floor(Math.random() * documents.length)]
                 ),
             },
-            { type: "separator" },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",

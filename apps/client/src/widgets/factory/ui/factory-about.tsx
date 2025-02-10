@@ -41,7 +41,9 @@ export function FactoryAbout({
         )}
         {extended ? (
           !isLoading && data ? (
-            <DocumentCard className="w-full sm:w-5/6" {...data.document} />
+            data.document ? (
+              <DocumentCard className="w-full sm:w-5/6" {...data.document} />
+            ) : null
           ) : (
             <DocumentCardSkeleton className="w-full sm:w-5/6" />
           )
@@ -50,21 +52,31 @@ export function FactoryAbout({
       <div className="current-section-layout__second">
         {extended ? (
           !isLoading && data ? (
+            data.img ? (
+              <img
+                src={data.img.src}
+                className="size-full rounded-main object-cover"
+                alt={data.img.alt}
+              />
+            ) : null
+          ) : (
+            <Skeleton className="size-full !rounded-main" />
+          )
+        ) : !isLoading && data ? (
+          data.video ? (
+            <VideoDialog
+              thumbnailSrc={data.video.thumbnail}
+              thumbnailAlt={data.video.alt}
+              videoSrc={data.video.src}
+              triggerClassName={"~h-[18rem]/[22.5rem]"}
+            />
+          ) : data.img ? (
             <img
               src={data.img.src}
               className="size-full rounded-main object-cover"
               alt={data.img.alt}
             />
-          ) : (
-            <Skeleton className="size-full !rounded-main" />
-          )
-        ) : !isLoading && data ? (
-          <VideoDialog
-            thumbnailSrc={data.video.thumbnail}
-            thumbnailAlt={data.video.alt}
-            videoSrc={data.video.src}
-            triggerClassName={"~h-[18rem]/[22.5rem]"}
-          />
+          ) : null
         ) : (
           <Skeleton className="w-full !rounded-main ~h-[18rem]/[22.5rem]" />
         )}

@@ -10,9 +10,9 @@ factoryRouter.get(
     req: Request,
     res: Response<{
       text: string;
-      img: Image;
-      video: Video;
-      document: Document;
+      img?: Image;
+      video?: Video;
+      document?: Document;
     }>
   ) => {
     const documents = dbService.get("documents");

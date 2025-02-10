@@ -1161,9 +1161,6 @@ paths:
                 type: object
                 required:
                   - text
-                  - img
-                  - video
-                  - document
                 properties:
                   text:
                     type: string
@@ -2022,13 +2019,11 @@ components:
     InfoBlock:
       oneOf:
         - $ref: "#/components/schemas/SectionBlock"
-        - $ref: "#/components/schemas/SeparatorBlock"
         - $ref: "#/components/schemas/HtmlBlock"
       discriminator:
         propertyName: type
         mapping:
           section: "#/components/schemas/SectionBlock"
-          separator: "#/components/schemas/SeparatorBlock"
           html: "#/components/schemas/HtmlBlock"
     SectionBlock:
       type: object
@@ -2050,14 +2045,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Document"
-    SeparatorBlock:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          enum: [separator]
     HtmlBlock:
       type: object
       required:
