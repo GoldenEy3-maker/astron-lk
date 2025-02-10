@@ -18,7 +18,8 @@ import {
   DocumentCategory,
   News,
   NewsInList,
-  Partner,
+  PartnerCard,
+  PartnerInList,
   User,
 } from "../types/globals";
 import passwordService from "./password.service";
@@ -66,7 +67,7 @@ type DBData = {
   academyWebinars: (AcademyWebinar & AcademyWebinarInList)[];
   academyBenefits: AcademyBenefit[];
   academyBenefitTags: AcademyBenefitTag[];
-  partners: Partner[];
+  partners: (PartnerCard & PartnerInList)[];
 };
 
 export default new (class DBService {
@@ -1291,8 +1292,9 @@ export default new (class DBService {
             link: "/",
             // implementedArea: 5678,
           },
+          status: "silver",
           cooperationYears: 12,
-          // logo: "/partner-logo-1.webp",
+          logo: "/partner-logo-1.webp",
           certificate: "/",
           booking: {
             percent: 90,

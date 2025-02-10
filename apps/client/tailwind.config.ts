@@ -95,7 +95,9 @@ export default {
         stroke: {
           DEFAULT: "hsl(var(--stroke))",
         },
+        platinum: "hsl(var(--platinum))",
         gold: "hsl(var(--gold))",
+        silver: "hsl(var(--silver))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {

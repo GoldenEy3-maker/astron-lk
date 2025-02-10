@@ -27,7 +27,6 @@ export type AcademyBenefit = components["schemas"]["AcademyBenefit"];
 export type AcademyBenefitInList =
   components["schemas"]["AcademyBenefitInList"];
 export type AcademyBenefitTag = components["schemas"]["AcademyBenefitTag"];
-export type Partner = components["schemas"]["Partner"];
 export type PartnerCard = components["schemas"]["PartnerCard"];
 export type PartnerInList = components["schemas"]["PartnerInList"];
 export type PartnerInSelect = components["schemas"]["PartnerInSelect"];

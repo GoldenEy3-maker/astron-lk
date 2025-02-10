@@ -9,6 +9,7 @@ import {
   getPartnerByIdQueryOptions,
   getPartnerBySessionQueryOptions,
 } from "../api/partner-query";
+import { PartnerStatusKeyToValueMap } from "../constants/partner-status-map";
 
 type PartnerCardProps = { id?: string } & React.ComponentProps<"article">;
 
@@ -49,10 +50,23 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
             </div>
           )}
           {!isLoading && data ? (
-            <div className="order-1 flex items-center gap-3 font-medium text-gold sm:order-2">
-              <Icons.Cup className="shrink-0" />
-              <span className="~text-sm/base">Золотой Партнёр</span>
-            </div>
+            data.status ? (
+              <div
+                className={cn(
+                  "order-1 flex items-center gap-3 font-medium sm:order-2",
+                  {
+                    "text-platinum": data.status === "platinum",
+                    "text-gold": data.status === "gold",
+                    "text-silver": data.status === "silver",
+                  },
+                )}
+              >
+                <Icons.Cup className="shrink-0" />
+                <span className="~text-sm/base">
+                  {PartnerStatusKeyToValueMap[data.status]}
+                </span>
+              </div>
+            ) : null
           ) : (
             <Skeleton className="h-5 w-1/4 !rounded-full" />
           )}

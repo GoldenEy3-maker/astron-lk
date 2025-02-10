@@ -17,6 +17,7 @@ partnersRouter.get(
     res.json({
       id: partner.id,
       title: partner.title,
+      status: partner.status,
       projects: partner.projects
         ? {
             count: partner.projects.count,
@@ -108,6 +109,7 @@ partnersRouter.get(
     res.json({
       id: partner.id,
       title: partner.title,
+      status: partner.status,
       projects: {
         count: partner.projects.count,
         link: partner.projects.link,

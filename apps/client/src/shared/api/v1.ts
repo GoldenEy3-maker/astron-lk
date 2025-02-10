@@ -10,7 +10,7 @@ const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
 const changeUserPassword_Body = z.object({ password: z.string(), newPassword: z.string() }).strict();
 const recoveryUserPassword_Body = z.object({ password: z.string(), token: z.string() }).strict();
-const PartnerCard = z.object({ id: z.string(), title: z.string(), projects: z.object({ count: z.number().int(), link: z.string(), implementedArea: z.number().int().optional() }).strict().optional(), cooperationYears: z.number().int().optional(), logo: z.string().optional(), certificate: z.string().optional() }).strict();
+const PartnerCard = z.object({ id: z.string(), title: z.string(), status: z.enum(["platinum", "gold", "silver"]).optional(), projects: z.object({ count: z.number().int(), link: z.string(), implementedArea: z.number().int().optional() }).strict().optional(), cooperationYears: z.number().int().optional(), logo: z.string().optional(), certificate: z.string().optional() }).strict();
 const PartnerInList = z.object({ id: z.string(), title: z.string(), logo: z.string().optional(), sales: z.object({ total: z.number().int(), percent: z.number().int() }).strict(), booking: z.object({ total: z.number().int(), percent: z.number().int() }).strict() }).strict();
 const PartnerInSelect = z.object({ id: z.string(), title: z.string() }).strict();
 const Image = z.object({ src: z.string(), alt: z.string().optional() }).strict();
@@ -49,7 +49,6 @@ const AcademyBenefitTag = z.object({ id: z.string(), label: z.string(), slug: z.
 const AcademyBenefitInList = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), img: Image.optional(), tags: z.array(AcademyBenefitTag) }).strict();
 const AcademyBenefit = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), img: Image.optional(), tags: z.array(AcademyBenefitTag), content: z.array(InfoBlock) }).strict();
 const User = z.object({ id: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), email: z.string(), phone: z.string(), password: z.string(), role: z.enum(["manager", "employee", "partner"]), tokenVersion: z.number().int(), isBanned: z.boolean(), favorites: z.array(z.string()), partnerId: z.string().optional() }).strict();
-const Partner = z.object({ id: z.string(), title: z.string(), projects: z.object({ count: z.number().int(), link: z.string(), implementedArea: z.number().int().optional() }).strict().optional(), cooperationYears: z.number().int().optional(), logo: z.string().optional(), certificate: z.string().optional(), sales: z.object({ total: z.number().int(), percent: z.number().int() }).strict(), booking: z.object({ total: z.number().int(), percent: z.number().int() }).strict() }).strict();
 
 export const schemas = {
 	signIn_Body,
@@ -93,7 +92,6 @@ export const schemas = {
 	AcademyBenefitInList,
 	AcademyBenefit,
 	User,
-	Partner,
 };
 
 const endpoints = makeApi([

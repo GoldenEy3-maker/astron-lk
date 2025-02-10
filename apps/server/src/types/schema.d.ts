@@ -787,43 +787,13 @@ export interface components {
             unreadNews?: string[];
             unreadBulletins?: string[];
         };
-        Partner: {
-            /** @example 1 */
-            id: string;
-            /** @example NABUCCO Architecture & Construction */
-            title: string;
-            projects?: {
-                /** @example 23 */
-                count: number;
-                /** @example /link/to/projects */
-                link: string;
-                /** @example 6578 */
-                implementedArea?: number;
-            };
-            /** @example 12 */
-            cooperationYears?: number;
-            /** @example /path/to/logo.svg */
-            logo?: string;
-            /** @example /path/to/certificate.pdf */
-            certificate?: string;
-            sales: {
-                /** @example 1000000 */
-                total: number;
-                /** @example 88 */
-                percent: number;
-            };
-            booking: {
-                /** @example 1000000 */
-                total: number;
-                /** @example 88 */
-                percent: number;
-            };
-        };
         PartnerCard: {
             /** @example 1 */
             id: string;
             /** @example Партнер */
             title: string;
+            /** @enum {string} */
+            status?: "platinum" | "gold" | "silver";
             projects?: {
                 /** @example 23 */
                 count: number;

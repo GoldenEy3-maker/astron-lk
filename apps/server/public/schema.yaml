@@ -1528,68 +1528,6 @@ components:
           type: array
           items:
             type: string
-    Partner:
-      type: object
-      required:
-        - id
-        - title
-        - sales
-        - booking
-      properties:
-        id:
-          type: string
-          example: "1"
-        title:
-          type: string
-          example: "NABUCCO Architecture & Construction"
-        projects:
-          type: object
-          required:
-            - count
-            - link
-          properties:
-            count:
-              type: integer
-              example: 23
-            link:
-              type: string
-              example: "/link/to/projects"
-            implementedArea:
-              type: integer
-              example: 6578
-        cooperationYears:
-          type: integer
-          example: 12
-        logo:
-          type: string
-          example: "/path/to/logo.svg"
-        certificate:
-          type: string
-          example: "/path/to/certificate.pdf"
-        sales:
-          type: object
-          required:
-            - total
-            - percent
-          properties:
-            total:
-              type: integer
-              example: 1000000
-            percent:
-              type: integer
-              example: 88
-        booking:
-          type: object
-          required:
-            - total
-            - percent
-          properties:
-            total:
-              type: integer
-              example: 1000000
-            percent:
-              type: integer
-              example: 88
     PartnerCard:
       type: object
       required:
@@ -1602,6 +1540,12 @@ components:
         title:
           type: string
           example: "Партнер"
+        status:
+          type: string
+          enum:
+            - platinum
+            - gold
+            - silver
         projects:
           type: object
           required:
