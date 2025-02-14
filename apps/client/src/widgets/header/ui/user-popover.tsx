@@ -79,7 +79,7 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
             className="w-full justify-start rounded-none px-5 font-normal"
           >
             <a
-              href="https://astronbuildings.com/"
+              href="https://astronbuildings.com/proekty-stroitelstva/favorite/"
               target="_blank"
               className="justify-between"
             >
