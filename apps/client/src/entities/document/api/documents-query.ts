@@ -101,7 +101,7 @@ export function getDocumentsInfiniteQueryOptions(
     queryFn: DocumentsQueryFn[queryKey](params),
     initialPageParam: params?.page ?? 1,
     getNextPageParam: (result) => result.nextPage || undefined,
-    staleTime: queryKey === "favorites" ? 0 : undefined,
+    staleTime: queryKey === "favorites" ? 0 : 1000 * 60 * 15,
     select: (result) => ({
       documents: result.pages.flatMap((page) => page.data),
       totalPages: result.pages[0].totalPages,
@@ -127,41 +127,6 @@ export function getDocumentsCategoriesQueryOptions(
     queryKey: [queryKey, "categories"],
     queryFn: DocumentsCategoriesQueryFn[queryKey],
   });
-}
-
-type ResetDocumentsQueryPagesParams = {
-  queryKey?: GetDocumentsQueryKeys;
-  page: number;
-  category?: string;
-  limit?: number;
-  sort?: DocumentsSortKeyMap;
-  fromDate?: string;
-  toDate?: string;
-};
-
-export function resetDocumentsQueryPages(
-  params: ResetDocumentsQueryPagesParams,
-) {
-  const queryKey = params.queryKey ?? "documents";
-
-  queryClient.setQueryData(
-    getDocumentsInfiniteQueryOptions({
-      queryKey,
-      limit: params.limit,
-      category: params.category ?? undefined,
-      page: params.page,
-      sort: params.sort,
-      fromDate: params.fromDate,
-      toDate: params.toDate,
-    }).queryKey,
-    (data) => {
-      if (!data) return undefined;
-      return {
-        pages: data.pages.slice(0, 1),
-        pageParams: data.pageParams.slice(0, 1),
-      };
-    },
-  );
 }
 
 export function prefetchDocumentsPage(params: GetDocumentsQueryOptionsParams) {

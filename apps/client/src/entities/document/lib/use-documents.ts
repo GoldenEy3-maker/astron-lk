@@ -1,16 +1,12 @@
-import { useScrollTo } from "@/shared/lib/use-scroll-to";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { parseAsInteger, useQueryState } from "nuqs";
-import { useState } from "react";
 import {
+  DocumentsQueryFnData,
   getDocumentsInfiniteQueryOptions,
   GetDocumentsQueryKeys,
-  prefetchDocumentsPage,
-  resetDocumentsQueryPages,
 } from "../api/documents-query";
 import { useDocumentsToolbar } from "./use-documents-toolbar";
 import { isoStringWithoutTime } from "@repo/date";
 import { useReadBulletins } from "./use-read-bulletins";
+import { usePaginationWithLoadMore } from "@/shared/lib/use-pagination-with-load-more";
 
 type UseDocumentsProps = {
   limit: number;
@@ -23,16 +19,6 @@ export function useDocuments({
   scrollToRef,
   queryKey,
 }: UseDocumentsProps) {
-  const [queryPage, setQueryPage] = useQueryState(
-    "page",
-    parseAsInteger.withDefault(1),
-  );
-  const [displayedPage, setDisplayedPage] = useState(queryPage);
-
-  const { scrollTo } = useScrollTo({
-    ref: scrollToRef,
-  });
-
   const {
     category,
     sort,
@@ -42,92 +28,65 @@ export function useDocuments({
     onDateChange,
     onCategoryChange,
   } = useDocumentsToolbar({
-    onCategoryUpdate: resetPagination,
-    onDateUpdate: resetPagination,
+    onCategoryUpdate,
+    onDateUpdate,
   });
+
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    page,
+    handlePageChange,
+    onLoadMore,
+    onPreviousPage,
+    onNextPage,
+    resetPagination,
+  } = usePaginationWithLoadMore<
+    { data: DocumentsQueryFnData[]; nextPage: number; totalPages: number },
+    Error,
+    { documents: DocumentsQueryFnData[]; totalPages: number },
+    (string | number | undefined)[],
+    number
+  >({
+    scrollToRef,
+    infiniteQueryOptions: getQueryOptions,
+    resetPaginationQueryKey: (page) => getQueryOptions(page ?? 1).queryKey,
+    prefetchNextPageInfiniteQueryOptions: getQueryOptions,
+  });
+
+  function onCategoryUpdate() {
+    resetPagination();
+  }
+
+  function onDateUpdate() {
+    resetPagination();
+  }
+
+  function getQueryOptions(page: number) {
+    return getDocumentsInfiniteQueryOptions({
+      queryKey,
+      limit,
+      page,
+      category: category ?? undefined,
+      sort: sort ?? undefined,
+      fromDate: fromDateFilter
+        ? isoStringWithoutTime(fromDateFilter)
+        : undefined,
+      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
+    });
+  }
 
   const { readBulletinsHandler } = useReadBulletins();
 
-  function resetPagination() {
-    setQueryPage(1);
-
-    setDisplayedPage(1);
-    resetDocumentsQueryPages({
-      queryKey,
-      page: 1,
-      category: category ?? undefined,
-      limit: limit ?? undefined,
-      sort: sort ?? undefined,
-      fromDate: fromDateFilter
-        ? isoStringWithoutTime(fromDateFilter)
-        : undefined,
-      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
-    });
-  }
-
-  const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useInfiniteQuery(
-      getDocumentsInfiniteQueryOptions({
-        queryKey,
-        limit,
-        category: category ?? undefined,
-        page: queryPage ?? undefined,
-        sort: sort ?? undefined,
-        fromDate: fromDateFilter
-          ? isoStringWithoutTime(fromDateFilter)
-          : undefined,
-        toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
-      }),
-    );
-
-  function handlePageChange(newPage: number) {
-    setQueryPage(newPage);
-    scrollTo();
-    setDisplayedPage(newPage);
-    resetDocumentsQueryPages({
-      queryKey,
-      page: newPage,
-      category: category ?? undefined,
-      limit: limit ?? undefined,
-      sort: sort ?? undefined,
-      fromDate: fromDateFilter
-        ? isoStringWithoutTime(fromDateFilter)
-        : undefined,
-      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
-    });
-  }
-
-  function onLoadMore() {
-    fetchNextPage();
-    setDisplayedPage((prev) => prev + 1);
-    prefetchDocumentsPage({
-      queryKey,
-      limit: limit ?? undefined,
-      category: category ?? undefined,
-      page: displayedPage + 1,
-      sort: sort ?? undefined,
-      fromDate: fromDateFilter
-        ? isoStringWithoutTime(fromDateFilter)
-        : undefined,
-      toDate: toDateFilter ? isoStringWithoutTime(toDateFilter) : undefined,
-    });
-  }
-
-  function onPreviousPage() {
-    handlePageChange(displayedPage - 1);
-  }
-
-  function onNextPage() {
-    handlePageChange(displayedPage + 1);
-  }
-
   function onRemoveFavoritesExceedMinimum() {
-    handlePageChange(displayedPage - 1);
+    handlePageChange(page - 1);
   }
 
   return {
     data,
-    displayedPage,
+    page,
     isLoading,
     isFetchingNextPage,
     onRemoveFavoritesExceedMinimum,

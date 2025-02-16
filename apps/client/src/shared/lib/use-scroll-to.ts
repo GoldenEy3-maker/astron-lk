@@ -4,8 +4,10 @@ export function useScrollTo(
   args?: ScrollIntoViewOptions & { ref?: React.RefObject<HTMLDivElement> },
 ) {
   const ref = useRef<HTMLDivElement>(null);
-  const scrollTo = () => {
+
+  function scrollTo() {
     (args?.ref ?? ref).current?.scrollIntoView(args);
-  };
+  }
+
   return { ref, scrollTo };
 }

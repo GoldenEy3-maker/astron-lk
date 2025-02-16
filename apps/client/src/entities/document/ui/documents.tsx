@@ -36,7 +36,7 @@ export function Documents({
   const {
     data,
     isLoading,
-    displayedPage,
+    page,
     isFetchingNextPage,
     hasNextPage,
     handlePageChange,
@@ -104,7 +104,7 @@ export function Documents({
         onRemoveFavoritesExceedMinimum={
           queryKey === "favorites" ? onRemoveFavoritesExceedMinimum : undefined
         }
-        currentPage={displayedPage}
+        currentPage={page}
         onIntersectingUnread={readBulletinsHandler}
       />
 
@@ -122,7 +122,7 @@ export function Documents({
       {pagination && data?.totalPages && data.totalPages > 1 ? (
         <div className="mt-6 flex justify-center">
           <Pagination
-            currentPage={displayedPage}
+            currentPage={page}
             totalPages={data.totalPages}
             onPageChange={handlePageChange}
             onPreviousPage={onPreviousPage}
