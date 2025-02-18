@@ -5,14 +5,20 @@ import { z } from "zod";
 import { schemas } from "./v1";
 
 export function accessControlByRoleLoader(
-  role: z.infer<typeof schemas.User>["role"],
+  role:
+    | z.infer<typeof schemas.User>["role"]
+    | z.infer<typeof schemas.User>["role"][],
 ): LoaderFunction {
   return async () => {
     const query = getSessionQueryOptions();
     try {
       await queryClient.prefetchQuery(query);
       const session = await queryClient.ensureQueryData(query);
-      if (session.role !== role)
+
+      if (
+        (typeof role === "string" && session.role !== role) ||
+        (Array.isArray(role) && !role.includes(session.role))
+      )
         return redirect(`/not-allowed?denied-role=${session.role}`);
 
       return true;

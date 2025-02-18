@@ -5,7 +5,9 @@ import { Link, useSearchParams } from "react-router-dom";
 export function NotFoundPage() {
   const [searchParams] = useSearchParams();
 
-  const isNotAllowedByManager = searchParams.get("denied-role") === "manager";
+  const isNotAllowedByManager =
+    searchParams.get("denied-role") === "manager" ||
+    searchParams.get("denied-role") === "super-manager";
 
   return (
     <main className="col-[main] flex flex-col items-center justify-center py-[3.75rem]">

@@ -1051,6 +1051,20 @@ export default new (class DBService {
           favorites: [],
           partnerId: "1",
         },
+        {
+          id: "8",
+          name: "Владислав",
+          surname: "Кленов",
+          patronymic: "Владиславович",
+          email: "super-manager@manager.ru",
+          password: passwordService.hashPassword("super-manager"),
+          phone: "+79131231231",
+          tokenVersion: 0,
+          isBanned: false,
+          role: "super-manager",
+          favorites: [],
+          partnerId: "1",
+        },
       ],
       news: [
         {
@@ -1290,9 +1304,9 @@ export default new (class DBService {
           projects: {
             count: 23,
             link: "/",
-            // implementedArea: 5678,
+            implementedArea: 5678,
           },
-          status: "silver",
+          status: "gold",
           cooperationYears: 12,
           logo: "/partner-logo-1.webp",
           certificate: "/",

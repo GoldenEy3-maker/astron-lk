@@ -1463,6 +1463,7 @@ components:
           type: string
           enum:
             - manager
+            - super-manager
             - employee
             - partner
           example: "manager"
@@ -1504,6 +1505,7 @@ components:
           type: string
           enum:
             - manager
+            - super-manager
             - employee
             - partner
           example: "manager"

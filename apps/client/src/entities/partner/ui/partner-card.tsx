@@ -21,7 +21,12 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
   return (
     <article
       className={cn(
-        "flex items-start rounded-main border-b-2 border-gold bg-card ~gap-7/14 ~px-7/14 ~py-5/9",
+        "flex items-start rounded-main border-b-[3px] bg-card ~gap-7/14 ~px-7/14 ~py-5/9",
+        {
+          "border-platinum": data?.status === "platinum",
+          "border-gold": data?.status === "gold",
+          "border-silver": data?.status === "silver",
+        },
         className,
       )}
       {...props}

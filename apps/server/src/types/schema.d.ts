@@ -758,7 +758,7 @@ export interface components {
              * @example manager
              * @enum {string}
              */
-            role: "manager" | "employee" | "partner";
+            role: "manager" | "super-manager" | "employee" | "partner";
             tokenVersion: number;
             isBanned: boolean;
             favorites: string[];
@@ -778,7 +778,7 @@ export interface components {
              * @example manager
              * @enum {string}
              */
-            role: "manager" | "employee" | "partner";
+            role: "manager" | "super-manager" | "employee" | "partner";
             /** @example +79231665038 */
             phone: string;
             favorites: string[];

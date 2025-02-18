@@ -99,7 +99,7 @@ export function useNavigationLinks() {
         ],
       );
     }
-    if (session?.role === "manager") {
+    if (session?.role === "manager" || session?.role === "super-manager") {
       const link: NavigationLinkType = {
         url: Routes.Partners,
         icon: <Icons.UserOctagon />,

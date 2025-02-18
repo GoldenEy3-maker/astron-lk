@@ -44,7 +44,7 @@ export function createRouter() {
           />
           <Route
             path={Routes.Partners}
-            loader={accessControlByRoleLoader("manager")}
+            loader={accessControlByRoleLoader(["manager", "super-manager"])}
             handle={setCrumbHandle(Routes.Partners, "Партнеры-Строители")}
           >
             <Route index element={<LazyModules.PartnersPage />} />
