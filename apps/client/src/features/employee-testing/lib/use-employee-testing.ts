@@ -4,7 +4,6 @@ import {
   getEmployeeTestingQueryOptions,
   getEmployeeTestingUploadedYearsQueryOptions,
 } from "../api/employee-testing-query";
-import { useMemo } from "react";
 
 type UseEmployeeTestingProps = {
   year?: string | null;
@@ -31,7 +30,7 @@ export function useEmployeeTesting({
     getEmployeeTestingQueryOptions({ year: controlledYear, partnerId }),
   );
 
-  const chartData = useMemo(() => {
+  function getChartData() {
     if (!data) return [];
 
     const groupedData = data?.data.reduce((acc, item) => {
@@ -53,11 +52,11 @@ export function useEmployeeTesting({
     }
 
     return result;
-  }, [data]);
+  }
 
   return {
     data: data?.data,
-    chartData,
+    chartData: getChartData(),
     uploadedAt: data?.uploadedAt,
     updatedAt: data?.updatedAt,
     isLoading,
