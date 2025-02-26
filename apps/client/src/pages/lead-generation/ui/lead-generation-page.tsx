@@ -2,7 +2,6 @@ import { getPartnerByIdQueryOptions } from "@/entities/partner";
 import {
   LeadGenerationPlanTable,
   getLeadGenerationPlanQueryOptions,
-  getLeadGenerationQuarterPassedQueryOptions,
   getLeadGenerationUploadedYearsQueryOptions,
 } from "@/features/lead-generation";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
@@ -32,11 +31,6 @@ export function LeadGenerationPage() {
   const { data: leadGenerationPlan, isLoading: isLeadGenerationPlanLoading } =
     useQuery(getLeadGenerationPlanQueryOptions({ partnerId, year }));
 
-  const {
-    data: leadGenerationQuarterPassed,
-    isLoading: isLeadGenerationQuarterPassedLoading,
-  } = useQuery(getLeadGenerationQuarterPassedQueryOptions({ partnerId, year }));
-
   useBreadcrumbs("partnerId", partner?.title);
 
   return (
@@ -54,20 +48,8 @@ export function LeadGenerationPage() {
           </SectionHeader>
           <SectionContent>
             <LeadGenerationPlanTable
-              monthLeads={leadGenerationPlan}
-              quarterPassed={leadGenerationQuarterPassed?.reduce<
-                Record<number, number>
-              >((acc, item) => {
-                acc[item.quarter] = item.value;
-
-                return acc;
-              }, {})}
-              isMonthLeadsLoading={
-                isLeadGenerationPlanLoading || isUploadedYearsLoading
-              }
-              isQuarterPassedLoading={
-                isLeadGenerationQuarterPassedLoading || isUploadedYearsLoading
-              }
+              data={leadGenerationPlan}
+              isLoading={isLeadGenerationPlanLoading || isUploadedYearsLoading}
             />
           </SectionContent>
         </Section>

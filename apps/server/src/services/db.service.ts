@@ -16,7 +16,7 @@ import {
   Bulletin,
   Document,
   DocumentCategory,
-  LeadGenerationList,
+  LeadGenerationItem,
   News,
   NewsInList,
   PartnerCard,
@@ -63,7 +63,7 @@ type DBData = {
   employees: Employee[];
   tests: Test[];
   employeeTests: EmployeeTest[];
-  leadGenerations: LeadGenerationList[];
+  leadGenerations: LeadGenerationItem[];
   academySections: (AcademySection & AcademySectionInList)[];
   academyProjects: (AcademyProject & AcademyProjectInList)[];
   academyWebinars: (AcademyWebinar & AcademyWebinarInList)[];

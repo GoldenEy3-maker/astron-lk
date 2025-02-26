@@ -38,25 +38,6 @@ export function getLeadGenerationUploadedYearsQueryOptions(partnerId?: string) {
   });
 }
 
-export function getLeadGenerationQuarterPassedQueryOptions(
-  params?: GetLeadGenerationQueryOptionsProps,
-) {
-  return queryOptions({
-    queryKey: [
-      BASE_LEAD_GENERATION_QUERY_KEY,
-      "quarter-passed",
-      params?.year,
-      params?.partnerId,
-    ],
-    queryFn: ({ signal }) =>
-      apiClient.getLeadGenerationQuarterPassed({
-        queries: { year: params?.year ?? "", partnerId: params?.partnerId },
-        signal,
-      }),
-    enabled: !!params?.year,
-  });
-}
-
 export function getLeadGenerationListQueryOptions(
   params?: GetLeadGenerationQueryOptionsProps,
 ) {

@@ -497,23 +497,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/kpi/lead-generation/uploaded-dates": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить даты обновления выгрузки лидогенерации */
-        get: operations["getLeadGenerationUploadedDates"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/kpi/lead-generation/list": {
         parameters: {
             query?: never;
@@ -540,23 +523,6 @@ export interface paths {
         };
         /** Получить данные по выполенению квартального плана лидогенерации */
         get: operations["getLeadGenerationPlan"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/kpi/lead-generation/quarter-passed": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить список зачтенных лидов по кварталам */
-        get: operations["getLeadGenerationQuarterPassed"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1138,7 +1104,7 @@ export interface components {
             /** @example 81 */
             result: number;
         };
-        LeadGenerationList: {
+        LeadGenerationItem: {
             /** @example 1 */
             id: string;
             project: {
@@ -1154,7 +1120,7 @@ export interface components {
             fixedAt: string;
         };
         LeadGenerationMonth: {
-            /** @example 0 - Январь, 11 - Декарь */
+            /** @example 0 - Январь, 11 - Декарь (number) */
             monthIdx: number;
             /** @example 2 */
             value: number;
@@ -2263,60 +2229,6 @@ export interface operations {
             };
         };
     };
-    getLeadGenerationUploadedDates: {
-        parameters: {
-            query: {
-                /** @description Год */
-                year: string;
-                /** @description ID партнёра */
-                partnerId?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /**
-                         * Format: date-time
-                         * @example 2025-02-25T00:00:00Z
-                         */
-                        uploadedAt: string;
-                        /**
-                         * Format: date-time
-                         * @example 2025-02-25T00:00:00Z
-                         */
-                        updatedAt: string;
-                    };
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Партнёр не найден */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
     getLeadGenerationList: {
         parameters: {
             query: {
@@ -2337,7 +2249,19 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LeadGenerationList"];
+                    "application/json": {
+                        data: components["schemas"]["LeadGenerationItem"][];
+                        /**
+                         * Format: date-time
+                         * @example 2025-02-02T00:00:00Z
+                         */
+                        uploadedAt: string;
+                        /**
+                         * Format: date-time
+                         * @example 2025-01-01T00:00:00Z
+                         */
+                        updatedAt: string;
+                    };
                 };
             };
             /** @description Пользователь не авторизован */
@@ -2380,50 +2304,10 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LeadGenerationMonth"][];
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Партнёр не найден */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    getLeadGenerationQuarterPassed: {
-        parameters: {
-            query: {
-                /** @description Год */
-                year: string;
-                /** @description ID партнера */
-                partnerId?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["LeadGenerationQuarterPassed"][];
+                    "application/json": {
+                        months: components["schemas"]["LeadGenerationMonth"][];
+                        quarterPassed: components["schemas"]["LeadGenerationQuarterPassed"][];
+                    };
                 };
             };
             /** @description Пользователь не авторизован */

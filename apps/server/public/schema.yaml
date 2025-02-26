@@ -1049,60 +1049,7 @@ paths:
                 type: array
                 items:
                   type: string
-                  example: "2024"
-        "404":
-          description: Партнёр не найден
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
-  /api/kpi/lead-generation/uploaded-dates:
-    get:
-      summary: Получить даты обновления выгрузки лидогенерации
-      operationId: getLeadGenerationUploadedDates
-      tags:
-        - KPI
-        - Лидогенерация
-      parameters:
-        - name: year
-          in: query
-          required: true
-          description: Год
-          schema:
-            type: string
-        - name: partnerId
-          in: query
-          required: false
-          description: ID партнёра
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - uploadedAt
-                  - updatedAt
-                properties:
-                  uploadedAt:
-                    type: string
-                    format: date-time
-                    example: "2025-02-25T00:00:00Z"
-                  updatedAt:
-                    type: string
-                    format: date-time
-                    example: "2025-02-25T00:00:00Z"
+                  example: "2025"
         "404":
           description: Партнёр не найден
           content:
@@ -1143,7 +1090,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LeadGenerationList"
+                type: object
+                required:
+                  - data
+                  - uploadedAt
+                  - updatedAt
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LeadGenerationItem"
+                  uploadedAt:
+                    type: string
+                    format: date-time
+                    example: "2025-02-02T00:00:00Z"
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: "2025-01-01T00:00:00Z"
         "404":
           description: Партнёр не найден
           content:
@@ -1184,52 +1148,19 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/LeadGenerationMonth"
-        "404":
-          description: Партнёр не найден
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
-  /api/kpi/lead-generation/quarter-passed:
-    get:
-      summary: Получить список зачтенных лидов по кварталам
-      operationId: getLeadGenerationQuarterPassed
-      tags:
-        - KPI
-        - Лидогенерация
-      parameters:
-        - name: year
-          in: query
-          required: true
-          description: Год
-          schema:
-            type: string
-        - name: partnerId
-          in: query
-          required: false
-          description: ID партнера
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/LeadGenerationQuarterPassed"
+                type: object
+                required:
+                  - months
+                  - quarterPassed
+                properties:
+                  months:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LeadGenerationMonth"
+                  quarterPassed:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/LeadGenerationQuarterPassed"
         "404":
           description: Партнёр не найден
           content:
@@ -2245,7 +2176,7 @@ components:
         result:
           type: integer
           example: 81
-    LeadGenerationList:
+    LeadGenerationItem:
       type: object
       required:
         - id
@@ -2279,7 +2210,7 @@ components:
       properties:
         monthIdx:
           type: number
-          example: 0 - Январь, 11 - Декарь
+          example: 0 - Январь, 11 - Декарь (number)
         value:
           type: number
           example: 2

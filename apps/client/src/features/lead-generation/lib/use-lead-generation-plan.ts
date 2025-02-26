@@ -1,8 +1,10 @@
+import { schemas } from "@/shared/api/v1";
 import {
   getFiscalQuarter,
   getMonthsByFiscalQuarter,
 } from "@/shared/lib/format-date";
 import { set } from "date-fns";
+import { z } from "zod";
 
 type LeadGenerationMonth = { idx: number; value: number | null };
 
@@ -12,7 +14,7 @@ type LeadGenerationQuarter = {
 };
 
 type UseLeadGenerationPlanProps = {
-  monthLeads?: { monthIdx: number; value: number }[];
+  months?: z.infer<typeof schemas.LeadGenerationMonth>[];
 };
 
 export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
@@ -30,8 +32,8 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
         })),
     }));
 
-  const data =
-    params?.monthLeads?.reduce((acc, item) => {
+  const quarters =
+    params?.months?.reduce((acc, item) => {
       const quarter = getFiscalQuarter(
         set(new Date(), { month: item.monthIdx, date: 1 }),
       );
@@ -89,7 +91,7 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
   }
 
   return {
-    data,
+    quarters,
     checkIsDestructiveMonth,
     checkIsSuccessMonth,
     checkIsDestructiveQuarter,

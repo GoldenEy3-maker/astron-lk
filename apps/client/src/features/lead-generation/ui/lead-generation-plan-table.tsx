@@ -4,22 +4,23 @@ import { Table, TableBody, TableCell, TableRow } from "@/shared/ui/table";
 import { useLeadGenerationPlan } from "../lib/use-lead-generation-plan";
 import { Fragment } from "react/jsx-runtime";
 import { Skeleton } from "@/shared/ui/skeleton";
+import { z } from "zod";
+import { schemas } from "@/shared/api/v1";
 
 type LeadGenerationPlanTableProps = {
-  monthLeads?: { monthIdx: number; value: number }[];
-  quarterPassed?: Record<number, number>;
-  isMonthLeadsLoading?: boolean;
-  isQuarterPassedLoading?: boolean;
+  data?: {
+    months: z.infer<typeof schemas.LeadGenerationMonth>[];
+    quarterPassed: z.infer<typeof schemas.LeadGenerationQuarterPassed>[];
+  };
+  isLoading?: boolean;
 };
 
 export function LeadGenerationPlanTable({
-  monthLeads,
-  quarterPassed,
-  isMonthLeadsLoading,
-  isQuarterPassedLoading,
+  data,
+  isLoading,
 }: LeadGenerationPlanTableProps) {
   const {
-    data,
+    quarters,
     renderMonth,
     renderProgress,
     checkIsDestructiveMonth,
@@ -27,14 +28,14 @@ export function LeadGenerationPlanTable({
     checkIsDestructiveQuarter,
     checkIsSuccessQuarter,
     checkIsEmptyQuarter,
-  } = useLeadGenerationPlan({ monthLeads });
+  } = useLeadGenerationPlan({ months: data?.months });
 
   return (
     <Table>
       <TableBody className="text-sm [&_tr>td:first-child]:w-[30%]">
         <TableRow>
           <TableCell className="!pt-0">Квартал</TableCell>
-          {data.map((quarter) => (
+          {quarters?.map((quarter) => (
             <TableCell
               key={quarter.quarter}
               className={cn("!pt-0 text-center", {
@@ -49,12 +50,12 @@ export function LeadGenerationPlanTable({
         </TableRow>
         <TableRow>
           <TableCell>Месяц</TableCell>
-          {data.map((quarter) => (
+          {quarters.map((quarter) => (
             <TableCell key={quarter.quarter} className="text-center">
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment key={month.idx}>
-                    {!isMonthLeadsLoading ? (
+                    {!isLoading ? (
                       <span
                         className={cn("capitalize", {
                           "text-destructive": checkIsDestructiveMonth(month),
@@ -74,12 +75,12 @@ export function LeadGenerationPlanTable({
         </TableRow>
         <TableRow>
           <TableCell>Лиды, шт</TableCell>
-          {data.map((quarter) => (
+          {quarters.map((quarter) => (
             <TableCell key={quarter.quarter} className="text-center">
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment key={month.idx}>
-                    {!isMonthLeadsLoading ? (
+                    {!isLoading ? (
                       <span
                         className={cn({
                           "text-destructive": checkIsDestructiveMonth(month),
@@ -99,12 +100,12 @@ export function LeadGenerationPlanTable({
         </TableRow>
         <TableRow>
           <TableCell>Выполнение месяц</TableCell>
-          {data.map((quarter) => (
+          {quarters.map((quarter) => (
             <TableCell key={quarter.quarter} className="text-center">
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment>
-                    {!isMonthLeadsLoading ? (
+                    {!isLoading ? (
                       <span
                         key={month.idx}
                         className={cn({
@@ -126,16 +127,23 @@ export function LeadGenerationPlanTable({
         </TableRow>
         <TableRow>
           <TableCell>Зачтено за квартал, шт</TableCell>
-          {data.map((quarter) => (
+          {quarters.map((quarter) => (
             <TableCell key={quarter.quarter}>
               <div
                 className={cn("flex items-center justify-center text-center", {
                   "text-secondary": checkIsEmptyQuarter(quarter),
                 })}
               >
-                {!isQuarterPassedLoading ? (
-                  quarterPassed ? (
-                    (quarterPassed[quarter.quarter] ?? "-")
+                {!isLoading ? (
+                  data?.quarterPassed ? (
+                    (data.quarterPassed.reduce<Record<number, number>>(
+                      (acc, item) => {
+                        acc[item.quarter] = item.value;
+
+                        return acc;
+                      },
+                      {},
+                    )[quarter.quarter] ?? "-")
                   ) : (
                     "-"
                   )
@@ -148,7 +156,7 @@ export function LeadGenerationPlanTable({
         </TableRow>
         <TableRow>
           <TableCell>Общий квартальный зачёт</TableCell>
-          {data.map((quarter) => (
+          {quarters.map((quarter) => (
             <TableCell key={quarter.quarter}>
               <div
                 className={cn("flex items-center justify-center", {
@@ -157,7 +165,7 @@ export function LeadGenerationPlanTable({
                   "text-secondary": checkIsEmptyQuarter(quarter),
                 })}
               >
-                {!isMonthLeadsLoading ? (
+                {!isLoading ? (
                   checkIsSuccessQuarter(quarter) ? (
                     <Icons.Check className="size-3.5" />
                   ) : checkIsDestructiveQuarter(quarter) ? (

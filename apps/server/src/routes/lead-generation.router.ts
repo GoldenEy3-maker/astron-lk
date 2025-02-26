@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import {
-  LeadGenerationList,
+  LeadGenerationItem,
   LeadGenerationMonth,
   LeadGenerationQuarterPassed,
 } from "../types/globals";
@@ -12,15 +12,32 @@ const leadGenerationRouter = Router();
 leadGenerationRouter.get(
   "/list",
   authMiddleware,
-  (req: Request, res: Response<LeadGenerationList[]>) => {
-    res.json(dbService.get("leadGenerations"));
+  (
+    req: Request,
+    res: Response<{
+      data: LeadGenerationItem[];
+      uploadedAt: string;
+      updatedAt: string;
+    }>
+  ) => {
+    res.json({
+      data: dbService.get("leadGenerations"),
+      updatedAt: new Date().toISOString(),
+      uploadedAt: new Date().toISOString(),
+    });
   }
 );
 
 leadGenerationRouter.get(
   "/plan",
   authMiddleware,
-  (req: Request, res: Response<LeadGenerationMonth[]>) => {
+  (
+    req: Request,
+    res: Response<{
+      months: LeadGenerationMonth[];
+      quarterPassed: LeadGenerationQuarterPassed[];
+    }>
+  ) => {
     const { year } = req.query as { year: string };
 
     const list = dbService.get("leadGenerations").filter((lead) => {
@@ -49,22 +66,20 @@ leadGenerationRouter.get(
       return acc;
     }, new Map<number, number>());
 
-    const data: LeadGenerationMonth[] = [];
+    const months: LeadGenerationMonth[] = [];
 
     for (const [idx, value] of group.entries()) {
-      data.push({ monthIdx: idx, value });
+      months.push({ monthIdx: idx, value });
     }
 
-    res.json(data);
-  }
-);
-
-leadGenerationRouter.get(
-  "/uploaded-dates",
-  (req: Request, res: Response<{ uploadedAt: string; updatedAt: string }>) => {
     res.json({
-      updatedAt: new Date().toISOString(),
-      uploadedAt: new Date().toISOString(),
+      months,
+      quarterPassed: [
+        { quarter: 1, value: 5 },
+        { quarter: 2, value: 7 },
+        { quarter: 3, value: 4 },
+        { quarter: 4, value: 8 },
+      ],
     });
   }
 );
@@ -74,22 +89,11 @@ leadGenerationRouter.get(
   (req: Request, res: Response<string[]>) => {
     const list = dbService.get("leadGenerations");
     const years = list
-      .map((item) => new Date(item.fixedAt).getFullYear().toString())
-      .sort((a, b) => parseInt(b) - parseInt(a));
+      .map((item) => new Date(item.fixedAt).getFullYear())
+      .sort((a, b) => b - a)
+      .map((year) => year.toString());
 
     res.json(Array.from(new Set(years)));
-  }
-);
-
-leadGenerationRouter.get(
-  "/quarter-passed",
-  (req: Request, res: Response<LeadGenerationQuarterPassed[]>) => {
-    res.json([
-      { quarter: 1, value: 5 },
-      { quarter: 2, value: 7 },
-      { quarter: 3, value: 4 },
-      { quarter: 4, value: 8 },
-    ]);
   }
 );
 
