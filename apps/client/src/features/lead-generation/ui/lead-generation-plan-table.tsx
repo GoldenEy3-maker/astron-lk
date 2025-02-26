@@ -104,10 +104,9 @@ export function LeadGenerationPlanTable({
             <TableCell key={quarter.quarter} className="text-center">
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
-                  <Fragment>
+                  <Fragment key={month.idx}>
                     {!isLoading ? (
                       <span
-                        key={month.idx}
                         className={cn({
                           "text-success": checkIsSuccessMonth(month),
                           "text-destructive": checkIsDestructiveMonth(month),

@@ -36,7 +36,12 @@ export function EmployeeTestingPage() {
         ) : null}
       </SectionHeader>
       <SectionContent>
-        <EmployeeTestingCard year={year} extended />
+        <EmployeeTestingCard
+          year={year}
+          onYearChange={setYear}
+          partnerId={partnerId}
+          extended
+        />
       </SectionContent>
     </Section>
   );

@@ -4,6 +4,7 @@ import { getKpiUploadedDate } from "../api/kpi-query";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { formatDate } from "@/shared/lib/format-date";
+import { LeadGenerationCard } from "@/features/lead-generation";
 
 type KpiProps = {
   partnerId?: string;
@@ -26,6 +27,7 @@ export function Kpi({ partnerId, ...props }: KpiProps) {
       </SectionHeader>
       <SectionContent>
         <EmployeeTestingCard partnerId={partnerId} />
+        <LeadGenerationCard partnerId={partnerId} />
       </SectionContent>
     </Section>
   );
