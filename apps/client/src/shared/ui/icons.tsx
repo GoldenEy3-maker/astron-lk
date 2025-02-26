@@ -229,6 +229,26 @@ export const Icons = {
       </svg>
     );
   },
+  Dash: (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="3"
+        viewBox="0 0 16 3"
+        fill="none"
+        {...props}
+      >
+        <path
+          d="M1 1.5H15"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  },
   ChevronDown: (props: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg

@@ -62,9 +62,12 @@ export function createRouter() {
                 )}
               />
               <Route
-                path={Routes.Partners + "/:partnerId" + Routes.Leads}
-                element={<LazyModules.LeadsPage />}
-                handle={setCrumbHandle(Routes.Leads, "Результаты лидогенераци")}
+                path={Routes.Partners + "/:partnerId" + Routes.LeadGeneration}
+                element={<LazyModules.LeadGenerationPage />}
+                handle={setCrumbHandle(
+                  Routes.LeadGeneration,
+                  "Результаты лидогенераци",
+                )}
               />
               <Route
                 path={Routes.Partners + "/:partnerId" + Routes.Booking}
@@ -88,9 +91,12 @@ export function createRouter() {
             )}
           />
           <Route
-            path={Routes.Leads}
-            element={<LazyModules.LeadsPage />}
-            handle={setCrumbHandle(Routes.Leads, "Результаты лидогенераци")}
+            path={Routes.LeadGeneration}
+            element={<LazyModules.LeadGenerationPage />}
+            handle={setCrumbHandle(
+              Routes.LeadGeneration,
+              "Результаты лидогенераци",
+            )}
             loader={accessControlByRoleLoader("partner")}
           />
           <Route

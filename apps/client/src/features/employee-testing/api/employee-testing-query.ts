@@ -7,16 +7,16 @@ type GetEmployeeTestingQueryOptionsProps = {
 };
 
 export function getEmployeeTestingQueryOptions(
-  params: GetEmployeeTestingQueryOptionsProps,
+  params?: GetEmployeeTestingQueryOptionsProps,
 ) {
   return queryOptions({
     queryKey: ["employee-testing", params?.year, params?.partnerId],
     queryFn: ({ signal }) =>
       apiClient.getEmployeeTesting({
-        queries: { year: params.year!, partnerId: params?.partnerId },
+        queries: { year: params?.year ?? "", partnerId: params?.partnerId },
         signal,
       }),
-    enabled: !!params.year,
+    enabled: !!params?.year,
   });
 }
 

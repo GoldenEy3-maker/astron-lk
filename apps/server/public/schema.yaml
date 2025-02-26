@@ -930,6 +930,44 @@ paths:
                 $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
+  /api/kpi/employee-testing/uploaded-years:
+    get:
+      summary: Получить список годов, за которые были загружены данные тестирования сотрудников
+      operationId: getEmployeeTestingUploadedYears
+      tags:
+        - KPI
+        - Тестирование сотрудников
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "2024"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
   /api/kpi/employee-testing:
     get:
       summary: Получить данные тестирования сотрудников
@@ -988,44 +1026,6 @@ paths:
                 $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
-  /api/kpi/employee-testing/uploaded-years:
-    get:
-      summary: Получить список годов, за которые были загружены данные тестирования сотрудников
-      operationId: getEmployeeTestingUploadedYears
-      tags:
-        - KPI
-        - Тестирование сотрудников
-      parameters:
-        - name: partnerId
-          in: query
-          required: false
-          description: ID партнёра
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-                  example: "2024"
-        "404":
-          description: Партнёр не найден
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Пользователь не авторизован
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-      security:
-        - bearerAuth: []
   /api/kpi/lead-generation/uploaded-years:
     get:
       summary: Получить список годов, за которые были загружены данные лидогенерации
@@ -1064,10 +1064,10 @@ paths:
                 $ref: "#/components/schemas/Error"
       security:
         - bearerAuth: []
-  /api/kpi/lead-generation:
+  /api/kpi/lead-generation/uploaded-dates:
     get:
-      summary: Получить данные лидогенерации
-      operationId: getLeadGeneration
+      summary: Получить даты обновления выгрузки лидогенерации
+      operationId: getLeadGenerationUploadedDates
       tags:
         - KPI
         - Лидогенерация
@@ -1090,7 +1090,103 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LeadGeneration"
+                type: object
+                required:
+                  - uploadedAt
+                  - updatedAt
+                properties:
+                  uploadedAt:
+                    type: string
+                    format: date-time
+                    example: "2025-02-25T00:00:00Z"
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: "2025-02-25T00:00:00Z"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/lead-generation/list:
+    get:
+      summary: Получить список зафиксированных лидов в проектах
+      operationId: getLeadGenerationList
+      tags:
+        - KPI
+        - Лидогенерация
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeadGenerationList"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/lead-generation/plan:
+    get:
+      summary: Получить данные по выполенению квартального плана лидогенерации
+      operationId: getLeadGenerationPlan
+      tags:
+        - KPI
+        - Лидогенерация
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнера
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeadGenerationMonth"
         "404":
           description: Партнёр не найден
           content:
@@ -1107,7 +1203,7 @@ paths:
         - bearerAuth: []
   /api/kpi/lead-generation/quarter-passed:
     get:
-      summary: Получить количество пройденных лидов по кварталам
+      summary: Получить список зачтенных лидов по кварталам
       operationId: getLeadGenerationQuarterPassed
       tags:
         - KPI
@@ -1122,7 +1218,7 @@ paths:
         - name: partnerId
           in: query
           required: false
-          description: ID партнёра
+          description: ID партнера
           schema:
             type: string
       responses:
@@ -1131,7 +1227,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LeadGenerationQuarterPassed"
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeadGenerationQuarterPassed"
         "404":
           description: Партнёр не найден
           content:
@@ -2147,7 +2245,7 @@ components:
         result:
           type: integer
           example: 81
-    LeadGeneration:
+    LeadGenerationList:
       type: object
       required:
         - id
@@ -2173,18 +2271,30 @@ components:
           type: string
           format: date-time
           example: "2025-01-01T00:00:00Z"
+    LeadGenerationMonth:
+      type: object
+      required:
+        - monthIdx
+        - value
+      properties:
+        monthIdx:
+          type: number
+          example: 0 - Январь, 11 - Декарь
+        value:
+          type: number
+          example: 2
     LeadGenerationQuarterPassed:
       type: object
       required:
-        - idx
-        - passedCount
+        - quarter
+        - value
       properties:
-        idx:
-          type: integer
+        quarter:
+          type: number
           example: 1
-        passedCount:
-          type: integer
-          example: 5
+        value:
+          type: number
+          example: 2
     Error:
       type: object
       required:

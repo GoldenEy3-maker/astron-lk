@@ -446,23 +446,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/kpi/employee-testing": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Получить данные тестирования сотрудников */
-        get: operations["getEmployeeTesting"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/kpi/employee-testing/uploaded-years": {
         parameters: {
             query?: never;
@@ -472,6 +455,23 @@ export interface paths {
         };
         /** Получить список годов, за которые были загружены данные тестирования сотрудников */
         get: operations["getEmployeeTestingUploadedYears"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/employee-testing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные тестирования сотрудников */
+        get: operations["getEmployeeTesting"];
         put?: never;
         post?: never;
         delete?: never;
@@ -497,15 +497,49 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/kpi/lead-generation": {
+    "/api/kpi/lead-generation/uploaded-dates": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Получить данные лидогенерации */
-        get: operations["getLeadGeneration"];
+        /** Получить даты обновления выгрузки лидогенерации */
+        get: operations["getLeadGenerationUploadedDates"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/lead-generation/list": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список зафиксированных лидов в проектах */
+        get: operations["getLeadGenerationList"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/lead-generation/plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные по выполенению квартального плана лидогенерации */
+        get: operations["getLeadGenerationPlan"];
         put?: never;
         post?: never;
         delete?: never;
@@ -521,7 +555,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Получить количество пройденных лидов по кварталам */
+        /** Получить список зачтенных лидов по кварталам */
         get: operations["getLeadGenerationQuarterPassed"];
         put?: never;
         post?: never;
@@ -1104,7 +1138,7 @@ export interface components {
             /** @example 81 */
             result: number;
         };
-        LeadGeneration: {
+        LeadGenerationList: {
             /** @example 1 */
             id: string;
             project: {
@@ -1119,11 +1153,17 @@ export interface components {
              */
             fixedAt: string;
         };
+        LeadGenerationMonth: {
+            /** @example 0 - Январь, 11 - Декарь */
+            monthIdx: number;
+            /** @example 2 */
+            value: number;
+        };
         LeadGenerationQuarterPassed: {
             /** @example 1 */
-            idx: number;
-            /** @example 5 */
-            passedCount: number;
+            quarter: number;
+            /** @example 2 */
+            value: number;
         };
         Error: {
             message: string;
@@ -2086,6 +2126,47 @@ export interface operations {
             };
         };
     };
+    getEmployeeTestingUploadedYears: {
+        parameters: {
+            query?: {
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string[];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     getEmployeeTesting: {
         parameters: {
             query: {
@@ -2119,47 +2200,6 @@ export interface operations {
                          */
                         updatedAt: string;
                     };
-                };
-            };
-            /** @description Пользователь не авторизован */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-            /** @description Партнёр не найден */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    getEmployeeTestingUploadedYears: {
-        parameters: {
-            query?: {
-                /** @description ID партнёра */
-                partnerId?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Успешный ответ */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": string[];
                 };
             };
             /** @description Пользователь не авторизован */
@@ -2223,7 +2263,7 @@ export interface operations {
             };
         };
     };
-    getLeadGeneration: {
+    getLeadGenerationUploadedDates: {
         parameters: {
             query: {
                 /** @description Год */
@@ -2243,7 +2283,104 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LeadGeneration"];
+                    "application/json": {
+                        /**
+                         * Format: date-time
+                         * @example 2025-02-25T00:00:00Z
+                         */
+                        uploadedAt: string;
+                        /**
+                         * Format: date-time
+                         * @example 2025-02-25T00:00:00Z
+                         */
+                        updatedAt: string;
+                    };
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getLeadGenerationList: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LeadGenerationList"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getLeadGenerationPlan: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description ID партнера */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LeadGenerationMonth"][];
                 };
             };
             /** @description Пользователь не авторизован */
@@ -2271,7 +2408,7 @@ export interface operations {
             query: {
                 /** @description Год */
                 year: string;
-                /** @description ID партнёра */
+                /** @description ID партнера */
                 partnerId?: string;
             };
             header?: never;
@@ -2286,7 +2423,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LeadGenerationQuarterPassed"];
+                    "application/json": components["schemas"]["LeadGenerationQuarterPassed"][];
                 };
             };
             /** @description Пользователь не авторизован */

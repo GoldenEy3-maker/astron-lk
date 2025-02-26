@@ -82,7 +82,7 @@ export function useNavigationLinks() {
             label: "Тестирование",
           },
           {
-            url: Routes.Leads,
+            url: Routes.LeadGeneration,
             icon: <Icons.Graph />,
             label: "Лидогенерация",
           },
@@ -120,7 +120,7 @@ export function useNavigationLinks() {
                 label: "Тестирование",
               },
               {
-                url: Routes.Partners + "/" + partner.id + Routes.Leads,
+                url: Routes.Partners + "/" + partner.id + Routes.LeadGeneration,
                 label: "Лидогенерация",
               },
               {

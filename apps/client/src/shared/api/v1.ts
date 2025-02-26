@@ -23,8 +23,9 @@ const Favorite = z.union([Document, Bulletin]);
 const SearchResult = z.object({ id: z.string(), title: z.string(), type: z.enum(["news", "document", "bulletin"]), description: z.string().optional(), fileUrl: z.string().optional() }).strict();
 const sendFeedback_Body = z.object({ fio: z.string(), phone: z.string(), message: z.string(), privacy: z.boolean(), personalData: z.boolean() }).strict();
 const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.string(), result: z.number().int() }).strict();
-const LeadGeneration = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
-const LeadGenerationQuarterPassed = z.object({ idx: z.number().int(), passedCount: z.number().int() }).strict();
+const LeadGenerationList = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
+const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number() }).strict();
+const LeadGenerationQuarterPassed = z.object({ quarter: z.number(), value: z.number() }).strict();
 const Video = z.object({ src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
 const FactoryTeam = z.object({ id: z.string(), img: Image.optional(), role: z.string(), title: z.string(), phone: z.string(), email: z.string().optional() }).strict();
 const AcademySectionInList = z.object({ id: z.string(), title: z.string(), bgImg: z.string().optional(), url: z.string().optional(), icon: z.string().optional() }).strict();
@@ -69,7 +70,8 @@ export const schemas = {
 	SearchResult,
 	sendFeedback_Body,
 	EmployeeTesting,
-	LeadGeneration,
+	LeadGenerationList,
+	LeadGenerationMonth,
 	LeadGenerationQuarterPassed,
 	Video,
 	FactoryTeam,
@@ -426,8 +428,8 @@ const endpoints = makeApi([
 	},
 	{
 		method: "get",
-		path: "/api/kpi/lead-generation",
-		alias: "getLeadGeneration",
+		path: "/api/kpi/lead-generation/list",
+		alias: "getLeadGenerationList",
 		requestFormat: "json",
 		parameters: [
 			{
@@ -441,7 +443,38 @@ const endpoints = makeApi([
 				schema: z.string().optional()
 			},
 		],
-		response: LeadGeneration,
+		response: LeadGenerationList,
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Партнёр не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "get",
+		path: "/api/kpi/lead-generation/plan",
+		alias: "getLeadGenerationPlan",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "year",
+				type: "Query",
+				schema: z.string()
+			},
+			{
+				name: "partnerId",
+				type: "Query",
+				schema: z.string().optional()
+			},
+		],
+		response: z.array(LeadGenerationMonth),
 		errors: [
 			{
 				status: 401,
@@ -472,7 +505,38 @@ const endpoints = makeApi([
 				schema: z.string().optional()
 			},
 		],
-		response: LeadGenerationQuarterPassed,
+		response: z.array(LeadGenerationQuarterPassed),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Партнёр не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "get",
+		path: "/api/kpi/lead-generation/uploaded-dates",
+		alias: "getLeadGenerationUploadedDates",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "year",
+				type: "Query",
+				schema: z.string()
+			},
+			{
+				name: "partnerId",
+				type: "Query",
+				schema: z.string().optional()
+			},
+		],
+		response: z.object({ uploadedAt: z.string().datetime({ offset: true }), updatedAt: z.string().datetime({ offset: true }) }).strict(),
 		errors: [
 			{
 				status: 401,

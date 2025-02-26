@@ -30,9 +30,9 @@ const EmployeeTestingPage = lazy(() =>
   })),
 );
 
-const LeadsPage = lazy(() =>
-  import("../../pages/leads").then((module) => ({
-    default: module.LeadsPage,
+const LeadGenerationPage = lazy(() =>
+  import("../../pages/lead-generation").then((module) => ({
+    default: module.LeadGenerationPage,
   })),
 );
 
@@ -180,7 +180,7 @@ export {
   FavoritesPage,
   ProfilePage,
   EmployeeTestingPage,
-  LeadsPage,
+  LeadGenerationPage,
   BookingPage,
   SalesPage,
   AcademyPage,

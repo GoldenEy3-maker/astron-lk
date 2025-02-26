@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import { employeeTestingRouter } from "./employee-testing.router";
+import { leadGenerationRouter } from "./lead-generation.router";
 
 const kpiRouter = Router();
 
@@ -13,5 +14,6 @@ kpiRouter.get(
 );
 
 kpiRouter.use("/employee-testing", employeeTestingRouter);
+kpiRouter.use("/lead-generation", leadGenerationRouter);
 
 export { kpiRouter };

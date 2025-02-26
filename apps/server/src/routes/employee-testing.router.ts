@@ -37,15 +37,13 @@ employeeTestingRouter.get(
       data: data
         .filter((employeeTest) => {
           const createdAt = new Date(
-            Date.UTC(
-              new Date(employeeTest.createdAt).getUTCFullYear(),
-              new Date(employeeTest.createdAt).getUTCMonth(),
-              new Date(employeeTest.createdAt).getUTCDate(),
-              12,
-              0,
-              0,
-              0
-            )
+            new Date(employeeTest.createdAt).getFullYear(),
+            new Date(employeeTest.createdAt).getMonth(),
+            new Date(employeeTest.createdAt).getDate(),
+            12,
+            0,
+            0,
+            0
           );
           // const now = new Date(
           //   Date.UTC(
@@ -75,7 +73,7 @@ employeeTestingRouter.get(
           //   default:
           //     return true;
           // }
-          return createdAt.getUTCFullYear() === Number(year);
+          return createdAt.getFullYear() === Number(year);
         })
         .map((employeeTest) => {
           const employee = employees.find(
@@ -100,9 +98,11 @@ employeeTestingRouter.get(
   authMiddleware,
   (req: Request, res: Response<string[]>) => {
     const employeeTests = dbService.get("employeeTests");
-    const years = employeeTests.map((employeeTest) =>
-      new Date(employeeTest.createdAt).getUTCFullYear().toString()
-    );
+    const years = employeeTests
+      .map((employeeTest) =>
+        new Date(employeeTest.createdAt).getUTCFullYear().toString()
+      )
+      .sort((a, b) => parseInt(b) - parseInt(a));
     res.json(Array.from(new Set(years)));
   }
 );

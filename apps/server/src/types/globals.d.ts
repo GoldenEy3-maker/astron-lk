@@ -33,3 +33,7 @@ export type PartnerInSelect = components["schemas"]["PartnerInSelect"];
 export type AcademySectionInList =
   components["schemas"]["AcademySectionInList"];
 export type AcademySection = components["schemas"]["AcademySection"];
+export type LeadGenerationList = components["schemas"]["LeadGenerationList"];
+export type LeadGenerationMonth = components["schemas"]["LeadGenerationMonth"];
+export type LeadGenerationQuarterPassed =
+  components["schemas"]["LeadGenerationQuarterPassed"];

@@ -10,7 +10,7 @@ export const Routes = {
   Profile: "/profile",
   EmployeeTesting: "/employee-testing",
   Partners: "/partners",
-  Leads: "/leads",
+  LeadGeneration: "/lead-generation",
   Sales: "/sales",
   Booking: "/booking",
   Bulletins: "/bulletins",
