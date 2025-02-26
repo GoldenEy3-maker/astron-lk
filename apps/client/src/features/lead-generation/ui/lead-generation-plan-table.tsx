@@ -1,7 +1,6 @@
 import { cn } from "@/shared/lib/cn";
 import { Icons } from "@/shared/ui/icons";
 import { Table, TableBody, TableCell, TableRow } from "@/shared/ui/table";
-import { set } from "date-fns";
 import { useLeadGenerationPlan } from "../lib/use-lead-generation-plan";
 import { Fragment } from "react/jsx-runtime";
 import { Skeleton } from "@/shared/ui/skeleton";
@@ -21,7 +20,8 @@ export function LeadGenerationPlanTable({
 }: LeadGenerationPlanTableProps) {
   const {
     data,
-    minLeadsInMonth,
+    renderMonth,
+    renderProgress,
     checkIsDestructiveMonth,
     checkIsSuccessMonth,
     checkIsDestructiveQuarter,
@@ -61,16 +61,7 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {new Intl.DateTimeFormat("ru-RU", {
-                          month: "short",
-                        })
-                          .format(
-                            set(new Date(), {
-                              month: month.idx,
-                              date: 1,
-                            }),
-                          )
-                          .replace(".", "")}
+                        {renderMonth(month.idx)}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />
@@ -122,11 +113,7 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {month.value
-                          ? month.value >= minLeadsInMonth
-                            ? "100%"
-                            : "0%"
-                          : "-"}
+                        {renderProgress(month.value) || "-"}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />
