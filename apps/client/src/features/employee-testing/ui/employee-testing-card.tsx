@@ -98,7 +98,7 @@ export function EmployeeTestingCard({
           <EmployeeTestingChart
             data={chartData}
             labelKey="name"
-            isCompletedKey="isCompleted"
+            completedKey="isCompleted"
             isLoading={isLoading}
           />
         </div>

@@ -6,6 +6,7 @@ import { Routes } from "@/shared/constants/routes";
 import { Icons } from "@/shared/ui/icons";
 import { YearSelect } from "@/shared/ui/year-select";
 import { LeadGenerationPlanTable } from "./lead-generation-plan-table";
+import { LeadGenerationPieChart } from "./lead-generation-pie-chart";
 
 type LeadGenerationCardProps = {
   partnerId?: string;
@@ -47,6 +48,9 @@ export function LeadGenerationCard({ partnerId }: LeadGenerationCardProps) {
         ) : null}
       </SectionHeader>
       <SectionContent className="space-y-9">
+        <div className="flex items-center justify-center">
+          <LeadGenerationPieChart data={data?.months} />
+        </div>
         <LeadGenerationPlanTable data={data} isLoading={isLoading} />
       </SectionContent>
     </Section>

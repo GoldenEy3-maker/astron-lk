@@ -32,16 +32,17 @@ export function LeadGenerationPlanTable({
 
   return (
     <Table>
-      <TableBody className="text-sm [&_tr>td:first-child]:w-[30%]">
+      <TableBody className="text-sm [&_tr>td.padding-cell]:!~pl-2/9 [&_tr>td:first-child]:w-[30%] [&_tr>td:first-child]:min-w-32">
         <TableRow>
           <TableCell className="!pt-0">Квартал</TableCell>
           {quarters?.map((quarter) => (
             <TableCell
               key={quarter.quarter}
-              className={cn("!pt-0 text-center", {
+              className={cn("whitespace-nowrap !pt-0 text-center", {
                 "text-success": checkIsSuccessQuarter(quarter),
                 "text-destructive": checkIsDestructiveQuarter(quarter),
                 "text-secondary": checkIsEmptyQuarter(quarter),
+                "padding-cell": quarter.quarter !== 1,
               })}
             >
               {quarter.quarter} квартал
@@ -51,8 +52,13 @@ export function LeadGenerationPlanTable({
         <TableRow>
           <TableCell>Месяц</TableCell>
           {quarters.map((quarter) => (
-            <TableCell key={quarter.quarter} className="text-center">
-              <div className="grid grid-cols-3 place-items-center">
+            <TableCell
+              key={quarter.quarter}
+              className={cn("text-center", {
+                "padding-cell": quarter.quarter !== 1,
+              })}
+            >
+              <div className="grid grid-cols-[repeat(3,minmax(3rem,1fr))] place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment key={month.idx}>
                     {!isLoading ? (
@@ -62,7 +68,7 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {renderMonth(month.idx)}
+                        {renderMonth(month.idx, { month: "short" })}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />
@@ -76,7 +82,12 @@ export function LeadGenerationPlanTable({
         <TableRow>
           <TableCell>Лиды, шт</TableCell>
           {quarters.map((quarter) => (
-            <TableCell key={quarter.quarter} className="text-center">
+            <TableCell
+              key={quarter.quarter}
+              className={cn("text-center", {
+                "padding-cell": quarter.quarter !== 1,
+              })}
+            >
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment key={month.idx}>
@@ -101,7 +112,12 @@ export function LeadGenerationPlanTable({
         <TableRow>
           <TableCell>Выполнение месяц</TableCell>
           {quarters.map((quarter) => (
-            <TableCell key={quarter.quarter} className="text-center">
+            <TableCell
+              key={quarter.quarter}
+              className={cn("text-center", {
+                "padding-cell": quarter.quarter !== 1,
+              })}
+            >
               <div className="grid grid-cols-3 place-items-center">
                 {quarter.months.map((month) => (
                   <Fragment key={month.idx}>
@@ -127,7 +143,12 @@ export function LeadGenerationPlanTable({
         <TableRow>
           <TableCell>Зачтено за квартал, шт</TableCell>
           {quarters.map((quarter) => (
-            <TableCell key={quarter.quarter}>
+            <TableCell
+              key={quarter.quarter}
+              className={cn({
+                "padding-cell": quarter.quarter !== 1,
+              })}
+            >
               <div
                 className={cn("flex items-center justify-center text-center", {
                   "text-secondary": checkIsEmptyQuarter(quarter),
@@ -156,7 +177,12 @@ export function LeadGenerationPlanTable({
         <TableRow>
           <TableCell>Общий квартальный зачёт</TableCell>
           {quarters.map((quarter) => (
-            <TableCell key={quarter.quarter}>
+            <TableCell
+              key={quarter.quarter}
+              className={cn({
+                "padding-cell": quarter.quarter !== 1,
+              })}
+            >
               <div
                 className={cn("flex items-center justify-center", {
                   "text-destructive": checkIsDestructiveQuarter(quarter),

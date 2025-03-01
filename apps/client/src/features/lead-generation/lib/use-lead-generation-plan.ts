@@ -53,10 +53,8 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
       return acc;
     }, initialData) ?? initialData;
 
-  function renderMonth(idx: number) {
-    return new Intl.DateTimeFormat("ru-RU", {
-      month: "short",
-    })
+  function renderMonth(idx: number, options: Intl.DateTimeFormatOptions) {
+    return new Intl.DateTimeFormat("ru-RU", options)
       .format(
         set(new Date(), {
           month: idx,

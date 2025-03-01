@@ -7,12 +7,12 @@ type EmployTestingChartProps<T extends Record<string, unknown>> = {
   data?: T[];
   isLoading?: boolean;
   labelKey: keyof T;
-  isCompletedKey?: keyof T;
+  completedKey?: keyof T;
 };
 
 export function EmployeeTestingChart<T extends Record<string, unknown>>({
   labelKey,
-  isCompletedKey,
+  completedKey,
   isLoading,
   data,
 }: EmployTestingChartProps<T>) {
@@ -98,7 +98,7 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
             <Cell
               key={`cell-${index}`}
               className={cn("fill-success", {
-                "fill-destructive": isCompletedKey && !entry[isCompletedKey],
+                "fill-destructive": completedKey && !entry[completedKey],
               })}
             />
           ))}
