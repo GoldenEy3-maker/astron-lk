@@ -1,10 +1,16 @@
 import { getPartnerByIdQueryOptions } from "@/entities/partner";
 import {
   LeadGenerationPlanTable,
+  getLeadGenerationListQueryOptions,
   getLeadGenerationPlanQueryOptions,
   getLeadGenerationUploadedYearsQueryOptions,
+  LeadGenerationPieChart,
+  LeadGenerationListTable,
 } from "@/features/lead-generation";
+import { LeadGenerationBarChart } from "@/features/lead-generation/ui/lead-generation-bar-chart";
+import { formatDate } from "@/shared/lib/format-date";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
+import { Skeleton } from "@/shared/ui/skeleton";
 import { YearSelect } from "@/shared/ui/year-select";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { useQuery } from "@tanstack/react-query";
@@ -31,6 +37,10 @@ export function LeadGenerationPage() {
   const { data: leadGenerationPlan, isLoading: isLeadGenerationPlanLoading } =
     useQuery(getLeadGenerationPlanQueryOptions({ partnerId, year }));
 
+  const { data: leadGeneration, isLoading: isLeadGenerationLoading } = useQuery(
+    getLeadGenerationListQueryOptions({ partnerId, year }),
+  );
+
   useBreadcrumbs("partnerId", partner?.title);
 
   return (
@@ -42,6 +52,45 @@ export function LeadGenerationPage() {
         ) : null}
       </SectionHeader>
       <SectionContent>
+        <Section space="lg" className="rounded-main bg-card ~px-6/14 ~py-6/9">
+          <SectionHeader className="items-center gap-y-2">
+            {!isLeadGenerationLoading && leadGeneration?.uploadedAt ? (
+              <h2 className="text-h2 text-heading-h3">
+                Результаты выгрузки{" "}
+                {formatDate(
+                  new Date(new Date().setHours(12, 0, 0, 0)),
+                  "dd.MM.yyyy",
+                )}
+              </h2>
+            ) : (
+              <Skeleton className="h-7 w-1/2 rounded-full" />
+            )}
+            {leadGeneration?.updatedAt ? (
+              <span className="text-lg text-muted">
+                Обновлён{" "}
+                {formatDate(new Date(leadGeneration.updatedAt), "dd.MM.yyyy")}
+              </span>
+            ) : (
+              <Skeleton className="h-4 w-1/4 rounded-full" />
+            )}
+          </SectionHeader>
+          <SectionContent className="space-y-5">
+            <div className="flex flex-wrap justify-center gap-y-8 ~m-md/2xl:~gap-x-5/14 m-md:flex-nowrap">
+              <LeadGenerationPieChart
+                data={leadGenerationPlan?.months}
+                isLoading={isLeadGenerationPlanLoading}
+              />
+              <LeadGenerationBarChart
+                data={leadGenerationPlan}
+                isLoading={isLeadGenerationPlanLoading}
+              />
+            </div>
+            <LeadGenerationListTable
+              data={leadGeneration}
+              isLoading={isLeadGenerationLoading}
+            />
+          </SectionContent>
+        </Section>
         <Section space="lg" className="rounded-main bg-card ~px-6/14 ~py-6/9">
           <SectionHeader>
             <h2 className="text-h2 text-heading-h3">Выполнение плана</h2>

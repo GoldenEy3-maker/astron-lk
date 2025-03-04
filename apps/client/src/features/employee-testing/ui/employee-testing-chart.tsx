@@ -105,7 +105,7 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
         </Pie>
       ) : (
         <Pie
-          data={Array(3).fill({ value: 1 })}
+          data={Array.from({ length: 3 }, () => ({ value: 1 }))}
           dataKey="value"
           animationDuration={0}
           {...pieProps}

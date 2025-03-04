@@ -20,8 +20,14 @@ leadGenerationRouter.get(
       updatedAt: string;
     }>
   ) => {
+    const { year } = req.query as { year: string };
+
     res.json({
-      data: dbService.get("leadGenerations"),
+      data: dbService
+        .get("leadGenerations")
+        .filter(
+          (lead) => new Date(lead.fixedAt).getFullYear() === parseInt(year)
+        ),
       updatedAt: new Date().toISOString(),
       uploadedAt: new Date().toISOString(),
     });

@@ -53,18 +53,7 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
       return acc;
     }, initialData) ?? initialData;
 
-  function renderMonth(idx: number, options: Intl.DateTimeFormatOptions) {
-    return new Intl.DateTimeFormat("ru-RU", options)
-      .format(
-        set(new Date(), {
-          month: idx,
-          date: 1,
-        }),
-      )
-      .replace(".", "");
-  }
-
-  function renderProgress(value: number | null): string | null {
+  function renderMonthProgress(value: number | null): string | null {
     return value ? (value >= minLeadsInMonth ? "100%" : "0%") : null;
   }
 
@@ -95,7 +84,6 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
     checkIsDestructiveQuarter,
     checkIsSuccessQuarter,
     checkIsEmptyQuarter,
-    renderMonth,
-    renderProgress,
+    renderMonthProgress,
   };
 }

@@ -1,4 +1,4 @@
-import { DateArg, format, FormatOptions } from "date-fns";
+import { DateArg, format, FormatOptions, set } from "date-fns";
 import { ru } from "date-fns/locale";
 import { createParser } from "nuqs";
 
@@ -11,6 +11,15 @@ export function formatDate(
     locale: ru,
     ...options,
   });
+}
+
+export function formatMonthByIdx(
+  idx: number,
+  format: Intl.DateTimeFormatOptions["month"] = "short",
+) {
+  return new Intl.DateTimeFormat("ru-RU", { month: format })
+    .format(set(new Date(), { month: idx, date: 1 }))
+    .replace(".", "");
 }
 
 export const parseAsLocalDate = createParser({

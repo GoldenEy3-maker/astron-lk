@@ -6,6 +6,7 @@ import { Fragment } from "react/jsx-runtime";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { z } from "zod";
 import { schemas } from "@/shared/api/v1";
+import { formatMonthByIdx } from "@/shared/lib/format-date";
 
 type LeadGenerationPlanTableProps = {
   data?: {
@@ -21,8 +22,7 @@ export function LeadGenerationPlanTable({
 }: LeadGenerationPlanTableProps) {
   const {
     quarters,
-    renderMonth,
-    renderProgress,
+    renderMonthProgress,
     checkIsDestructiveMonth,
     checkIsSuccessMonth,
     checkIsDestructiveQuarter,
@@ -68,7 +68,7 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {renderMonth(month.idx, { month: "short" })}
+                        {formatMonthByIdx(month.idx)}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />
@@ -129,7 +129,7 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {renderProgress(month.value) || "-"}
+                        {renderMonthProgress(month.value) || "-"}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />
