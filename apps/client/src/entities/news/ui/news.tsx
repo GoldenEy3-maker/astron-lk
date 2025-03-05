@@ -24,9 +24,9 @@ export function News({ limit, className, loadMore, ...props }: NewsProps) {
     >
       {!isLoading
         ? data?.map((item) => <NewsCard key={item.id} {...item} />)
-        : Array(limit || 2)
-            .fill(null)
-            .map((_, idx) => <NewsCardSkeleton key={idx} />)}
+        : Array.from({ length: limit || 2 }, (_, idx) => (
+            <NewsCardSkeleton key={idx} />
+          ))}
       {loadMore && hasNextPage ? (
         <div className="col-span-full flex justify-center">
           <Button

@@ -57,9 +57,9 @@ export function AcademySalesList() {
               {...item}
             />
           ))
-        : Array(9)
-            .fill(null)
-            .map((_, index) => <AcademySalesCardSkeleton key={index} />)}
+        : Array.from({ length: 9 }, (_, idx) => (
+            <AcademySalesCardSkeleton key={idx} />
+          ))}
     </div>
   );
 }

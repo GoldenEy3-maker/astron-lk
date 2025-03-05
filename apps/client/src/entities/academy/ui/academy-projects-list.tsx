@@ -29,9 +29,9 @@ export function AcademyProjectsList({
               {...project}
             />
           ))
-        : Array(4)
-            .fill(null)
-            .map((_, index) => <AcademyProjectsCardSkeleton key={index} />)}
+        : Array.from({ length: 4 }, (_, idx) => (
+            <AcademyProjectsCardSkeleton key={idx} />
+          ))}
     </div>
   );
 }

@@ -17,9 +17,9 @@ export function PartnersList({ sort }: PartnersListProps) {
         ? data.map((partner) => (
             <PartnerCardInList key={partner.id} {...partner} />
           ))
-        : Array(4)
-            .fill(null)
-            .map((_, index) => <PartnerCardInListSkeleton key={index} />)}
+        : Array.from({ length: 4 }, (_, idx) => (
+            <PartnerCardInListSkeleton key={idx} />
+          ))}
     </div>
   );
 }

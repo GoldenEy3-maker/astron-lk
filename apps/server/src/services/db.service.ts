@@ -3550,20 +3550,18 @@ export default new (class DBService {
             {
               type: "section",
               title: "Карта переговоров",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Оценка качества",
-              documents: Array(4)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 4 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3618,30 +3616,27 @@ export default new (class DBService {
               type: "section",
               title: "Примеры ТЗ для тендеров",
 
-              documents: Array(2)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 2 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Сравнение технологий",
 
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Сравнение с КП конкурентов",
-              documents: Array(7)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 7 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3694,20 +3689,18 @@ export default new (class DBService {
               type: "section",
               title: "Бланки коммерческих предложений",
 
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Формирование графика работ",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -3846,11 +3839,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -3860,11 +3852,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3881,11 +3872,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -3895,11 +3885,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3916,11 +3905,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -3930,11 +3918,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3951,11 +3938,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -3965,11 +3951,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -3986,11 +3971,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4000,11 +3984,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4021,11 +4004,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4035,11 +4017,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4056,11 +4037,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4070,11 +4050,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4091,11 +4070,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4105,11 +4083,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4126,11 +4103,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4140,11 +4116,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4161,11 +4136,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4175,11 +4149,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4196,11 +4169,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4210,11 +4182,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4231,11 +4202,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
@@ -4245,11 +4215,10 @@ export default new (class DBService {
             {
               type: "section",
               title: "Заголовок",
-              documents: Array(3)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 3 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4268,32 +4237,29 @@ export default new (class DBService {
               type: "section",
               title: "Вебинары по программному обеспечению: Татьяны Грищенко",
               text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(5)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 5 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4310,32 +4276,29 @@ export default new (class DBService {
               type: "section",
               title: "Вебинары по программному обеспечению: Татьяны Грищенко",
               text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(5)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 5 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4352,32 +4315,29 @@ export default new (class DBService {
               type: "section",
               title: "Вебинары по программному обеспечению: Татьяны Грищенко",
               text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(5)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 5 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },
@@ -4394,32 +4354,29 @@ export default new (class DBService {
               type: "section",
               title: "Вебинары по программному обеспечению: Татьяны Грищенко",
               text: "<h3>Программное обеспечение: вебинар 1</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 2</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video><h3>Программное обеспечение: вебинар 3</h3><video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(5)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 5 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title:
                 "Рекомендации Николая Подшивалова по выполнению расчётов в Cyprion",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
             {
               type: "section",
               title: "Вебинары Олега Дзабиева по Allplan",
               text: "<video src='https://kinescope.io/embed/rtJX1JznNqxA1tnXuFhyj4?autoplay=1' poster='/video-poster-2.webp' title='Видео завода Астрон'></video>",
-              documents: Array(1)
-                .fill(null)
-                .map(
-                  () => documents[Math.floor(Math.random() * documents.length)]
-                ),
+              documents: Array.from(
+                { length: 1 },
+                () => documents[Math.floor(Math.random() * documents.length)]
+              ),
             },
           ],
         },

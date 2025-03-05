@@ -21,9 +21,9 @@ export function AcademySectionsList() {
               Icon={section.icon}
             />
           ))
-        : Array(4)
-            .fill(null)
-            .map((_, idx) => <AcademySectionCardSkeleton key={idx} />)}
+        : Array.from({ length: 4 }, (_, idx) => (
+            <AcademySectionCardSkeleton key={idx} />
+          ))}
     </div>
   );
 }

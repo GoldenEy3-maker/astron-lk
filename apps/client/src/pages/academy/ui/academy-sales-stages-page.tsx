@@ -44,14 +44,9 @@ export function AcademySalesStagesPage() {
                     {item.title}
                   </TabsTrigger>
                 ))
-              : Array(9)
-                  .fill(null)
-                  .map((_, index) => (
-                    <Skeleton
-                      key={index}
-                      className="h-10 w-full !rounded-full"
-                    />
-                  ))}
+              : Array.from({ length: 9 }, (_, idx) => (
+                  <Skeleton key={idx} className="h-10 w-full !rounded-full" />
+                ))}
           </TabsList>
           <div className="col-span-full mt-8 m-md:col-[span_15]">
             {!isLoading && data ? (

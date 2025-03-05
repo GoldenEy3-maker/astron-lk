@@ -20,9 +20,9 @@ export function FactoryTeam(props: FactoryTeamProps) {
             ? data.map((employee) => (
                 <FactoryTeamCard key={employee.id} {...employee} />
               ))
-            : Array(3)
-                .fill(null)
-                .map((_, index) => <FactoryTeamCardSkeleton key={index} />)}
+            : Array.from({ length: 3 }, (_, idx) => (
+                <FactoryTeamCardSkeleton key={idx} />
+              ))}
         </div>
       </SectionContent>
     </Section>

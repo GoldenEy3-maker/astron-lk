@@ -110,14 +110,9 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
           animationDuration={0}
           {...pieProps}
         >
-          {Array(3)
-            .fill({ value: 1 })
-            .map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                className="animate-pulse fill-muted/30"
-              />
-            ))}
+          {Array.from({ length: 3 }, (_, idx) => (
+            <Cell key={`cell-${idx}`} className="animate-pulse fill-muted/30" />
+          ))}
         </Pie>
       )}
     </PieChart>

@@ -30,6 +30,8 @@ export function AcademyBenefitsTagsFilter({
     onChange,
   });
 
+  if (isLoading || !data) return <Skeleton className="h-10 w-52 rounded-xl" />;
+
   return (
     <Popover>
       <PopoverTrigger variant="link" className="group font-normal text-primary">
@@ -43,39 +45,30 @@ export function AcademyBenefitsTagsFilter({
         className="overflow-hidden bg-card px-0 py-[0.8125rem]"
       >
         <div className="flex flex-col">
-          {!isLoading && data
-            ? data?.map((tag) => (
-                <Button
-                  asChild
-                  key={tag.id}
-                  variant="ghost"
-                  className="flex min-h-0 cursor-pointer items-start justify-start gap-3 whitespace-normal rounded-none px-5 py-[0.4375rem] font-normal"
-                >
-                  <Label htmlFor={`${id}-${tag.id}`}>
-                    <Checkbox
-                      id={`${id}-${tag.id}`}
-                      className="mt-0.5"
-                      checked={controlledTags?.includes(tag.slug)}
-                      onCheckedChange={(checked) => {
-                        setControlledTags((prev) => {
-                          if (checked)
-                            return prev ? [...prev, tag.slug] : [tag.slug];
-                          return prev ? prev.filter((t) => t !== tag.slug) : [];
-                        });
-                      }}
-                    />
-                    <span>{tag.label}</span>
-                  </Label>
-                </Button>
-              ))
-            : Array(4)
-                .fill(null)
-                .map((_, index) => (
-                  <Skeleton
-                    key={index}
-                    className="my-1.5 h-6 w-full rounded-full"
-                  />
-                ))}
+          {data.map((tag) => (
+            <Button
+              asChild
+              key={tag.id}
+              variant="ghost"
+              className="flex min-h-0 cursor-pointer items-start justify-start gap-3 whitespace-normal rounded-none px-5 py-[0.4375rem] font-normal"
+            >
+              <Label htmlFor={`${id}-${tag.id}`}>
+                <Checkbox
+                  id={`${id}-${tag.id}`}
+                  className="mt-0.5"
+                  checked={controlledTags?.includes(tag.slug)}
+                  onCheckedChange={(checked) => {
+                    setControlledTags((prev) => {
+                      if (checked)
+                        return prev ? [...prev, tag.slug] : [tag.slug];
+                      return prev ? prev.filter((t) => t !== tag.slug) : [];
+                    });
+                  }}
+                />
+                <span>{tag.label}</span>
+              </Label>
+            </Button>
+          ))}
         </div>
       </PopoverContent>
     </Popover>

@@ -17,17 +17,16 @@ type UseLeadGenerationPlanProps = {
 export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
   const minLeadsInMonth = 2;
 
-  const initialData: LeadGenerationQuarter[] = Array(4)
-    .fill(null)
-    .map((_, idx) => ({
+  const initialData: LeadGenerationQuarter[] = Array.from(
+    { length: 4 },
+    (_, idx) => ({
       quarter: idx + 1,
-      months: Array(3)
-        .fill(null)
-        .map((_, mIdx) => ({
-          idx: getMonthsByFiscalQuarter(idx + 1)[mIdx],
-          value: null,
-        })),
-    }));
+      months: Array.from({ length: 3 }, (_, mIdx) => ({
+        idx: getMonthsByFiscalQuarter(idx + 1)[mIdx],
+        value: null,
+      })),
+    }),
+  );
 
   const quarters =
     params?.months?.reduce((acc, item) => {

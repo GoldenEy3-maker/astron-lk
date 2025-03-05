@@ -53,24 +53,22 @@ export function EmployeeTestingTable({
                 </TableCell>
               </TableRow>
             ))
-          : Array(3)
-              .fill(null)
-              .map((_, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Skeleton className="h-4 ~w-24/60" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 ~w-24/60" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 ~w-14/20" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 ~w-16/20" />
-                  </TableCell>
-                </TableRow>
-              ))}
+          : Array.from({ length: 3 }, (_, idx) => (
+              <TableRow key={idx}>
+                <TableCell>
+                  <Skeleton className="h-4 ~w-24/60" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 ~w-24/60" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 ~w-14/20" />
+                </TableCell>
+                <TableCell>
+                  <Skeleton className="h-4 ~w-16/20" />
+                </TableCell>
+              </TableRow>
+            ))}
       </TableBody>
     </Table>
   );
