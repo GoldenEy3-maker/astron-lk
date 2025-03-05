@@ -44,8 +44,8 @@ export function RetailingQuartersChartDatalist({
     );
 
   return (
-    <dl className="grid w-full grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-x-4 gap-y-6 font-medium">
-      <div>
+    <dl className="flex w-full flex-wrap gap-x-4 gap-y-6 font-medium">
+      <div className="flex-1">
         <dt className="leading-none text-muted">План</dt>
         <dd className="mt-4 leading-none">
           {!isLoading && plan ? (
@@ -55,7 +55,7 @@ export function RetailingQuartersChartDatalist({
           )}
         </dd>
       </div>
-      <div>
+      <div className="flex-1">
         <dt className="leading-none text-muted">Факт</dt>
         <dd className="mt-4 leading-none">
           {!isLoading && fact ? (
@@ -65,7 +65,7 @@ export function RetailingQuartersChartDatalist({
           )}
         </dd>
       </div>
-      <div>
+      <div className="flex-1">
         <dt className="leading-none text-muted">Выполнение</dt>
         <dd className="mt-4 leading-none">
           {!isLoading && progress !== undefined ? (

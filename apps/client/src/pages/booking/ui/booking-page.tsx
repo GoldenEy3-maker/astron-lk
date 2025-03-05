@@ -69,7 +69,7 @@ export function BookingPage() {
                 )}
               </h2>
             ) : (
-              <Skeleton className="w-1/2 rounded-full ~h-7/[2.625rem]" />
+              <Skeleton className="max-w-full rounded-full ~h-7/[2.625rem] ~w-[22.125rem]/[29.75rem]" />
             )}
             {quartersPlan?.updatedAt ? (
               <span className="text-lg text-muted">
@@ -77,7 +77,7 @@ export function BookingPage() {
                 {formatDate(new Date(quartersPlan.updatedAt), "dd.MM.yyyy")}
               </span>
             ) : (
-              <Skeleton className="h-4 w-1/4 rounded-full" />
+              <Skeleton className="h-7 w-44 rounded-full" />
             )}
           </SectionHeader>
           <SectionContent className="space-y-6">
