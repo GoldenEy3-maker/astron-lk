@@ -1222,6 +1222,11 @@ export interface components {
             };
             /** @example 187827 */
             sum: number;
+            /**
+             * Format: date-time
+             * @example 2025-01-01T00:00:00Z
+             */
+            createdAt?: string;
         };
     };
     responses: never;

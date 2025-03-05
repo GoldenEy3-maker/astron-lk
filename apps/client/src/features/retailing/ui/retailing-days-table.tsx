@@ -1,5 +1,5 @@
 import { schemas } from "@/shared/api/v1";
-import { formatMonthByIdx } from "@/shared/lib/format-date";
+import { formatDate, formatMonthByIdx } from "@/shared/lib/format-date";
 import { Skeleton } from "@/shared/ui/skeleton";
 import {
   Table,
@@ -24,7 +24,7 @@ export function RetailingDaysTable({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Месяц</TableHead>
+          <TableHead>Дата</TableHead>
           <TableHead>Номер проекта</TableHead>
           <TableHead>Проект</TableHead>
           <TableHead>Сумма, руб</TableHead>
@@ -35,7 +35,9 @@ export function RetailingDaysTable({
           ? data.map((item) => (
               <TableRow key={item.id}>
                 <TableCell className="capitalize text-muted">
-                  {formatMonthByIdx(item.monthIdx, "long")}
+                  {item.createdAt
+                    ? formatDate(new Date(item.createdAt), "dd.MM.yyyy")
+                    : formatMonthByIdx(item.monthIdx, "long")}
                 </TableCell>
                 <TableCell>{item.project.id}</TableCell>
                 <TableCell className="min-w-28">{item.project.name}</TableCell>

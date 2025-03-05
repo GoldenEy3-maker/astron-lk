@@ -21,10 +21,9 @@ retailingRouter.get("/", (req: Request, res: Response<Retailing[]>) => {
 
   res.json(
     data.map((item) => ({
-      id: item.id,
+      ...item,
       monthIdx: new Date(item.createdAt).getMonth(),
-      project: item.project,
-      sum: item.sum,
+      createdAt: type === "booking" ? item.createdAt : undefined,
     }))
   );
 });

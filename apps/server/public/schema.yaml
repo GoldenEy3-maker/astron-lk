@@ -2469,6 +2469,10 @@ components:
         sum:
           type: number
           example: 187827
+        createdAt:
+          type: string
+          format: date-time
+          example: "2025-01-01T00:00:00Z"
   securitySchemes:
     bearerAuth:
       type: http
