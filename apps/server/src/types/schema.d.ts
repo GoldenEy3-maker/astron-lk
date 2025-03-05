@@ -531,6 +531,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/kpi/retailing/uploaded-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список годов, за которые были загружены данные ретейлинга */
+        get: operations["getRetailingUploadedYears"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/retailing/quarters-plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить квартальный план ретейлинга */
+        get: operations["getRetailingQuartersPlan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/kpi/retailing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить список данных ретейлинга */
+        get: operations["getRetailingList"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/factory": {
         parameters: {
             query?: never;
@@ -1136,6 +1187,41 @@ export interface components {
         };
         Success: {
             message: string;
+        };
+        RetailingQuarter: {
+            /** @example 1 */
+            quarter: number;
+            /** @example 7500000 */
+            plan: number;
+            /** @example 1200686 */
+            fact?: number;
+        };
+        RetailingQuartersPlan: {
+            data: components["schemas"]["RetailingQuarter"][];
+            /**
+             * Format: date-time
+             * @example 2025-01-01T00:00:00Z
+             */
+            uploadedAt: string;
+            /**
+             * Format: date-time
+             * @example 2025-01-01T00:00:00Z
+             */
+            updatedAt: string;
+        };
+        Retailing: {
+            /** @example 1 */
+            id: string;
+            /** @example 0 - Январь, 11 - Декабрь (number) */
+            monthIdx: number;
+            project: {
+                /** @example 1 */
+                id: string;
+                /** @example Project 1500 Warhammer 40 000 gold throne */
+                name: string;
+            };
+            /** @example 187827 */
+            sum: number;
         };
     };
     responses: never;
@@ -2308,6 +2394,139 @@ export interface operations {
                         months: components["schemas"]["LeadGenerationMonth"][];
                         quarterPassed: components["schemas"]["LeadGenerationQuarterPassed"][];
                     };
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getRetailingUploadedYears: {
+        parameters: {
+            query: {
+                /** @description Тип данных ретейлинга */
+                type: "sales" | "booking";
+                /** @description ID партнёра */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string[];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getRetailingQuartersPlan: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description Тип данных ретейлинга */
+                type: "sales" | "booking";
+                /** @description ID партнера */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetailingQuartersPlan"];
+                };
+            };
+            /** @description Пользователь не авторизован */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Партнёр не найден */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    getRetailingList: {
+        parameters: {
+            query: {
+                /** @description Год */
+                year: string;
+                /** @description Тип данных ретейлинга */
+                type: "sales" | "booking";
+                /** @description ID партнера */
+                partnerId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Retailing"][];
                 };
             };
             /** @description Пользователь не авторизован */

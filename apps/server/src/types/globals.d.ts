@@ -37,3 +37,6 @@ export type LeadGenerationItem = components["schemas"]["LeadGenerationItem"];
 export type LeadGenerationMonth = components["schemas"]["LeadGenerationMonth"];
 export type LeadGenerationQuarterPassed =
   components["schemas"]["LeadGenerationQuarterPassed"];
+export type RetailingQuartersPlan =
+  components["schemas"]["RetailingQuartersPlan"];
+export type Retailing = components["schemas"]["Retailing"];

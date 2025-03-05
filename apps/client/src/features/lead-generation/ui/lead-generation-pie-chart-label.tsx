@@ -12,20 +12,22 @@ export function LeadGenerationPieChartLabel({
   const { cx, cy } = viewBox as { cx: number; cy: number };
 
   return (
-    <svg
+    <text
+      x={cx}
+      y={cy}
       className="duration-300 animate-in fade-in-0"
-      textAnchor="center"
-      dominantBaseline="central"
+      textAnchor="middle"
+      dominantBaseline="middle"
     >
-      <text x={cx} y={cy} dy={-16} textAnchor="middle" className="font-medium">
+      <tspan x={cx} y={cy} dy={-16} className="font-medium">
         {percents}%
-      </text>
-      <text x={cx} y={cy} textAnchor="middle" dy={6} className="fill-muted">
+      </tspan>
+      <tspan x={cx} y={cy} dy={6} className="fill-muted">
         выполнения
-      </text>
-      <text x={cx} y={cy} textAnchor="middle" dy={28} className="fill-muted">
+      </tspan>
+      <tspan x={cx} y={cy} dy={28} className="fill-muted">
         за год
-      </text>
-    </svg>
+      </tspan>
+    </text>
   );
 }

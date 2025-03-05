@@ -4,7 +4,7 @@ import { Button } from "@/shared/ui/button";
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants/routes";
 import { Icons } from "@/shared/ui/icons";
-import { YearSelect } from "@/shared/ui/year-select";
+import { YearSelect, YearSelectSekeleton } from "@/shared/ui/year-select";
 import { LeadGenerationPlanTable } from "./lead-generation-plan-table";
 import { LeadGenerationPieChart } from "./lead-generation-pie-chart";
 
@@ -33,9 +33,9 @@ export function LeadGenerationCard({ partnerId }: LeadGenerationCardProps) {
         >
           <Link
             to={
-              partnerId
+              (partnerId
                 ? `${Routes.Partners}/${partnerId}${Routes.LeadGeneration}`
-                : Routes.LeadGeneration
+                : Routes.LeadGeneration) + `?year=${year}`
             }
             className="text-h3 leading-none"
           >
@@ -45,7 +45,9 @@ export function LeadGenerationCard({ partnerId }: LeadGenerationCardProps) {
         </Button>
         {!isUploadedYearsLoading && uploadedYears ? (
           <YearSelect data={uploadedYears} setYear={setYear} year={year} />
-        ) : null}
+        ) : (
+          <YearSelectSekeleton />
+        )}
       </SectionHeader>
       <SectionContent className="space-y-9">
         <div className="flex items-center justify-center">

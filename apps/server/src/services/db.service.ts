@@ -21,6 +21,7 @@ import {
   NewsInList,
   PartnerCard,
   PartnerInList,
+  Retailing,
   User,
 } from "../types/globals";
 import passwordService from "./password.service";
@@ -64,6 +65,8 @@ type DBData = {
   tests: Test[];
   employeeTests: EmployeeTest[];
   leadGenerations: LeadGenerationItem[];
+  sales: (Omit<Retailing, "monthIdx"> & { createdAt: string })[];
+  bookings: (Omit<Retailing, "monthIdx"> & { createdAt: string })[];
   academySections: (AcademySection & AcademySectionInList)[];
   academyProjects: (AcademyProject & AcademyProjectInList)[];
   academyWebinars: (AcademyWebinar & AcademyWebinarInList)[];
@@ -86,6 +89,8 @@ export default new (class DBService {
     tests: [],
     employeeTests: [],
     leadGenerations: [],
+    sales: [],
+    bookings: [],
     academySections: [],
     academyProjects: [],
     academyWebinars: [],
@@ -2684,6 +2689,772 @@ export default new (class DBService {
           fixedAt: "2023-06-18T16:21:56.719Z",
         },
       ],
+      sales: [
+        {
+          id: "c15vlqkjrb",
+          project: { id: "hksdi8bz7h", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-05-15T04:50:23.874Z",
+          sum: 159052,
+        },
+        {
+          id: "wijehkc3ou",
+          project: {
+            id: "pz3wdbehvo",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2024-01-01T07:42:46.235Z",
+          sum: 333619,
+        },
+        {
+          id: "foslvzv6lk",
+          project: {
+            id: "uo4gr5twye",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2023-08-20T22:10:52.814Z",
+          sum: 295262,
+        },
+        {
+          id: "zne04idkea",
+          project: { id: "7is75hd3bh", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-10-26T10:26:50.547Z",
+          sum: 194620,
+        },
+        {
+          id: "w3ib1uhbod",
+          project: { id: "k4u2s48j4b", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2024-02-08T17:43:14.711Z",
+          sum: 326747,
+        },
+        {
+          id: "priu45d6lw",
+          project: { id: "1ncizi5prb", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-10-29T17:54:32.883Z",
+          sum: 277590,
+        },
+        {
+          id: "hjhw1pmp3p",
+          project: { id: "4llbhigcjx", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-02-04T08:13:19.263Z",
+          sum: 413781,
+        },
+        {
+          id: "wfwmhxmjmb",
+          project: {
+            id: "859phypwci",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2023-12-15T00:47:22.380Z",
+          sum: 451422,
+        },
+        {
+          id: "okq1vgygq1",
+          project: { id: "72wlas8mkd", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-03-30T12:53:57.100Z",
+          sum: 411154,
+        },
+        {
+          id: "bnezkvwhgs",
+          project: {
+            id: "w7eofe0wgo",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2023-08-28T04:54:05.414Z",
+          sum: 284496,
+        },
+        {
+          id: "gd8uz9sb9d",
+          project: {
+            id: "dgysd1isip",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2024-07-16T08:59:10.874Z",
+          sum: 127317,
+        },
+        {
+          id: "cxb2ybqybr",
+          project: {
+            id: "3n231ayvdi",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2024-03-23T11:57:06.460Z",
+          sum: 476125,
+        },
+        {
+          id: "ine2635nwb",
+          project: {
+            id: "88tq8czxgq",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2024-04-09T23:48:03.670Z",
+          sum: 383382,
+        },
+        {
+          id: "5bwyxl3wus",
+          project: {
+            id: "vq495kvcc9",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2024-04-12T23:13:16.971Z",
+          sum: 419532,
+        },
+        {
+          id: "1yj9yztxui",
+          project: {
+            id: "luevzrmq6z",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2023-11-22T05:54:22.532Z",
+          sum: 237148,
+        },
+        {
+          id: "1q8ombfj8f",
+          project: { id: "rcihm0tu0f", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-12-28T11:15:47.956Z",
+          sum: 309474,
+        },
+        {
+          id: "o0wnm42nt9",
+          project: {
+            id: "tnhozbjrqe",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2023-07-23T08:12:17.116Z",
+          sum: 283849,
+        },
+        {
+          id: "q19ucktjq6",
+          project: {
+            id: "sttl0j4dc0",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-10-18T20:25:18.197Z",
+          sum: 414570,
+        },
+        {
+          id: "o7emsxvw2t",
+          project: { id: "w31ag6ujgb", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-02-04T06:13:35.792Z",
+          sum: 375353,
+        },
+        {
+          id: "atv2nzogx8",
+          project: { id: "7eb88e8d2t", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-05-09T14:06:55.363Z",
+          sum: 343863,
+        },
+        {
+          id: "dn6ouuwklp",
+          project: {
+            id: "0g6aubax34",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2025-02-05T17:30:59.538Z",
+          sum: 347217,
+        },
+        {
+          id: "dswd51n3m2",
+          project: {
+            id: "o7vepbjh0f",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2023-09-05T04:20:22.673Z",
+          sum: 318291,
+        },
+        {
+          id: "wzdqnyzqpk",
+          project: { id: "nfsey2xub3", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2023-11-11T21:08:38.255Z",
+          sum: 269104,
+        },
+        {
+          id: "lkjsm93vnp",
+          project: {
+            id: "he9pjq1rit",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2024-02-14T09:35:40.261Z",
+          sum: 467809,
+        },
+        {
+          id: "5q48jlbeva",
+          project: { id: "820cwteodp", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-05-25T08:37:37.294Z",
+          sum: 322564,
+        },
+        {
+          id: "8xg3qqz6e7",
+          project: { id: "9o84apkqte", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2023-04-23T12:09:58.489Z",
+          sum: 484333,
+        },
+        {
+          id: "a3udyiixkb",
+          project: {
+            id: "4d7dbqd33a",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2024-09-13T06:10:14.653Z",
+          sum: 423392,
+        },
+        {
+          id: "wf1x38ra1v",
+          project: {
+            id: "bk3c3ylxrb",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2025-01-23T06:29:13.286Z",
+          sum: 168718,
+        },
+        {
+          id: "ba68meeiob",
+          project: { id: "syfhhpqhjs", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2024-08-31T17:29:11.704Z",
+          sum: 383170,
+        },
+        {
+          id: "ehjorzkwtd",
+          project: { id: "fshvpq80qv", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-05-11T04:08:40.156Z",
+          sum: 392036,
+        },
+        {
+          id: "l4luc97cv8",
+          project: { id: "pwty29htcg", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-05-29T02:36:01.340Z",
+          sum: 123614,
+        },
+        {
+          id: "zmlxall2dd",
+          project: { id: "h2bjh86bn6", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2025-02-08T11:02:00.729Z",
+          sum: 121616,
+        },
+        {
+          id: "7r72274o84",
+          project: { id: "fp8bhbcyed", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-10-24T09:15:21.323Z",
+          sum: 322899,
+        },
+        {
+          id: "8tqabc4bk4",
+          project: {
+            id: "71i5gf9ny5",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2024-03-04T11:55:36.317Z",
+          sum: 481909,
+        },
+        {
+          id: "sgke6fkg3s",
+          project: {
+            id: "95mvc45yfi",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2023-10-28T08:07:43.067Z",
+          sum: 233180,
+        },
+        {
+          id: "xgs1tu44zl",
+          project: { id: "hjc7llh6ip", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-01-24T09:30:27.561Z",
+          sum: 111630,
+        },
+        {
+          id: "sj8uaiiizc",
+          project: {
+            id: "ktokava4o4",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2023-06-15T00:01:39.433Z",
+          sum: 317729,
+        },
+        {
+          id: "0o02mozzag",
+          project: { id: "qygbrzazrv", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-04-20T05:48:59.164Z",
+          sum: 291390,
+        },
+        {
+          id: "7diwnyneoj",
+          project: {
+            id: "lnlwqt67xz",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2024-10-27T00:16:51.058Z",
+          sum: 169669,
+        },
+        {
+          id: "7gec35o0z6",
+          project: { id: "jhxsyj41f", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-04-26T07:13:48.862Z",
+          sum: 182898,
+        },
+        {
+          id: "00hbn0pru8",
+          project: {
+            id: "01n4n4mtcu",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2023-05-22T08:00:46.689Z",
+          sum: 494221,
+        },
+        {
+          id: "uuw91b5cqc",
+          project: {
+            id: "rwe14cuefc",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2023-05-31T02:23:22.144Z",
+          sum: 448881,
+        },
+        {
+          id: "3qrd6af2h0",
+          project: {
+            id: "12udqbn8rb",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2024-10-22T22:04:49.708Z",
+          sum: 165091,
+        },
+        {
+          id: "k21cb7swv1",
+          project: { id: "r1izb9zljh", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-12-07T00:06:43.990Z",
+          sum: 260599,
+        },
+        {
+          id: "kdqy9gm0ko",
+          project: {
+            id: "q076xj3txf",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2023-05-18T21:38:19.296Z",
+          sum: 213234,
+        },
+        {
+          id: "lb8vhv61nd",
+          project: {
+            id: "wxxmcsdx6d",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-09-28T23:47:22.569Z",
+          sum: 165046,
+        },
+        {
+          id: "v94jyduvy3",
+          project: { id: "e4tzw2npbv", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-11-01T20:03:35.057Z",
+          sum: 133386,
+        },
+        {
+          id: "ja2iqngk9q",
+          project: { id: "wjybz2mcsa", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-01-24T10:28:37.788Z",
+          sum: 257178,
+        },
+        {
+          id: "7swoodgbaq",
+          project: {
+            id: "ety7qi7eth",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2024-06-17T01:33:11.273Z",
+          sum: 175796,
+        },
+        {
+          id: "nl42mbydhj",
+          project: { id: "8tyqiee47s", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-07-01T07:54:50.381Z",
+          sum: 491524,
+        },
+      ],
+      bookings: [
+        {
+          id: "uo079g4wvb",
+          project: { id: "7axw6zj4tt", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2024-07-10T09:58:16.420Z",
+          sum: 329446,
+        },
+        {
+          id: "1vgtgc2pkz",
+          project: {
+            id: "9thyhmv70x",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2024-05-22T11:35:03.879Z",
+          sum: 433244,
+        },
+        {
+          id: "fuqj9mskod",
+          project: {
+            id: "450tz4b4t0",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2024-09-02T00:06:04.169Z",
+          sum: 181914,
+        },
+        {
+          id: "mkuw8nvopp",
+          project: {
+            id: "as828w3d00",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-08-09T04:02:48.318Z",
+          sum: 194984,
+        },
+        {
+          id: "7odoup7luk",
+          project: { id: "gel3kq1epb", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2025-02-03T05:42:19.026Z",
+          sum: 207364,
+        },
+        {
+          id: "8jty9zyjrx",
+          project: { id: "9c2jaeo4qa", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-12-10T12:57:29.456Z",
+          sum: 236180,
+        },
+        {
+          id: "47vej5l5lm",
+          project: { id: "605gfhjr5c", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-06-16T03:46:12.242Z",
+          sum: 105564,
+        },
+        {
+          id: "n5ngoqge5m",
+          project: { id: "zyqe7tvlmz", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-11-02T09:51:14.790Z",
+          sum: 315666,
+        },
+        {
+          id: "qa3gptltgu",
+          project: { id: "53o2w1njsp", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-03-05T22:35:25.426Z",
+          sum: 495247,
+        },
+        {
+          id: "1kgvpwv1a7",
+          project: { id: "u1awsqgrhl", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-06-12T21:37:03.439Z",
+          sum: 446386,
+        },
+        {
+          id: "utf8wxuab5",
+          project: {
+            id: "rxjwlfmves",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2023-10-14T02:56:01.014Z",
+          sum: 130742,
+        },
+        {
+          id: "4v15j960mq",
+          project: {
+            id: "jkcnbd6y7z",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2024-05-05T13:35:03.372Z",
+          sum: 372368,
+        },
+        {
+          id: "h0e27e8eow",
+          project: {
+            id: "zk5qfimirc",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2024-07-18T16:22:20.401Z",
+          sum: 492770,
+        },
+        {
+          id: "mbjzjmdpne",
+          project: {
+            id: "gli379m6x2",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2024-09-01T04:07:33.349Z",
+          sum: 412790,
+        },
+        {
+          id: "yx54e31zdk",
+          project: {
+            id: "hvmo9v4wrq",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2023-11-19T18:43:58.551Z",
+          sum: 437698,
+        },
+        {
+          id: "496og9q29k",
+          project: { id: "ein4hjgghr", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2024-07-05T17:42:19.227Z",
+          sum: 276218,
+        },
+        {
+          id: "g8xaqobm4w",
+          project: { id: "84fbaiq8vj", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-10-25T10:02:19.510Z",
+          sum: 402297,
+        },
+        {
+          id: "htrayjo11j",
+          project: { id: "tc4xgzxw6k", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-11-06T03:39:12.810Z",
+          sum: 165374,
+        },
+        {
+          id: "5iba8y7vt8",
+          project: { id: "hm98eftmbc", name: "Project 8000 Overwatch League" },
+          createdAt: "2023-12-18T23:18:06.132Z",
+          sum: 458154,
+        },
+        {
+          id: "q5uwrzthc1",
+          project: { id: "i50w4b3sd4", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-09-30T17:15:27.271Z",
+          sum: 453326,
+        },
+        {
+          id: "4tk07juhpx",
+          project: { id: "bgnli5hmod", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2024-01-17T21:27:02.236Z",
+          sum: 289407,
+        },
+        {
+          id: "bgfi4kacjz",
+          project: { id: "5w39tjif04", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2024-12-27T21:17:30.297Z",
+          sum: 186041,
+        },
+        {
+          id: "8qk3djk7kk",
+          project: {
+            id: "uo0aiwcpqf",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2024-01-01T02:10:34.613Z",
+          sum: 133931,
+        },
+        {
+          id: "fkt15p49u3",
+          project: {
+            id: "g7hrpre7q6",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2024-10-09T04:29:12.664Z",
+          sum: 341305,
+        },
+        {
+          id: "ljjce24as2",
+          project: {
+            id: "vh2nf1zoh5",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2023-03-11T07:19:15.485Z",
+          sum: 356012,
+        },
+        {
+          id: "cc7hpcgqq7",
+          project: {
+            id: "0n6waz9bpv",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2024-02-21T17:24:12.315Z",
+          sum: 416030,
+        },
+        {
+          id: "jsmof73lj2",
+          project: { id: "hd7mxsmx5n", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-10-11T21:47:00.119Z",
+          sum: 115234,
+        },
+        {
+          id: "68g09n0ylr",
+          project: {
+            id: "73aarzuj5h",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2024-02-22T21:42:59.440Z",
+          sum: 296293,
+        },
+        {
+          id: "jz63x7k3vw",
+          project: {
+            id: "w3e6hnoq8x",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2023-12-29T22:49:01.650Z",
+          sum: 402550,
+        },
+        {
+          id: "gdf8izdoxl",
+          project: { id: "a5fg5mt5pw", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-05-06T14:11:38.221Z",
+          sum: 329478,
+        },
+        {
+          id: "4lrl84nv19",
+          project: {
+            id: "ac4tjzx4zg",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2023-07-03T02:19:38.201Z",
+          sum: 415058,
+        },
+        {
+          id: "0dn0xarajp",
+          project: { id: "wph8dqsh99", name: "Project 8000 Overwatch League" },
+          createdAt: "2024-09-05T02:50:08.929Z",
+          sum: 404205,
+        },
+        {
+          id: "g48mn7jjfq",
+          project: {
+            id: "3sbqszpo5k",
+            name: "Project 10000 Assassin's Creed Valhalla",
+          },
+          createdAt: "2023-11-21T14:53:43.067Z",
+          sum: 437589,
+        },
+        {
+          id: "6f6v9e11jf",
+          project: {
+            id: "9cu1ax8kib",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2024-12-04T08:26:26.090Z",
+          sum: 496952,
+        },
+        {
+          id: "9yrd2vyye5",
+          project: { id: "0l6e3q3xj6", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-03-09T11:24:15.303Z",
+          sum: 455436,
+        },
+        {
+          id: "lndx4zm26r",
+          project: {
+            id: "pd9j3u8mxo",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2023-11-18T09:20:04.577Z",
+          sum: 206376,
+        },
+        {
+          id: "zv35zq2v4a",
+          project: {
+            id: "usmh6mrner",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2024-07-19T14:59:18.961Z",
+          sum: 307488,
+        },
+        {
+          id: "oxt01u4pny",
+          project: { id: "rzpme1xsne", name: "Project 6000 Halo Infinite" },
+          createdAt: "2024-02-11T10:40:58.906Z",
+          sum: 228471,
+        },
+        {
+          id: "pinrvg4q94",
+          project: {
+            id: "65o46ij35p",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2023-07-24T14:29:45.319Z",
+          sum: 100242,
+        },
+        {
+          id: "nk014khj48",
+          project: { id: "riobdk3lvm", name: "Project 9000 Final Fantasy XV" },
+          createdAt: "2023-10-31T12:56:32.236Z",
+          sum: 209892,
+        },
+        {
+          id: "qvs95ojdku",
+          project: {
+            id: "4xnafx465a",
+            name: "Project 1500 Warhammer 40 000 gold throne",
+          },
+          createdAt: "2024-09-12T19:56:36.503Z",
+          sum: 446103,
+        },
+        {
+          id: "15tncw3snl",
+          project: {
+            id: "r4p12vdoym",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          createdAt: "2024-03-08T18:43:32.948Z",
+          sum: 328462,
+        },
+        {
+          id: "2c6lnrt3pn",
+          project: {
+            id: "209fjcho1x",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2024-09-27T00:46:51.168Z",
+          sum: 191923,
+        },
+        {
+          id: "75uxo9qpez",
+          project: {
+            id: "ofgm29sbza",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-08-06T11:21:15.416Z",
+          sum: 247120,
+        },
+        {
+          id: "orqq7ss0nl",
+          project: {
+            id: "kwt5arnemg",
+            name: "Project 3000 Minecraft Builders",
+          },
+          createdAt: "2024-12-13T22:28:45.774Z",
+          sum: 101339,
+        },
+        {
+          id: "5occ1xuats",
+          project: { id: "1zr7pufk1k", name: "Project 5000 Legends of Zelda" },
+          createdAt: "2023-10-26T05:05:25.817Z",
+          sum: 297311,
+        },
+        {
+          id: "d269iodfu5",
+          project: {
+            id: "2b6pu3hx6w",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-09-20T02:12:15.426Z",
+          sum: 478554,
+        },
+        {
+          id: "m5927mxc3x",
+          project: {
+            id: "8bzzdtg9f5",
+            name: "Project 7000 Dark Souls Remastered",
+          },
+          createdAt: "2023-07-10T13:22:52.097Z",
+          sum: 333967,
+        },
+        {
+          id: "7vwmi92stl",
+          project: {
+            id: "cy40ptw4th",
+            name: "Project 4000 Evolution of Pokémon",
+          },
+          createdAt: "2024-11-19T21:37:08.894Z",
+          sum: 285679,
+        },
+        {
+          id: "fi5i0tttgd",
+          project: { id: "7h24q6f00x", name: "Project 6000 Halo Infinite" },
+          createdAt: "2023-03-30T00:23:41.658Z",
+          sum: 137611,
+        },
+      ],
       academySections: [
         {
           id: "1",
@@ -4226,6 +4997,34 @@ export default new (class DBService {
         new Date("2023-01-01"),
         new Date()
       ).toISOString(),
+    }));
+  }
+
+  private generateRetailing(count: number) {
+    const projectNames = [
+      "Project 1500 Warhammer 40 000 gold throne",
+      "Project 2000 Star Wars Battlefront",
+      "Project 3000 Minecraft Builders",
+      "Project 4000 Evolution of Pokémon",
+      "Project 5000 Legends of Zelda",
+      "Project 6000 Halo Infinite",
+      "Project 7000 Dark Souls Remastered",
+      "Project 8000 Overwatch League",
+      "Project 9000 Final Fantasy XV",
+      "Project 10000 Assassin's Creed Valhalla",
+    ];
+
+    return Array.from({ length: count }, (_, index) => ({
+      id: generateId(),
+      project: {
+        id: generateId(),
+        name: projectNames[generateRandomNumber(0, projectNames.length - 1)],
+      },
+      createdAt: generateRandomDate(
+        new Date("2023-01-01"),
+        new Date()
+      ).toISOString(),
+      sum: generateRandomNumber(100000, 500000),
     }));
   }
 

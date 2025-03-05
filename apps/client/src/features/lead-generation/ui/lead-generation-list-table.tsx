@@ -1,6 +1,7 @@
 import { schemas } from "@/shared/api/v1";
 import { cn } from "@/shared/lib/cn";
-import { formatDate, getFiscalQuarter } from "@/shared/lib/format-date";
+import { formatDate } from "@/shared/lib/format-date";
+import { getFiscalQuarter } from "@repo/date";
 import { Skeleton } from "@/shared/ui/skeleton";
 import {
   Table,
@@ -72,12 +73,8 @@ export function LeadGenerationListTable({
                   <TableCell className="text-muted">
                     {formatDate(new Date(lead.fixedAt), "dd.MM.yyyy")}
                   </TableCell>
-                  <TableCell>
-                    <span>{lead.project.id}</span>
-                  </TableCell>
-                  <TableCell>
-                    <span>{lead.project.name}</span>
-                  </TableCell>
+                  <TableCell>{lead.project.id}</TableCell>
+                  <TableCell>{lead.project.name}</TableCell>
                 </TableRow>
               ))}
             </Fragment>

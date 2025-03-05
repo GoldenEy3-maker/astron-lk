@@ -2,7 +2,7 @@ import { getPartnerByIdQueryOptions } from "@/entities/partner";
 import { EmployeeTestingCard } from "@/features/employee-testing";
 import { getEmployeeTestingUploadedYearsQueryOptions } from "@/features/employee-testing";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
-import { YearSelect } from "@/shared/ui/year-select";
+import { YearSelect, YearSelectSekeleton } from "@/shared/ui/year-select";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsString, useQueryState } from "nuqs";
@@ -33,7 +33,9 @@ export function EmployeeTestingPage() {
         <h1 className="text-h1 text-heading-h2">Тестирование сотрудников</h1>
         {!isUploadedYearsLoading && uploadedYears ? (
           <YearSelect year={year} setYear={setYear} data={uploadedYears} />
-        ) : null}
+        ) : (
+          <YearSelectSekeleton />
+        )}
       </SectionHeader>
       <SectionContent>
         <EmployeeTestingCard

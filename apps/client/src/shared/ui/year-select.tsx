@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select";
+import { Skeleton } from "./skeleton";
 
 type YearSelectProps = {
   year?: string;
@@ -27,4 +28,8 @@ export function YearSelect({ year, setYear, data }: YearSelectProps) {
       </SelectContent>
     </Select>
   );
+}
+
+export function YearSelectSekeleton() {
+  return <Skeleton className="h-10 w-32 rounded-xl" />;
 }

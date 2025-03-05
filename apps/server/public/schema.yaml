@@ -907,6 +907,7 @@ paths:
           description: ID партнёра
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -944,6 +945,7 @@ paths:
           description: ID партнёра
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -982,12 +984,14 @@ paths:
           description: Год
           schema:
             type: string
+            example: "2025"
         - name: partnerId
           in: query
           required: false
           description: ID партнёра
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -1040,6 +1044,7 @@ paths:
           description: ID партнёра
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -1078,12 +1083,14 @@ paths:
           description: Год
           schema:
             type: string
+            example: "2025"
         - name: partnerId
           in: query
           required: false
           description: ID партнёра
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -1136,12 +1143,14 @@ paths:
           description: Год
           schema:
             type: string
+            example: "2025"
         - name: partnerId
           in: query
           required: false
           description: ID партнера
           schema:
             type: string
+            example: "1"
       responses:
         "200":
           description: Успешный ответ
@@ -1161,6 +1170,163 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/LeadGenerationQuarterPassed"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/retailing/uploaded-years:
+    get:
+      summary: Получить список годов, за которые были загружены данные ретейлинга
+      operationId: getRetailingUploadedYears
+      tags:
+        - KPI
+        - Ретейлинг
+      parameters:
+        - name: type
+          in: query
+          required: true
+          description: Тип данных ретейлинга
+          schema:
+            type: string
+            enum:
+              - sales
+              - booking
+            example: sales
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнёра
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "2025"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/retailing/quarters-plan:
+    get:
+      summary: Получить квартальный план ретейлинга
+      operationId: getRetailingQuartersPlan
+      tags:
+        - KPI
+        - Ретейлинг
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+            example: "2025"
+        - name: type
+          in: query
+          required: true
+          description: Тип данных ретейлинга
+          schema:
+            type: string
+            enum:
+              - sales
+              - booking
+            example: sales
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнера
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RetailingQuartersPlan"
+        "404":
+          description: Партнёр не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Пользователь не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - bearerAuth: []
+  /api/kpi/retailing:
+    get:
+      summary: Получить список данных ретейлинга
+      operationId: getRetailingList
+      tags:
+        - KPI
+        - Ретейлинг
+      parameters:
+        - name: year
+          in: query
+          required: true
+          description: Год
+          schema:
+            type: string
+            example: "2025"
+        - name: type
+          in: query
+          required: true
+          description: Тип данных ретейлинга
+          schema:
+            type: string
+            enum:
+              - sales
+              - booking
+            example: sales
+        - name: partnerId
+          in: query
+          required: false
+          description: ID партнера
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Retailing"
         "404":
           description: Партнёр не найден
           content:
@@ -2240,6 +2406,69 @@ components:
       properties:
         message:
           type: string
+    RetailingQuarter:
+      type: object
+      required:
+        - quarter
+        - plan
+      properties:
+        quarter:
+          type: number
+          example: 1
+        plan:
+          type: number
+          example: 7500000
+        fact:
+          type: number
+          example: 1200686
+    RetailingQuartersPlan:
+      type: object
+      required:
+        - data
+        - uploadedAt
+        - updatedAt
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/RetailingQuarter"
+        uploadedAt:
+          type: string
+          format: date-time
+          example: "2025-01-01T00:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2025-01-01T00:00:00Z"
+    Retailing:
+      type: object
+      required:
+        - id
+        - monthIdx
+        - project
+        - sum
+      properties:
+        id:
+          type: string
+          example: "1"
+        monthIdx:
+          type: number
+          example: 0 - Январь, 11 - Декабрь (number)
+        project:
+          type: object
+          required:
+            - id
+            - name
+          properties:
+            id:
+              type: string
+              example: "1"
+            name:
+              type: string
+              example: "Project 1500 Warhammer 40 000 gold throne"
+        sum:
+          type: number
+          example: 187827
   securitySchemes:
     bearerAuth:
       type: http

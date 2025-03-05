@@ -5,7 +5,7 @@ import { Routes } from "../constants/routes";
 
 export async function getSessionLoader({ request }: LoaderFunctionArgs) {
   const query = getSessionQueryOptions();
-  const { pathname } = new URL(request.url);
+  const { pathname, search } = new URL(request.url);
   try {
     await queryClient.prefetchQuery(query);
     return await queryClient.ensureQueryData(query);
@@ -17,7 +17,7 @@ export async function getSessionLoader({ request }: LoaderFunctionArgs) {
       throw error;
     }
     return redirect(
-      `${Routes.SignIn}?callbackUrl=${pathname.replace(/\/cabinet?\//, "/")}`,
+      `${Routes.SignIn}?callbackUrl=${pathname.replace(/\/cabinet?\//, "/")}${search}`,
     );
   }
 }

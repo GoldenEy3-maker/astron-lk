@@ -1,7 +1,7 @@
 import { apiClient } from "@/shared/api/client";
 import { queryOptions } from "@tanstack/react-query";
 
-type GetLeadGenerationQueryOptionsProps = {
+type GetLeadGenerationQueryOptionsParams = {
   year?: string;
   partnerId?: string;
 };
@@ -9,7 +9,7 @@ type GetLeadGenerationQueryOptionsProps = {
 export const BASE_LEAD_GENERATION_QUERY_KEY = "lead-generation";
 
 export function getLeadGenerationPlanQueryOptions(
-  params?: GetLeadGenerationQueryOptionsProps,
+  params?: GetLeadGenerationQueryOptionsParams,
 ) {
   return queryOptions({
     queryKey: [
@@ -39,7 +39,7 @@ export function getLeadGenerationUploadedYearsQueryOptions(partnerId?: string) {
 }
 
 export function getLeadGenerationListQueryOptions(
-  params?: GetLeadGenerationQueryOptionsProps,
+  params?: GetLeadGenerationQueryOptionsParams,
 ) {
   return queryOptions({
     queryKey: [

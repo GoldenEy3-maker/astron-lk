@@ -26,6 +26,9 @@ const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.str
 const LeadGenerationItem = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
 const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number() }).strict();
 const LeadGenerationQuarterPassed = z.object({ quarter: z.number(), value: z.number() }).strict();
+const RetailingQuarter = z.object({ quarter: z.number(), plan: z.number(), fact: z.number().optional() }).strict();
+const RetailingQuartersPlan = z.object({ data: z.array(RetailingQuarter), uploadedAt: z.string().datetime({ offset: true }), updatedAt: z.string().datetime({ offset: true }) }).strict();
+const Retailing = z.object({ id: z.string(), monthIdx: z.number(), project: z.object({ id: z.string(), name: z.string() }).strict(), sum: z.number() }).strict();
 const Video = z.object({ src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
 const FactoryTeam = z.object({ id: z.string(), img: Image.optional(), role: z.string(), title: z.string(), phone: z.string(), email: z.string().optional() }).strict();
 const AcademySectionInList = z.object({ id: z.string(), title: z.string(), bgImg: z.string().optional(), url: z.string().optional(), icon: z.string().optional() }).strict();
@@ -73,6 +76,9 @@ export const schemas = {
 	LeadGenerationItem,
 	LeadGenerationMonth,
 	LeadGenerationQuarterPassed,
+	RetailingQuarter,
+	RetailingQuartersPlan,
+	Retailing,
 	Video,
 	FactoryTeam,
 	AcademySectionInList,
@@ -494,6 +500,109 @@ const endpoints = makeApi([
 		alias: "getLeadGenerationUploadedYears",
 		requestFormat: "json",
 		parameters: [
+			{
+				name: "partnerId",
+				type: "Query",
+				schema: z.string().optional()
+			},
+		],
+		response: z.array(z.string()),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Партнёр не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "get",
+		path: "/api/kpi/retailing",
+		alias: "getRetailingList",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "year",
+				type: "Query",
+				schema: z.string()
+			},
+			{
+				name: "type",
+				type: "Query",
+				schema: z.enum(["sales", "booking"])
+			},
+			{
+				name: "partnerId",
+				type: "Query",
+				schema: z.string().optional()
+			},
+		],
+		response: z.array(Retailing),
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Партнёр не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "get",
+		path: "/api/kpi/retailing/quarters-plan",
+		alias: "getRetailingQuartersPlan",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "year",
+				type: "Query",
+				schema: z.string()
+			},
+			{
+				name: "type",
+				type: "Query",
+				schema: z.enum(["sales", "booking"])
+			},
+			{
+				name: "partnerId",
+				type: "Query",
+				schema: z.string().optional()
+			},
+		],
+		response: RetailingQuartersPlan,
+		errors: [
+			{
+				status: 401,
+				description: `Пользователь не авторизован`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+			{
+				status: 404,
+				description: `Партнёр не найден`,
+				schema: z.object({ message: z.string() }).strict()
+			},
+		]
+	},
+	{
+		method: "get",
+		path: "/api/kpi/retailing/uploaded-years",
+		alias: "getRetailingUploadedYears",
+		requestFormat: "json",
+		parameters: [
+			{
+				name: "type",
+				type: "Query",
+				schema: z.enum(["sales", "booking"])
+			},
 			{
 				name: "partnerId",
 				type: "Query",

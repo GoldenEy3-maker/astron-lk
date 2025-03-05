@@ -7,7 +7,7 @@ import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { EmployeeTestingTable } from "./employee-testing-table";
 import { useEmployeeTesting } from "../lib/use-employee-testing";
 import { formatDate } from "@/shared/lib/format-date";
-import { YearSelect } from "@/shared/ui/year-select";
+import { YearSelect, YearSelectSekeleton } from "@/shared/ui/year-select";
 import { Skeleton } from "@/shared/ui/skeleton";
 
 type EmployeeTestingCardProps = {
@@ -53,7 +53,7 @@ export function EmployeeTestingCard({
                 )}
               </h2>
             ) : (
-              <Skeleton className="h-7 w-1/2 rounded-full" />
+              <Skeleton className="w-1/2 rounded-full ~h-7/[2.625rem]" />
             )}
             {updatedAt ? (
               <span className="text-lg text-muted">
@@ -73,9 +73,9 @@ export function EmployeeTestingCard({
             >
               <Link
                 to={
-                  partnerId
+                  (partnerId
                     ? `${Routes.Partners}/${partnerId}${Routes.EmployeeTesting}`
-                    : Routes.EmployeeTesting
+                    : Routes.EmployeeTesting) + `?year=${controlledYear}`
                 }
                 className="text-h3 leading-none"
               >
@@ -89,7 +89,9 @@ export function EmployeeTestingCard({
                 setYear={setControlledYear}
                 data={uploadedYears}
               />
-            ) : null}
+            ) : (
+              <YearSelectSekeleton />
+            )}
           </>
         )}
       </SectionHeader>

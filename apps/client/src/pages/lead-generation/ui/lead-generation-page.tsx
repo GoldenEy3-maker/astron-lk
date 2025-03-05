@@ -11,7 +11,7 @@ import { LeadGenerationBarChart } from "@/features/lead-generation/ui/lead-gener
 import { formatDate } from "@/shared/lib/format-date";
 import { Section, SectionContent, SectionHeader } from "@/shared/ui/section";
 import { Skeleton } from "@/shared/ui/skeleton";
-import { YearSelect } from "@/shared/ui/year-select";
+import { YearSelect, YearSelectSekeleton } from "@/shared/ui/year-select";
 import { useBreadcrumbs } from "@/widgets/breadcrumbs";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsString, useQueryState } from "nuqs";
@@ -49,7 +49,9 @@ export function LeadGenerationPage() {
         <h1 className="text-h1 text-heading-h2">Результаты лидогенераци</h1>
         {!isUploadedYearsLoading && uploadedYears ? (
           <YearSelect year={year} setYear={setYear} data={uploadedYears} />
-        ) : null}
+        ) : (
+          <YearSelectSekeleton />
+        )}
       </SectionHeader>
       <SectionContent>
         <Section space="lg" className="rounded-main bg-card ~px-6/14 ~py-6/9">
@@ -63,7 +65,7 @@ export function LeadGenerationPage() {
                 )}
               </h2>
             ) : (
-              <Skeleton className="h-7 w-1/2 rounded-full" />
+              <Skeleton className="w-1/2 rounded-full ~h-7/[2.625rem]" />
             )}
             {leadGeneration?.updatedAt ? (
               <span className="text-lg text-muted">

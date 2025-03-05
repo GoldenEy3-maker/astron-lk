@@ -1,13 +1,13 @@
 import { apiClient } from "@/shared/api/client";
 import { queryOptions } from "@tanstack/react-query";
 
-type GetEmployeeTestingQueryOptionsProps = {
+type GetEmployeeTestingQueryOptionsParams = {
   year?: string;
   partnerId?: string;
 };
 
 export function getEmployeeTestingQueryOptions(
-  params?: GetEmployeeTestingQueryOptionsProps,
+  params?: GetEmployeeTestingQueryOptionsParams,
 ) {
   return queryOptions({
     queryKey: ["employee-testing", params?.year, params?.partnerId],
