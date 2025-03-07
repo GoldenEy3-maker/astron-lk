@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:prod": "tsc -b && cross-env VITE_API_URL=http://astronbuildings.countrydigital.ru/local/routes VITE_BASE_URL=/cabinet vite build",
+    "build:prod": "tsc -b && cross-env VITE_API_URL=https://astronbuildings.com/local/routes VITE_BASE_URL=/cabinet vite build",
     "lint": "eslint .",
     "prettier": "prettier --write src/**",
     "preview": "vite preview",
