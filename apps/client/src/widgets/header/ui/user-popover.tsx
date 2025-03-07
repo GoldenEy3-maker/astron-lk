@@ -23,7 +23,7 @@ export function UserPopover({ className, ...props }: UserPopoverProps) {
   const { data: session } = useQuery(getSessionQueryOptions());
   const { data: partner, isLoading: isPartnerLoading } = useQuery({
     ...getPartnerBySessionQueryOptions(),
-    enabled: session !== null,
+    enabled: session?.role === "partner",
   });
 
   return (
