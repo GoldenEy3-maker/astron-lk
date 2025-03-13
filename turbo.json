@@ -9,6 +9,10 @@
       "dependsOn": ["^build:prod"],
       "outputs": ["dist/**"]
     },
+    "build:test": {
+      "dependsOn": ["^build:test"],
+      "outputs": ["dist/**"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

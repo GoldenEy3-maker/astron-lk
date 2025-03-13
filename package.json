@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:prod": "turbo run build:prod",
+    "build:test": "turbo run build:test",
     "dev": "turbo run dev",
     "preview": "turbo run preview",
     "preview:prod": "turbo run preview:prod",
