@@ -7,11 +7,11 @@ export function Image({
   return (
     <div
       className={cn(
-        "flex items-center justify-center overflow-hidden rounded-main bg-card-accent ~h-[14rem]/[26.25rem]",
+        "relative flex aspect-[7/4] items-center justify-center overflow-hidden rounded-main bg-card-accent",
         className,
       )}
     >
-      <img {...props} />
+      <img className="size-full object-cover" {...props} />
     </div>
   );
 }

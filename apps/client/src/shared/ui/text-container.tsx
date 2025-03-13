@@ -8,6 +8,7 @@ import { cn } from "../lib/cn";
 import { VideoDialog } from "./video-dialog";
 import { Image } from "./image";
 import { Button } from "./button";
+import { Iframe } from "./iframe";
 
 type TextContainerProps = { html: string } & Omit<
   React.ComponentProps<"div">,
@@ -75,21 +76,31 @@ export function TextContainer({
           if (
             domNode instanceof Element &&
             domNode.attribs &&
+            domNode.name === "div"
+          ) {
+            const iframeNode = domNode.children.find(
+              (child) => child instanceof Element && child.name === "iframe",
+            );
+
+            if (iframeNode && iframeNode instanceof Element) {
+              const { style: _style, ...props } = attributesToProps(
+                iframeNode.attribs,
+              ) as React.IframeHTMLAttributes<HTMLIFrameElement>;
+
+              return <Iframe {...props} />;
+            }
+          }
+
+          if (
+            domNode instanceof Element &&
+            domNode.attribs &&
             domNode.name === "iframe"
           ) {
-            const { className, ...props } = attributesToProps(
+            const { style: _style, ...props } = attributesToProps(
               domNode.attribs,
             ) as React.IframeHTMLAttributes<HTMLIFrameElement>;
 
-            return (
-              <iframe
-                className={cn(
-                  "inline-flex aspect-video w-full overflow-hidden rounded-main !~mt-4/6",
-                  className,
-                )}
-                {...props}
-              />
-            );
+            return <Iframe {...props} />;
           }
 
           if (
