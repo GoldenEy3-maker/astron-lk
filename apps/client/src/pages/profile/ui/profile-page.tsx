@@ -38,8 +38,12 @@ export function ProfilePage() {
               </dd>
             </>
           ) : null}
-          <dt className="text-muted ~mt-4/7">Контактный телефон</dt>
-          <dd>{formatPhone(session?.phone ?? "")}</dd>
+          {session?.phone ? (
+            <>
+              <dt className="text-muted ~mt-4/7">Контактный телефон</dt>
+              <dd>{formatPhone(session.phone)}</dd>
+            </>
+          ) : null}
           <dt className="text-muted ~mt-4/7">E-mail</dt>
           <dd>{session?.email}</dd>
         </dl>

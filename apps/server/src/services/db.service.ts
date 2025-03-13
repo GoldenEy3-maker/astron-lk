@@ -968,7 +968,6 @@ export default new (class DBService {
           patronymic: "Николаевич",
           email: "danil-danil-korolev@bk.ru",
           password: passwordService.hashPassword("123456"),
-          phone: "+79231665038",
           tokenVersion: 0,
           role: "partner",
           isBanned: false,

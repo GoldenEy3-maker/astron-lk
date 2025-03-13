@@ -5,7 +5,7 @@ import { z } from "zod";
 
 
 const signIn_Body = z.object({ login: z.string(), password: z.string(), remember: z.boolean().optional() }).strict();
-const Session = z.object({ email: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), role: z.enum(["manager", "super-manager", "employee", "partner"]), phone: z.string(), favorites: z.array(z.string()), favoriteProjects: z.number().int(), unreadNews: z.array(z.string()).optional(), unreadBulletins: z.array(z.string()).optional() }).strict();
+const Session = z.object({ email: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), role: z.enum(["manager", "super-manager", "employee", "partner"]), phone: z.string().optional(), favorites: z.array(z.string()), favoriteProjects: z.number().int(), unreadNews: z.array(z.string()).optional(), unreadBulletins: z.array(z.string()).optional() }).strict();
 const Error = z.object({ message: z.string() }).strict();
 const Success = z.object({ message: z.string() }).strict();
 const changeUserPassword_Body = z.object({ password: z.string(), newPassword: z.string() }).strict();
@@ -51,7 +51,7 @@ const AcademyWebinar = z.object({ id: z.string(), title: z.string(), description
 const AcademyBenefitTag = z.object({ id: z.string(), label: z.string(), slug: z.string() }).strict();
 const AcademyBenefitInList = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), img: Image.optional(), tags: z.array(AcademyBenefitTag) }).strict();
 const AcademyBenefit = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), img: Image.optional(), tags: z.array(AcademyBenefitTag), content: z.array(InfoBlock) }).strict();
-const User = z.object({ id: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), email: z.string(), phone: z.string(), password: z.string(), role: z.enum(["manager", "super-manager", "employee", "partner"]), tokenVersion: z.number().int(), isBanned: z.boolean(), favorites: z.array(z.string()), partnerId: z.string().optional() }).strict();
+const User = z.object({ id: z.string(), surname: z.string(), name: z.string(), patronymic: z.string().optional(), email: z.string(), phone: z.string().optional(), password: z.string(), role: z.enum(["manager", "super-manager", "employee", "partner"]), tokenVersion: z.number().int(), isBanned: z.boolean(), favorites: z.array(z.string()), partnerId: z.string().optional() }).strict();
 
 export const schemas = {
 	signIn_Body,

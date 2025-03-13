@@ -802,7 +802,7 @@ export interface components {
             /** @example dev@mail.ru */
             email: string;
             /** @example +79231665038 */
-            phone: string;
+            phone?: string;
             /** @example 123 */
             password: string;
             /**
@@ -831,7 +831,7 @@ export interface components {
              */
             role: "manager" | "super-manager" | "employee" | "partner";
             /** @example +79231665038 */
-            phone: string;
+            phone?: string;
             favorites: string[];
             /** @example 10 */
             favoriteProjects: number;
