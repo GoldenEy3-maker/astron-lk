@@ -1,10 +1,14 @@
+# Личный кабинет партнеров "Астрон"
+
 Основная ссылка - https://astron-lk-murex.vercel.app/
+
+## Данные для авторизации
+
 Партнер:
-Логин - partner@partner.ru
-Пароль - partner
+логин - partner@partner.ru, пароль - partner
+
 Манагер:
-Логин - manager@manager.ru
-Пароль - manager
+логин - manager@manager.ru, пароль - manager
+
 Сотрудник:
-Логин - employee@employee.ru
-Пароль - employee
+логин - employee@employee.ru, пароль - employee
