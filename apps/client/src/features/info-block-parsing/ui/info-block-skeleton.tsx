@@ -1,9 +1,18 @@
+import { cn } from "@/shared/lib/cn";
 import { ImageSkeleton } from "@/shared/ui/image-skeleton";
 import { Skeleton } from "@/shared/ui/skeleton";
 
-export function InfoBlockSkeleton() {
+type InfoBlockSckeletonProps = {} & Omit<
+  React.ComponentProps<"div">,
+  "children"
+>;
+
+export function InfoBlockSkeleton({
+  className,
+  ...props
+}: InfoBlockSckeletonProps) {
   return (
-    <div className="space-y-5">
+    <div className={cn("space-y-5", className)} {...props}>
       <Skeleton className="h-7 w-2/4 rounded-full" />
       <div className="space-y-2">
         <Skeleton className="h-3 w-3/4 rounded-full" />

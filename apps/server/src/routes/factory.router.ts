@@ -1,5 +1,11 @@
 import { Request, Response, Router } from "express";
-import { Document, FactoryTeam, Image, Video } from "../types/globals";
+import {
+  Document,
+  FactoryTeam,
+  Image,
+  InfoBlock,
+  Video,
+} from "../types/globals";
 import dbService from "../services/db.service";
 
 const factoryRouter = Router();
@@ -9,6 +15,7 @@ factoryRouter.get(
   (
     req: Request,
     res: Response<{
+      title?: string;
       text: string;
       img?: Image;
       video?: Video;
@@ -18,6 +25,7 @@ factoryRouter.get(
     const documents = dbService.get("documents");
 
     res.json({
+      title: "Производство Astron",
       text: `
       <p>
         Наш завод&nbsp;&mdash; наша гордость. Общая площадь комплекса
@@ -106,5 +114,23 @@ factoryRouter.get("/team", (req: Request, res: Response<FactoryTeam[]>) => {
     },
   ]);
 });
+
+factoryRouter.get(
+  "/extra",
+  (req: Request, res: Response<InfoBlock[] | null>) => {
+    res.json([
+      {
+        type: "section",
+        title: "Дополнительная информация о заводе Астрон",
+        text: "<p>Еще больше информации о заводе Астрон</p>",
+        media: {
+          type: "image",
+          src: "/news-1.webp",
+          alt: "Дополнительная информация о заводе Астрон",
+        },
+      },
+    ]);
+  }
+);
 
 export { factoryRouter };

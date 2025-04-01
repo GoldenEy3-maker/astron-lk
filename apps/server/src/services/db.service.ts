@@ -2277,14 +2277,6 @@ export default new (class DBService {
           threshold: 80,
           createdAt: new Date().toISOString(),
         },
-        // {
-        //   id: "14",
-        //   employeeId: "8",
-        //   testId: "3",
-        //   result: 85,
-        //   threshold: 80,
-        //   createdAt: new Date().toISOString(),
-        // },
       ],
       leadGenerations: [
         {

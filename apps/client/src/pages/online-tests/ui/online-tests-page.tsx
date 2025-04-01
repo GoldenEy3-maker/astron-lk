@@ -24,7 +24,7 @@ export function OnlineTestsPage() {
       </SectionHeader>
       <SectionContent>
         {!isLoading && data ? (
-          <InfoBlockParser content={data.content} />
+          <InfoBlockParser content={data} />
         ) : (
           <InfoBlockSkeleton />
         )}

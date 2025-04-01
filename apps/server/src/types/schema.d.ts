@@ -633,6 +633,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/factory/extra": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить дополнительную информацию о заводе Астрон */
+        get: operations["getFactoryExtra"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/academy/sections": {
         parameters: {
             query?: never;
@@ -1196,8 +1213,6 @@ export interface components {
             value: number;
             /** @example 2 */
             threshold: number;
-            /** @example false */
-            isClosed: boolean;
         };
         LeadGenerationQuarterPassed: {
             /** @example 1 */
@@ -2180,9 +2195,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        content: components["schemas"]["InfoBlock"][];
-                    };
+                    "application/json": components["schemas"]["InfoBlock"][];
                 };
             };
         };
@@ -2617,6 +2630,8 @@ export interface operations {
                     "application/json": {
                         /** @example <p>Текст о заводе Астрон</p> */
                         text: string;
+                        /** @example Производство Astron */
+                        title?: string;
                         img?: components["schemas"]["Image"];
                         video?: components["schemas"]["Video"];
                         document?: components["schemas"]["Document"];
@@ -2641,6 +2656,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["FactoryTeam"][];
+                };
+            };
+        };
+    };
+    getFactoryExtra: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InfoBlock"][];
                 };
             };
         };

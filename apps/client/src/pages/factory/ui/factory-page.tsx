@@ -4,6 +4,7 @@ import {
   FactoryProduction,
   FactoryTeam,
 } from "@/widgets/factory";
+import { FactoryExtra } from "@/widgets/factory/ui/factory-extra";
 
 export function FactoryPage() {
   return (
@@ -18,6 +19,7 @@ export function FactoryPage() {
       </Section>
       <FactoryProduction className="col-span-full" />
       <FactoryTeam className="col-span-full" />
+      <FactoryExtra className="col-span-full" />
     </div>
   );
 }

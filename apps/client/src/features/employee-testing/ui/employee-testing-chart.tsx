@@ -50,7 +50,7 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
     if (currentLine.length > 0) lines.push(currentLine);
 
     const RADIAN = Math.PI / 180;
-    const padding = 15;
+    const padding = 0;
 
     const isTwoSectors = data?.length === 2;
 

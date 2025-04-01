@@ -6,7 +6,6 @@ import { z } from "zod";
 type LeadGenerationMonth = {
   idx: number;
   value: number | null;
-  isClosed: boolean;
   threshold: number;
 };
 
@@ -27,7 +26,6 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
       months: Array.from({ length: 3 }, (_, mIdx) => ({
         idx: getMonthsByFiscalQuarter(idx + 1)[mIdx],
         value: null,
-        isClosed: false,
         threshold: 0,
       })),
     }),
@@ -49,7 +47,6 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
           if (m.idx === item.monthIdx)
             return {
               ...m,
-              isClosed: item.isClosed,
               threshold: item.threshold,
               value: item.value,
             };
@@ -67,10 +64,6 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
     if (!value) return null;
 
     return value >= threshold ? "100%" : "0%";
-  }
-
-  function checkIsQuarterClosed(quarter: LeadGenerationQuarter) {
-    return quarter.months.every((month) => month.isClosed);
   }
 
   function checkIsDestructiveMonth(month: LeadGenerationMonth) {
@@ -99,7 +92,6 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
     checkIsSuccessMonth,
     checkIsDestructiveQuarter,
     checkIsSuccessQuarter,
-    checkIsQuarterClosed,
     checkIsEmptyQuarter,
     renderMonthProgress,
   };

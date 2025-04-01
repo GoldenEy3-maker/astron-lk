@@ -3,14 +3,19 @@ import { z } from "zod";
 import { SectionBlock } from "./section-block";
 import { TextContainer } from "@/shared/ui/text-container";
 import { Separator } from "@/shared/ui/separator";
+import { cn } from "@/shared/lib/cn";
 
-type InfoBlockParserProps = {
+export type InfoBlockParserProps = {
   content: z.infer<typeof schemas.InfoBlock>[];
-};
+} & Omit<React.ComponentProps<"div">, "children" | "content">;
 
-export function InfoBlockParser({ content }: InfoBlockParserProps) {
+export function InfoBlockParser({
+  content,
+  className,
+  ...props
+}: InfoBlockParserProps) {
   return (
-    <div className="space-y-8">
+    <div className={cn("space-y-8", className)} {...props}>
       {content.map((block, index) => (
         <>
           {index > 0 && <Separator key={index} className="!~my-10/12" />}

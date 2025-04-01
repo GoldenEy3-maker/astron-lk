@@ -22,8 +22,8 @@ export function FactoryTeamCard({
           <Icons.FactoryTeamNoImage className="text-primary/50" />
         )}
       </div>
-      <span className="mt-5 text-sm text-muted">{role}</span>
-      <h2 className="mt-2 text-h2">{title}</h2>
+      <h2 className="mt-5 text-h2">{title}</h2>
+      <span className="mt-2 text-sm text-muted">{role}</span>
       <span className="mt-3">{formatPhone(phone)}</span>
       {email ? (
         <Button variant="link" size="hug" className="mt-2 font-normal">

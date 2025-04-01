@@ -906,14 +906,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - content
-                properties:
-                  content:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/InfoBlock"
+                type: array
+                items:
+                  $ref: "#/components/schemas/InfoBlock"
   /api/kpi/uploaded-date:
     get:
       summary: Получить дату последней выгрузки данных KPI
@@ -1380,6 +1375,9 @@ paths:
                   text:
                     type: string
                     example: "<p>Текст о заводе Астрон</p>"
+                  title:
+                    type: string
+                    example: Производство Astron
                   img:
                     $ref: "#/components/schemas/Image"
                   video:
@@ -1401,6 +1399,21 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FactoryTeam"
+  /api/factory/extra:
+    get:
+      summary: Получить дополнительную информацию о заводе Астрон
+      operationId: getFactoryExtra
+      tags:
+        - Завод
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InfoBlock"
   /api/academy/sections:
     get:
       summary: Получить список разделов академии
@@ -2396,7 +2409,6 @@ components:
         - monthIdx
         - value
         - threshold
-        - isClosed
       properties:
         monthIdx:
           type: number
@@ -2407,9 +2419,6 @@ components:
         threshold:
           type: number
           example: 2
-        isClosed:
-          type: boolean
-          example: false
     LeadGenerationQuarterPassed:
       type: object
       required:

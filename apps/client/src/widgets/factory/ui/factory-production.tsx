@@ -9,13 +9,21 @@ type FactoryProductionProps = {} & React.ComponentProps<typeof Section>;
 export function FactoryProduction(props: FactoryProductionProps) {
   const { data, isLoading } = useQuery(getFactoryInfoQueryOptions());
 
-  if (!isLoading && data && !data.video) return null;
+  if (!isLoading && data && !data.video && !data.title) return null;
 
   return (
     <Section space="md" {...props}>
-      <SectionHeader>
-        <h2 className="text-h2 text-heading-h2">Производство Astron</h2>
-      </SectionHeader>
+      {!isLoading && data ? (
+        data.title ? (
+          <SectionHeader>
+            <h2 className="text-h2 text-heading-h2">{data.title}</h2>
+          </SectionHeader>
+        ) : null
+      ) : (
+        <SectionHeader>
+          <Skeleton className="w-full rounded-full ~h-7/[2.625rem] ~max-w-60/80" />
+        </SectionHeader>
+      )}
       <SectionContent>
         {!isLoading && data ? (
           data.video ? (
