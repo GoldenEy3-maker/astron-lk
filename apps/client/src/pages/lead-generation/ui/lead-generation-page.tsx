@@ -46,7 +46,7 @@ export function LeadGenerationPage() {
   return (
     <Section className="col-span-full">
       <SectionHeader>
-        <h1 className="text-h1 text-heading-h2">Результаты лидогенераци</h1>
+        <h1 className="text-h1 text-heading-h2">Результаты лидогенерации</h1>
         {!isUploadedYearsLoading && uploadedYears ? (
           <YearSelect year={year} setYear={setYear} data={uploadedYears} />
         ) : (

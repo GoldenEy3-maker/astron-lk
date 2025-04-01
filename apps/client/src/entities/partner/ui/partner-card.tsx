@@ -76,7 +76,10 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
             <Skeleton className="h-5 w-1/4 !rounded-full" />
           )}
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 ~mt-4/5 sm:grid-cols-3">
+        <div
+          // className="grid grid-cols-2 gap-x-4 gap-y-2 ~mt-4/5 sm:grid-cols-3"
+          className="grid grid-cols-2 gap-x-4 gap-y-2 ~mt-4/5"
+        >
           {!isLoading && data ? (
             data.projects ? (
               <div className="flex flex-col items-start">
@@ -92,7 +95,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
                     </a>
                   </Button>
                   <span className="mt-0.5 leading-tight text-muted ~text-sm/base">
-                    реализовано с Astron
+                    на карте проектов Astron
                   </span>
                 </>
               </div>
@@ -103,7 +106,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
               <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
             </div>
           )}
-          {!isLoading && data ? (
+          {/* {!isLoading && data ? (
             data.projects?.implementedArea ? (
               <div className="flex flex-col items-start">
                 <>
@@ -124,7 +127,7 @@ export function PartnerCard({ id, className, ...props }: PartnerCardProps) {
               <Skeleton className="h-4 w-24 !rounded-full" />
               <Skeleton className="mt-2 h-4 w-4/5 !rounded-full" />
             </div>
-          )}
+          )} */}
           {!isLoading && data ? (
             data.cooperationYears ? (
               <div className="flex flex-col items-start">

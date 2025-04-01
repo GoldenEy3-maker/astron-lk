@@ -42,10 +42,9 @@ export function useNavigationLinks() {
           label: "Академия Astron",
         },
         {
-          url: "/path/to/external/link",
+          url: Routes.OnlineTests,
           icon: <Icons.ExternalResource />,
           label: "Онлайн-тесты",
-          isExternal: true,
         },
         {
           url: Routes.Documents,

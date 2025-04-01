@@ -22,16 +22,6 @@ const News = z.object({ id: z.string(), title: z.string(), description: z.string
 const Favorite = z.union([Document, Bulletin]);
 const SearchResult = z.object({ id: z.string(), title: z.string(), type: z.enum(["news", "document", "bulletin"]), description: z.string().optional(), fileUrl: z.string().optional() }).strict();
 const sendFeedback_Body = z.object({ fio: z.string(), phone: z.string(), message: z.string(), privacy: z.boolean(), personalData: z.boolean() }).strict();
-const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.string(), result: z.number().int() }).strict();
-const LeadGenerationItem = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
-const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number() }).strict();
-const LeadGenerationQuarterPassed = z.object({ quarter: z.number(), value: z.number() }).strict();
-const RetailingQuarter = z.object({ quarter: z.number(), plan: z.number(), fact: z.number().optional() }).strict();
-const RetailingQuartersPlan = z.object({ data: z.array(RetailingQuarter), uploadedAt: z.string().datetime({ offset: true }), updatedAt: z.string().datetime({ offset: true }) }).strict();
-const Retailing = z.object({ id: z.string(), monthIdx: z.number(), project: z.object({ id: z.string(), name: z.string() }).strict(), sum: z.number(), createdAt: z.string().datetime({ offset: true }).optional() }).strict();
-const Video = z.object({ src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
-const FactoryTeam = z.object({ id: z.string(), img: Image.optional(), role: z.string(), title: z.string(), phone: z.string(), email: z.string().optional() }).strict();
-const AcademySectionInList = z.object({ id: z.string(), title: z.string(), bgImg: z.string().optional(), url: z.string().optional(), icon: z.string().optional() }).strict();
 const ImageBlock = z.object({ type: z.literal("image"), src: z.string(), alt: z.string().optional() }).strict();
 const VideoBlock = z.object({ type: z.literal("video"), src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
 const MediaBlock = 
@@ -42,6 +32,16 @@ const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).str
 const InfoBlock = 
                 z.discriminatedUnion("type", [SectionBlock, HtmlBlock])
             ;
+const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.string(), result: z.number().int() }).strict();
+const LeadGenerationItem = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
+const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number() }).strict();
+const LeadGenerationQuarterPassed = z.object({ quarter: z.number(), value: z.number() }).strict();
+const RetailingQuarter = z.object({ quarter: z.number(), plan: z.number(), fact: z.number().optional() }).strict();
+const RetailingQuartersPlan = z.object({ data: z.array(RetailingQuarter), uploadedAt: z.string().datetime({ offset: true }), updatedAt: z.string().datetime({ offset: true }) }).strict();
+const Retailing = z.object({ id: z.string(), monthIdx: z.number(), project: z.object({ id: z.string(), name: z.string() }).strict(), sum: z.number(), createdAt: z.string().datetime({ offset: true }).optional() }).strict();
+const Video = z.object({ src: z.string(), thumbnail: z.string(), alt: z.string().optional() }).strict();
+const FactoryTeam = z.object({ id: z.string(), img: Image.optional(), role: z.string(), title: z.string(), phone: z.string(), email: z.string().optional() }).strict();
+const AcademySectionInList = z.object({ id: z.string(), title: z.string(), bgImg: z.string().optional(), url: z.string().optional(), icon: z.string().optional() }).strict();
 const AcademySection = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), content: z.array(InfoBlock) }).strict();
 const AcademySales = z.object({ title: z.string(), description: z.string().optional(), slug: z.string(), content: z.array(InfoBlock) }).strict();
 const AcademyProjectInList = z.object({ id: z.string(), title: z.string(), description: z.string().optional(), img: Image.optional() }).strict();
@@ -72,6 +72,12 @@ export const schemas = {
 	Favorite,
 	SearchResult,
 	sendFeedback_Body,
+	ImageBlock,
+	VideoBlock,
+	MediaBlock,
+	SectionBlock,
+	HtmlBlock,
+	InfoBlock,
 	EmployeeTesting,
 	LeadGenerationItem,
 	LeadGenerationMonth,
@@ -82,12 +88,6 @@ export const schemas = {
 	Video,
 	FactoryTeam,
 	AcademySectionInList,
-	ImageBlock,
-	VideoBlock,
-	MediaBlock,
-	SectionBlock,
-	HtmlBlock,
-	InfoBlock,
 	AcademySection,
 	AcademySales,
 	AcademyProjectInList,
@@ -726,6 +726,13 @@ const endpoints = makeApi([
 				schema: z.object({ message: z.string() }).strict()
 			},
 		]
+	},
+	{
+		method: "get",
+		path: "/api/online-tests",
+		alias: "getOnlineTest",
+		requestFormat: "json",
+		response: z.object({ content: z.array(InfoBlock) }).strict(),
 	},
 	{
 		method: "get",

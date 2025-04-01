@@ -11,6 +11,7 @@ export const Routes = {
   EmployeeTesting: "/employee-testing",
   Partners: "/partners",
   LeadGeneration: "/lead-generation",
+  OnlineTests: "/online-tests",
   Sales: "/sales",
   Booking: "/booking",
   Bulletins: "/bulletins",

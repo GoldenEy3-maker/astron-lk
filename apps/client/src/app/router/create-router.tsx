@@ -173,6 +173,11 @@ export function createRouter() {
             </Route>
           </Route>
           <Route
+            path={Routes.OnlineTests}
+            element={<LazyModules.OnlineTestsPage />}
+            handle={setCrumbHandle(Routes.OnlineTests, "Онлайн-тесты")}
+          />
+          <Route
             path={Routes.Documents}
             element={<LazyModules.DocumentsPage />}
             handle={setCrumbHandle(Routes.Documents, "Документы")}

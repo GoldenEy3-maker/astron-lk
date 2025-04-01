@@ -894,6 +894,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
+  /api/online-tests:
+    get:
+      summary: Получить данные о разделе "Онлайн-тесты"
+      operationId: getOnlineTest
+      tags:
+        - Онлайн-тесты
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - content
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InfoBlock"
   /api/kpi/uploaded-date:
     get:
       summary: Получить дату последней выгрузки данных KPI

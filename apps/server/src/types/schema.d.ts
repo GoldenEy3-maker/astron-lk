@@ -429,6 +429,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/online-tests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Получить данные о разделе "Онлайн-тесты" */
+        get: operations["getOnlineTest"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/kpi/uploaded-date": {
         parameters: {
             query?: never;
@@ -2138,6 +2155,28 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Success"];
+                };
+            };
+        };
+    };
+    getOnlineTest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Успешный ответ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        content: components["schemas"]["InfoBlock"][];
+                    };
                 };
             };
         };

@@ -9,7 +9,7 @@ export function Sidebar({ className, ...props }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "sticky top-6 max-h-fit min-w-[14.375rem] space-y-5",
+        "sticky top-6 max-h-fit space-y-5 ~m-md:~min-w-[11.375rem]/[14.375rem]",
         className,
       )}
       {...props}

@@ -50,7 +50,9 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
     }, initialData) ?? initialData;
 
   function renderMonthProgress(value: number | null): string | null {
-    return value ? (value >= minLeadsInMonth ? "100%" : "0%") : null;
+    if (!value) return null;
+
+    return value >= minLeadsInMonth ? "100%" : "0%";
   }
 
   function checkIsDestructiveMonth(month: LeadGenerationMonth) {

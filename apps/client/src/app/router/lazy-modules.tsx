@@ -108,6 +108,12 @@ const AcademyBenefitsDetailPage = lazy(() =>
   })),
 );
 
+const OnlineTestsPage = lazy(() =>
+  import("../../pages/online-tests").then((module) => ({
+    default: module.OnlineTestsPage,
+  })),
+);
+
 const DocumentsPage = lazy(() =>
   import("../../pages/documents").then((module) => ({
     default: module.DocumentsPage,
@@ -193,6 +199,7 @@ export {
   AcademyWebinarsDetailPage,
   AcademyBenefitsPage,
   AcademyBenefitsDetailPage,
+  OnlineTestsPage,
   DocumentsPage,
   PartnersPage,
   PartnersDetailPage,
