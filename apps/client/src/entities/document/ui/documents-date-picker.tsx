@@ -1,4 +1,5 @@
 import { formatDate } from "@/shared/lib/format-date";
+import { Button } from "@/shared/ui/button";
 import { Calendar } from "@/shared/ui/calendar";
 import { Icons } from "@/shared/ui/icons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
@@ -15,42 +16,39 @@ export function DocumentsDatePicker({
   onDateChange,
 }: DocumentsDatePickerProps) {
   const isMobile = useMediaQuery("(max-width: 640px)");
-  // const [date, setDate] = useState<DateRange | undefined>(undefined);
-
-  // useEffect(() => {
-  //   if (!date?.from && !date?.to) {
-  //     setDate({
-  //       from: defaultFromDate,
-  //       to: defaultToDate,
-  //     });
-  //   }
-  // }, [defaultFromDate, defaultToDate]);
 
   return (
-    <Popover
-    // onOpenChange={(open) => {
-    //   if (!open) onPickerClose?.(date);
-    // }}
-    >
-      <PopoverTrigger
-        variant="outline"
-        className="basis-80 justify-between bg-card text-sm font-normal text-muted"
-      >
-        {date?.from ? (
-          date.to ? (
-            <>
-              {formatDate(date.from, "dd.MM.yyyy")} -{" "}
-              {formatDate(date.to, "dd.MM.yyyy")}
-            </>
+    <Popover>
+      <div className="relative flex basis-80 items-stretch rounded-xl bg-card">
+        <PopoverTrigger
+          variant="outline"
+          className="w-full justify-start bg-card text-sm font-normal text-muted"
+        >
+          <Icons.Calendar />
+          {date?.from ? (
+            date.to ? (
+              <>
+                {formatDate(date.from, "dd.MM.yyyy")} -{" "}
+                {formatDate(date.to, "dd.MM.yyyy")}
+              </>
+            ) : (
+              formatDate(date.from, "dd.MM.yyyy")
+            )
           ) : (
-            formatDate(date.from, "dd.MM.yyyy")
-          )
-        ) : (
-          <span>Выберите дату</span>
-        )}
-        {/* {date && (date.from || date.to) ? <Icons.X className="size-3" /> : null} */}
-        <Icons.Calendar />
-      </PopoverTrigger>
+            <span>Выберите дату</span>
+          )}
+        </PopoverTrigger>
+        {date && (date.from || date.to) ? (
+          <Button
+            className="absolute right-2 top-1/2 min-h-0 -translate-y-1/2 rounded-md text-muted hover:text-foreground"
+            size="icon-sm"
+            onClick={() => onDateChange?.({ from: undefined, to: undefined })}
+            variant="ghost"
+          >
+            <Icons.X className="size-3" />
+          </Button>
+        ) : null}
+      </div>
       <PopoverContent className="z-20 !w-auto p-0" align="start" sideOffset={4}>
         <Calendar
           initialFocus
