@@ -125,10 +125,6 @@
     @apply !~mt-4/6;
   }
 
-  .text-containerul {
-    @apply space-y-1;
-  }
-
   .text-container ul li {
     display: grid;
     grid-template-columns: min-content auto;
@@ -143,8 +139,9 @@
     text-align: center;
   }
 
-  .text-container ol {
-    @apply space-y-1;
+  .text-container ol,
+  .text-container ul {
+    @apply space-y-3;
   }
 
   .text-container ol li {
