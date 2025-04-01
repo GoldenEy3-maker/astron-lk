@@ -41,6 +41,7 @@ type EmployeeTest = {
   employeeId: string;
   testId: string;
   result: number;
+  threshold: number;
   createdAt: string;
 };
 
@@ -2177,6 +2178,7 @@ export default new (class DBService {
           employeeId: "1",
           testId: "1",
           result: 81,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2184,6 +2186,7 @@ export default new (class DBService {
           employeeId: "2",
           testId: "2",
           result: 90,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2191,6 +2194,7 @@ export default new (class DBService {
           employeeId: "3",
           testId: "3",
           result: 79,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2198,6 +2202,7 @@ export default new (class DBService {
           employeeId: "4",
           testId: "3",
           result: 54,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2205,6 +2210,7 @@ export default new (class DBService {
           employeeId: "5",
           testId: "2",
           result: 80,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2212,6 +2218,7 @@ export default new (class DBService {
           employeeId: "6",
           testId: "1",
           result: 95,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2219,6 +2226,7 @@ export default new (class DBService {
           employeeId: "7",
           testId: "2",
           result: 82,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2226,6 +2234,7 @@ export default new (class DBService {
           employeeId: "8",
           testId: "1",
           result: 68,
+          threshold: 80,
           createdAt: "2025-01-01T00:00:00.000Z",
         },
         {
@@ -2233,6 +2242,7 @@ export default new (class DBService {
           employeeId: "1",
           testId: "1",
           result: 95,
+          threshold: 80,
           createdAt: "2024-01-01T00:00:00.000Z",
         },
         {
@@ -2240,6 +2250,7 @@ export default new (class DBService {
           employeeId: "2",
           testId: "2",
           result: 82,
+          threshold: 80,
           createdAt: "2024-01-01T00:00:00.000Z",
         },
         {
@@ -2247,6 +2258,7 @@ export default new (class DBService {
           employeeId: "8",
           testId: "3",
           result: 70,
+          threshold: 80,
           createdAt: "2024-01-01T00:00:00.000Z",
         },
         {
@@ -2254,6 +2266,7 @@ export default new (class DBService {
           employeeId: "1",
           testId: "1",
           result: 12,
+          threshold: 80,
           createdAt: new Date().toISOString(),
         },
         {
@@ -2261,15 +2274,17 @@ export default new (class DBService {
           employeeId: "2",
           testId: "2",
           result: 90,
+          threshold: 80,
           createdAt: new Date().toISOString(),
         },
-        {
-          id: "14",
-          employeeId: "8",
-          testId: "3",
-          result: 85,
-          createdAt: new Date().toISOString(),
-        },
+        // {
+        //   id: "14",
+        //   employeeId: "8",
+        //   testId: "3",
+        //   result: 85,
+        //   threshold: 80,
+        //   createdAt: new Date().toISOString(),
+        // },
       ],
       leadGenerations: [
         {
@@ -2335,6 +2350,22 @@ export default new (class DBService {
             name: "Project 2000 Star Wars Battlefront",
           },
           fixedAt: "2023-05-10T09:49:53.450Z",
+        },
+        {
+          id: "v1nco6hpl10",
+          project: {
+            id: "biw98ox7bo",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          fixedAt: "2025-03-10T09:49:53.450Z",
+        },
+        {
+          id: "v5nco6hpl10",
+          project: {
+            id: "biw98ox7bo",
+            name: "Project 2000 Star Wars Battlefront",
+          },
+          fixedAt: "2025-04-10T09:49:53.450Z",
         },
         {
           id: "vunco6hpl11",

@@ -42,7 +42,7 @@ export function VideoDialog({
       </DialogTrigger>
       <DialogContent
         className="h-full max-w-7xl gap-3 rounded-none bg-transparent sm:max-h-[772px]"
-        scrollAreaClassName="[&>div>div]:h-full h-full"
+        scrollAreaClassName="[&>div>div]:h-full h-full [&>div>div]:!block"
         wrapperClassName={
           "p-0 h-full rounded-none sm:rounded-main bg-[rgba(24,24,27,.9)] overflow-hidden"
         }

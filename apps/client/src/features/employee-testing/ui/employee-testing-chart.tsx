@@ -1,7 +1,6 @@
 import { cn } from "@/shared/lib/cn";
 import { useId } from "react";
-import { Cell, Pie, PieLabelRenderProps, PieProps } from "recharts";
-import { PieChart } from "recharts";
+import { PieChart, Cell, Pie, PieLabelRenderProps, PieProps } from "recharts";
 
 type EmployTestingChartProps<T extends Record<string, unknown>> = {
   data?: T[];
@@ -16,6 +15,9 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
   isLoading,
   data,
 }: EmployTestingChartProps<T>) {
+  const containerWidth = 450;
+  const containerHeight = 215;
+
   const key = useId();
 
   const pieProps: React.PropsWithoutRef<Omit<PieProps, "dataKey">> = {
@@ -48,20 +50,51 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
     if (currentLine.length > 0) lines.push(currentLine);
 
     const RADIAN = Math.PI / 180;
-    let radius = Number(params.outerRadius) + 85;
+    const padding = 15;
+
+    const isTwoSectors = data?.length === 2;
+
+    let radius = Number(params.outerRadius) + (isTwoSectors ? 180 : 85);
 
     if (params.midAngle > 180 && params.midAngle < 360)
       radius = Number(params.outerRadius);
 
-    const x = Number(params.cx) + radius * Math.cos(-params.midAngle * RADIAN);
-    const y = Number(params.cy) + radius * Math.sin(-params.midAngle * RADIAN);
+    const cx = Number(params.cx);
+    const cy = Number(params.cy);
+    let angle = -params.midAngle * RADIAN;
+
+    if (isTwoSectors) angle += params.midAngle < 180 ? -5 * RADIAN : 5 * RADIAN;
+
+    let x = cx + radius * Math.cos(angle);
+    let y = cy + radius * Math.sin(angle);
+
+    if (isTwoSectors) {
+      if (params.midAngle < 180) x += 25;
+      else x -= 25;
+    }
+
+    let textAnchor: "start" | "end" | "middle" = "middle";
+
+    if (x > containerWidth - padding) {
+      x = containerWidth - padding;
+      textAnchor = "end";
+    } else if (x < padding) {
+      x = padding;
+      textAnchor = "start";
+    }
+
+    if (y > containerHeight - padding) {
+      y = containerHeight - padding;
+    } else if (y < padding) {
+      y = padding;
+    }
 
     return (
       <text
         x={x}
         y={y}
         fill="currentColor"
-        textAnchor="middle"
+        textAnchor={textAnchor}
         dominantBaseline="middle"
         className="select-none duration-300 animate-in fade-in"
       >
@@ -78,9 +111,9 @@ export function EmployeeTestingChart<T extends Record<string, unknown>>({
 
   return (
     <PieChart
+      width={containerWidth}
+      height={containerHeight}
       key={!isLoading && data ? key : `${key}-loading`}
-      width={450}
-      height={215}
       className="!~h-[9.375rem]/[13.4375rem]"
     >
       {!isLoading && data ? (

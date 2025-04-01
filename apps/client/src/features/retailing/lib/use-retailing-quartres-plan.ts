@@ -33,7 +33,5 @@ export function useRetailingQuartresPlan({
       ? Math.floor((yearFact / yearPlan) * 100)
       : undefined;
 
-  console.log(progress);
-
   return { quartersPlan, isQuartersPlanLoading, yearPlan, yearFact, progress };
 }

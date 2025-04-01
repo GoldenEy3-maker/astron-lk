@@ -32,9 +32,9 @@ const HtmlBlock = z.object({ type: z.literal("html"), content: z.string() }).str
 const InfoBlock = 
                 z.discriminatedUnion("type", [SectionBlock, HtmlBlock])
             ;
-const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.string(), result: z.number().int() }).strict();
+const EmployeeTesting = z.object({ id: z.string(), test: z.string(), name: z.string(), result: z.number().int(), threshold: z.number().int() }).strict();
 const LeadGenerationItem = z.object({ id: z.string(), project: z.object({ id: z.string(), name: z.string() }).strict(), fixedAt: z.string().datetime({ offset: true }) }).strict();
-const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number() }).strict();
+const LeadGenerationMonth = z.object({ monthIdx: z.number(), value: z.number(), threshold: z.number(), isClosed: z.boolean() }).strict();
 const LeadGenerationQuarterPassed = z.object({ quarter: z.number(), value: z.number() }).strict();
 const RetailingQuarter = z.object({ quarter: z.number(), plan: z.number(), fact: z.number().optional() }).strict();
 const RetailingQuartersPlan = z.object({ data: z.array(RetailingQuarter), uploadedAt: z.string().datetime({ offset: true }), updatedAt: z.string().datetime({ offset: true }) }).strict();

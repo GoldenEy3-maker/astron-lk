@@ -129,7 +129,8 @@ export function LeadGenerationPlanTable({
                           "text-secondary": checkIsEmptyQuarter(quarter),
                         })}
                       >
-                        {renderMonthProgress(month.value) || "-"}
+                        {renderMonthProgress(month.value, month.threshold) ||
+                          "-"}
                       </span>
                     ) : (
                       <Skeleton className="h-5 w-10 rounded-full" />

@@ -61,21 +61,28 @@ leadGenerationRouter.get(
     });
 
     const group = list.reduce((acc, item) => {
-      const monthIndex = new Date(item.fixedAt).getMonth();
+      const fixedAtDate = new Date(item.fixedAt);
+      const isClosed = new Date().getTime() !== fixedAtDate.getTime();
+      const monthIndex = fixedAtDate.getMonth();
 
       if (acc.has(monthIndex)) {
-        acc.set(monthIndex, acc.get(monthIndex) + 1);
+        acc.set(monthIndex, { isClosed, value: acc.get(monthIndex).value + 1 });
       } else {
-        acc.set(monthIndex, 1);
+        acc.set(monthIndex, { isClosed, value: 1 });
       }
 
       return acc;
-    }, new Map<number, number>());
+    }, new Map<number, { value: number; isClosed: boolean }>());
 
     const months: LeadGenerationMonth[] = [];
 
-    for (const [idx, value] of group.entries()) {
-      months.push({ monthIdx: idx, value });
+    for (const [idx, { value, isClosed }] of group.entries()) {
+      months.push({
+        monthIdx: idx,
+        value,
+        isClosed,
+        threshold: 2,
+      });
     }
 
     res.json({

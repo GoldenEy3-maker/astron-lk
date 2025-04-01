@@ -2347,6 +2347,7 @@ components:
         - test
         - name
         - result
+        - threshold
       properties:
         id:
           type: string
@@ -2360,6 +2361,9 @@ components:
         result:
           type: integer
           example: 81
+        threshold:
+          type: integer
+          example: 80
     LeadGenerationItem:
       type: object
       required:
@@ -2391,6 +2395,8 @@ components:
       required:
         - monthIdx
         - value
+        - threshold
+        - isClosed
       properties:
         monthIdx:
           type: number
@@ -2398,6 +2404,12 @@ components:
         value:
           type: number
           example: 2
+        threshold:
+          type: number
+          example: 2
+        isClosed:
+          type: boolean
+          example: false
     LeadGenerationQuarterPassed:
       type: object
       required:

@@ -1171,6 +1171,8 @@ export interface components {
             name: string;
             /** @example 81 */
             result: number;
+            /** @example 80 */
+            threshold: number;
         };
         LeadGenerationItem: {
             /** @example 1 */
@@ -1192,6 +1194,10 @@ export interface components {
             monthIdx: number;
             /** @example 2 */
             value: number;
+            /** @example 2 */
+            threshold: number;
+            /** @example false */
+            isClosed: boolean;
         };
         LeadGenerationQuarterPassed: {
             /** @example 1 */

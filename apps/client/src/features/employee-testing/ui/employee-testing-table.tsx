@@ -39,17 +39,17 @@ export function EmployeeTestingTable({
                 <TableCell>{item.name}</TableCell>
                 <TableCell
                   className={cn("text-success", {
-                    "text-destructive": item.result < 80,
+                    "text-destructive": item.result < item.threshold,
                   })}
                 >
                   {item.result}%
                 </TableCell>
                 <TableCell
                   className={cn("whitespace-nowrap text-success", {
-                    "text-destructive": item.result < 80,
+                    "text-destructive": item.result < item.threshold,
                   })}
                 >
-                  {item.result >= 80 ? "Пройден" : "Не заcчитан"}
+                  {item.result >= item.threshold ? "Пройден" : "Не заcчитан"}
                 </TableCell>
               </TableRow>
             ))

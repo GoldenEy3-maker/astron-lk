@@ -3,20 +3,23 @@ import { getFiscalQuarter, getMonthsByFiscalQuarter } from "@repo/date";
 import { set } from "date-fns";
 import { z } from "zod";
 
-type LeadGenerationMonth = { idx: number; value: number | null };
+type LeadGenerationMonth = {
+  idx: number;
+  value: number | null;
+  isClosed: boolean;
+  threshold: number;
+};
 
 type LeadGenerationQuarter = {
   quarter: number;
   months: LeadGenerationMonth[];
 };
 
-type UseLeadGenerationPlanProps = {
+type UseLeadGenerationPlanParams = {
   months?: z.infer<typeof schemas.LeadGenerationMonth>[];
 };
 
-export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
-  const minLeadsInMonth = 2;
-
+export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
   const initialData: LeadGenerationQuarter[] = Array.from(
     { length: 4 },
     (_, idx) => ({
@@ -24,6 +27,8 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
       months: Array.from({ length: 3 }, (_, mIdx) => ({
         idx: getMonthsByFiscalQuarter(idx + 1)[mIdx],
         value: null,
+        isClosed: false,
+        threshold: 0,
       })),
     }),
   );
@@ -41,7 +46,13 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
       acc[quarterCellIndex] = {
         ...acc[quarterCellIndex],
         months: acc[quarterCellIndex].months.map((m) => {
-          if (m.idx === item.monthIdx) return { ...m, value: item.value };
+          if (m.idx === item.monthIdx)
+            return {
+              ...m,
+              isClosed: item.isClosed,
+              threshold: item.threshold,
+              value: item.value,
+            };
           return m;
         }),
       };
@@ -49,18 +60,25 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
       return acc;
     }, initialData) ?? initialData;
 
-  function renderMonthProgress(value: number | null): string | null {
+  function renderMonthProgress(
+    value: number | null,
+    threshold: number,
+  ): string | null {
     if (!value) return null;
 
-    return value >= minLeadsInMonth ? "100%" : "0%";
+    return value >= threshold ? "100%" : "0%";
+  }
+
+  function checkIsQuarterClosed(quarter: LeadGenerationQuarter) {
+    return quarter.months.every((month) => month.isClosed);
   }
 
   function checkIsDestructiveMonth(month: LeadGenerationMonth) {
-    return month.value && month.value < minLeadsInMonth;
+    return month.value && month.value < month.threshold;
   }
 
   function checkIsSuccessMonth(month: LeadGenerationMonth) {
-    return month.value && month.value >= minLeadsInMonth;
+    return month.value && month.value >= month.threshold;
   }
 
   function checkIsDestructiveQuarter(quarter: LeadGenerationQuarter) {
@@ -81,6 +99,7 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanProps) {
     checkIsSuccessMonth,
     checkIsDestructiveQuarter,
     checkIsSuccessQuarter,
+    checkIsQuarterClosed,
     checkIsEmptyQuarter,
     renderMonthProgress,
   };

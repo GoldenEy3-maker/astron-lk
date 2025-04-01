@@ -85,6 +85,7 @@ employeeTestingRouter.get(
             test: test.name,
             name: employee.name,
             result: employeeTest.result,
+            threshold: employeeTest.threshold,
           };
         }),
       uploadedAt: employeeTests[0].createdAt,
