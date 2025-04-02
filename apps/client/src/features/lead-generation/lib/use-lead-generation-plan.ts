@@ -61,13 +61,13 @@ export function useLeadGenerationPlan(params?: UseLeadGenerationPlanParams) {
     value: number | null,
     threshold: number,
   ): string | null {
-    if (!value) return null;
+    if (value === null) return null;
 
     return value >= threshold ? "100%" : "0%";
   }
 
   function checkIsDestructiveMonth(month: LeadGenerationMonth) {
-    return month.value && month.value < month.threshold;
+    return month.value !== null && month.value < month.threshold;
   }
 
   function checkIsSuccessMonth(month: LeadGenerationMonth) {
