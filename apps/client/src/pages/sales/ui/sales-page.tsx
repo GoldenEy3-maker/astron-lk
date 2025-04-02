@@ -105,7 +105,7 @@ export function SalesPage() {
         </Section>
         <Section space="lg" className="rounded-main bg-card ~px-6/14 ~py-6/9">
           <SectionHeader>
-            <h2 className="text-h2 text-heading-h3">Продажи по дням</h2>
+            <h2 className="text-h2 text-heading-h3">Список проектов</h2>
           </SectionHeader>
           <SectionContent>
             <RetailingDaysTable
