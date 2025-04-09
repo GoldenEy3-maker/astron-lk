@@ -10,9 +10,10 @@ import { getPartnerBySessionQueryOptions } from "@/entities/partner/api/partner-
 
 export function ProfilePage() {
   const { data: session } = useQuery(getSessionQueryOptions());
-  const { data: partner, isLoading } = useQuery(
-    getPartnerBySessionQueryOptions(),
-  );
+  const { data: partner, isLoading } = useQuery({
+    ...getPartnerBySessionQueryOptions(),
+    enabled: session?.role === "partner",
+  });
   const { signOutHandler, isPending } = useSignOut();
 
   return (

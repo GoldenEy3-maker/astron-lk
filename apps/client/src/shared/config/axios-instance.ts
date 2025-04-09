@@ -31,6 +31,8 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+let prevErrorUrlRequest = "";
+
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -38,7 +40,9 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url !== "/api/user/session/refresh/"
+      !["/api/user/session/refresh/", prevErrorUrlRequest].includes(
+        originalRequest.url,
+      )
     ) {
       if (!isRefershQueryLoading) {
         isRefershQueryLoading = true;
@@ -51,6 +55,7 @@ axiosInstance.interceptors.response.use(
           isRefershQueryLoading = false;
           callRefreshQuerySubcsribers(data.accessToken);
           refreshQuerySubscribers = [];
+          prevErrorUrlRequest = originalRequest.url;
           return axiosInstance(originalRequest);
         } catch (refreshError) {
           useSessionStore.setState({ token: null });
