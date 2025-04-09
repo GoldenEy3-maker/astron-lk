@@ -16,7 +16,7 @@ export function RecursiveSublinks({
   return (
     <motion.div
       key={level}
-      className={cn("mt-1 pl-9", { "pl-4": level > 0 })}
+      className={cn("mt-1 overflow-hidden pl-9", { "pl-4": level > 0 })}
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}

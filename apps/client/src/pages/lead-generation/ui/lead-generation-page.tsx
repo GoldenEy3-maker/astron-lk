@@ -21,7 +21,7 @@ export function LeadGenerationPage() {
   const { partnerId } = useParams<{ partnerId: string }>();
 
   const { data: uploadedYears, isLoading: isUploadedYearsLoading } = useQuery(
-    getLeadGenerationUploadedYearsQueryOptions(),
+    getLeadGenerationUploadedYearsQueryOptions(partnerId),
   );
 
   const [year, setYear] = useQueryState(

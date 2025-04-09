@@ -26,7 +26,7 @@ export function useNavigationLinks() {
 
   const { data: session } = useQuery(getSessionQueryOptions());
 
-  const generateNav = () => {
+  function generateNav() {
     const links: NavigationLinkType[][] = [
       [
         {
@@ -146,7 +146,7 @@ export function useNavigationLinks() {
       links.splice(1, 0, [link]);
     }
     return links;
-  };
+  }
 
   return generateNav();
 }

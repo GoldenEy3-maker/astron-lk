@@ -4,15 +4,22 @@ import { cn } from "@/shared/lib/cn";
 
 type ScrollAreaProps = React.ComponentPropsWithRef<
   typeof ScrollAreaPrimitive.Root
->;
+> & { viewportClassName?: string };
 
-function ScrollArea({ className, children, ...props }: ScrollAreaProps) {
+function ScrollArea({
+  className,
+  viewportClassName,
+  children,
+  ...props
+}: ScrollAreaProps) {
   return (
     <ScrollAreaPrimitive.Root
       className={cn("relative overflow-hidden", className)}
       {...props}
     >
-      <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+      <ScrollAreaPrimitive.Viewport
+        className={cn("h-full w-full rounded-[inherit]", viewportClassName)}
+      >
         {children}
       </ScrollAreaPrimitive.Viewport>
       <ScrollBar />

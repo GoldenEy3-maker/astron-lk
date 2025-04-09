@@ -34,7 +34,7 @@ export function Kpi({ partnerId, ...props }: KpiProps) {
           <RetailingCard
             detailHref={
               partnerId
-                ? `${Routes.Partners}/${partnerId}/${Routes.Sales}`
+                ? `${Routes.Partners}/${partnerId}${Routes.Sales}`
                 : Routes.Sales
             }
             title="Продажи"
@@ -44,7 +44,7 @@ export function Kpi({ partnerId, ...props }: KpiProps) {
           <RetailingCard
             detailHref={
               partnerId
-                ? `${Routes.Partners}/${partnerId}/${Routes.Booking}`
+                ? `${Routes.Partners}/${partnerId}${Routes.Booking}`
                 : Routes.Booking
             }
             title="Букинги"
