@@ -51,7 +51,13 @@ UI Компоненты проекта базируются на `shadcn`
 
 Деплой выполняется вручную:
 
-- Нужно по sftp скачать папку `cabinet/assets` с хоста, в нее закинуть новые скрипты из `apps/client/dist/assets`.
+- В корне проекта создать папку cabinet и в ней папку assets, в assets закинуть новые скрипты из `apps/client/dist/assets`.
 - Удалить папку из хоста `cabinet/assets`.
 - Загрузки на хост локалькую папку `cabinet/assets` с новыми скриптами и стилями (правая кнопка мыши по папке cabinet в vscode, `sync local -> remote`).
 - Обновить подключения скриптов и стилей в `cabinet/index.php` из `apps/client/dist/index.html`.
+
+Устанавливать новые пакеты в проект необходимо для каждого репозитория
+
+Пример установки пакета для клиента:
+
+`pnpm add --filter client @uidotdev/usehooks`
