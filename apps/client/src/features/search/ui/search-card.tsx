@@ -3,7 +3,6 @@ import { Routes } from "@/shared/constants/routes";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/shared/ui/breadcrumb";
@@ -37,15 +36,9 @@ export function SearchCard({
       ) : null}
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink>Главная</BreadcrumbLink>
-          </BreadcrumbItem>
+          <BreadcrumbItem>Главная</BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink>
-              {TranslateSearchResultTypeMap[type]}
-            </BreadcrumbLink>
-          </BreadcrumbItem>
+          <BreadcrumbItem>{TranslateSearchResultTypeMap[type]}</BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <h2 className="text-h2 text-primary transition group-hover/item:text-primary-accent">
